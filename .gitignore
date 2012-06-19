@@ -1,0 +1,16 @@
+.installed.cfg
+.DS_Store
+bin/
+develop-eggs/
+downloads/
+eggs/
+parts/
+log/
+*.egg-info/
+*.pyc
+*.komodoproject
+*.sqlite
+*._
+.mr.developer.cfg
+src/bushlog/static/admin
+src/bushlog/media
