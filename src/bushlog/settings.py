@@ -2,9 +2,7 @@
 
 from os import path
 
-PROJECT_PATH = path.dirname(path.abspath(__file__))
-
-import pdb;pdb.set_trace()
+PROJECT_PATH = path.dirname(__file__)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
