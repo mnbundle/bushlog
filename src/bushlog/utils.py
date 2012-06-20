@@ -7,11 +7,7 @@ import string
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
-from django.shortcuts import render_to_response
-from django.template import RequestContext
 from django.utils.hashcompat import md5_constructor
-
-from timaris.product.models import Product
 
 def form_handler(form_class, request):
     """
