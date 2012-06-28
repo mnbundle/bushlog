@@ -17,11 +17,6 @@ urlpatterns += patterns('',
     url(r'^admin/', include(admin.site.urls)),
 )
 
-# grappelli patterns
-urlpatterns += patterns('',
-    (r'^grappelli/', include('grappelli.urls')),
-)
-
 # media url required for development
 if settings.DEBUG:
     urlpatterns += patterns('',

@@ -1,7 +1,8 @@
 body{padding-top: 80px;padding-bottom: 40px;}
-.brand{margin:8px 0px;}
-.navbar .btn-group{margin-top: 12px;}
+.brand{margin:4px 0px;}
+.navbar .btn-group{margin-top: 8px;}
 .carousel-caption h5,.carousel-caption p{color:#ffffff;margin-bottom:5px;}
 .rounded-corners-bottom{-webkit-border-radius:0px 0px 4px 4px;-moz-border-radius:0px 0px 4px 4px;border-radius:0px 0px 4px 4px;}
-.map-example {height:350px;}
+.map-example{height:250px;}
+.hero-unit-small {padding:50px;}
 

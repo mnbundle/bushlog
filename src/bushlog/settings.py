@@ -75,7 +75,7 @@ STATIC_URL = '/static/'
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = path.join(STATIC_URL, "grappelli")
+ADMIN_MEDIA_PREFIX = path.join(STATIC_URL, "grappelli/")
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -123,7 +123,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'bushlog.urls'
 
 TEMPLATE_DIRS = (
-    path.join(PROJECT_PATH, "templates")
+    
 )
 
 INSTALLED_APPS = (
@@ -135,15 +135,20 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # django admin apps
     'django.contrib.admin',
     'django.contrib.admindocs',
     
     # reusable apps
     'bootstrap_toolkit',
-    'grappelli',
     
     # project specific apps
     'bushlog',
+    'bushlog.location',
+    'bushlog.reserve',
+    'bushlog.sighting',
+    'bushlog.wildlife',
 )
 
 # A sample logging configuration. The only tangible logging

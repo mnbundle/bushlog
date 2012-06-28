@@ -1,0 +1,130 @@
+[
+    {
+        "pk": 1, 
+        "model": "location.coordinate", 
+        "fields": {
+            "latitude": "-28.000464", 
+            "longitude": "32.113037"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "location.coordinate", 
+        "fields": {
+            "latitude": "-28.43428", 
+            "longitude": "31.69487"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "location.coordinate", 
+        "fields": {
+            "latitude": "22.329752", 
+            "longitude": "31.992188"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "location.coordinate", 
+        "fields": {
+            "latitude": "-25.532528", 
+            "longitude": "30.915527"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "location.coordinate", 
+        "fields": {
+            "latitude": "-33.070829", 
+            "longitude": "25.894775"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "location.coordinate", 
+        "fields": {
+            "latitude": "-33.699208", 
+            "longitude": "25.074921"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "location.coordinate", 
+        "fields": {
+            "latitude": "-33.414249", 
+            "longitude": "25.786285"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "location.coordinate", 
+        "fields": {
+            "latitude": "-33.452068", 
+            "longitude": "25.823364"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "location.coordinate", 
+        "fields": {
+            "latitude": "-33.478418", 
+            "longitude": "25.811005"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "location.coordinate", 
+        "fields": {
+            "latitude": "-33.356915", 
+            "longitude": "25.691528"
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "location.coordinate", 
+        "fields": {
+            "latitude": "-24.821639", 
+            "longitude": "31.942749"
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "location.coordinate", 
+        "fields": {
+            "latitude": "-24.402136", 
+            "longitude": "31.68457"
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "location.coordinate", 
+        "fields": {
+            "latitude": "-23.246393", 
+            "longitude": "31.486816"
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "location.coordinate", 
+        "fields": {
+            "latitude": "-28.089549", 
+            "longitude": "32.105827"
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "location.coordinate", 
+        "fields": {
+            "latitude": "-28.039562", 
+            "longitude": "32.109261"
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "location.coordinate", 
+        "fields": {
+            "latitude": "-28.273242", 
+            "longitude": "31.748085"
+        }
+    }
+]
