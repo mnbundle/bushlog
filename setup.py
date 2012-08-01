@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "bushlog",
-    version = "0.1",
+    version = "0.2",
     url = 'http://www.bushlog.com',
     description = "Bushlog Web Application",
     author = 'Jonathan Bydendyk',
