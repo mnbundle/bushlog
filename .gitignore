@@ -4,7 +4,7 @@
 *.egg-info/
 *.pyc
 *.komodoproject
-*.sqlite
+*.db
 *._
 bin/
 include/

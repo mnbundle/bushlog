@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from bushlog.wildlife.models import Species, SpeciesInfo
+from bushlog.apps.wildlife.models import Species, SpeciesInfo
 
 
 class SpeciesAdmin(admin.ModelAdmin):

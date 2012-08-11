@@ -1,10 +1,11 @@
 from django.contrib import admin
 
-from bushlog.sighting.models import Sighting, SightingImage
+from bushlog.apps.sighting.models import Sighting, SightingImage
 
 
 class SightingImageTabularInline(admin.TabularInline):
     model = SightingImage
+
 
 class SightingAdmin(admin.ModelAdmin):
     list_display = ['species', 'reserve', 'user', 'with_young', 'with_kill', 'date_of_sighting']

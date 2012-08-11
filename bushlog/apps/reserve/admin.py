@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from bushlog.reserve.models import Reserve
+from bushlog.apps.reserve.models import Reserve
 
 
 class ReserveAdmin(admin.ModelAdmin):
