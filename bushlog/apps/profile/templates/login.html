@@ -1,0 +1,22 @@
+<form class="form-vertical form-login" method="post" action="{% url profile:login %}">
+    {% csrf_token %}
+    <div class="controls">
+        {{ form.email }}
+        {{ form.password }}
+    </div>
+    <div class="controls pull-right">
+        <div class="btn-group">
+            <a class="btn btn-success btn-submit" href="#"><i class="icon-lock icon-white"></i> Sign In</a>
+            <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="#">
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#"><i class="icon-user"></i> Join</a></li>
+                <li class="divider"></li>
+                <li><a href="#"><i class="icon-google"></i> Login With Google</a></li>
+                <li><a href="#"><i class="icon-twitter"></i> Login With Twitter</a></li>
+                <li><a href="#"><i class="icon-facebook"></i> Login With Facebook</a></li>
+            </ul>
+        </div>
+    </div>
+</form>

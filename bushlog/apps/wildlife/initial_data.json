@@ -1,0 +1,111 @@
+[
+    {
+        "pk": 1, 
+        "model": "wildlife.speciesinfo", 
+        "fields": {
+            "horn_length": null, 
+            "length": null, 
+            "mass": "3500", 
+            "height": "3400"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "wildlife.speciesinfo", 
+        "fields": {
+            "horn_length": null, 
+            "length": null, 
+            "mass": "6300", 
+            "height": "4000"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "wildlife.speciesinfo", 
+        "fields": {
+            "horn_length": null, 
+            "length": "2700", 
+            "mass": "152", 
+            "height": "1000"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "wildlife.speciesinfo", 
+        "fields": {
+            "horn_length": null, 
+            "length": "3300", 
+            "mass": "225", 
+            "height": "1200"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "wildlife.speciesinfo", 
+        "fields": {
+            "horn_length": null, 
+            "length": "2100", 
+            "mass": "60", 
+            "height": "800"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "wildlife.speciesinfo", 
+        "fields": {
+            "horn_length": null, 
+            "length": "2100", 
+            "mass": "90", 
+            "height": "800"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "wildlife.species", 
+        "fields": {
+            "female_info": 1, 
+            "classification": "herbivore", 
+            "scientific_name": "Loxodonta africana", 
+            "male_info": 2, 
+            "similiar_species": [], 
+            "marker": "markers/elephant.png", 
+            "common_name": "African Elephant", 
+            "general_info": "African Elephant", 
+            "slug": "african-elephant"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "wildlife.species", 
+        "fields": {
+            "female_info": 3, 
+            "classification": "carnivore", 
+            "scientific_name": "Panthera leo", 
+            "male_info": 4, 
+            "similiar_species": [
+                3
+            ], 
+            "marker": "markers/lion.png", 
+            "common_name": "Lion", 
+            "general_info": "Lion", 
+            "slug": "lion"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "wildlife.species", 
+        "fields": {
+            "female_info": 5, 
+            "classification": "carnivore", 
+            "scientific_name": "Panthera pardus", 
+            "male_info": 6, 
+            "similiar_species": [
+                2
+            ], 
+            "marker": "markers/leopard.png", 
+            "common_name": "Leopard", 
+            "general_info": "Leopard", 
+            "slug": "leopard"
+        }
+    }
+]

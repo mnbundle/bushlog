@@ -21,8 +21,21 @@ class Sighting(models.Model):
     with_young = models.BooleanField(default=False)
     with_kill = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ['-date_of_sighting']
+
     def __unicode__(self):
         return "%s - %s" % (self.reserve, self.species)
+
+    @property
+    def mapdata(self):
+        return {
+            'lat': str(self.location.latitude),
+            'lng': str(self.location.longitude),
+            'options': {
+                'icon': self.species.marker.url
+            }
+        }
 
 
 class SightingImage(models.Model):

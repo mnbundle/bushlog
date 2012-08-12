@@ -1,6 +1,7 @@
 from django.db import models
 
 from bushlog.apps.location.models import Coordinate
+from bushlog.utils import historical_date
 
 
 class Reserve(models.Model):
@@ -12,3 +13,7 @@ class Reserve(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    @property
+    def number_of_sightings(self):
+        return self.sightings.filter(date_of_sighting__gte=historical_date(month=1)).count()
