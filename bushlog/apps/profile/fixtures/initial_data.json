@@ -1,6 +1,32 @@
 [
     {
         "pk": 1,
+        "model": "auth.user",
+        "fields": {
+            "username": "admin",
+            "first_name": "Jonathan",
+            "last_name": "Bydendyk",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2012-06-07T14:19:27",
+            "groups": [],
+            "user_permissions": [],
+            "password": "sha1$095cc$7eb244c85886233407cdc5123cb4180121a29115",
+            "email": "admin@admin.com",
+            "date_joined": "2012-06-07T14:19:27"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "sites.site",
+        "fields": {
+            "domain": "bushlog.com",
+            "name": "BushLog"
+        }
+    },
+    {
+        "pk": 1,
         "model": "profile.userprofile",
         "fields": {
             "alias": "admin",

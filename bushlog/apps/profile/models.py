@@ -6,5 +6,11 @@ class UserProfile(models.Model):
     user = models.ForeignKey(User, unique=True)
     alias = models.SlugField()
 
+    @property
+    def full_name(self):
+        return "%s %s" % (self.user.first_name, self.user.last_name)
 
-User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
+
+User.profile = property(
+    lambda user: UserProfile.objects.get_or_create(user=user)[0]
+)

@@ -5,8 +5,27 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic import FormView
 
+from tastypie.api import Api
+
+from bushlog.apps.location.api import CoordinateResource
+from bushlog.apps.profile.api import UserResource
+from bushlog.apps.reserve.api import ReserveResource
+from bushlog.apps.sighting.api import SightingResource
+from bushlog.apps.wildlife.api import SpeciesResource, SpeciesInfoResource
+
 # set admin to autodiscover registered admin classes
 admin.autodiscover()
+
+# instantiate the api
+v1_api = Api(api_name='v1')
+
+# register api resources
+v1_api.register(CoordinateResource())
+v1_api.register(ReserveResource())
+v1_api.register(SightingResource())
+v1_api.register(SpeciesResource())
+v1_api.register(SpeciesInfoResource())
+v1_api.register(UserResource())
 
 # static url patterns
 urlpatterns = patterns('',
@@ -22,6 +41,16 @@ urlpatterns += patterns('',
 # auth url patterns
 urlpatterns += patterns('',
     url(r'^profile/', include('bushlog.apps.profile.urls', namespace='profile')),
+)
+
+# social auth urls
+urlpatterns += patterns('',
+    url(r'social/', include('social_auth.urls', namespace='social')),
+)
+
+# api urls
+urlpatterns += patterns('',
+    url(r'^api/', include('bushlog.api.urls')),
 )
 
 # serves static file while DEBUG is true
