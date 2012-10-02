@@ -10,6 +10,9 @@ class UserProfile(models.Model):
     def full_name(self):
         return "%s %s" % (self.user.first_name, self.user.last_name)
 
+    def __unicode__(self):
+        return self.user.username
+
 
 User.profile = property(
     lambda user: UserProfile.objects.get_or_create(user=user)[0]

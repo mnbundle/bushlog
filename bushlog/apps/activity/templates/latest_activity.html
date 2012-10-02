@@ -1,0 +1,7 @@
+{% load sighting %}
+
+{% for obj in obj_list %}
+    {% if obj.action_taken == 'sighting_added' %}
+        {% resize_image obj.content_object.images.all.0.image 200 200 %}
+    {% endif %}
+{% endfor %}

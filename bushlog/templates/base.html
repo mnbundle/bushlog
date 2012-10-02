@@ -17,7 +17,7 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/gmap3.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/application.js"></script>
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     {% block extra_js %}{% endblock %}
 
@@ -26,25 +26,25 @@
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
-                <a class="brand" href="#"><img src="{{ STATIC_URL }}img/layout/logo.png" width="106" height="30" /></a>
+                <a class="brand" href="{% url index %}"><img src="{{ STATIC_URL }}img/layout/logo-drk.png" width="106" height="30" /></a>
                 {% if request.user.is_authenticated %}
                     <div class="btn-group pull-right">
-                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="icon-user"></i> {{ user.username }}
+                        <a class="btn"><i class="icon-user"></i> {{ user.profile.alias }}</a>
+                        <a class="btn dropdown-toggle" data-toggle="dropdown">
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li>
-                                <a href="#"><i class="icon-pencil"></i>&nbsp; Edit Profile</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="icon-lock"></i>&nbsp; Privacy Settings</a>
-                            </li>
+                            <li><a href="#"><i class="icon-pencil"></i>&nbsp; Edit Profile</a></li>
+                            <li><a href="#"><i class="icon-lock"></i>&nbsp; Privacy Settings</a></li>
                             <li class="divider"></li>
-                            <li>
-                                <a href=""><i class="icon-remove-sign"></i>&nbsp; Sign Out</a>
-                            </li>
+                            <li><a href="{% url profile:signout %}"><i class="icon-remove-sign"></i>&nbsp; Sign Out</a></li>
                         </ul>
+                    </div>
+                {% else %}
+                    <div class="btn-group pull-right">
+                        <a class="btn btn-success" href="#modalGeneric" role="button" data-toggle="modal">
+                            <i class="icon-user icon-white"></i> Sign Up
+                        </a>
                     </div>
                 {% endif %}
             </div>

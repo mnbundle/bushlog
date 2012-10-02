@@ -1,12 +1,13 @@
-body{padding-top: 80px;padding-bottom: 40px;}
-.brand{margin:4px 0px;}
-.brand img{margin-bottom:-5px;}
-.navbar .btn-group{margin-top: 8px;}
-.carousel-caption h5,.carousel-caption p{color:#ffffff;margin-bottom:5px;}
-.rounded-corners-bottom{-webkit-border-radius:0px 0px 4px 4px;-moz-border-radius:0px 0px 4px 4px;border-radius:0px 0px 4px 4px;}
-.map-example{height:250px;}
-.hero-unit-small {padding:50px;}
-.hero-unit-index {height:200px;}
-.icon-facebook{background-position:0 -167px;}
-.icon-twitter{background-position:-24px -167px;}
-.icon-google{background-position:-48px -167px;}
+body {padding-top: 80px;padding-bottom: 40px;}
+.brand {margin:4px 0px;}
+.brand img {margin-bottom:-5px;}
+.navbar .btn-group {margin-top: 8px;}
+.carousel-caption h5,.carousel-caption p {color:#ffffff;margin-top:-5px;height:8px;}
+.rounded-corners-bottom {-webkit-border-radius:0px 0px 4px 4px;-moz-border-radius:0px 0px 4px 4px;border-radius:0px 0px 4px 4px;}
+.map-example {height:250px;}
+.hero-unit-small {padding:40px;}
+.hero-unit-index {height:270px;}
+.icon-facebook {background-position:0 -167px;}
+.icon-twitter {background-position:-24px -167px;}
+.icon-google {background-position:-48px -167px;}
+label.checkbox {color:#777}

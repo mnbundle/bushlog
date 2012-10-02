@@ -11,12 +11,37 @@
         <div class="hero-unit span7 hero-unit-small hero-unit-index">
             <h1>Welcome</h1>
             <p>&nbsp;</p>
-            <p>Welcome to BushLog, a fun, interactive way to record your wildlife sighting and browse the sighting of
-            other wildlife enthusiasts while on safari in one of the many game reserves in Africa.</p>
+            <p>Welcome to BushLog, a fun, interactive way to record and share your wildlife sightings in one of the
+            many game reserves in Africa. Browse the sighting of other nature enthusiasts, comment on game sightings and
+            interact with like-minded people.</p>
         </div>
-        <div class="hero-unit span3 hero-unit-small hero-unit-index login-container">
+        <div class="hero-unit span3 hero-unit-small hero-unit-index signin-container">
             <h1>Sign In</h1>
             <p>&nbsp;</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span11">
+            <h1>Latest Activity</h1>
+            <p>&nbsp;</p>
+            {% load activity %}
+            {% latest_activity %}
+            <p></p>
+        </div>
+    </div>
+
+    <div id="modalGeneric" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Sign Up</h3>
+        </div>
+        <div class="modal-body signup-container">
+            <p>&nbsp;</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
+            <a href="#" class="btn btn-success">Sign Up</a>
         </div>
     </div>
 {% endblock %}

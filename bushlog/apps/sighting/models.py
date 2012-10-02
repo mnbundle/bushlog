@@ -4,6 +4,7 @@ from django.db import models
 from bushlog.apps.location.models import Coordinate
 from bushlog.apps.reserve.models import Reserve
 from bushlog.apps.wildlife.models import Species
+from bushlog.utils import choices
 
 
 class Sighting(models.Model):
@@ -18,6 +19,7 @@ class Sighting(models.Model):
     description = models.TextField()
 
     estimated_number = models.IntegerField(blank=True, null=True)
+    sex = models.CharField(max_length=20, choices=choices(['male', 'female', 'both']))
     with_young = models.BooleanField(default=False)
     with_kill = models.BooleanField(default=False)
 

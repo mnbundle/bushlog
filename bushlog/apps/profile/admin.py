@@ -2,9 +2,10 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
-from bushlog.apps.profile.models import UserProfile
+from tastypie.admin import ApiKeyInline
+from tastypie.models import ApiAccess, ApiKey
 
-admin.site.unregister(User)
+from bushlog.apps.profile.models import UserProfile
 
 
 class UserProfileInline(admin.StackedInline):
@@ -12,6 +13,10 @@ class UserProfileInline(admin.StackedInline):
 
 
 class UserProfileAdmin(UserAdmin):
-    inlines = [UserProfileInline,]
+    inlines = UserAdmin.inlines + [UserProfileInline, ApiKeyInline]
 
+
+admin.site.unregister(User)
+admin.site.register(ApiKey)
+admin.site.register(ApiAccess)
 admin.site.register(User, UserProfileAdmin)

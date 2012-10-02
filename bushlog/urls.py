@@ -43,9 +43,14 @@ urlpatterns += patterns('',
     url(r'^profile/', include('bushlog.apps.profile.urls', namespace='profile')),
 )
 
+# comments framework patterns
+urlpatterns += patterns('',
+    (r'^comments/', include('django.contrib.comments.urls')),
+)
+
 # social auth urls
 urlpatterns += patterns('',
-    url(r'social/', include('social_auth.urls', namespace='social')),
+    url(r'social/', include('social_auth.urls')),
 )
 
 # api urls
