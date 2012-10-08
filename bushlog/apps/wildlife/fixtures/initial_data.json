@@ -69,6 +69,7 @@
             "male_info": 2,
             "similiar_species": [],
             "marker": "markers/elephant.png",
+            "default_image": "defaults/elephant.png",
             "common_name": "African Elephant",
             "general_info": "African Elephant",
             "slug": "african-elephant"
@@ -86,6 +87,7 @@
                 3
             ],
             "marker": "markers/lion.png",
+            "default_image": "defaults/lion.png",
             "common_name": "Lion",
             "general_info": "Lion",
             "slug": "lion"
@@ -103,6 +105,7 @@
                 2
             ],
             "marker": "markers/leopard.png",
+            "default_image": "defaults/leopard.png",
             "common_name": "Leopard",
             "general_info": "Leopard",
             "slug": "leopard"

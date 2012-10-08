@@ -1,7 +1,28 @@
 {% load sighting %}
 
-{% for obj in obj_list %}
-    {% if obj.action_taken == 'sighting_added' %}
-        {% resize_image obj.content_object.images.all.0.image 200 200 %}
-    {% endif %}
-{% endfor %}
+{% if split %}
+    <div class="row span12">
+    {% for obj in obj_list %}
+        {% if obj.action_taken == 'sighting_added' %}
+            <div class="span1 {% if forloop.counter|divisibleby:2 %}offset1{% endif %}">
+                {% if obj.content_object.cover_image %}
+                    <img src="{% resize_image obj.content_object.cover_image 50 50 %}" class="img-rounded"/>
+                {% else %}
+                    <img src="{% resize_image obj.content_object.species.default_image 50 50 %}" class="img-rounded"/>
+                {% endif %}
+            </div>
+            <div class="span4 pull-top">
+                <h6>
+                    <a href="#">{{ obj.content_object.user.username }}</a>
+                    <small> added a new sighting of a </small>
+                    <a href="#">{{ obj.content_object.species.common_name }}</a>
+                    <small> in the </small>
+                    <a href="#">{{ obj.content_object.reserve.name }}</a>
+                </h6>
+                <hr>
+            </div>
+        {% endif %}
+    {% endfor %}
+    </div>
+{% else %}
+{% endif %}

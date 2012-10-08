@@ -24,13 +24,5 @@
             "domain": "bushlog.com",
             "name": "BushLog"
         }
-    },
-    {
-        "pk": 1,
-        "model": "profile.userprofile",
-        "fields": {
-            "alias": "admin",
-            "user": 1
-        }
     }
 ]

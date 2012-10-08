@@ -14,3 +14,10 @@ class Coordinate(models.Model):
         return json.dumps({
             'latlng': [str(self.latitude), str(self.longitude)]
         })
+
+
+class Country(models.Model):
+    name = models.CharField(max_length=150)
+
+    def __unicode__(self):
+        return self.name

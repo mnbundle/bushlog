@@ -19,3 +19,18 @@ class Activity(models.Model):
 
     def __unicode__(self):
         return "%s %s" % (self.content_object, self.action_taken)
+
+
+# activity log post_save method
+def log_activity(sender, instance, created, **kwargs):
+    action_taken = None
+    if sender.__name__ == "Sighting":
+        action_taken = "sighting_added"
+    elif sender.__name__ == "UserProfile":
+        action_taken = "user_added"
+
+    if created and action_taken:
+        Activity.objects.create(
+            content_object=instance,
+            action_taken=action_taken
+        )

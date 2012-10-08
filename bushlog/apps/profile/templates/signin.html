@@ -1,6 +1,6 @@
 <form class="form-vertical form-signin" method="post" action="{% url profile:signin %}">
     {% csrf_token %}
-    {{ form.email }}
+    {{ form.username_email }}
     {{ form.password }}
     <label class="checkbox">
         {{ form.remember_me }} <small>Remember Me</small>
@@ -12,7 +12,7 @@
             <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-            <li><a href="#modalGeneric" data-toggle="modal"><i class="icon-user"></i> Sign Up</a></li>
+            <li><a href="#id_signup_modal" data-toggle="modal"><i class="icon-user"></i> Sign Up</a></li>
             <li class="divider"></li>
             <li><a href="{% url socialauth_begin 'google-oauth2' %}"><i class="icon-google"></i> Login With Google</a></li>
             <li><a href="{% url socialauth_begin 'twitter' %}"><i class="icon-twitter"></i> Login With Twitter</a></li>
@@ -20,5 +20,3 @@
         </ul>
     </div>
 </form>
-
-

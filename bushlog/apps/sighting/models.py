@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save
 
+from bushlog.apps.activity.models import log_activity
 from bushlog.apps.location.models import Coordinate
 from bushlog.apps.reserve.models import Reserve
 from bushlog.apps.wildlife.models import Species
@@ -39,6 +41,13 @@ class Sighting(models.Model):
             }
         }
 
+    @property
+    def cover_image(self):
+        image_list = self.images.all()
+        if image_list:
+            return image_list[0].image
+        return None
+
 
 class SightingImage(models.Model):
     sighting = models.ForeignKey(Sighting, related_name="images")
@@ -47,3 +56,7 @@ class SightingImage(models.Model):
 
     def __unicode__(self):
         return "%s - %s" % (self.sighting, self.caption)
+
+
+# activity log post_save
+post_save.connect(log_activity, sender=Sighting)

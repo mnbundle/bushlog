@@ -23,6 +23,7 @@ class Species(models.Model):
     scientific_name = models.CharField(max_length=75)
     slug = models.SlugField()
     marker = models.ImageField(upload_to="markers/", max_length=250)
+    default_image = models.ImageField(upload_to="defaults/", max_length=250)
 
     classification = models.CharField(max_length=20, choices=choices(['carnivore', 'herbivore', 'omnivore']))
     general_info = models.TextField()

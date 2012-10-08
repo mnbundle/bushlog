@@ -29,7 +29,7 @@
                 <a class="brand" href="{% url index %}"><img src="{{ STATIC_URL }}img/layout/logo-drk.png" width="106" height="30" /></a>
                 {% if request.user.is_authenticated %}
                     <div class="btn-group pull-right">
-                        <a class="btn"><i class="icon-user"></i> {{ user.profile.alias }}</a>
+                        <a class="btn"><i class="icon-user"></i> {{ user.username }}</a>
                         <a class="btn dropdown-toggle" data-toggle="dropdown">
                             <span class="caret"></span>
                         </a>
@@ -42,7 +42,7 @@
                     </div>
                 {% else %}
                     <div class="btn-group pull-right">
-                        <a class="btn btn-success" href="#modalGeneric" role="button" data-toggle="modal">
+                        <a class="btn btn-success" href="#id_signup_modal" role="button" data-toggle="modal">
                             <i class="icon-user icon-white"></i> Sign Up
                         </a>
                     </div>
@@ -55,11 +55,11 @@
             {% for message in messages %}
                 <div class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %}">
                     <button class="close" data-dismiss="alert" onclick="$(this).parent().fadeOut('slow');">×</button>
-                    {% if message.tags %}<strong>{{ message.tags|capfirst }}!</strong> {% endif %}{{ message }}
+                    {% if message.tags %}<strong>{{ message.tags|upper }} - </strong> {% endif %}{{ message }}
                 </div>
             {% endfor %}
             <script type="text/javascript">
-                setTimeout("$('.alert').fadeOut('slow')", 5000);
+                setTimeout("$('.alert').fadeOut('slow')", 8000);
             </script>
         {% endif %}
         {% block content %}{% endblock %}
