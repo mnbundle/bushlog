@@ -37,6 +37,31 @@
     },
     {
         "pk": 1,
+        "model": "profile.notification",
+        "fields": {
+            "body": "Please activate your profile by following this link: {activation_link}",
+            "type": "activate_profile",
+            "user": [
+                3
+            ],
+            "subject": "BushLog - Please Activate Your Profile"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "profile.notification",
+        "fields": {
+            "body": "Please confirm and reset your password by following this link: {reset_link}",
+            "type": "reset_password",
+            "user": [
+                2,
+                3
+            ],
+            "subject": "BushLog - Please Confirm Your Password Reset"
+        }
+    },
+    {
+        "pk": 1,
         "model": "sites.site",
         "fields": {
             "domain": "bushlog.com",

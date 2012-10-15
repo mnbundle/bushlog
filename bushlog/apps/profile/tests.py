@@ -1,14 +1,16 @@
 from django.test import TestCase
 
-from bushlog.sighting.models import Sighting
+from bushlog.apps.profile.models import Notification
 
 
-class SightingTestCase(TestCase):
+class NotificationTestCase(TestCase):
     def setUp(self):
-        pass
-    
+        self.object = Notification.objects.get(id=1)
+
     def test_model(self):
-        pass
-    
+
+        # ensure the object was created correctly
+        self.assertIsInstance(self.object, Notification)
+
     def tearDown(self):
         pass

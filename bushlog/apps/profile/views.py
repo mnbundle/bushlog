@@ -89,13 +89,14 @@ class SignUpFormView(generic.FormView):
         user.save()
 
         if user:
+            user.profile.add_notification('activate_profile')
             messages.add_message(
                 self.request, messages.SUCCESS,
-                "Thank you for signing up. An email has been sent to you with details to complete your registration."
+                "Thank you for signing up. An email has been sent to you with the details to complete your registration."
             )
             return HttpResponseRedirect(self.success_url)
-        else:
             return self.form_invalid(form)
+        return self.form_invalid(form)
 
     def form_invalid(self, form):
         """
@@ -164,13 +165,15 @@ class ResetPasswordFormView(generic.FormView):
         """
         Set a success message if the form is valid.
         """
-        if form.send():
+        user = User.objects.get(email=form.cleaned_data.get('email'))
+
+        if user:
+            user.profile.add_notification('reset_password')
             messages.add_message(
                 self.request, messages.SUCCESS,
-                "An email has been sent with instruction to reset your password."
+                "An email has been sent with instructions to reset your password."
             )
             return HttpResponseRedirect(self.success_url)
-
         return self.form_invalid(form)
 
     def form_invalid(self, form):

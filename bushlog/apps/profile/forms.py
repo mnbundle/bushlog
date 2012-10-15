@@ -93,9 +93,3 @@ class ResetPasswordForm(forms.Form):
         ),
         required=True
     )
-
-    def send(self, *args, **kwargs):
-        """
-        Send a confirmation email for password reset.
-        """
-        return True
