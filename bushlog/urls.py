@@ -29,33 +29,33 @@ v1_api.register(UserResource())
 
 # static url patterns
 urlpatterns = patterns('',
-    url(r'^$', FormView.as_view(template_name="index.html", form_class=AuthenticationForm), name='index'),
+    url(r'^$', FormView.as_view(template_name="index.html", form_class=AuthenticationForm), name='index')
 )
 
 # admin url patterns
 urlpatterns += patterns('',
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls))
 )
 
 # auth url patterns
 urlpatterns += patterns('',
-    url(r'^profile/', include('bushlog.apps.profile.urls', namespace='profile')),
+    url(r'^profile/', include('bushlog.apps.profile.urls', namespace='profile'))
 )
 
 # comments framework patterns
 urlpatterns += patterns('',
-    (r'^comments/', include('django.contrib.comments.urls')),
+    (r'^comments/', include('django.contrib.comments.urls'))
 )
 
 # social auth urls
 urlpatterns += patterns('',
-    url(r'social/', include('social_auth.urls')),
+    url(r'social/', include('social_auth.urls'))
 )
 
 # api urls
 urlpatterns += patterns('',
-    url(r'^api/', include('bushlog.api.urls')),
+    url(r'^api/', include('bushlog.api.urls'))
 )
 
 # serves static file while DEBUG is true
@@ -65,4 +65,5 @@ urlpatterns += staticfiles_urlpatterns()
 if settings.DEBUG:
     urlpatterns += patterns('',
         (r'^media\/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+        (r'^templates\/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.TEMPLATE_DIRS[0]})
     )

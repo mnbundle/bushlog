@@ -6,9 +6,9 @@
         {% if obj.action_taken == 'sighting_added' %}
             <div class="span1 {% if forloop.counter|divisibleby:2 %}offset1{% endif %}">
                 {% if obj.content_object.cover_image %}
-                    <img src="{% resize_image obj.content_object.cover_image 50 50 %}" class="img-rounded"/>
+                    <img src="{% resize_image obj.content_object.cover_image 50 50 %}" class="img-rounded" width="50" height="50" />
                 {% else %}
-                    <img src="{% resize_image obj.content_object.species.default_image 50 50 %}" class="img-rounded"/>
+                    <img src="{% resize_image obj.content_object.species.default_image 50 50 %}" class="img-rounded" width="50" height="50" />
                 {% endif %}
             </div>
             <div class="span4 pull-top">

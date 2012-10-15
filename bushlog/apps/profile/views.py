@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.views import generic
 
-from bushlog.apps.profile.forms import SignInForm, SignUpForm
+from bushlog.apps.profile.forms import ResetPasswordForm, SignInForm, SignUpModelForm, UpdateModelForm
 from bushlog.apps.profile.decorators import json_response
 
 
@@ -15,14 +15,21 @@ class SignInFormView(generic.FormView):
     success_url = reverse('index')
     error_url = reverse('index')
     error_msg = "Your login details were entered incorrectly. Please try again."
+    form_prefix = "signin"
+
+    def get_form_kwargs(self):
+        kwargs = super(generic.FormView, self).get_form_kwargs()
+        if self.form_prefix:
+            kwargs.update({'prefix': self.form_prefix})
+        return kwargs
 
     def form_valid(self, form):
         """
         Set a success message if the form is valid.
         """
-        username_email = form.data.get('username_email')
-        password = form.data.get('password')
-        remember_me = form.data.get('remember_me', False)
+        username_email = form.cleaned_data.get('username_email')
+        password = form.cleaned_data.get('password')
+        remember_me = form.cleaned_data.get('remember_me', False)
 
         try:
             user = User.objects.get(email=username_email)
@@ -57,18 +64,28 @@ class SignInFormView(generic.FormView):
 
 
 class SignUpFormView(generic.FormView):
-    template_name = 'signup.html'
-    form_class = SignUpForm
+    template_name = "signup.html"
+    form_class = SignUpModelForm
     success_url = reverse('index')
     error_url = reverse('index')
     error_msg = "The signup process failed. Please try again."
+    form_prefix = "signup"
+
+    def get_form_kwargs(self):
+        kwargs = super(generic.FormView, self).get_form_kwargs()
+        if self.form_prefix:
+            kwargs.update({'prefix': self.form_prefix})
+        return kwargs
+
+    def get_initial(self):
+        return
 
     def form_valid(self, form):
         """
         Set a success message if the form is valid.
         """
         user = form.save()
-        user.set_password(form.data.get('password'))
+        user.set_password(form.cleaned_data.get('password'))
         user.save()
 
         if user:
@@ -88,6 +105,82 @@ class SignUpFormView(generic.FormView):
         return HttpResponseRedirect(self.error_url)
 
 
+class UpdateFormView(generic.FormView):
+    template_name = "update.html"
+    form_class = UpdateModelForm
+    success_url = reverse('index')
+    error_url = reverse('index')
+    error_msg = "Updating your profile failed. Please try again."
+    form_prefix = "update"
+
+    def get_form_kwargs(self):
+        kwargs = super(generic.FormView, self).get_form_kwargs()
+        if self.form_prefix:
+            kwargs.update({'prefix': self.form_prefix})
+        if self.request.user.profile:
+            kwargs.update({'instance': self.request.user.profile})
+        return kwargs
+
+    def get_initial(self):
+        return self.request.user.profile.__dict__
+
+    def form_valid(self, form):
+        """
+        Set a success message if the form is valid.
+        """
+        if form.is_valid():
+            form.save()
+            messages.add_message(
+                self.request, messages.SUCCESS,
+                "Your profile hase been successfully updated."
+            )
+            return HttpResponseRedirect(self.success_url)
+
+        return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        """
+        Set an error message if the form is invalid.
+        """
+        messages.add_message(self.request, messages.ERROR, self.error_msg)
+        return HttpResponseRedirect(self.error_url)
+
+
+class ResetPasswordFormView(generic.FormView):
+    template_name = "reset_password.html"
+    form_class = ResetPasswordForm
+    success_url = reverse('index')
+    error_url = reverse('index')
+    error_msg = "Password reset failed."
+    form_prefix = "reset_password"
+
+    def get_form_kwargs(self):
+        kwargs = super(generic.FormView, self).get_form_kwargs()
+        if self.form_prefix:
+            kwargs.update({'prefix': self.form_prefix})
+        return kwargs
+
+    def form_valid(self, form):
+        """
+        Set a success message if the form is valid.
+        """
+        if form.send():
+            messages.add_message(
+                self.request, messages.SUCCESS,
+                "An email has been sent with instruction to reset your password."
+            )
+            return HttpResponseRedirect(self.success_url)
+
+        return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        """
+        Set an error message if the form is invalid.
+        """
+        messages.add_message(self.request, messages.ERROR, self.error_msg)
+        return HttpResponseRedirect(self.error_url)
+
+
 class SignOutRedirectView(generic.RedirectView):
     permanent = False
 
@@ -96,12 +189,26 @@ class SignOutRedirectView(generic.RedirectView):
         return reverse('index')
 
 
-class ValidateUniqueView(generic.View):
+class ValidateView(generic.View):
 
     @json_response
-    def get(self, request, *args, **kwargs):
-        username = request.GET.get('username')
-        email = request.GET.get('email')
+    def get(self, request, type, *args, **kwargs):
+        username = None
+        email = None
+
+        auth_username = getattr(self.request.user, 'username', None)
+        auth_email = getattr(self.request.user, 'email', None)
+
+        for key in request.GET.keys():
+            if "username" in key:
+                username = request.GET.get(key)
+                if username == auth_username:
+                    return True if type == 'unique' else False
+
+            elif "email" in key:
+                email = request.GET.get(key)
+                if email == auth_email:
+                    return True if type == 'unique' else False
 
         try:
             if username:
@@ -109,11 +216,13 @@ class ValidateUniqueView(generic.View):
             elif email:
                 User.objects.get(email=email)
         except User.DoesNotExist:
-            return True
-        return False
+            return True if type == 'unique' else False
 
+        return False if type == 'unique' else True
 
 signin = SignInFormView.as_view()
 signup = SignUpFormView.as_view()
+update = UpdateFormView.as_view()
+reset_password = ResetPasswordFormView.as_view()
 signout = SignOutRedirectView.as_view()
-validate_unique = ValidateUniqueView.as_view()
+validate = ValidateView.as_view()

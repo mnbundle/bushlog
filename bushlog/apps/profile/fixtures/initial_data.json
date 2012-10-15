@@ -9,12 +9,30 @@
             "is_active": true,
             "is_superuser": true,
             "is_staff": true,
-            "last_login": "2012-06-07T14:19:27",
+            "last_login": "2012-10-09T10:52:37.214",
             "groups": [],
             "user_permissions": [],
-            "password": "sha1$095cc$7eb244c85886233407cdc5123cb4180121a29115",
+            "password": "pbkdf2_sha256$10000$UM48eXatT9gt$QJEe4AIaAj1IoxgJrk8V8ni447koPHaioYfruplFhMw=",
             "email": "admin@admin.com",
             "date_joined": "2012-06-07T14:19:27"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "auth.user",
+        "fields": {
+            "username": "qoda",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": false,
+            "last_login": "2012-10-09T10:51:24.263",
+            "groups": [],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$10000$V89xZhO6kZHW$nM3hPjiNs21iQ//82oyApM7nCVi9G3n5W6mpk9G51/A=",
+            "email": "jpbydendyk@gmail.com",
+            "date_joined": "2012-10-09T10:48:01.264"
         }
     },
     {

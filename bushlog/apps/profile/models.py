@@ -7,9 +7,9 @@ from bushlog.utils import choices
 
 class UserProfile(models.Model):
     user = models.ForeignKey(User, unique=True)
-    biography = models.TextField(blank=True, null=True)
+    biography = models.CharField(max_length=250, blank=True, null=True)
     avatar = models.ImageField(upload_to="avatars/", max_length=250, blank=True, null=True)
-    gender = models.CharField(max_length=10, choices=choices(['male', 'female']), blank=True, null=True)
+    gender = models.CharField(max_length=10, choices=choices(['Male', 'Female']), blank=True, null=True)
     birth_date = models.DateField(blank=True, null=True)
     country = models.ForeignKey(Country, related_name='users', blank=True, null=True)
 

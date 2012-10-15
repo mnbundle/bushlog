@@ -1,67 +1,115 @@
 initSignInForm = function () {
     $.get('/profile/signin/', function(data) {
+
+        // loads the form into the form container and sets the submit action
         $('.signin-container').append(data);
         $('.btn-signin-submit').click(function(){
             $('.form-signin').submit();
         });
+
     });
 }
 
-$.validator.addMethod("unique", function(value, element) {
-    return this.optional(element) || (parseFloat(value) > 0);
-}, "* Amount must be greater than zero");
-
 initSignUpForm = function () {
     $.get('/profile/signup/', function(data) {
+
+        // loads the form into the form container and sets the submit action
         $('.signup-container').html(data);
         $('.btn-signup-submit').click(function(){
             $('.form-signup').submit();
         });
+
+        // initialise form validation
         $('.form-signup').validate({
-            rules: {
-                username: {
-                    remote: "/profile/validate/"
+            messages: {
+                "signup-username": {
+                    required: "Username is required.",
+                    remote: "Username entered is already in use."
                 },
-                email: {
-                    remote: "/profile/validate/"
+                "signup-email": {
+                    required: "Email is required.",
+                    remote: "Email entered is already registered."
                 },
-                confirm_password: {
-                    equalTo: "#id_password"
+                "signup-password": {
+                    required: "Password is required."
+                },
+                "signup-confirm_password": {
+                    required: "Password confirmation is required.",
+                    equalTo: "Passwords don't match."
                 }
             },
+            success: function(label) {
+                label.html('<i class="icon-ok"></i>');
+            }
+        });
+    });
+}
+
+initUpdateForm = function () {
+    $.get('/profile/update/', function(data) {
+
+        // loads the form into the form container and sets the submit action
+        $('.update-container').html(data);
+        $('.btn-update-submit').click(function(){
+            $('.form-update').submit();
+        });
+        $('#id_datepicker').datepicker();
+
+        // initialise form validation
+        $('.form-update').validate({
             messages: {
-                username: {
-                    remote: "That username is already in use."
+                "update-email": {
+                    required: "Email is required.",
+                    remote: "Email entered is already registered."
                 },
-                email: {
-                    remote: "That email is already registered."
+                "update-password": {
+                    required: "Password is required."
+                },
+                "update-confirm_password": {
+                    required: "Password confirmation is required.",
+                    equalTo: "Passwords don't match."
                 }
             }
         });
     });
 }
 
-validateUniqueNess = function (type, value) {
-    $.get('/profile/validate/' + type + '/' + value + '/', function(data) {
-        return data.unique;
+initResetPasswprdForm = function () {
+    $.get('/profile/reset-password/', function(data) {
+
+        // loads the form into the form container and sets the submit action
+        $('.resetpassword-container').html(data);
+        $('.btn-resetpassword-submit').click(function(){
+            $('.form-resetpassword').submit();
+        });
+
+        // initialise form validation
+        $('.form-resetpassword').validate({
+            messages: {
+                "reset_password-email": {
+                    required: "Email is required.",
+                    remote: "Email entered is not registered."
+                }
+            }
+        });
     });
 }
 
 $(document).ready(function() {
-    // initialise the login form
+
+    // initialise profile forms
     initSignInForm();
     initSignUpForm();
+    initUpdateForm();
+    initResetPasswprdForm();
 
-    $.get('/profile/validate/username/qoda/', function(data) {
-        console.log("Username: ");
-        console.log(data);
+    // initialise the modals with required options
+    $('#id_signup_modal').modal({
+        keyboard: false,
+        show: false
     });
-
-    $.get('/profile/validate/email/jpbydendyk@gmail.com/', function(data) {
-        console.log("Email: ");
-        console.log(data);
+    $('#id_update_modal').modal({
+        keyboard: false,
+        show: false
     });
-
-    // ensure the modal is hidden by default
-    // $('#modalGeneric').modal('show');
 });

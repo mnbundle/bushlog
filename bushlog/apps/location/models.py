@@ -19,5 +19,8 @@ class Coordinate(models.Model):
 class Country(models.Model):
     name = models.CharField(max_length=150)
 
+    class Meta:
+        verbose_name_plural = "Countries"
+
     def __unicode__(self):
         return self.name

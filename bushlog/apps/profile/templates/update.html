@@ -1,0 +1,34 @@
+<form class="form-horizontal form-update" method="post" action="{% url profile:update %}">
+    {% csrf_token %}
+    <div class="control-group">
+        <label class="control-label" for="id_update-full_name">Real name</label>
+        <div class="controls">{{ form.first_name }} &nbsp; &nbsp; {{ form.last_name }}</div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="id_update-email">Email address</label>
+        <div class="controls">{{ form.email }}</div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="id_update-country">Country</label>
+        <div class="controls">{{ form.country }}</div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="id_update-gender">Gender</label>
+        <div class="controls">{{ form.gender }}</div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="id_update-birth_date">Date of Birth</label>
+        <div class="controls">
+            <div class="input-append date" id="id_datepicker" data-date="01/01/1980" data-date-format="dd/mm/yyyy" data-date-viewmode="years">
+                {{ form.birth_date }}
+                <span class="add-on"><i class="icon-calendar"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="id_update-biography">Profile</label>
+        <div class="controls">{{ form.biography }}</div>
+    </div>
+</form>
+
+

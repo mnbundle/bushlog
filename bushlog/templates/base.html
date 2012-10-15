@@ -1,81 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>BushLog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Wildlife Sightings in South Africa.">
-    <meta name="author" content="BushLog">
+    <head>
+        <meta charset="utf-8">
+        <title>BushLog</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Wildlife Sightings in South Africa.">
+        <meta name="author" content="BushLog">
 
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" type="text/css"/>
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.extend.min.css" type="text/css"/>
-    {% block extra_css %}{% endblock %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" type="text/css"/>
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.extend.css" type="text/css"/>
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.datepicker.css" type="text/css"/>
+        {% block extra_css %}{% endblock %}
 
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/gmap3.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/application.js"></script>
-    <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    {% block extra_js %}{% endblock %}
-
-</head>
-<body>
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="brand" href="{% url index %}"><img src="{{ STATIC_URL }}img/layout/logo-drk.png" width="106" height="30" /></a>
-                {% if request.user.is_authenticated %}
-                    <div class="btn-group pull-right">
-                        <a class="btn"><i class="icon-user"></i> {{ user.username }}</a>
-                        <a class="btn dropdown-toggle" data-toggle="dropdown">
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="icon-pencil"></i>&nbsp; Edit Profile</a></li>
-                            <li><a href="#"><i class="icon-lock"></i>&nbsp; Privacy Settings</a></li>
-                            <li class="divider"></li>
-                            <li><a href="{% url profile:signout %}"><i class="icon-remove-sign"></i>&nbsp; Sign Out</a></li>
-                        </ul>
-                    </div>
-                {% else %}
-                    <div class="btn-group pull-right">
-                        <a class="btn btn-success" href="#id_signup_modal" role="button" data-toggle="modal">
-                            <i class="icon-user icon-white"></i> Sign Up
-                        </a>
-                    </div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %}">
-                    <button class="close" data-dismiss="alert" onclick="$(this).parent().fadeOut('slow');">×</button>
-                    {% if message.tags %}<strong>{{ message.tags|upper }} - </strong> {% endif %}{{ message }}
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.datepicker.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/gmap3.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/application.js"></script>
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        {% block extra_js %}{% endblock %}
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="{% url index %}"><img src="{{ STATIC_URL }}img/layout/logo-drk.png" width="106" height="30" /></a>
+                    {% if request.user.is_authenticated %}
+                        <div class="btn-group pull-right">
+                            <a class="btn"><i class="icon-user"></i> {{ user.username }}</a>
+                            <a class="btn dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#id_update_modal" data-toggle="modal"><i class="icon-pencil"></i>&nbsp; Update Profile</a></li>
+                                <li><a href="#privacy"><i class="icon-lock"></i>&nbsp; Privacy Settings</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{% url profile:signout %}"><i class="icon-remove-sign"></i>&nbsp; Sign Out</a></li>
+                            </ul>
+                        </div>
+                    {% else %}
+                        <div class="btn-group pull-right">
+                            <a class="btn btn-success" href="#id_signup_modal" data-toggle="modal">
+                                <i class="icon-user icon-white"></i> Sign Up
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
-            {% endfor %}
-            <script type="text/javascript">
-                setTimeout("$('.alert').fadeOut('slow')", 8000);
-            </script>
-        {% endif %}
-        {% block content %}{% endblock %}
-        <hr>
-        <div class="row">
-            <div class="span12">
-                <ul class="nav nav-pills pull-right">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Legal</a></li>
-                    <li><a href="#">Developers</a></li>
-                    <li><a href="#">Researchers</a></li>
-                    <li><a href="#">Advertising</a></li>
-                </ul>
             </div>
         </div>
-    </div>
-</body>
+        <div class="container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %}">
+                        <button class="close" data-dismiss="alert" onclick="$(this).parent().fadeOut('slow');">×</button>
+                        {% if message.tags %}<strong>{{ message.tags|upper }} - </strong> {% endif %}{{ message }}
+                    </div>
+                {% endfor %}
+                <script type="text/javascript">
+                    setTimeout("$('.alert').fadeOut('slow')", 5000);
+                </script>
+            {% endif %}
+            {% block content %}{% endblock %}
+            <hr>
+            <div class="row">
+                <div class="span12">
+                    <ul class="nav nav-pills pull-right">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Legal</a></li>
+                        <li><a href="#">Developers</a></li>
+                        <li><a href="#">Researchers</a></li>
+                        <li><a href="#">Advertising</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% include 'profile_modals.html' %}
+    </body>
 </html>

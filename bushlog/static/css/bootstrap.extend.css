@@ -1,4 +1,4 @@
-body {padding-top: 80px;padding-bottom: 40px;}
+body {padding-top:80px;padding-bottom:40px;}
 .brand {margin:4px 0px;}
 .brand img {margin-bottom:-5px;}
 .navbar .btn-group {margin-top: 8px;}
@@ -11,7 +11,9 @@ body {padding-top: 80px;padding-bottom: 40px;}
 .icon-twitter {background-position:-24px -167px;}
 .icon-google {background-position:-48px -167px;}
 label.checkbox {color:#777}
-.pull-top {margin-top:-5px;}
+.pull-top {margin-top:-5px}
 a {color:#333}
+a.btn{outline-width:0!important}
 a:hover {color:#5BB75B}
 label.error {margin-top:-25px;color:red;width:290px;text-align:right;font-size:80%}
+.date input {width:258px!important;}
