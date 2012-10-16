@@ -1,0 +1,4 @@
+# min hour dom mon dow cmd
+
+# Bushlog cron jobs
+*/5 * * * * django-admin.py notification_queue

@@ -1,8 +1,6 @@
-from datetime import datetime, timedelta
-
 from django.core.management.base import BaseCommand
 
-from bushlog.apps.profile import Notification
+from bushlog.apps.profile.models import Notification
 
 
 class Command(BaseCommand):
@@ -16,8 +14,10 @@ class Command(BaseCommand):
         for obj in obj_list:
             for user in obj.user.all():
                 if obj.type == 'activate_profile':
-                    activation_link = ""
-                    obj.send(to=[user.email], activation_link=activation_link)
+                    activation_link = "activate_profile"
+                    if obj.send(to=[user.email], activation_link=activation_link):
+                        obj.user.remove(user)
                 elif obj.type == 'reset_password':
-                    reset_link = ""
-                    obj.send(to=[user.email], reset_link=reset_link)
+                    reset_link = "reset_link"
+                    if obj.send(to=[user.email], reset_link=reset_link):
+                        obj.user.remove(user)

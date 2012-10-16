@@ -44,7 +44,8 @@
             "user": [
                 3
             ],
-            "subject": "BushLog - Please Activate Your Profile"
+            "subject": "Please Activate Your Profile",
+            "template": "email/signup.html"
         }
     },
     {
@@ -57,7 +58,8 @@
                 2,
                 3
             ],
-            "subject": "BushLog - Please Confirm Your Password Reset"
+            "subject": "Please Confirm Your Password Reset",
+            "template": "email/reset_password.html"
         }
     },
     {

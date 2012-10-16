@@ -1,7 +1,9 @@
 from django.conf import settings
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth.models import User
 from django.db import models
+from django.template import Context, RequestContext
+from django.template.loader import get_template
 
 from bushlog.apps.location.models import Country
 from bushlog.utils import choices
@@ -37,20 +39,36 @@ class Notification(models.Model):
     type = models.CharField(max_length=20, choices=choices(['activate_profile', 'reset_password']), unique=True)
     subject = models.CharField(max_length=75)
     body = models.TextField()
+    template = models.CharField(max_length=100)
 
     def send(self, to=[], *args, **kwargs):
         """
-        Sends a confirmation email to a list of users. Note the use of str formatting.
+        Sends a notification email to users. Note the use of str formatting.
         """
-        email_msg = EmailMessage(
+        # format the body text to include all kwargs
+        email_body = self.body.format(**kwargs)
+
+        # form the html template and it's context into a html str
+        html_template = get_template(self.template)
+        html_context = Context({'obj': self, 'settings': settings})
+        html_context.update(kwargs)
+        html_content = html_template.render(html_context)
+
+        # initiates the email message and attaches the html alternative
+        email_msg = EmailMultiAlternatives(
             subject=self.subject,
-            body=self.body.format(kwargs),
+            body=email_body,
             from_email=settings.FROM_EMAIL,
             to=to
         )
+        email_msg.attach_alternative(html_content, "text/html")
 
+        # if the send fails return false
         try:
-            email_msg.send(fail_silently=False)
+            if settings.DEBUG:
+                print email_msg.message()
+            else:
+                email_msg.send(fail_silently=False)
             return True
         except:
             return False

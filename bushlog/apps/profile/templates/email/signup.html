@@ -1,0 +1,12 @@
+{% extends 'base_email.html' %}
+
+{% block content %}
+    <h2>{{ obj.subject }}</h2>
+    <p>Please activate your BushLog profile by clicking on the button below.</p>
+    <p>&nbsp;</p>
+    <p>
+        <a href="{{ activation_link }}" alt="{{ activation_link }}">
+            <img src="{{ settings.HOST }}/static/img/email/button_activate.png" width="139" height="40" />
+        </a>
+    </p>
+{% endblock %}

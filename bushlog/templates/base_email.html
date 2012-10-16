@@ -78,27 +78,17 @@
     </head>
     <body>
         <table cellpadding="15" cellspacing="0" border="0" id="backgroundTable">
-            <tr style="background-color:#f2f2f2;height:54px;border-bottom-color:#D4D4D4;border-bottom-style:solid;border-bottom-width:1px;">
+            <tr style="background-image: url('{{ settings.HOST }}/static/img/email/header.png');background-repeat: no-repeat;">
                 <td>
-                    <a href="http://localhost:9000/">
-                        <img class="image_fix" src="/static/img/layout/logo-drk.png" alt="Your alt text" title="Your title text" width="106" height="30" />
-                    </a>
+                    &nbsp;
                 </td>
             </tr>
-            <tr><td>&nbsp;</td></tr>
             <tr>
                 <td align="center">
-                    <table cellpadding="5" cellspacing="0" border="0" width="640">
+                    <table cellpadding="5" cellspacing="0" border="0" width="700">
                         <tr>
                             <td>
-                                <h1>Thank You For Signing Up</h1>
-                                <p>In order to activate your BushLog profile, please click on the link below.</p>
-                                <p>
-                                    <a href="http://localhost:9000/profile/activate" alt="http://localhost:9000/profile/activate">
-                                        <br/>
-                                        <h3>Activate Profile</h3>
-                                    </a>
-                                </p>
+                                {% block content %}{% endblock %}
                             </td>
                         </tr>
                     </table>
