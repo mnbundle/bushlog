@@ -1,0 +1,19 @@
+<form class="form-horizontal form-signup" method="post" action="{% url profile:signup %}">
+    {% csrf_token %}
+    <div class="control-group">
+        <label class="control-label" for="id_username">Username</label>
+        <div class="controls">{{ form.username }}</div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="id_email">Email address</label>
+        <div class="controls">{{ form.email }}</div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="id_password">Password</label>
+        <div class="controls">{{ form.password }}</div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="id_confirm_password">Confirm password</label>
+        <div class="controls">{{ form.confirm_password }}</div>
+    </div>
+</form>

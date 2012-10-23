@@ -1,9 +1,8 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.views.generic import FormView
+from django.views import generic
 
 from tastypie.api import Api
 
@@ -29,7 +28,7 @@ v1_api.register(UserResource())
 
 # static url patterns
 urlpatterns = patterns('',
-    url(r'^$', FormView.as_view(template_name="index.html", form_class=AuthenticationForm), name='index')
+    url(r'^$', generic.TemplateView.as_view(template_name="index.html"), name='index')
 )
 
 # admin url patterns
@@ -38,9 +37,14 @@ urlpatterns += patterns('',
     url(r'^admin/', include(admin.site.urls))
 )
 
-# auth url patterns
+# user profile url patterns
 urlpatterns += patterns('',
     url(r'^profile/', include('bushlog.apps.profile.urls', namespace='profile'))
+)
+
+# reserve url patterns
+urlpatterns += patterns('',
+    url(r'^reserve/', include('bushlog.apps.reserve.urls', namespace='reserve'))
 )
 
 # comments framework patterns

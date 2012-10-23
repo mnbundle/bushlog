@@ -37,6 +37,28 @@
     },
     {
         "pk": 1,
+        "model": "profile.userprofile",
+        "fields": {
+            "user": 1,
+            "slug": "admin",
+            "gender": "male",
+            "country": 213
+        }
+    },
+    {
+        "pk": 2,
+        "model": "profile.userprofile",
+        "fields": {
+            "user": 2,
+            "slug": "qoda",
+            "gender": "male",
+            "country": 213,
+            "avatar": "avatar/qoda/moma3001-south-africa-rugby.png",
+            "biography": "Software Engineer, mostly web, systems & mobile applications developed in python / django on ubuntu. Avid angler, terrible golfer and love the outdoors."
+        }
+    },
+    {
+        "pk": 1,
         "model": "profile.notification",
         "fields": {
             "body": "Please activate your profile by following this link: {activation_link}",
@@ -56,7 +78,7 @@
             "type": "reset_password",
             "user": [
                 2,
-                3
+                32
             ],
             "subject": "Please Confirm Your Password Reset",
             "template": "email/reset_password.html"

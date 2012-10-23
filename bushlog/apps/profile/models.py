@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth.models import User
 from django.db import models
-from django.template import Context, RequestContext
+from django.template import Context
 from django.template.loader import get_template
 
 from bushlog.apps.location.models import Country
@@ -11,11 +11,15 @@ from bushlog.utils import choices
 
 class UserProfile(models.Model):
     user = models.ForeignKey(User, unique=True)
+    slug = models.SlugField()
     biography = models.CharField(max_length=250, blank=True, null=True)
-    avatar = models.ImageField(upload_to="avatars/", max_length=250, blank=True, null=True)
+    avatar = models.ImageField(
+        upload_to=lambda instance, filename: "avatars/%s/%s" % (instance.slug, filename),
+        max_length=250, blank=True, null=True
+    )
     gender = models.CharField(max_length=10, choices=choices(['Male', 'Female']), blank=True, null=True)
     birth_date = models.DateField(blank=True, null=True)
-    country = models.ForeignKey(Country, related_name='users', blank=True, null=True)
+    country = models.ForeignKey(Country, related_name='user_profile', blank=True, null=True)
 
     @property
     def full_name(self):
@@ -75,5 +79,5 @@ class Notification(models.Model):
 
 
 User.profile = property(
-    lambda user: UserProfile.objects.get_or_create(user=user)[0]
+    lambda user: UserProfile.objects.get_or_create(user=user, slug=user.username)[0]
 )

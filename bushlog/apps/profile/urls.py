@@ -7,6 +7,8 @@ urlpatterns = patterns('bushlog.apps.profile.views',
     url(r'signup/$', 'signup', name='signup'),
     url(r'update/$', 'update', name='update'),
     url(r'reset-password/$', 'reset_password', name='reset_password'),
+    url(r'resend-activation/$', 'resend_activation', name='resend_activation'),
     url(r'signout/$', 'signout', name='signout'),
     url(r'validate/(?P<type>\w+)/$', 'validate', name='validate'),
+    url(r'(?P<slug>\S+)/$', 'index', name='index'),
 )

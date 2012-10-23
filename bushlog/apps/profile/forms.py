@@ -17,6 +17,12 @@ class SignInForm(forms.Form):
 
 
 class SignUpModelForm(forms.ModelForm):
+    username = forms.CharField(max_length=15, widget=forms.TextInput(attrs={
+            'class': 'span4 required',
+            'minlength': 4,
+            'remote': reverse_lazy('profile:validate', args=['unique'])
+        })
+    )
     confirm_password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'span4', 'equalTo': '#id_signup-password'})
     )
@@ -26,19 +32,22 @@ class SignUpModelForm(forms.ModelForm):
         fields = ['username', 'password', 'email']
         widgets = {
             'username': forms.TextInput(
-                attrs={'class': 'span4 required', 'minlength': 4, 'remote': reverse_lazy('profile:validate', args=['unique'])}
+                attrs={
+                    'class': 'span4 required',
+                    'minlength': 4,
+                    'remote': reverse_lazy('profile:validate', args=['unique'])
+                }
             ),
             'email': forms.TextInput(
-                attrs={'class': 'span4 required email', 'remote': reverse_lazy('profile:validate', args=['unique'])}
+                attrs={'class': 'span4 required email ', 'remote': reverse_lazy('profile:validate', args=['unique'])}
             ),
-            'password': forms.PasswordInput(attrs={'class': 'span4 required', 'minlength': 6}),
+            'password': forms.PasswordInput(attrs={'class': 'span4 required validpassword', 'minlength': 8}),
         }
 
     def clean(self):
         cleaned_data = super(SignUpModelForm, self).clean()
         if cleaned_data['password'] != cleaned_data['confirm_password']:
             raise forms.ValidationError("Passwords don't match.")
-
         return cleaned_data
 
 
@@ -72,21 +81,32 @@ class UpdateModelForm(forms.ModelForm):
         super(UpdateModelForm, self).__init__(*args, **kwargs)
 
         # initialise the user fields with instance data
-        self.fields['first_name'].initial = self.instance.user.first_name
-        self.fields['last_name'].initial = self.instance.user.last_name
-        self.fields['email'].initial = self.instance.user.email
+        if self.instance:
+            self.fields['first_name'].initial = self.instance.user.first_name
+            self.fields['last_name'].initial = self.instance.user.last_name
+            self.fields['email'].initial = self.instance.user.email
 
     def save(self, *args, **kwargs):
         super(UpdateModelForm, self).save(*args, **kwargs)
 
         # save the extra user data
-        self.instance.user.first_name = self.cleaned_data.get('first_name')
-        self.instance.user.last_name = self.cleaned_data.get('last_name')
-        self.instance.user.email = self.cleaned_data.get('email')
-        self.instance.user.save()
+        if self.instance:
+            self.instance.user.first_name = self.cleaned_data.get('first_name')
+            self.instance.user.last_name = self.cleaned_data.get('last_name')
+            self.instance.user.email = self.cleaned_data.get('email')
+            self.instance.user.save()
 
 
 class ResetPasswordForm(forms.Form):
+    email = forms.EmailField(
+        widget=forms.TextInput(
+            attrs={'class': 'span4 required email', 'remote': reverse_lazy('profile:validate', args=['exists'])}
+        ),
+        required=True
+    )
+
+
+class ResendActivationForm(forms.Form):
     email = forms.EmailField(
         widget=forms.TextInput(
             attrs={'class': 'span4 required email', 'remote': reverse_lazy('profile:validate', args=['exists'])}

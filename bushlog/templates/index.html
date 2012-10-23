@@ -1,10 +1,5 @@
 {% extends "base.html" %}
 
-{% block extra_js %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.validate.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/profile.js"></script>
-{% endblock %}
-
 {% block content %}
     {% load reserve %}
     {% featured_reserve_maps %}
@@ -13,7 +8,7 @@
             <h1>Welcome</h1>
             <p>&nbsp;</p>
             <p>Welcome to BushLog, a fun, interactive way to record and share your wildlife sightings in one of the
-            many game reserves in Africa. Browse the sighting of other nature enthusiasts, comment on game sightings and
+            many game reserves in Southern Africa. Browse the sighting of other nature enthusiasts, comment on game sightings and
             interact with like-minded people, all the while helping researchers and conservationists protect Africa's
             biodiversity.</p>
         </div>
@@ -29,8 +24,8 @@
                 <h1>Latest Activity</h1>
             </div>
             <p>&nbsp;</p>
-            {% load activity %}
-            {% latest_activity 10 1 %}
+            {% load sighting %}
+            {% latest_sightings split=1 limit=10 %}
             <p></p>
         </div>
     </div>

@@ -4,6 +4,7 @@ body {padding-top:80px;padding-bottom:40px;}
 .navbar .btn-group {margin-top: 8px;}
 .carousel-caption h5,.carousel-caption p {color:#ffffff;margin-top:-5px;height:8px;}
 .rounded-corners-bottom {-webkit-border-radius:0px 0px 4px 4px;-moz-border-radius:0px 0px 4px 4px;border-radius:0px 0px 4px 4px;}
+.rounded-corners-top {-webkit-border-radius:4px 4px 0px 0px;-moz-border-radius:4px 4px 0px 0px;border-radius:4px 4px 0px 0px;}
 .map-example {height:250px;}
 .hero-unit-small {padding:40px;}
 .hero-unit-index {height:270px;}
@@ -13,7 +14,7 @@ body {padding-top:80px;padding-bottom:40px;}
 label.checkbox {color:#777}
 .pull-top {margin-top:-5px}
 a {color:#333}
-a.btn{outline-width:0!important}
+a.btn {outline-width:0!important}
 a:hover {color:#5BB75B}
-label.error {margin-top:-25px;color:red;width:290px;text-align:right;font-size:80%}
 .date input {width:258px!important;}
+.help-inline {font-size:80%}

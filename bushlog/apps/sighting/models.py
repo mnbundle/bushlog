@@ -1,8 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models.signals import post_save
 
-from bushlog.apps.activity.models import log_activity
 from bushlog.apps.location.models import Coordinate
 from bushlog.apps.reserve.models import Reserve
 from bushlog.apps.wildlife.models import Species
@@ -27,6 +25,7 @@ class Sighting(models.Model):
 
     class Meta:
         ordering = ['-date_of_sighting']
+        get_latest_by = 'date_of_sighting'
 
     def __unicode__(self):
         return "%s - %s" % (self.reserve, self.species)
@@ -56,7 +55,3 @@ class SightingImage(models.Model):
 
     def __unicode__(self):
         return "%s - %s" % (self.sighting, self.caption)
-
-
-# activity log post_save
-post_save.connect(log_activity, sender=Sighting)

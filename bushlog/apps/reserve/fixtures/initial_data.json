@@ -3,33 +3,54 @@
         "pk": 1,
         "model": "reserve.reserve",
         "fields": {
-            "description": "The Hluhluwe Umfolozi Park is the only park under formal conservation in KwaZulu Natal where the Big Five occur. Established in 1895, this is the oldest game park in South Africa along with nearby St Lucia Reserve. Set in the heart of Zululand this is the oldest game reserve in Africa, where Zulu kings such as Dingiswayo and Shaka hunted and put in place the first conservation laws. Today, Africa's 'Big Five' (lion, elephant, leopard, buffalo and rhinoceros) stalk the flourishing savannah. Game viewing is the principal attraction in the Hluhluwe Umfolozi Game Reserve. Viewing hides overlook pans and waterholes enabling one to observe the wildlife at close range. ",
             "bottom_left_bound": 1,
-            "top_right_bound": 2, 
-            "name": "Hluhluwe Game Reserve",
-            "slug": "hluhluwe-game-reserve"
+            "description": "The Hluhluwe Umfolozi Park is the only park under formal conservation in KwaZulu Natal where the Big Five occur. Established in 1895, this is the oldest game park in South Africa along with nearby St Lucia Reserve. Set in the heart of Zululand.",
+            "website": "www.kznwildlife.co.za",
+            "country": 213,
+            "species": [
+                1,
+                2,
+                3
+            ],
+            "top_right_bound": 2,
+            "slug": "hluhluwe-game-reserve",
+            "name": "Hluhluwe Game Reserve"
         }
     },
     {
         "pk": 2,
         "model": "reserve.reserve",
         "fields": {
-            "description": "The largest game reserve in South Africa, the KRUGER NATIONAL PARK is larger than Israel. Nearly 2 million hectares of land that stretch for 352 kilometres (20 000 square kilometres) from north to south along the Mozambique border, is given over to an almost indescribable wildlife experience. Certainly it ranks with the best in Africa and is the flagship of the country\u2019s national parks - rated as the ultimate safari experience. The Kruger National Park lies across the provinces of Mpumalanga and Limpopo in the north of South Africa, just south of Zimbabwe and west of Mozambique. It now forms part of the Great Limpopo Transfrontier Park - a peace park that links Kruger National Park with game parks in Zimbabwe and Mozambique, and fences are already coming down to allow game to freely roam in much the way it would have in the time before man\u2019s intervention. When complete, the Greater Limpopo Transfrontier Park will extend across 35 000 square kilometres, 58% of it South African, 24% Mozambican and 18% Zimbabwean territory. ",
             "bottom_left_bound": 3,
+            "description": "The largest game reserve in South Africa, the Kruger National Park is larger than Israel. Nearly 2 million hectares of land that stretch for 352 kilometres (20 000 square kilometres) from north to south along the Mozambique border.",
+            "website": "www.sanparks.co.za",
+            "country": 213,
+            "species": [
+                1,
+                2,
+                3
+            ],
             "top_right_bound": 4,
-            "name": "Kruger National Park",
-            "slug": "kruger-national-park"
+            "slug": "kruger-national-park",
+            "name": "Kruger National Park"
         }
     },
     {
         "pk": 3,
         "model": "reserve.reserve",
         "fields": {
-            "description": "Situated in a malaria free area just one hour's drive from the South African coastal city of Port Elizabeth, the magnificently diverse ADDO ELEPHANT PARK offers a wide variety of game viewing, outdoor adventure, accommodation and cultural experiences. You will be amazed at the variety of South Africa Wildlife that can be experienced in one easily accessible destination.",
             "bottom_left_bound": 5,
+            "description": "Situated in a malaria free area just one hour's drive from the South African coastal city of Port Elizabeth, the magnificently diverse Addo Elephant Park offers a wide variety of game viewing, outdoor adventure, accommodation and cultural experience.",
+            "website": "www.sanparks.co.za",
+            "country": 213,
+            "species": [
+                1,
+                2,
+                3
+            ],
             "top_right_bound": 6,
-            "name": "Addo Elephant National Park",
-            "slug": "addo-elephant-national-park"
+            "slug": "addo-elephant-national-park",
+            "name": "Addo Elephant National Park"
         }
     }
 ]

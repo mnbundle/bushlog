@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% load sighting %}
+    {% sighting_map limit=5 user=object.user %}
+    <div class="row">
+        <div class="span9">
+            <div class="page-header span8">
+                <h1>{{ object.user.username|capfirst }}'s BushLog</h1>
+            </div>
+            {% latest_sightings limit=10 user=object.user %}
+        </div>
+        <div>&nbsp;</div>
+        <div class="span3">
+            <div>
+                {% if object.avatar %}
+                    <img src="{% resize_image object.avatar 220 220 %}" class="img-rounded" width="220" height="220" />
+                {% else %}
+                    <img src="{{ STATIC_URL }}img/layout/profile-{{ object.gender|default:"male" }}.png" class="img-rounded" width="220" height="220" />
+                {% endif %}
+            </div>
+            <div>
+                <h3>
+                    <strong>{{ object.user.username }} </strong><br/>
+                    <small>{{ object.country|default:"Unknown Location" }}</small>
+                </h3>
+            </div>
+            <div>
+                <small>{{ object.biography|default:"" }}</small>
+            </div>
+        </div>
+    </div>
+{% endblock %}

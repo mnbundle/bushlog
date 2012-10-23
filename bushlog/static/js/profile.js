@@ -19,27 +19,25 @@ initSignUpForm = function () {
             $('.form-signup').submit();
         });
 
+        $.validator.addMethod("validpassword", function(value, element) {
+            return this.optional(element) || /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\d]).*$/.test(value);
+        });
+
         // initialise form validation
         $('.form-signup').validate({
             messages: {
                 "signup-username": {
-                    required: "Username is required.",
-                    remote: "Username entered is already in use."
+                    remote: "is already in use."
                 },
                 "signup-email": {
-                    required: "Email is required.",
-                    remote: "Email entered is already registered."
+                    remote: "is already registered."
                 },
                 "signup-password": {
-                    required: "Password is required."
+                    validpassword: "must contain upper & lower case letters and a number."
                 },
                 "signup-confirm_password": {
-                    required: "Password confirmation is required.",
-                    equalTo: "Passwords don't match."
+                    equalTo: "doesn't match password field."
                 }
-            },
-            success: function(label) {
-                label.html('<i class="icon-ok"></i>');
             }
         });
     });
@@ -59,22 +57,14 @@ initUpdateForm = function () {
         $('.form-update').validate({
             messages: {
                 "update-email": {
-                    required: "Email is required.",
-                    remote: "Email entered is already registered."
-                },
-                "update-password": {
-                    required: "Password is required."
-                },
-                "update-confirm_password": {
-                    required: "Password confirmation is required.",
-                    equalTo: "Passwords don't match."
+                    remote: "is already registered."
                 }
             }
         });
     });
 }
 
-initResetPasswprdForm = function () {
+initResetPasswordForm = function () {
     $.get('/profile/reset-password/', function(data) {
 
         // loads the form into the form container and sets the submit action
@@ -95,20 +85,45 @@ initResetPasswprdForm = function () {
     });
 }
 
+initResendActivationForm = function () {
+    $.get('/profile/resend-activation/', function(data) {
+
+        // loads the form into the form container and sets the submit action
+        $('.resendactivation-container').html(data);
+        $('.btn-resendactivation-submit').click(function(){
+            $('.form-resendactivation').submit();
+        });
+
+        // initialise form validation
+        $('.form-resendactivation').validate({
+            messages: {
+                "resend_activation-email": {
+                    required: "Email is required.",
+                    remote: "Email entered is not registered."
+                }
+            }
+        });
+    });
+}
+
 $(document).ready(function() {
 
     // initialise profile forms
     initSignInForm();
     initSignUpForm();
-    initUpdateForm();
-    initResetPasswprdForm();
+    initResetPasswordForm();
+    initResendActivationForm();
 
     // initialise the modals with required options
     $('#id_signup_modal').modal({
         keyboard: false,
         show: false
     });
-    $('#id_update_modal').modal({
+    $('#id_resetpassword_modal').modal({
+        keyboard: false,
+        show: false
+    });
+    $('#id_resendactivation_modal').modal({
         keyboard: false,
         show: false
     });

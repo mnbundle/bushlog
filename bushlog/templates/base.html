@@ -18,6 +18,9 @@
         <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.datepicker.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/gmap3.min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/application.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.validate.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.validate.bootstrap.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/profile.js"></script>
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -30,7 +33,7 @@
                     <a class="brand" href="{% url index %}"><img src="{{ STATIC_URL }}img/layout/logo-drk.png" width="106" height="30" /></a>
                     {% if request.user.is_authenticated %}
                         <div class="btn-group pull-right">
-                            <a class="btn"><i class="icon-user"></i> {{ user.username }}</a>
+                            <a class="btn" href="{% url profile:index request.user.username %}"><i class="icon-user"></i> {{ user.username }}</a>
                             <a class="btn dropdown-toggle" data-toggle="dropdown">
                                 <span class="caret"></span>
                             </a>
@@ -41,6 +44,19 @@
                                 <li><a href="{% url profile:signout %}"><i class="icon-remove-sign"></i>&nbsp; Sign Out</a></li>
                             </ul>
                         </div>
+                        <script type="text/javascript">
+                            $(document).ready(function() {
+
+                                // initialise update form
+                                initUpdateForm();
+
+                                // initialise the update modal with required options
+                                $('#id_update_modal').modal({
+                                    keyboard: false,
+                                    show: false
+                                });
+                            });
+                        </script>
                     {% else %}
                         <div class="btn-group pull-right">
                             <a class="btn btn-success" href="#id_signup_modal" data-toggle="modal">
@@ -78,6 +94,6 @@
                 </div>
             </div>
         </div>
-        {% include 'profile_modals.html' %}
+        {% include 'profile/modals.html' %}
     </body>
 </html>

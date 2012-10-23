@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% load sighting %}
+    {% sighting_map limit=5 reserve=object %}
+    <div class="row">
+        <div class="span9">
+            <div class="page-header span8">
+                <h1>{{ object.name }}</h1>
+            </div>
+            {% latest_sightings limit=20 reserve=object %}
+        </div>
+        <div>&nbsp;</div>
+        <div class="span3">
+            <div>
+                <h3>
+                    <strong>{{ object.country }}</strong><br/>
+                    <small>{{ object.website|urlize }}</small>
+                </h3>
+            </div>
+            <div>
+                <small>{{ object.description|default:"" }}</small>
+            </div>
+            <div>
+                <div class="page-header span3">
+                    <h3>Species List</h3>
+                </div>
+                {% for species in object.species.all %}
+                    <small><p>
+                        <img src="{% resize_image species.default_image 20 20 %}" class="img-rounded" width="20" height="20" /> &nbsp;
+                        {{ species.common_name }}
+                    </p></small>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
