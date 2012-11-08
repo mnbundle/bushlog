@@ -26,10 +26,10 @@
                     <h3>Species List</h3>
                 </div>
                 {% for species in object.species.all %}
-                    <small><p>
-                        <img src="{% resize_image species.default_image 20 20 %}" class="img-rounded" width="20" height="20" /> &nbsp;
+                    <small><div>
+                        <img src="{% resize_image species.default_image 30 30 %}" class="img-rounded invert" width="30" height="30" /> &nbsp;
                         {{ species.common_name }}
-                    </p></small>
+                    </div></small>
                 {% endfor %}
             </div>
         </div>

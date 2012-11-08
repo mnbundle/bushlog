@@ -7,7 +7,7 @@
             {% if obj.cover_image %}
                 <img src="{% resize_image obj.cover_image 50 50 %}" class="img-rounded" width="50" height="50" />
             {% else %}
-                <img src="{% resize_image obj.species.default_image 50 50 %}" class="img-rounded" width="50" height="50" />
+                <img src="{% resize_image obj.species.default_image 50 50 %}" class="img-rounded lightest" width="50" height="50" />
             {% endif %}
         </div>
         <div class="span4 pull-top">
@@ -29,7 +29,7 @@
             {% if obj.cover_image %}
                 <img src="{% resize_image obj.cover_image 50 50 %}" class="img-rounded" width="50" height="50" />
             {% else %}
-                <img src="{% resize_image obj.species.default_image 50 50 %}" class="img-rounded" width="50" height="50" />
+                <img src="{% resize_image obj.species.default_image 50 50 %}" class="img-rounded lightest" width="50" height="50" />
             {% endif %}
         </div>
         <div class="span6 pull-top">

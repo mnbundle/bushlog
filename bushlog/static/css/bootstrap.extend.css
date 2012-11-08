@@ -18,3 +18,7 @@ a.btn {outline-width:0!important}
 a:hover {color:#5BB75B}
 .date input {width:258px!important;}
 .help-inline {font-size:80%}
+.light {opacity: 0.7}
+.lighter {opacity: 0.4}
+.lightest {opacity: 0.1}
+.invert {filter: invert(100%);-webkit-filter: invert(100%);-moz-filter: invert(100%);-o-filter: invert(100%);-ms-filter: invert(100%);}

@@ -24,7 +24,7 @@ class SignUpModelForm(forms.ModelForm):
         })
     )
     confirm_password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'span4', 'equalTo': '#id_signup-password'})
+        widget=forms.PasswordInput(attrs={'class': 'span4 required', 'equalTo': '#id_signup-password', 'minlength': 8})
     )
 
     class Meta:
