@@ -62,6 +62,13 @@
                             <a class="btn btn-success" href="#id_signup_modal" data-toggle="modal">
                                 <i class="icon-user icon-white"></i> Sign Up
                             </a>
+                            <a class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url socialauth_begin 'google-oauth2' %}"><i class="icon-google"></i> Sign Up With Google</a></li>
+                                <li><a href="{% url socialauth_begin 'facebook' %}"><i class="icon-facebook"></i> Sign Up With Facebook</a></li>
+                            </ul>
                         </div>
                     {% endif %}
                 </div>

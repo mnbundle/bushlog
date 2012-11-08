@@ -12,13 +12,12 @@
             <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
+            <li><a href="{% url socialauth_begin 'google-oauth2' %}"><i class="icon-google"></i> Sign In With Google</a></li>
+            <li><a href="{% url socialauth_begin 'facebook' %}"><i class="icon-facebook"></i> Sign In With Facebook</a></li>
+            <li class="divider"></li>
             <li><a href="#id_signup_modal" data-toggle="modal"><i class="icon-user"></i> Sign Up</a></li>
             <li><a href="#id_resetpassword_modal" data-toggle="modal"><i class="icon-question-sign"></i> Forgot Password</a></li>
             <li><a href="#id_resendactivation_modal" data-toggle="modal"><i class="icon-refresh"></i> Resend Activation Email</a></li>
-            <li class="divider"></li>
-            <li><a href="{% url socialauth_begin 'google-oauth2' %}"><i class="icon-google"></i> Login With Google</a></li>
-            <li><a href="{% url socialauth_begin 'twitter' %}"><i class="icon-twitter"></i> Login With Twitter</a></li>
-            <li><a href="{% url socialauth_begin 'facebook' %}"><i class="icon-facebook"></i> Login With Facebook</a></li>
         </ul>
     </div>
 </form>
