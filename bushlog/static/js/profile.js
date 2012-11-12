@@ -56,6 +56,9 @@ initUpdateForm = function () {
         // initialise form validation
         $('.form-update').validate({
             messages: {
+                "update-username": {
+                    remote: "is already registered."
+                },
                 "update-email": {
                     remote: "is already registered."
                 }

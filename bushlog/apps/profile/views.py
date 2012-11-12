@@ -305,6 +305,24 @@ class ValidateView(generic.View):
 
         return False if type == 'unique' else True
 
+
+class AssociateRedirectView(generic.RedirectView):
+    permanent = False
+
+    def get_redirect_url(self):
+        self.request.session['show_update'] = True
+        return reverse_lazy('index')
+
+
+class InactiveRedirectView(generic.RedirectView):
+    permanent = False
+
+    def get_redirect_url(self):
+        messages.add_message(
+            self.request, messages.ERROR, "Profile has not yet been activated or was deactivated by an administrator."
+        )
+        return reverse_lazy('index')
+
 index = IndexDetailView.as_view()
 signin = SignInFormView.as_view()
 signup = SignUpFormView.as_view()
@@ -313,3 +331,5 @@ reset_password = ResetPasswordFormView.as_view()
 resend_activation = ResendActivationFormView.as_view()
 signout = SignOutRedirectView.as_view()
 validate = ValidateView.as_view()
+associate = AssociateRedirectView.as_view()
+inactive = InactiveRedirectView.as_view()

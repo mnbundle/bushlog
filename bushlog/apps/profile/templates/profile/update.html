@@ -1,7 +1,11 @@
 <form class="form-horizontal form-update" method="post" action="{% url profile:update %}">
     {% csrf_token %}
     <div class="control-group">
-        <label class="control-label" for="id_update-full_name">Real name</label>
+        <label class="control-label" for="id_update-username">Username</label>
+        <div class="controls">{{ form.username }}</div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="id_update-full_name">Full name</label>
         <div class="controls">{{ form.first_name }} &nbsp; &nbsp; {{ form.last_name }}</div>
     </div>
     <div class="control-group">
@@ -30,5 +34,3 @@
         <div class="controls">{{ form.biography }}</div>
     </div>
 </form>
-
-

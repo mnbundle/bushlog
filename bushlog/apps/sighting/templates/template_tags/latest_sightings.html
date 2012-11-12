@@ -14,9 +14,10 @@
             <h6>
                 <a href="{% url profile:index obj.user.username %}">{{ obj.user.username }}</a>
                 <small> added a new sighting of a </small>
-                <a href="#">{{ obj.species.common_name }}</a>
+                <a href="{% url wildlife:index obj.species.slug %}">{{ obj.species.common_name }}</a>
                 <small> in the </small>
                 <a href="{% url reserve:index obj.reserve.slug %}">{{ obj.reserve.name }}</a>
+                <small>{{ obj.date_of_sighting.date|fuzzy_date }}</small>
             </h6>
             <p>&nbsp;</p>
         </div>
@@ -24,24 +25,25 @@
     </div>
 {% else %}
     {% for obj in obj_list %}
-    <div class="row span8">
-        <div class="span1">
-            {% if obj.cover_image %}
-                <img src="{% resize_image obj.cover_image 50 50 %}" class="img-rounded" width="50" height="50" />
-            {% else %}
-                <img src="{% resize_image obj.species.default_image 50 50 %}" class="img-rounded lightest" width="50" height="50" />
-            {% endif %}
+        <div class="row span8">
+            <div class="span1">
+                {% if obj.cover_image %}
+                    <img src="{% resize_image obj.cover_image 50 50 %}" class="img-rounded" width="50" height="50" />
+                {% else %}
+                    <img src="{% resize_image obj.species.default_image 50 50 %}" class="img-rounded lightest" width="50" height="50" />
+                {% endif %}
+            </div>
+            <div class="span6 pull-top">
+                <h6>
+                    <a href="{% url profile:index obj.user.username %}">{{ obj.user.username }}</a>
+                    <small> added a new sighting of a </small>
+                    <a href="{% url wildlife:index obj.species.slug %}">{{ obj.species.common_name }}</a>
+                    <small> in the </small>
+                    <a href="{% url reserve:index obj.reserve.slug %}">{{ obj.reserve.name }}</a>
+                    <small>{{ obj.date_of_sighting.date|fuzzy_date }}</small>
+                </h6>
+                <p>&nbsp;</p>
+            </div>
         </div>
-        <div class="span6 pull-top">
-            <h6>
-                <a href="{% url profile:index obj.user.username %}">{{ obj.user.username }}</a>
-                <small> added a new sighting of a </small>
-                <a href="#">{{ obj.species.common_name }}</a>
-                <small> in the </small>
-                <a href="{% url reserve:index obj.reserve.slug %}">{{ obj.reserve.name }}</a>
-            </h6>
-            <p>&nbsp;</p>
-        </div>
-    </div>
     {% endfor %}
 {% endif %}

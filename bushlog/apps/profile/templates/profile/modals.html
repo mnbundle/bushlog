@@ -1,4 +1,20 @@
 <!-- Sign up modal -->
+<div id="id_signin_modal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Sign In</h3>
+    </div>
+    <div class="modal-body">
+        <p>&nbsp;</p>
+        <div class="signin-container"></div>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
+        <a href="#" class="btn btn-success btn-signin-submit">Sign In</a>
+    </div>
+</div>
+
+<!-- Sign up modal -->
 <div id="id_signup_modal" class="modal hide fade">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -61,3 +77,12 @@
         <a href="#" class="btn btn-success btn-resendactivation-submit">Resend</a>
     </div>
 </div>
+
+{% load profile %}
+
+{% if request.session.show_update %}
+    <script type="text/javascript">
+        $("#id_update_modal").modal('show');
+    </script>
+    {% del_session 'show_update' %}
+{% endif %}

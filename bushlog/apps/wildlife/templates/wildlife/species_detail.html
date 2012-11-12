@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% load sighting %}
+    {% sighting_map limit=5 species=object %}
+    <div class="row">
+        <div class="span9">
+            <div class="page-header span8">
+                <h1>{{ object.common_name }} <small><i>{{ object.scientific_name }}</i></small></h1>
+            </div>
+            {% latest_sightings limit=20 reserve=object %}
+        </div>
+        <div>&nbsp;</div>
+        <div class="span3">
+            <div>
+                <h3>
+                    <strong>{{ object.country }}</strong><br/>
+                    <small>{{ object.website|urlize }}</small>
+                </h3>
+            </div>
+            <div>
+                <small>{{ object.description|default:"" }}</small>
+            </div>
+            <div>
+                <div class="page-header span3">
+                    <h3>Occurs In</h3>
+                </div>
+                {% for reserve in object.reserves.all %}
+                    <small><div>
+                        <i class="icon-map-marker">&nbsp;</i> &nbsp;
+                        {{ reserve.name }}
+                    </div></small>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

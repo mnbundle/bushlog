@@ -37,6 +37,11 @@ urlpatterns += patterns('',
     url(r'^admin/', include(admin.site.urls))
 )
 
+# api urls
+urlpatterns += patterns('',
+    url(r'^api/', include('bushlog.api.urls'))
+)
+
 # user profile url patterns
 urlpatterns += patterns('',
     url(r'^profile/', include('bushlog.apps.profile.urls', namespace='profile'))
@@ -47,6 +52,11 @@ urlpatterns += patterns('',
     url(r'^reserve/', include('bushlog.apps.reserve.urls', namespace='reserve'))
 )
 
+# wildlife url patterns
+urlpatterns += patterns('',
+    url(r'^wildlife/', include('bushlog.apps.wildlife.urls', namespace='wildlife'))
+)
+
 # comments framework patterns
 urlpatterns += patterns('',
     (r'^comments/', include('django.contrib.comments.urls'))
@@ -55,11 +65,6 @@ urlpatterns += patterns('',
 # social auth urls
 urlpatterns += patterns('',
     url(r'social/', include('social_auth.urls'))
-)
-
-# api urls
-urlpatterns += patterns('',
-    url(r'^api/', include('bushlog.api.urls'))
 )
 
 # serves static file while DEBUG is true

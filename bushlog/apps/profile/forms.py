@@ -52,6 +52,16 @@ class SignUpModelForm(forms.ModelForm):
 
 
 class UpdateModelForm(forms.ModelForm):
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'span4 required',
+                'minlength': 4,
+                'remote': reverse_lazy('profile:validate', args=['unique'])
+            }
+        ),
+        required=True
+    )
     first_name = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'span2', 'placeholder': 'First name'}), max_length=30, required=False
     )
@@ -69,7 +79,7 @@ class UpdateModelForm(forms.ModelForm):
         model = UserProfile
         fields = ['biography', 'gender', 'birth_date', 'country']
         widgets = {
-            'biography': forms.Textarea(attrs={'class': 'span4', 'rows': 5, 'maxlength': 250}),
+            'biography': forms.Textarea(attrs={'class': 'span4', 'rows': 3, 'maxlength': 250}),
             'gender': forms.Select(attrs={'class': 'span4'}, choices=choices(['Male', 'Female'])),
             'birth_date': forms.DateInput(attrs={'readonly': 'readonly'}, format='%d/%m/%Y'),
             'country': forms.Select(
@@ -82,6 +92,7 @@ class UpdateModelForm(forms.ModelForm):
 
         # initialise the user fields with instance data
         if self.instance:
+            self.fields['username'].initial = self.instance.user.username
             self.fields['first_name'].initial = self.instance.user.first_name
             self.fields['last_name'].initial = self.instance.user.last_name
             self.fields['email'].initial = self.instance.user.email
@@ -91,6 +102,7 @@ class UpdateModelForm(forms.ModelForm):
 
         # save the extra user data
         if self.instance:
+            self.instance.user.username = self.cleaned_data.get('username')
             self.instance.user.first_name = self.cleaned_data.get('first_name')
             self.instance.user.last_name = self.cleaned_data.get('last_name')
             self.instance.user.email = self.cleaned_data.get('email')
