@@ -7,6 +7,7 @@ body {padding-top:80px;padding-bottom:40px;}
 .rounded-corners-bottom {-webkit-border-radius:0px 0px 4px 4px;-moz-border-radius:0px 0px 4px 4px;border-radius:0px 0px 4px 4px;}
 .rounded-corners-top {-webkit-border-radius:4px 4px 0px 0px;-moz-border-radius:4px 4px 0px 0px;border-radius:4px 4px 0px 0px;}
 .map-example {height:250px;}
+.hero-unit-tiny {padding:15px;}
 .hero-unit-small {padding:40px;}
 .hero-unit-index {height:270px;}
 .icon-facebook {background-position:0 -167px;}
@@ -23,3 +24,5 @@ a:hover {color:#5BB75B}
 .lighter {opacity: 0.4}
 .lightest {opacity: 0.1}
 .invert {filter: invert(100%);-webkit-filter: invert(100%);-moz-filter: invert(100%);-o-filter: invert(100%);-ms-filter: invert(100%);}
+.spacer {height:10px;}
+.media-body h6 {margin-top:5px;}

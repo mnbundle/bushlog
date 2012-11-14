@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+{% load wildlife %}
+
+{% block content %}
+    {% load sighting %}
+    {% sighting_map limit=1 pk=object.pk %}
+    <div class="row">
+        <div class="span9">
+            <div class="page-header span8">
+                <h1>{{ object.species.common_name }} <small><em>{{ object.reserve.name }}</em></small></h1>
+            </div>
+            <div class="span7">
+                <p class="lead">
+                    {{ object.user.username|capfirst }} added this sighting, {{ object.date_added.date|fuzzy_date }}, of a
+                    {{ object.species.common_name }}
+                    in the {{ object.reserve.name }}, which
+                    {% if object.user.profile.gender == 'Male' %} he {% elif object.user.profile.gender == 'Female' %} she {% else %} was {% endif %} spotted on
+                    {{ object.date_of_sighting.date }} at {{ object.date_of_sighting.time }}
+                </p>
+            </div>
+            <div class="page-header span8">
+                <h3>Similiar Sightings</h3>
+            </div>
+            {% latest_sightings limit=10 species=object.species reserve=object.reserve %}
+        </div>
+        <div>&nbsp;</div>
+        <div class="span3">
+            <div class="media">
+                {% if object.user.profile.avatar %}
+                    <a class="pull-left" href="{% url profile:index object.user.profile.slug %}">
+                        <img class="media-object img-rounded" src="{% resize_image object.user.profile.avatar 50 50 %}" width="50" height="50" />
+                    </a>
+                {% else %}
+                    <a class="pull-left" href="{% url profile:index object.user.username %}">
+                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.gender|default:"male" }}.png" width="50" height="50" />
+                    </a>
+                {% endif %}
+                <div class="media-body">
+                    <h6>
+                        <a href="{% url profile:index object.user.profile.slug %}">{{ object.user.username }}</a><br/>
+                        <i class="icon-time"></i>
+                        <small>{{ object.date_of_sighting.date|fuzzy_date }}</small>
+                    </h6>
+                </div>
+            </div>
+            <hr/>
+            <div>
+                {% if object.images.all.0 %}
+                    <img class="img-rounded" src="{% resize_image object.images.all.0.image 65 65 %}" width="65" height="65" />
+                {% else %}
+                    <img class="img-rounded lightest" src="{% resize_image object.species.default_image 65 65 %}" width="65" height="65" />
+                {% endif %}
+                &nbsp;
+
+                {% if object.images.all.1 %}
+                    <img class="img-rounded" src="{% resize_image object.images.all.1.image 65 65 %}" width="65" height="65" />
+                {% else %}
+                    <img class="img-rounded lightest" src="{% resize_image object.species.default_image 65 65 %}" width="65" height="65" />
+                {% endif %}
+                &nbsp;
+
+                {% if object.images.all.2 %}
+                    <img class="img-rounded" src="{% resize_image object.images.all.2.image 65 65 %}" width="65" height="65" />
+                {% else %}
+                    <img class="img-rounded lightest" src="{% resize_image object.species.default_image 65 65 %}" width="65" height="65" />
+                {% endif %}
+            </div>
+            <hr/>
+            <div>
+                <h4>
+                    <img src="{% resize_image object.species.default_image 50 50 %}" class="img-rounded invert" width="50" height="50" />
+                    <a href="{% url wildlife:index object.species.slug %}">{{ object.species.common_name }}</a>
+                </h4>
+                <small>{{ object.species.general_info|default:"" }}</small>
+                <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.common_name }}", target="blank">Wikipedia</a></small></h6>
+            </div>
+        </div>
+    </div>
+{% endblock %}

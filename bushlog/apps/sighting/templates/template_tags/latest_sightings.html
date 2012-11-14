@@ -1,49 +1,73 @@
 {% load sighting %}
 
 {% if split %}
-    <div class="row span12">
-    {% for obj in obj_list %}
-        <div class="span1 {% if forloop.counter|divisibleby:2 %}offset1{% endif %}">
-            {% if obj.cover_image %}
-                <img src="{% resize_image obj.cover_image 50 50 %}" class="img-rounded" width="50" height="50" />
-            {% else %}
-                <img src="{% resize_image obj.species.default_image 50 50 %}" class="img-rounded lightest" width="50" height="50" />
-            {% endif %}
+    <div class="row">
+    {% for object in object_list %}
+        <div class="span6">
+            <div class=" media">
+                {% if object.cover_image %}
+                    <a class="pull-left" href="{% url sighting:index object.reserve.slug object.species.slug object.id %}">
+                        <img class="media-object img-rounded" src="{% resize_image object.cover_image 50 50 %}" width="50" height="50" />
+                    </a>
+                {% else %}
+                    <a class="pull-left" href="{% url sighting:index object.reserve.slug object.species.slug object.id %}">
+                        <img class="media-object img-rounded lightest" src="{% resize_image object.species.default_image 50 50 %}" width="50" height="50" />
+                    </a>
+                {% endif %}
+                <div class="media-body">
+                    <h6>
+                        <a href="{% url profile:index object.user.profile.slug %}">{{ object.user.username }}</a>
+                        <small> added a new sighting of a </small>
+                        <a href="{% url wildlife:index object.species.slug %}">{{ object.species.common_name }}</a>
+                        <small> in the </small>
+                        <a href="{% url reserve:index object.reserve.slug %}">{{ object.reserve.name }}</a>
+                        <small>
+                            {{ object.date_of_sighting.date|fuzzy_date }}
+                             -
+                            <a href="{% url sighting:index object.reserve.slug object.species.slug object.id %}">
+                                <strong>view sighting</strong>
+                            </a>
+                        </small>
+                    </h6>
+                </div>
+            </div>
         </div>
-        <div class="span4 pull-top">
-            <h6>
-                <a href="{% url profile:index obj.user.username %}">{{ obj.user.username }}</a>
-                <small> added a new sighting of a </small>
-                <a href="{% url wildlife:index obj.species.slug %}">{{ obj.species.common_name }}</a>
-                <small> in the </small>
-                <a href="{% url reserve:index obj.reserve.slug %}">{{ obj.reserve.name }}</a>
-                <small>{{ obj.date_of_sighting.date|fuzzy_date }}</small>
-            </h6>
-            <p>&nbsp;</p>
-        </div>
+        {% if forloop.counter|divisibleby:2 %}
+            <div>&nbsp;</div>
+        {% endif %}
     {% endfor %}
     </div>
 {% else %}
-    {% for obj in obj_list %}
+    {% for object in object_list %}
         <div class="row span8">
-            <div class="span1">
-                {% if obj.cover_image %}
-                    <img src="{% resize_image obj.cover_image 50 50 %}" class="img-rounded" width="50" height="50" />
+            <div class=" media">
+                {% if object.cover_image %}
+                    <a class="pull-left" href="{% url sighting:index object.reserve.slug object.species.slug object.id %}">
+                        <img class="media-object img-rounded" src="{% resize_image object.cover_image 50 50 %}" width="50" height="50" />
+                    </a>
                 {% else %}
-                    <img src="{% resize_image obj.species.default_image 50 50 %}" class="img-rounded lightest" width="50" height="50" />
+                    <a class="pull-left" href="{% url sighting:index object.reserve.slug object.species.slug object.id %}">
+                        <img class="media-object img-rounded lightest" src="{% resize_image object.species.default_image 50 50 %}" width="50" height="50" />
+                    </a>
                 {% endif %}
+                <div class="media-body">
+                    <h6>
+                        <a href="{% url profile:index object.user.profile.slug %}">{{ object.user.username }}</a>
+                        <small> added a new sighting of a </small>
+                        <a href="{% url wildlife:index object.species.slug %}">{{ object.species.common_name }}</a>
+                        <small> in the </small>
+                        <a href="{% url reserve:index object.reserve.slug %}">{{ object.reserve.name }}</a>
+                        <small>
+                            {{ object.date_of_sighting.date|fuzzy_date }}
+                             -
+                            <a href="{% url sighting:index object.reserve.slug object.species.slug object.id %}">
+                                <strong>view sighting</strong>
+                            </a>
+                        </small>
+                    </h6>
+                </div>
             </div>
-            <div class="span6 pull-top">
-                <h6>
-                    <a href="{% url profile:index obj.user.username %}">{{ obj.user.username }}</a>
-                    <small> added a new sighting of a </small>
-                    <a href="{% url wildlife:index obj.species.slug %}">{{ obj.species.common_name }}</a>
-                    <small> in the </small>
-                    <a href="{% url reserve:index obj.reserve.slug %}">{{ obj.reserve.name }}</a>
-                    <small>{{ obj.date_of_sighting.date|fuzzy_date }}</small>
-                </h6>
-                <p>&nbsp;</p>
-            </div>
+            <div>&nbsp;</div>
         </div>
     {% endfor %}
 {% endif %}

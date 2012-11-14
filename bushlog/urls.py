@@ -52,6 +52,11 @@ urlpatterns += patterns('',
     url(r'^reserve/', include('bushlog.apps.reserve.urls', namespace='reserve'))
 )
 
+# sighting url patterns
+urlpatterns += patterns('',
+    url(r'^sighting/', include('bushlog.apps.sighting.urls', namespace='sighting'))
+)
+
 # wildlife url patterns
 urlpatterns += patterns('',
     url(r'^wildlife/', include('bushlog.apps.wildlife.urls', namespace='wildlife'))

@@ -20,14 +20,17 @@
                 {% endif %}
             </div>
             <div>
-                <h3>
+                <h4>
                     <strong>{{ object.user.username }} </strong><br/>
                     <small>{{ object.country|default:"Unknown Location" }}</small>
-                </h3>
+                </h4>
             </div>
-            <div>
-                <small>{{ object.biography|default:"" }}</small>
-            </div>
+            {% if object.biography %}
+                <hr/>
+                <div>
+                    <small>{{ object.biography|default:"" }}</small>
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

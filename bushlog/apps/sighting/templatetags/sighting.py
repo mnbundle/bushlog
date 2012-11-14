@@ -32,6 +32,8 @@ def sighting_map(context, limit=3, *args, **kwargs):
     except IndexError:
         keyword = None
 
+    print keyword
+
     if kwargs:
         obj_list = Sighting.objects.filter(**kwargs)[:limit]
     else:
@@ -52,11 +54,11 @@ def latest_sightings(context, split=False, limit=3, *args, **kwargs):
         keyword = None
 
     if kwargs:
-        obj_list = Sighting.objects.filter(**kwargs)[:limit]
+        object_list = Sighting.objects.filter(**kwargs)[:limit]
     else:
-        obj_list = Sighting.objects.all()[:limit]
+        object_list = Sighting.objects.all()[:limit]
 
-    return {'obj_list': obj_list, 'split': split, 'keyword': keyword}
+    return {'object_list': object_list, 'split': split, 'keyword': keyword}
 
 
 @register.filter

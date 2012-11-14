@@ -1,0 +1,7 @@
+from django.conf.urls.defaults import patterns, url
+
+
+# sighting specific url patterns
+urlpatterns = patterns('bushlog.apps.sighting.views',
+    url(r'(?P<reserve_slug>\S+)/(?P<species_slug>\S+)/(?P<pk>\d+)/$', 'index', name='index'),
+)

@@ -114,6 +114,7 @@ class SignUpFormView(generic.FormView):
             )
             return HttpResponseRedirect(self.success_url)
             return self.form_invalid(form)
+
         return self.form_invalid(form)
 
     def form_invalid(self, form):

@@ -1,35 +1,87 @@
 {% extends "base.html" %}
 
+{% load humanize %}
+{% load wildlife %}
+
 {% block content %}
     {% load sighting %}
     {% sighting_map limit=5 species=object %}
     <div class="row">
         <div class="span9">
             <div class="page-header span8">
-                <h1>{{ object.common_name }} <small><i>{{ object.scientific_name }}</i></small></h1>
+                <h1>{{ object.common_name }} <small><em>{{ object.scientific_name }}</em></small></h1>
             </div>
-            {% latest_sightings limit=20 reserve=object %}
+            {% latest_sightings limit=20 species=object %}
         </div>
         <div>&nbsp;</div>
         <div class="span3">
             <div>
-                <h3>
-                    <strong>{{ object.country }}</strong><br/>
-                    <small>{{ object.website|urlize }}</small>
-                </h3>
+                <div class="page-header span3">
+                    <h4>Species Info</h4>
+                </div>
+                <small>
+                    <p><strong>Classification:</strong> {{ object.classification|capfirst }}</p>
+                    {% if object.male_info.height or object.female_info.height %}
+                        <p>
+                            <strong>Height:</strong>
+                            {% if object.male_info.height %}{{ object.male_info.height|humanize_measurement:"m" }} (M){% endif %}
+                            {% if object.female_info.height %}{{ object.female_info.height|humanize_measurement:"m" }} (F){% endif %}
+                        </p>
+                    {% endif %}
+                    {% if object.male_info.length or object.female_info.length %}
+                        <p>
+                            <strong>Length:</strong>
+                            {% if object.male_info.length %}{{ object.male_info.length|humanize_measurement:"m" }} (M){% endif %}
+                            {% if object.female_info.length %}{{ object.female_info.length|humanize_measurement:"m" }} (F){% endif %}
+                        </p>
+                    {% endif %}
+                    {% if object.male_info.mass or object.female_info.mass %}
+                        <p>
+                            <strong>Mass:</strong>
+                            {% if object.male_info.mass %}{{ object.male_info.mass|intcomma }}kg (M){% endif %}
+                            {% if object.female_info.mass %}{{ object.female_info.mass|intcomma }}kg (F){% endif %}
+                        </p>
+                    {% endif %}
+                    {% if object.male_info.horn_length or object.female_info.horn_length %}
+                        <p>
+                            <strong>Horn Length:</strong>
+                            {% if object.male_info.horn_length %}{{ object.male_info.horn_length }}mm (M){% endif %}
+                            {% if object.female_info.horn_length %}{{ object.female_info.horn_length }}mm (F){% endif %}
+                        </p>
+                    {% endif %}
+                </small>
             </div>
+            <hr/>
             <div>
-                <small>{{ object.description|default:"" }}</small>
+                <small>{{ object.general_info|default:"" }}</small>
+                <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.common_name }}", target="blank">Wikipedia</a></small></h6>
             </div>
+            {% if object.similiar_species.all %}
+                <div>
+                    <div class="page-header span3">
+                        <h4>Similiar Species</h4>
+                    </div>
+                    {% for species in object.similiar_species.all %}
+                        <small>
+                            <div>
+                                <img src="{% resize_image species.default_image 30 30 %}" class="img-rounded invert" width="30" height="30" /> &nbsp;
+                                <a href="{% url wildlife:index species.slug %}">{{ species.common_name }}</a>
+                            </div>
+                        </small>
+                    {% endfor %}
+                </div>
+            {% endif %}
             <div>
                 <div class="page-header span3">
-                    <h3>Occurs In</h3>
+                    <h4>Occurs In</h4>
                 </div>
                 {% for reserve in object.reserves.all %}
-                    <small><div>
-                        <i class="icon-map-marker">&nbsp;</i> &nbsp;
-                        {{ reserve.name }}
-                    </div></small>
+                    <small>
+                        <div>
+                            <i class="icon-map-marker">&nbsp;</i> &nbsp;
+                            <a href="{% url reserve:index reserve.slug %}">{{ reserve.name }}</a>
+                        </div>
+                    </small>
                 {% endfor %}
             </div>
         </div>

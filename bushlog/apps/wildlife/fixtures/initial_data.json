@@ -60,6 +60,86 @@
         }
     },
     {
+        "pk": 7,
+        "model": "wildlife.speciesinfo",
+        "fields": {
+            "horn_length": null,
+            "length": "2200",
+            "mass": "60",
+            "height": "800"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "wildlife.speciesinfo",
+        "fields": {
+            "horn_length": null,
+            "length": "2200",
+            "mass": "60",
+            "height": "800"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "wildlife.speciesinfo",
+        "fields": {
+            "horn_length": null,
+            "length": "1200",
+            "mass": "16",
+            "height": null
+        }
+    },
+    {
+        "pk": 10,
+        "model": "wildlife.speciesinfo",
+        "fields": {
+            "horn_length": null,
+            "length": "1600",
+            "mass": "32",
+            "height": null
+        }
+    },
+    {
+        "pk": 11,
+        "model": "wildlife.speciesinfo",
+        "fields": {
+            "horn_length": null,
+            "length": "1100",
+            "mass": "4",
+            "height": null
+        }
+    },
+    {
+        "pk": 12,
+        "model": "wildlife.speciesinfo",
+        "fields": {
+            "horn_length": null,
+            "length": "1300",
+            "mass": "5.5",
+            "height": null
+        }
+    },
+    {
+        "pk": 13,
+        "model": "wildlife.speciesinfo",
+        "fields": {
+            "horn_length": null,
+            "length": "1200",
+            "mass": "4.5",
+            "height": null
+        }
+    },
+    {
+        "pk": 14,
+        "model": "wildlife.speciesinfo",
+        "fields": {
+            "horn_length": null,
+            "length": "1400",
+            "mass": "10",
+            "height": null
+        }
+    },
+    {
         "pk": 1,
         "model": "wildlife.species",
         "fields": {
@@ -71,7 +151,7 @@
             "marker": "markers/elephant.png",
             "default_image": "defaults/elephant.png",
             "common_name": "African Elephant",
-            "general_info": "African Elephant",
+            "general_info": "African elephants are the elephants of the genus Loxodonta, consisting of two extant species: the African bush elephant and the smaller African forest elephant. Loxodonta is one of the two existing genera in the family Elephantidae.",
             "slug": "african-elephant"
         }
     },
@@ -84,12 +164,13 @@
             "scientific_name": "Panthera leo",
             "male_info": 4,
             "similiar_species": [
-                3
+                3,
+                4
             ],
             "marker": "markers/lion.png",
             "default_image": "defaults/lion.png",
             "common_name": "Lion",
-            "general_info": "Lion",
+            "general_info": "The lion is one of the four big cats in the genus Panthera and a member of the family Felidae. With some males exceeding 250 kg in weight, it is the second-largest living cat after the tiger.",
             "slug": "lion"
         }
     },
@@ -102,13 +183,90 @@
             "scientific_name": "Panthera pardus",
             "male_info": 6,
             "similiar_species": [
-                2
+                2,
+                4
             ],
             "marker": "markers/leopard.png",
             "default_image": "defaults/leopard.png",
             "common_name": "Leopard",
-            "general_info": "Leopard",
+            "general_info": "The leopard, Panthera pardus, is a member of the Felidae family and the smallest of the four \"big cats\" in the genus Panthera, the other three being the tiger, lion, and jaguar.",
             "slug": "leopard"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "wildlife.species",
+        "fields": {
+            "female_info": 7,
+            "classification": "carnivore",
+            "scientific_name": "Acinonyx jubatus",
+            "male_info": 8,
+            "similiar_species": [
+                2,
+                3
+            ],
+            "marker": "markers/cheetah.png",
+            "default_image": "defaults/cheetah.png",
+            "common_name": "Cheetah",
+            "general_info": "The cheetah is a large-sized feline inhabiting most of Africa and parts of the Middle East. It is the only extant member of the genus Acinonyx.",
+            "slug": "cheetah"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "wildlife.species",
+        "fields": {
+            "female_info": 9,
+            "classification": "omnivore",
+            "scientific_name": "Papio cynocephalus ursinus",
+            "male_info": 10,
+            "similiar_species": [
+                6,
+                7
+            ],
+            "marker": "markers/baboon-monkey.png",
+            "default_image": "defaults/baboon.png",
+            "common_name": "Chacma Baboon",
+            "general_info": "The Chacma baboon, also known as the Cape baboon, is, like all other baboons, from the Old World monkey family. It is one of the largest of all baboons and monkeys.",
+            "slug": "chacma-baboon"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "wildlife.species",
+        "fields": {
+            "female_info": 11,
+            "classification": "omnivore",
+            "scientific_name": "Chlorocebus pygerythrus",
+            "male_info": 12,
+            "similiar_species": [
+                5,
+                7
+            ],
+            "marker": "markers/baboon-monkey.png",
+            "default_image": "defaults/monkey.png",
+            "common_name": "Vervet Monkey",
+            "general_info": "The vervet monkey, or simply vervet, is an Old World monkey of the family Cercopithecidae native to Africa. The term \"vervet\" is also used to refer to all the members of the genus Chlorocebus.",
+            "slug": "vervet-monkey"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "wildlife.species",
+        "fields": {
+            "female_info": 13,
+            "classification": "herbivore",
+            "scientific_name": "Cercopithecus albogularis",
+            "male_info": 14,
+            "similiar_species": [
+                5,
+                6
+            ],
+            "marker": "markers/baboon-monkey.png",
+            "default_image": "defaults/monkey.png",
+            "common_name": "Samango Monkey",
+            "general_info": "Samango monkey, also known as the white-throated monkey or Sykes' monkey, is an Old World monkey found between Ethiopia and South Africa, including south and east Democratic Republic of Congo.",
+            "slug": "samango-monkey"
         }
     }
 ]

@@ -26,7 +26,7 @@ class Species(models.Model):
     default_image = models.ImageField(upload_to="defaults/", max_length=250)
 
     classification = models.CharField(max_length=20, choices=choices(['carnivore', 'herbivore', 'omnivore']))
-    general_info = models.TextField()
+    general_info = models.CharField(max_length=250)
     female_info = models.ForeignKey(SpeciesInfo, related_name="female_info")
     male_info = models.ForeignKey(SpeciesInfo, related_name="male_info")
 

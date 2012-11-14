@@ -2,30 +2,32 @@ initRegion = function () {
     var ele = $('.item.active .map-example');
     var markers = ele.data('map');
 
+    // setup for a single marker
+    var autofit = 'autofit';
+    var mapTypeControl = false;
+    var navigationControl = false;
+    var scrollwheel = false;
+    if(markers.length == 1) {
+        autofit = null;
+        mapTypeControl = true;
+        navigationControl = true;
+        scrollwheel = true;
+    }
+
     if(!ele.hasClass('map-init')) {
         ele.gmap3({
-            action:'init',
-            options: {
+            map: {
                 center: markers[0],
-                mapTypeControl: false,
-                navigationControl: false,
-                scrollwheel: false,
+                zoom: 12,
+                mapTypeControl: mapTypeControl,
+                navigationControl: navigationControl,
+                scrollwheel: scrollwheel,
                 streetViewControl: false
             },
-        },
-        {
-            action: 'addMarkers',
-            markers: markers,
             marker: {
-                options : {
-                    draggable : false,
-                    icon:'/static/img/markers/elephant.png'
-                }
-            }
-        },
-        {
-            action: 'autofit'
-        });
+                values: markers
+            },
+        }, autofit);
     }
 
     ele.addClass('map-init');
@@ -50,17 +52,6 @@ initCarousel = function () {
 }
 
 $(document).ready(function() {
-    // initiate the map on index
-    $().gmap3(
-        'setDefault', {
-            retro: false,
-            unit:'km',
-            init: {
-                center:[-29.61167,24.169922],
-                zoom: 5
-            }
-        }
-    );
 
     // initiate all carousel components
     initCarousel();

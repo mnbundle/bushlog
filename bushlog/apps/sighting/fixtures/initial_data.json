@@ -3,7 +3,7 @@
         "pk": 9,
         "model": "sighting.sighting",
         "fields": {
-            "description": "None",
+            "description": "Lone female leopard. Sleeping up a tree.",
             "with_kill": false,
             "with_young": false,
             "location": 17,
@@ -20,7 +20,7 @@
         "pk": 8,
         "model": "sighting.sighting",
         "fields": {
-            "description": "None",
+            "description": "Single lone female lion walking along the road.",
             "with_kill": false,
             "with_young": false,
             "location": 16,
@@ -37,7 +37,7 @@
         "pk": 7,
         "model": "sighting.sighting",
         "fields": {
-            "description": "None",
+            "description": "Three young males, walking along the dams edge.",
             "with_kill": false,
             "with_young": false,
             "location": 15,
@@ -54,7 +54,7 @@
         "pk": 6,
         "model": "sighting.sighting",
         "fields": {
-            "description": "None",
+            "description": "A mother leopard with 2 cubs lying up under a tree.",
             "with_kill": false,
             "with_young": true,
             "location": 14,
@@ -71,7 +71,7 @@
         "pk": 5,
         "model": "sighting.sighting",
         "fields": {
-            "description": "None",
+            "description": "Large pride with cubs. Not much left of the carcass.",
             "with_kill": true,
             "with_young": true,
             "location": 13,
@@ -88,7 +88,7 @@
         "pk": 4,
         "model": "sighting.sighting",
         "fields": {
-            "description": "None",
+            "description": "Huge family herb with about 10 young ones.",
             "with_kill": false,
             "with_young": true,
             "location": 12,
@@ -105,11 +105,11 @@
         "pk": 3,
         "model": "sighting.sighting",
         "fields": {
-            "description": "None",
+            "description": "Lone male leopard high in a fig tree.",
             "with_kill": false,
             "with_young": false,
             "location": 11,
-            "sex": "both",
+            "sex": "male",
             "user": 2,
             "date_added": "2012-06-20T21:49:39.011",
             "date_of_sighting": "2012-06-20T21:49:27",
@@ -122,7 +122,7 @@
         "pk": 2,
         "model": "sighting.sighting",
         "fields": {
-            "description": "None",
+            "description": "Small group of female lions feeding on a Zebra carcass.",
             "with_kill": true,
             "with_young": false,
             "location": 10,
@@ -139,7 +139,7 @@
         "pk": 1,
         "model": "sighting.sighting",
         "fields": {
-            "description": "None",
+            "description": "Large herb of elephant with a few small ones.",
             "with_kill": false,
             "with_young": true,
             "location": 9,

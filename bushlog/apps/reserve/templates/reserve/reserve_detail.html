@@ -13,22 +13,23 @@
         <div>&nbsp;</div>
         <div class="span3">
             <div>
-                <h3>
+                <h4>
                     <strong>{{ object.country }}</strong><br/>
                     <small>{{ object.website|urlize }}</small>
-                </h3>
+                </h4>
             </div>
+            <hr/>
             <div>
                 <small>{{ object.description|default:"" }}</small>
             </div>
             <div>
                 <div class="page-header span3">
-                    <h3>Species List</h3>
+                    <h4>Species List</h4>
                 </div>
                 {% for species in object.species.all %}
                     <small><div>
                         <img src="{% resize_image species.default_image 30 30 %}" class="img-rounded invert" width="30" height="30" /> &nbsp;
-                        {{ species.common_name }}
+                        <a href="{% url wildlife:index species.slug %}">{{ species.common_name }}</a>
                     </div></small>
                 {% endfor %}
             </div>
