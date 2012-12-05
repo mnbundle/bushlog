@@ -8,10 +8,10 @@ from bushlog.utils import choices
 
 class SignInForm(forms.Form):
     username_email = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'span3', 'placeholder': 'Username / Email address'})
+        widget=forms.TextInput(attrs={'class': 'span12', 'placeholder': 'Username / Email address'})
     )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'span3', 'placeholder': 'Password'})
+        widget=forms.PasswordInput(attrs={'class': 'span12', 'placeholder': 'Password'})
     )
     remember_me = forms.BooleanField(required=False)
 

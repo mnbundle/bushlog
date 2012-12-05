@@ -1,5 +1,15 @@
 {% extends "base.html" %}
 
+{% block title %}{{ object.species.common_name }}  Sighting in {{ object.reserve.name }}{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.lightbox.min.css" type="text/css"/>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.lightbox.min.js"></script>
+{% endblock %}
+
 {% load humanize %}
 {% load wildlife %}
 
@@ -9,21 +19,26 @@
     <div class="row">
         <div class="span9">
             <div class="page-header span8">
-                <h1>{{ object.species.common_name }} <small><em>{{ object.reserve.name }}</em></small></h1>
+                <h2>{{ object.species.common_name }} <small><em>{{ object.reserve.name }}</em></small></h2>
             </div>
             <div class="span7">
                 <p class="lead">
-                    {{ object.user.username|capfirst }} added this sighting, {{ object.date_added.date|fuzzy_date }}, of a
+                    {{ object.user.username|capfirst }} added this sighting, {{ object.date_added.date|fuzzy_date }}, of
+                    {% if object.estimated_number == 1 %} a {% endif %}
                     {{ object.species.common_name }}
                     in the {{ object.reserve.name }}, which
-                    {% if object.user.profile.gender == 'Male' %} he {% elif object.user.profile.gender == 'Female' %} she {% else %} was {% endif %} spotted on
-                    {{ object.date_of_sighting.date }} at {{ object.date_of_sighting.time }}
+                    {% if object.user.profile.gender == 'Male' %} he {% elif object.user.profile.gender == 'Female' %} she {% else %} was {% endif %}
+                    spotted on {{ object.date_of_sighting.date }} at {{ object.date_of_sighting.time }}
                 </p>
+                <blockquote>
+                    <p>{{ object.description }}</p>
+                    <small>{{ object.user.username }}</small>
+                </blockquote>
             </div>
             <div class="page-header span8">
                 <h3>Similiar Sightings</h3>
             </div>
-            {% latest_sightings limit=10 species=object.species reserve=object.reserve %}
+            {% latest_sightings limit=10 species=object.species reserve=object.reserve exclude_pk=object.pk %}
         </div>
         <div>&nbsp;</div>
         <div class="span3">
@@ -46,36 +61,69 @@
                 </div>
             </div>
             <hr/>
-            <div>
+            <div class="span3 fix-left">
                 {% if object.images.all.0 %}
-                    <img class="img-rounded" src="{% resize_image object.images.all.0.image 65 65 %}" width="65" height="65" />
+                    <div class="hint span1 fix-left">
+                        <a href="#id_sighting_lightbox_1" data-toggle="lightbox" rel="tooltip" title="Enlarge&nbsp;Image" data-placement="top">
+                            <img class="img-rounded" src="{% resize_image object.images.all.0.image 60 60 %}" width="60" height="60" />
+                        </a>
+                    </div>
                 {% else %}
-                    <img class="img-rounded lightest" src="{% resize_image object.species.default_image 65 65 %}" width="65" height="65" />
+                    <div class="span1 fix-left">
+                        <img class="img-rounded lightest" src="{% resize_image object.species.default_image 60 60 %}" width="60" height="60" />
+                    </div>
                 {% endif %}
-                &nbsp;
 
                 {% if object.images.all.1 %}
-                    <img class="img-rounded" src="{% resize_image object.images.all.1.image 65 65 %}" width="65" height="65" />
+                    <div class="hint span1">
+                        <a href="#id_sighting_lightbox_2" data-toggle="lightbox" rel="tooltip" title="Enlarge&nbsp;Image" data-placement="top">
+                            <img class="img-rounded" src="{% resize_image object.images.all.1.image 60 60 %}" width="60" height="60" />
+                        </a>
+                    </div>
                 {% else %}
-                    <img class="img-rounded lightest" src="{% resize_image object.species.default_image 65 65 %}" width="65" height="65" />
+                    <div class="span1">
+                        <img class="img-rounded lightest" src="{% resize_image object.species.default_image 60 60 %}" width="60" height="60" />
+                    </div>
                 {% endif %}
-                &nbsp;
 
                 {% if object.images.all.2 %}
-                    <img class="img-rounded" src="{% resize_image object.images.all.2.image 65 65 %}" width="65" height="65" />
+                    <div class="hint span1">
+                        <a href="#id_sighting_lightbox_3" data-toggle="lightbox" rel="tooltip" title="Enlarge&nbsp;Image" data-placement="top">
+                            <img class="img-rounded" src="{% resize_image object.images.all.2.image 60 60 %}" width="60" height="60" />
+                        </a>
+                    </div>
                 {% else %}
-                    <img class="img-rounded lightest" src="{% resize_image object.species.default_image 65 65 %}" width="65" height="65" />
+                    <div class="span1">
+                        <img class="img-rounded lightest" src="{% resize_image object.species.default_image 60 60 %}" width="60" height="60" />
+                    </div>
                 {% endif %}
             </div>
-            <hr/>
+
+            <div class="span3 fix-left">
+                <hr/>
+            </div>
+
             <div>
                 <h4>
                     <img src="{% resize_image object.species.default_image 50 50 %}" class="img-rounded invert" width="50" height="50" />
-                    <a href="{% url wildlife:index object.species.slug %}">{{ object.species.common_name }}</a>
+                    <a href="{{ object.species.get_absolute_url }}">{{ object.species.common_name }}</a>
                 </h4>
                 <small>{{ object.species.general_info|default:"" }}</small>
-                <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.common_name }}", target="blank">Wikipedia</a></small></h6>
+                <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.species.common_name }}", target="blank">Wikipedia</a></small></h6>
+            </div>
+
+            <div class="span3 fix-left">
+                <hr/>
+            </div>
+
+            <div>
+                <h4>
+                    <a href="{{ object.reserve.get_absolute_url }}">{{ object.reserve.name }}</a>
+                </h4>
+                <small>{{ object.reserve.description|default:"" }}</small>
+                <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.reserve.name }}", target="blank">Wikipedia</a></small></h6>
             </div>
         </div>
     </div>
+    {% include 'sighting/modals.html' %}
 {% endblock %}

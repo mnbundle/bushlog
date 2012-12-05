@@ -4,9 +4,11 @@
     <div class="carousel-inner">
         {% for obj in obj_list %}
             <div class="{% if forloop.first %}active {% endif %}item">
-                <div id="map-example-{{ obj.slug }}" class="map-example well" data-map='{% latest_sightings_mapdata reserve=obj %}'></div>
+                <div id="map-{{ obj.slug }}" class="map well" data-map='{% latest_sightings_mapdata reserve=obj %}'></div>
                 <div class="carousel-caption rounded-corners-bottom">
-                    <h5><i class="icon-map-marker icon-white"></i>&nbsp; {{ obj.name }}</h5>
+                    <h5>
+                        <i class="icon-map-marker icon-white"></i>&nbsp; {{ obj.name }}
+                    </h5>
                 </div>
             </div>
         {% endfor %}

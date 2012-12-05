@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}{{ object.common_name }} Sightings in Southern Africa{% endblock %}
+
 {% load humanize %}
 {% load wildlife %}
 
@@ -9,7 +11,7 @@
     <div class="row">
         <div class="span9">
             <div class="page-header span8">
-                <h1>{{ object.common_name }} <small><em>{{ object.scientific_name }}</em></small></h1>
+                <h2>{{ object.common_name }} <small><em>{{ object.scientific_name }}</em></small></h2>
             </div>
             {% latest_sightings limit=20 species=object %}
         </div>
@@ -65,7 +67,7 @@
                         <small>
                             <div>
                                 <img src="{% resize_image species.default_image 30 30 %}" class="img-rounded invert" width="30" height="30" /> &nbsp;
-                                <a href="{% url wildlife:index species.slug %}">{{ species.common_name }}</a>
+                                <a href="{{ species.get_absolute_url }}">{{ species.common_name }}</a>
                             </div>
                         </small>
                     {% endfor %}
@@ -79,7 +81,7 @@
                     <small>
                         <div>
                             <i class="icon-map-marker">&nbsp;</i> &nbsp;
-                            <a href="{% url reserve:index reserve.slug %}">{{ reserve.name }}</a>
+                            <a href="{{ reserve.get_absolute_url }}">{{ reserve.name }}</a>
                         </div>
                     </small>
                 {% endfor %}

@@ -16,7 +16,7 @@ def historical_date(*args, **kwargs):
     return datetime.now() - relativedelta(*args, **kwargs)
 
 
-def image_resize(image, width, height):
+def image_resize(image, width=None, height=None):
     """
     Resizes images on the fly. If width and height args are 0 (zero) they will be
     ignored.

@@ -21,8 +21,8 @@ def latest_sightings_mapdata(context, limit=3, *args, **kwargs):
 
 
 @register.simple_tag
-def resize_image(image, width, height):
-    return image_resize(image, width, height)
+def resize_image(image, width=None, height=None):
+    return image_resize(image, width=width, height=height)
 
 
 @register.inclusion_tag("template_tags/sighting_map.html", takes_context=True)
@@ -47,18 +47,21 @@ def sighting_map(context, limit=3, *args, **kwargs):
 
 
 @register.inclusion_tag("template_tags/latest_sightings.html", takes_context=True)
-def latest_sightings(context, split=False, limit=3, *args, **kwargs):
+def latest_sightings(context, split=False, limit=3, exclude_pk={}, *args, **kwargs):
     try:
         keyword = kwargs.keys()[0]
     except IndexError:
         keyword = None
 
     if kwargs:
-        object_list = Sighting.objects.filter(**kwargs)[:limit]
+        object_list = Sighting.objects.filter(**kwargs)
     else:
         object_list = Sighting.objects.all()[:limit]
 
-    return {'object_list': object_list, 'split': split, 'keyword': keyword}
+    if exclude_pk:
+        object_list = object_list.exclude(pk=exclude_pk)
+
+    return {'object_list': object_list[:limit], 'split': split, 'keyword': keyword}
 
 
 @register.filter

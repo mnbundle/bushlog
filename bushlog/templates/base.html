@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
-        <title>BushLog</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>{% block title %}BushLog | Wildlife Sightings in Southern Africa{% endblock %}</title>
+        <meta name="description" content="Wildlife Sightings in Southern Africa.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Wildlife Sightings in South Africa.">
         <meta name="author" content="BushLog">
 
         <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" type="text/css"/>
+        <style type="text/css">
+            body {
+                padding-top: 80px;
+                padding-bottom: 40px;
+            }
+        </style>
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.responsive.min.css" type="text/css"/>
         <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.extend.css" type="text/css"/>
         <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.datepicker.css" type="text/css"/>
         {% block extra_css %}{% endblock %}
 
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.datepicker.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/gmap3.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/application.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.validate.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.validate.bootstrap.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/profile.js"></script>
-        <!--[if lt IE 9]>
-            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-        {% block extra_js %}{% endblock %}
+        <script src="{{ STATIC_URL }}js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
         <div class="navbar navbar-fixed-top">
@@ -90,7 +90,7 @@
             {% endif %}
             {% block content %}{% endblock %}
             <hr>
-            <div class="row">
+            <div class="row-fluid">
                 <div class="span12">
                     <ul class="nav nav-pills pull-right">
                         <li><a href="{% url index %}">Home</a></li>
@@ -104,5 +104,20 @@
             </div>
         </div>
         {% include 'profile/modals.html' %}
+
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.datepicker.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/gmap3.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/application.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.validate.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.validate.bootstrap.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/profile.js"></script>
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        {% block extra_js %}{% endblock %}
+
     </body>
 </html>

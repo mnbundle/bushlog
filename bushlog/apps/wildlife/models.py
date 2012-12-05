@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse_lazy
 from django.db import models
 
 from bushlog.utils import choices
@@ -11,10 +12,7 @@ class SpeciesInfo(models.Model):
 
     def __unicode__(self):
         return "%s(mass), %s(height), %s(length), %s(horn length)" % (
-            self.mass,
-            self.height,
-            self.length,
-            self.horn_length
+            self.mass, self.height, self.length, self.horn_length
         )
 
 
@@ -37,3 +35,6 @@ class Species(models.Model):
 
     def __unicode__(self):
         return "%s (%s)" % (self.common_name, self.scientific_name)
+
+    def get_absolute_url(self):
+        return reverse_lazy('wildlife:index', args=[self.slug])

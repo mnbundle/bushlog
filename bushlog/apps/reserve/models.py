@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse_lazy
 from django.db import models
 
 from bushlog.apps.location.models import Coordinate, Country
@@ -21,3 +22,6 @@ class Reserve(models.Model):
     @property
     def number_of_sightings(self):
         return self.sightings.filter(date_of_sighting__gte=historical_date(month=1)).count()
+
+    def get_absolute_url(self):
+        return reverse_lazy('reserve:index', args=[self.slug])

@@ -3,15 +3,22 @@
 <div id="map-carousel" class="carousel slide">
     <div class="carousel-inner">
         <div class="active item">
-            <div class="map-example well rounded-corners-top" data-map='{{ mapdata }}'></div>
+            <div class="map well rounded-corners-top" data-map='{{ mapdata }}'></div>
             <div class="carousel-caption rounded-corners-bottom">
-                {% if keyword == 'user' %}
-                    <h5><i class="icon-map-marker icon-white"></i>&nbsp; {{ object.user.username|capfirst }}'s Latest Sightings</h5>
-                {% elif keyword == 'reserve' %}
-                    <h5><i class="icon-map-marker icon-white"></i>&nbsp; Latest Sightings in the {{ object.name }}</h5>
-                {% elif keyword == 'species' %}
-                    <h5><i class="icon-map-marker icon-white"></i>&nbsp; Latest Sightings of {{ object.common_name }} </h5>
-                {% endif %}
+                <h5><i class="icon-map-marker icon-white"></i>&nbsp;
+                    {% if keyword == 'user' %}
+                        {{ object.user.username|capfirst }}'s Latest Sightings
+                    {% elif keyword == 'reserve' %}
+                        Latest Sightings in the {{ object.name }}
+                    {% elif keyword == 'species' %}
+                        Latest Sightings of {{ object.common_name }}
+                    {% elif keyword == 'pk' %}
+                        Sighting of {{ object.species.common_name }} in {{ object.reserve.name }}
+                    {% endif %}
+                    <div class="pull-right hint">
+                        <a href="#" rel="tooltip" title="Expand&nbsp;Map" data-placement="left"><i id="expand-map" class="icon-chevron-down icon-white"></i></a>
+                    </div>
+                </h5>
             </div>
         </div>
     </div>

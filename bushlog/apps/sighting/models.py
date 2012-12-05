@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse_lazy
 from django.db import models
 
 from bushlog.apps.location.models import Coordinate
@@ -37,6 +38,9 @@ class Sighting(models.Model):
             'lng': str(self.location.longitude),
             'options': {
                 'icon': self.species.marker.url
+            },
+            'data': {
+                'href': str(self.get_absolute_url())
             }
         }
 
@@ -47,11 +51,13 @@ class Sighting(models.Model):
             return image_list[0].image
         return None
 
+    def get_absolute_url(self):
+        return reverse_lazy('sighting:index', args=[self.reserve.slug, self.species.slug, str(self.id)])
+
 
 class SightingImage(models.Model):
     sighting = models.ForeignKey(Sighting, related_name="images")
     image = models.ImageField(upload_to="sightings/%Y/%m/", max_length=250)
-    caption = models.CharField(max_length=50)
 
     def __unicode__(self):
         return "%s - %s" % (self.sighting, self.caption)

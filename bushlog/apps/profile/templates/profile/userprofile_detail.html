@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
+{% block title %}{{ object.user.username|capfirst }}'s BushLog{% endblock %}
+
 {% block content %}
     {% load sighting %}
     {% sighting_map limit=5 user=object.user %}
     <div class="row">
         <div class="span9">
             <div class="page-header span8">
-                <h1>{{ object.user.username|capfirst }}'s BushLog</h1>
+                <h2>{{ object.user.username|capfirst }}'s BushLog</h2>
             </div>
             {% latest_sightings limit=10 user=object.user %}
         </div>
