@@ -3,22 +3,27 @@
 {% block title %}{{ object.common_name }} Sightings in Southern Africa{% endblock %}
 
 {% load humanize %}
+{% load sighting %}
 {% load wildlife %}
 
 {% block content %}
-    {% load sighting %}
     {% sighting_map limit=5 species=object %}
-    <div class="row">
-        <div class="span9">
-            <div class="page-header span8">
-                <h2>{{ object.common_name }} <small><em>{{ object.scientific_name }}</em></small></h2>
+    <div class="row-fluid">
+        <div class="span8">
+            <div class="page-header">
+                <h2>
+                    {{ object.common_name }}
+                    <small><em>{{ object.scientific_name }}</em></small>
+                    <button class="btn btn-success btn-header pull-right" type="button">
+                        <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
+                    </button>
+                </h2>
             </div>
-            {% latest_sightings limit=20 species=object %}
+            {% latest_sightings split=2 limit=20 species=object %}
         </div>
-        <div>&nbsp;</div>
-        <div class="span3">
+        <div class="span3 pull-right">
             <div>
-                <div class="page-header span3">
+                <div class="page-header">
                     <h4>Species Info</h4>
                 </div>
                 <small>
@@ -60,7 +65,7 @@
             </div>
             {% if object.similiar_species.all %}
                 <div>
-                    <div class="page-header span3">
+                    <div class="page-header">
                         <h4>Similiar Species</h4>
                     </div>
                     {% for species in object.similiar_species.all %}
@@ -74,7 +79,7 @@
                 </div>
             {% endif %}
             <div>
-                <div class="page-header span3">
+                <div class="page-header">
                     <h4>Occurs In</h4>
                 </div>
                 {% for reserve in object.reserves.all %}

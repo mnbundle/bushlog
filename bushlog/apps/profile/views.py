@@ -17,6 +17,7 @@ class IndexDetailView(generic.DetailView):
 class SignInFormView(generic.FormView):
     template_name = "profile/signin.html"
     form_class = SignInForm
+    success_url = reverse_lazy('index')
     error_url = reverse_lazy('index')
     error_msg = "Your login details were entered incorrectly. Please try again."
     form_prefix = "signin"
@@ -64,13 +65,12 @@ class SignInFormView(generic.FormView):
         else:
             return self.form_invalid(form)
 
-        return HttpResponseRedirect(reverse_lazy('profile:index', args=[user.username]))
+        return HttpResponseRedirect(self.success_url)
 
     def form_invalid(self, form):
         """
         Set an error message if the form is invalid.
         """
-        print form.data
         messages.add_message(self.request, messages.ERROR, self.error_msg)
         return HttpResponseRedirect(self.error_url)
 

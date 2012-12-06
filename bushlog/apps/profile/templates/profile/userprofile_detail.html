@@ -10,7 +10,12 @@
     <div class="row-fluid">
         <div class="span8">
             <div class="page-header">
-                <h2>{{ object.user.username|capfirst }}'s BushLog</h2>
+                <h2>
+                    {{ object.user.username|capfirst }}'s BushLog
+                    <button class="btn btn-success btn-header pull-right" type="button">
+                        <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
+                    </button>
+                </h2>
             </div>
             {% latest_sightings split=2 limit=10 user=object.user %}
         </div>

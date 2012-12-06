@@ -5,15 +5,19 @@
 {% block content %}
     {% load sighting %}
     {% sighting_map limit=5 reserve=object %}
-    <div class="row">
-        <div class="span9">
-            <div class="page-header span8">
-                <h2>{{ object.name }}</h2>
+    <div class="row-fluid">
+        <div class="span8">
+            <div class="page-header">
+                <h2>
+                    {{ object.name }}
+                    <button class="btn btn-success btn-header pull-right" type="button">
+                        <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
+                    </button>
+                </h2>
             </div>
-            {% latest_sightings limit=20 reserve=object %}
+            {% latest_sightings split=2 limit=20 reserve=object %}
         </div>
-        <div>&nbsp;</div>
-        <div class="span3">
+        <div class="span3 pull-right">
             <div>
                 <h4>
                     <strong>{{ object.country }}</strong><br/>
@@ -26,7 +30,7 @@
                 <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.name }}", target="blank">Wikipedia</a></small></h6>
             </div>
             <div>
-                <div class="page-header span3">
+                <div class="page-header">
                     <h4>Species List</h4>
                 </div>
                 {% for species in object.species.all %}
