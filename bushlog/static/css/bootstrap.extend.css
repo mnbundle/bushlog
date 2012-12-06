@@ -1,10 +1,9 @@
-.modal-body {max-height:550px!important}
 .brand {margin:4px 0px}
 .brand img {margin-bottom:-5px}
 .navbar .btn-group {margin-top: 8px}
 .carousel-caption h5,.carousel-caption p {color:#ffffff;margin-top:-5px;height:5px}
-.rounded-corners-bottom {-webkit-border-radius:0px 0px 4px 4px;-moz-border-radius:0px 0px 4px 4px;border-radius:0px 0px 4px 4px}
-.rounded-corners-top {-webkit-border-radius:4px 4px 0px 0px;-moz-border-radius:4px 4px 0px 0px;border-radius:4px 4px 0px 0px}
+.rounded-corners-bottom {border-radius:0px 0px 4px 4px}
+.rounded-corners-top {border-radius:4px 4px 0px 0px}
 .map {height:250px}
 .hero-unit-tiny {padding:15px}
 .hero-unit-small {padding:40px}
@@ -27,3 +26,6 @@ a:hover {color:#5BB75B}
 .media-body h6 {margin-top:5px}
 .icon-block-wht {display:block;background:white;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;padding:3px}
 .fix-left {margin-left:0px}
+.padding-left-sml {margin-left:2px!important}
+.input-modal-inline {width:110px}
+.cluster {width:30px;height:30px;border-radius:15px;cursor:pointer;background:#FFF;font-weight:bold;line-height:30px;text-align:center}

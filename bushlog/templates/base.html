@@ -44,19 +44,6 @@
                                 <li><a href="{% url profile:signout %}"><i class="icon-remove-sign"></i>&nbsp; Sign Out</a></li>
                             </ul>
                         </div>
-                        <script type="text/javascript">
-                            $(document).ready(function() {
-
-                                // initialise update form
-                                initUpdateForm();
-
-                                // initialise the update modal with required options
-                                $('#id_update_modal').modal({
-                                    keyboard: false,
-                                    show: false
-                                });
-                            });
-                        </script>
                     {% else %}
                         <div class="btn-group pull-right">
                             <a class="btn btn-success" href="#id_signup_modal" data-toggle="modal">
@@ -106,7 +93,10 @@
         {% include 'profile/modals.html' %}
 
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script>
+            window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')
+        </script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.datepicker.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/gmap3.min.js"></script>
@@ -117,6 +107,23 @@
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
+
+        {% if request.user.is_authenticated %}
+            <script type="text/javascript">
+                $(document).ready(function() {
+
+                    // initialise update form
+                    initUpdateForm();
+
+                    // initialise the update modal with required options
+                    $('#id_update_modal').modal({
+                        keyboard: false,
+                        show: false
+                    });
+                });
+            </script>
+        {% endif %}
+
         {% block extra_js %}{% endblock %}
 
     </body>

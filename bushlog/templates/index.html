@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+
     {% load reserve %}
+
     {% featured_reserve_maps %}
     <div class="row-fluid">
         <div class="hero-unit span8 hero-unit-small hero-unit-index">
@@ -30,7 +32,7 @@
             </div>
             <p>&nbsp;</p>
             {% load sighting %}
-            {% latest_sightings split=1 limit=10 %}
+            {% latest_sightings split=3 limit=10 %}
             <p></p>
         </div>
     </div>

@@ -50,34 +50,33 @@ initRegion = function () {
                     click: function (marker, event, context) {
                         window.location = context.data.href;
                     }
+                },
+                cluster:{
+                    radius: 30,
+                    events: {
+                        click: function(cluster, event, data){
+                            var map = $(this).gmap3("get");
+                            map.setCenter(cluster.main.getPosition());
+                            map.setZoom(map.getZoom() + 1);
+                        },
+                    },
+                    0: {
+                        content: '<div class="cluster cluster-1">CLUSTER_COUNT</div></a>',
+                        width: 30,
+                        height: 30
+                    },
+                    20: {
+                        content: '<div class="cluster cluster-2">CLUSTER_COUNT</div>',
+                        width: 35,
+                        height: 35
+                    },
+                    50: {
+                        content: '<div class="cluster cluster-3">CLUSTER_COUNT</div>',
+                        width: 40,
+                        height: 40
+                    }
                 }
-                //cluster:{
-                //    radius: 100,
-                //    events:{ // events trigged by clusters
-                //        mouseover: function(cluster){
-                //            $(cluster.main.getDOMElement()).css("border", "1px solid red");
-                //        },
-                //        mouseout: function(cluster){
-                //            $(cluster.main.getDOMElement()).css("border", "0px");
-                //        }
-                //    },
-                //    0: {
-                //        content: "<div class='cluster cluster-1'>CLUSTER_COUNT</div>",
-                //        width: 53,
-                //        height: 52
-                //    },
-                //    20: {
-                //        content: "<div class='cluster cluster-2'>CLUSTER_COUNT</div>",
-                //        width: 56,
-                //        height: 55
-                //    },
-                //    50: {
-                //        content: "<div class='cluster cluster-3'>CLUSTER_COUNT</div>",
-                //        width: 66,
-                //        height: 65
-                //    }
-                //}
-            },
+            }
         }, autofit);
     }
 
@@ -124,13 +123,7 @@ toggleMapSize = function (map, ele) {
             placement: "left",
             title: "Collapse Map"
         });
-        map.css({'height': 500}).gmap3({trigger: 'resize'}).gmap3({
-            map: {
-                options: {
-                    center: markers[0]
-                }
-            }
-        }, autofit);
+        map.css({'height': 500}).gmap3({trigger: 'resize'}, autofit);
     }
     else {
         ele.removeClass('icon-chevron-up');
@@ -139,13 +132,7 @@ toggleMapSize = function (map, ele) {
             placement: "left",
             title: "Expand Map"
         });
-        map.css({'height': 250}).gmap3({trigger: 'resize'}).gmap3({
-            map: {
-                options: {
-                    center: markers[0]
-                }
-            }
-        }, autofit);
+        map.css({'height': 250}).gmap3({trigger: 'resize'}, autofit);
     }
 }
 

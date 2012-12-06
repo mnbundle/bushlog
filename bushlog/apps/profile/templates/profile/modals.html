@@ -78,11 +78,14 @@
     </div>
 </div>
 
-{% load profile %}
+{% block extra_js %}
 
-{% if request.session.show_update %}
-    <script type="text/javascript">
-        $("#id_update_modal").modal('show');
-    </script>
-    {% del_session 'show_update' %}
-{% endif %}
+    {% load profile %}
+
+    {% if request.session.show_update %}
+        <script type="text/javascript">
+            $("#id_update_modal").modal('show');
+        </script>
+        {% del_session 'show_update' %}
+    {% endif %}
+{% endblock %}

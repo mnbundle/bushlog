@@ -18,13 +18,13 @@ class SignInForm(forms.Form):
 
 class SignUpModelForm(forms.ModelForm):
     username = forms.CharField(max_length=15, widget=forms.TextInput(attrs={
-            'class': 'span4 required',
+            'class': 'span3 required',
             'minlength': 4,
             'remote': reverse_lazy('profile:validate', args=['unique'])
         })
     )
     confirm_password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'span4 required', 'equalTo': '#id_signup-password', 'minlength': 8})
+        widget=forms.PasswordInput(attrs={'class': 'span3 required', 'equalTo': '#id_signup-password', 'minlength': 8})
     )
 
     class Meta:
@@ -33,15 +33,15 @@ class SignUpModelForm(forms.ModelForm):
         widgets = {
             'username': forms.TextInput(
                 attrs={
-                    'class': 'span4 required',
+                    'class': 'span3 required',
                     'minlength': 4,
                     'remote': reverse_lazy('profile:validate', args=['unique'])
                 }
             ),
             'email': forms.TextInput(
-                attrs={'class': 'span4 required email ', 'remote': reverse_lazy('profile:validate', args=['unique'])}
+                attrs={'class': 'span3 required email ', 'remote': reverse_lazy('profile:validate', args=['unique'])}
             ),
-            'password': forms.PasswordInput(attrs={'class': 'span4 required validpassword', 'minlength': 8}),
+            'password': forms.PasswordInput(attrs={'class': 'span3 required validpassword', 'minlength': 8}),
         }
 
     def clean(self):
@@ -55,7 +55,7 @@ class UpdateModelForm(forms.ModelForm):
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': 'span4 required',
+                'class': 'span3 required',
                 'minlength': 4,
                 'remote': reverse_lazy('profile:validate', args=['unique'])
             }
@@ -63,14 +63,14 @@ class UpdateModelForm(forms.ModelForm):
         required=True
     )
     first_name = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'span2', 'placeholder': 'First name'}), max_length=30, required=False
+        widget=forms.TextInput(attrs={'class': 'input-modal-inline', 'placeholder': 'First name'}), max_length=30, required=False
     )
     last_name = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'span2', 'placeholder': 'Last name'}), max_length=30, required=False
+        widget=forms.TextInput(attrs={'class': 'input-modal-inline', 'placeholder': 'Last name'}), max_length=30, required=False
     )
     email = forms.EmailField(
         widget=forms.TextInput(
-            attrs={'class': 'span4 required email', 'remote': reverse_lazy('profile:validate', args=['unique'])}
+            attrs={'class': 'span3 required email', 'remote': reverse_lazy('profile:validate', args=['unique'])}
         ),
         required=True
     )
@@ -79,11 +79,11 @@ class UpdateModelForm(forms.ModelForm):
         model = UserProfile
         fields = ['biography', 'gender', 'birth_date', 'country']
         widgets = {
-            'biography': forms.Textarea(attrs={'class': 'span4', 'rows': 3, 'maxlength': 250}),
-            'gender': forms.Select(attrs={'class': 'span4'}, choices=choices(['Male', 'Female'])),
+            'biography': forms.Textarea(attrs={'class': 'span3', 'rows': 3, 'maxlength': 250}),
+            'gender': forms.Select(attrs={'class': 'span3'}, choices=choices(['Male', 'Female'])),
             'birth_date': forms.DateInput(attrs={'readonly': 'readonly'}, format='%d/%m/%Y'),
             'country': forms.Select(
-                attrs={'class': 'span4'}, choices=tuple([(obj.id, obj.name) for obj in Country.objects.all()])
+                attrs={'class': 'span3'}, choices=tuple([(obj.id, obj.name) for obj in Country.objects.all()])
             ),
         }
 
@@ -112,7 +112,7 @@ class UpdateModelForm(forms.ModelForm):
 class ResetPasswordForm(forms.Form):
     email = forms.EmailField(
         widget=forms.TextInput(
-            attrs={'class': 'span4 required email', 'remote': reverse_lazy('profile:validate', args=['exists'])}
+            attrs={'class': 'span3 required email', 'remote': reverse_lazy('profile:validate', args=['exists'])}
         ),
         required=True
     )
@@ -121,7 +121,7 @@ class ResetPasswordForm(forms.Form):
 class ResendActivationForm(forms.Form):
     email = forms.EmailField(
         widget=forms.TextInput(
-            attrs={'class': 'span4 required email', 'remote': reverse_lazy('profile:validate', args=['exists'])}
+            attrs={'class': 'span3 required email', 'remote': reverse_lazy('profile:validate', args=['exists'])}
         ),
         required=True
     )

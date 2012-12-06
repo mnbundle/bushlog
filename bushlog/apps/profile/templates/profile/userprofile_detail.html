@@ -3,17 +3,18 @@
 {% block title %}{{ object.user.username|capfirst }}'s BushLog{% endblock %}
 
 {% block content %}
+
     {% load sighting %}
+
     {% sighting_map limit=5 user=object.user %}
-    <div class="row">
-        <div class="span9">
-            <div class="page-header span8">
+    <div class="row-fluid">
+        <div class="span8">
+            <div class="page-header">
                 <h2>{{ object.user.username|capfirst }}'s BushLog</h2>
             </div>
-            {% latest_sightings limit=10 user=object.user %}
+            {% latest_sightings split=2 limit=10 user=object.user %}
         </div>
-        <div>&nbsp;</div>
-        <div class="span3">
+        <div class="span3 pull-right">
             <div>
                 {% if object.avatar %}
                     <img src="{% resize_image object.avatar 220 220 %}" class="img-rounded" width="220" height="220" />
