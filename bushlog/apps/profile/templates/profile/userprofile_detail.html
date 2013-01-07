@@ -20,7 +20,7 @@
             {% latest_sightings split=2 limit=10 user=object.user %}
         </div>
         <div class="span3 pull-right">
-            <div>
+            <div class="pull-center">
                 {% if object.avatar %}
                     <img src="{% resize_image object.avatar 220 220 %}" class="img-rounded" width="220" height="220" />
                 {% else %}
@@ -38,6 +38,22 @@
                 <div>
                     <small>{{ object.biography|default:"" }}</small>
                 </div>
+            {% endif %}
+
+            {% if request.user == object.user %}
+                <hr/>
+                <div>
+                    <button class="btn btn-info span6" type="button">
+                        Change Avatar
+                    </button>
+                    <button class="btn btn-info span6" type="button">
+                        Update Profile
+                    </button>
+                </div>
+                <div>
+
+                </div>
+                <div class="spacer">&nbsp;</div>
             {% endif %}
         </div>
     </div>

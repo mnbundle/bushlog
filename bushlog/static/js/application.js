@@ -53,8 +53,9 @@ initRegion = function () {
                 },
                 cluster:{
                     radius: 30,
+                    clickable: true,
                     events: {
-                        click: function(cluster, event, data){
+                        click: function(cluster, events, context){
                             var map = $(this).gmap3("get");
                             map.setCenter(cluster.main.getPosition());
                             map.setZoom(map.getZoom() + 1);
