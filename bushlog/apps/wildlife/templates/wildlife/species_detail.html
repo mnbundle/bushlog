@@ -14,9 +14,9 @@
                 <h2>
                     {{ object.common_name }}
                     <small><em>{{ object.scientific_name }}</em></small>
-                    <button class="btn btn-success btn-header pull-right" type="button">
+                    <a class="btn btn-success btn-header pull-right" href="#id_new_sighting" data-toggle="modal">
                         <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
-                    </button>
+                    </a>
                 </h2>
             </div>
             {% latest_sightings split=2 limit=20 species=object %}
@@ -93,4 +93,5 @@
             </div>
         </div>
     </div>
+    {% include 'sighting/modals.html' %}
 {% endblock %}

@@ -12,9 +12,9 @@
             <div class="page-header">
                 <h2>
                     {{ object.user.username|capfirst }}'s BushLog
-                    <button class="btn btn-success btn-header pull-right" type="button">
+                    <a class="btn btn-success btn-header pull-right" href="#id_new_sighting" data-toggle="modal">
                         <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
-                    </button>
+                    </a>
                 </h2>
             </div>
             {% latest_sightings split=2 limit=10 user=object.user %}
@@ -57,4 +57,5 @@
             {% endif %}
         </div>
     </div>
+    {% include 'sighting/modals.html' %}
 {% endblock %}

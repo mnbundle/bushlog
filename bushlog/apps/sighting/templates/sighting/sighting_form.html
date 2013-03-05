@@ -1,0 +1,11 @@
+<form class="form-horizontal form-new_sighting" method="post">
+    {% csrf_token %}
+    <div class="control-group">
+        <label class="control-label" for="id_reserve">Reserve</label>
+        <div class="controls">{{ form.reserve }}</div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="id_species">Species</label>
+        <div class="controls">{{ form.species }}</div>
+    </div>
+</form>

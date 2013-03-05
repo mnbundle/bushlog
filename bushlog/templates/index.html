@@ -31,9 +31,9 @@
                 <p>Have you spotted any wildlife lately. Than</p>
                 <div class="spacer">&nbsp;</div>
                 <div class="pull-right">
-                    <button class="btn btn-success btn-header pull-right" type="button">
-                        <i class="icon-plus icon-white"></i> &nbsp;Add Your Sighting
-                    </button>
+                    <a class="btn btn-success btn-header pull-right" href="#id_new_sighting" data-toggle="modal">
+                        <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
+                    </a>
                 </div>
             </div>
             <div class="hero-unit span4 hero-unit-small hero-unit-index">
@@ -42,9 +42,9 @@
                 <p>Have you spotted any wildlife lately. Than</p>
                 <div class="spacer">&nbsp;</div>
                 <div class="pull-right">
-                    <button class="btn btn-success btn-header pull-right" type="button">
-                        <i class="icon-plus icon-white"></i> &nbsp;Add Your Sighting
-                    </button>
+                    <a class="btn btn-success btn-header pull-right" href="#id_new_sighting" data-toggle="modal">
+                        <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
+                    </a>
                 </div>
             </div>
             <div class="hero-unit span4 hero-unit-small hero-unit-index">
@@ -53,9 +53,9 @@
                 <p>Have you spotted any wildlife lately. Than</p>
                 <div class="spacer">&nbsp;</div>
                 <div class="pull-right">
-                    <button class="btn btn-success btn-header pull-right" type="button">
-                        <i class="icon-plus icon-white"></i> &nbsp;Add Your Sighting
-                    </button>
+                    <a class="btn btn-success btn-header pull-right" href="#id_new_sighting" data-toggle="modal">
+                        <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
+                    </a>
                 </div>
             </div>
         {% endif %}
@@ -72,4 +72,5 @@
             <p></p>
         </div>
     </div>
+    {% include 'sighting/modals.html' %}
 {% endblock %}
