@@ -26,6 +26,5 @@ class SpeciesResource(ModelResource):
         queryset = Species.objects.all()
         list_allowed_methods = ['get']
         detail_allowed_methods = ['get']
-        excludes = ['marker', 'slug', 'id']
+        excludes = ['marker', 'slug']
         serializer = PrettyJSONSerializer() if settings.DEBUG else Serializer()
-

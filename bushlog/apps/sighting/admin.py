@@ -16,3 +16,4 @@ class SightingAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Sighting, SightingAdmin)
+admin.site.register(SightingImage)

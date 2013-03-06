@@ -56,8 +56,12 @@ class Sighting(models.Model):
 
 
 class SightingImage(models.Model):
-    sighting = models.ForeignKey(Sighting, related_name="images")
+    sighting = models.ForeignKey(Sighting, related_name="images", blank=True, null=True)
     image = models.ImageField(upload_to="sightings/%Y/%m/", max_length=250)
 
     def __unicode__(self):
-        return "%s - %s" % (self.sighting, self.caption)
+        return unicode(self.sighting)
+
+    def get_absolute_url(self):
+        #return reverse('api', kwargs={'pk': str(self.id), 'resource_name': 'sightingimage', 'api_name': 'v1.0'})
+        return "/api/v1.0/sightingimage/%s/" % self.id

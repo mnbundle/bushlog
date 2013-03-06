@@ -156,7 +156,6 @@
         "pk": 1,
         "model": "sighting.sightingimage",
         "fields": {
-            "caption": "Leopard",
             "image": "sightings/2012/10/leopard_3.jpg",
             "sighting": 9
         }
@@ -165,7 +164,6 @@
         "pk": 2,
         "model": "sighting.sightingimage",
         "fields": {
-            "caption": "Lion",
             "image": "sightings/2012/10/lion_1.jpg",
             "sighting": 8
         }
@@ -174,7 +172,6 @@
         "pk": 3,
         "model": "sighting.sightingimage",
         "fields": {
-            "caption": "Elephant",
             "image": "sightings/2012/10/elephant_1.jpg",
             "sighting": 7
         }
@@ -183,7 +180,6 @@
         "pk": 4,
         "model": "sighting.sightingimage",
         "fields": {
-            "caption": "Lion",
             "image": "sightings/2012/10/lion2_2.jpg",
             "sighting": 2
         }
@@ -192,7 +188,6 @@
         "pk": 5,
         "model": "sighting.sightingimage",
         "fields": {
-            "caption": "Leopard",
             "image": "sightings/2012/10/leopard2_4.jpg",
             "sighting": 6
         }
@@ -201,7 +196,6 @@
         "pk": 6,
         "model": "sighting.sightingimage",
         "fields": {
-            "caption": "Elephant",
             "image": "sightings/2012/10/elephant2.jpg",
             "sighting": 1
         }

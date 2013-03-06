@@ -113,7 +113,6 @@ class SignUpFormView(generic.FormView):
                 "Thank you for signing up. An email has been sent to you with a link to activate your profile."
             )
             return HttpResponseRedirect(self.success_url)
-            return self.form_invalid(form)
 
         return self.form_invalid(form)
 

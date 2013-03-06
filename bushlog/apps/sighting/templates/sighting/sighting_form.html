@@ -1,11 +1,52 @@
-<form class="form-horizontal form-new_sighting" method="post">
+<form class="form-horizontal form-new_sighting" method="post" action="{% url sighting:create %}">
     {% csrf_token %}
-    <div class="control-group">
-        <label class="control-label" for="id_reserve">Reserve</label>
-        <div class="controls">{{ form.reserve }}</div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="id_species">Species</label>
-        <div class="controls">{{ form.species }}</div>
+    <div id="new_sighting-carousel" class="carousel slide">
+        <div class="carousel-inner">
+            <fieldset class="active item">
+                <h4>1. <small>Add photos of the sighting</small></h4>
+                <p>&nbsp;</p>
+                <input type="file" class="uk-input input" name="image" multiple="multiple" data-upload-url="{% url sighting:create_image %}" data-max-file-size="5mb" data-file-resize='{"width": 800, "height": 600, "quality": 90}'/>
+            </fieldset>
+            <fieldset class="item">
+                <h4>2. <small>Add some detail about the sighting</small></h4>
+                <p>&nbsp;</p>
+                <div class="control-group">
+                    <label class="control-label" for="id_date_of_sighting">Date of Sighting</label>
+                    <div class="controls">{{ form.date_of_sighting }}</div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="id_reserve">Reserve</label>
+                    <div class="controls">{{ form.reserve }}</div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="id_species">Species</label>
+                    <div class="controls">{{ form.species }}</div>
+                </div>
+            </fieldset>
+            <fieldset class="item">
+                <h4>3. <small>Pin-point the location of the sighting</small></h4>
+                <p>&nbsp;</p>
+                <div class="control-group">
+                    <label class="control-label" for="id_reserve">Reserve</label>
+                    <div class="controls">{{ form.reserve }}</div>
+                </div>
+            </fieldset>
+            <fieldset class="item">
+                <h4>4. <small>Add some more details about the sighting</small></h4>
+                <p>&nbsp;</p>
+                <div class="control-group">
+                    <label class="control-label" for="id_estimated_number">Estimated Number</label>
+                    <div class="controls">{{ form.estimated_number }}</div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="id_sex">Gender</label>
+                    <div class="controls">{{ form.sex }}</div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="id_description">Notes</label>
+                    <div class="controls">{{ form.description }}</div>
+                </div>
+            </fieldset>
+        </div>
     </div>
 </form>

@@ -18,8 +18,7 @@ def historical_date(*args, **kwargs):
 
 def image_resize(image, width=None, height=None):
     """
-    Resizes images on the fly. If width and height args are 0 (zero) they will be
-    ignored.
+    Resizes images on the fly. If width and height args are 0 (zero) they will be ignored.
     """
     image_base, image_ext = os.path.splitext(image.path)
 

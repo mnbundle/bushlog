@@ -13,5 +13,4 @@ class ReserveResource(ModelResource):
     class Meta:
         queryset = Reserve.objects.all()
         allowed_methods = ['get']
-        excludes = ['id']
         serializer = PrettyJSONSerializer() if settings.DEBUG else Serializer()
