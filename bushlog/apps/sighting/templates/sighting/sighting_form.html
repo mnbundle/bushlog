@@ -2,48 +2,68 @@
     {% csrf_token %}
     <div id="new_sighting-carousel" class="carousel slide">
         <div class="carousel-inner">
-            <fieldset class="active item">
-                <h4>1. <small>Add photos of the sighting</small></h4>
+            <fieldset class="active item" data-item="0">
+                <h4>1. <small>Add photos of the sighting (Not required)</small></h4>
                 <p>&nbsp;</p>
+                {{ form.image_ids }}
                 <input type="file" class="uk-input input" name="image" multiple="multiple" data-upload-url="{% url sighting:create_image %}" data-max-file-size="5mb" data-file-resize='{"width": 800, "height": 600, "quality": 90}'/>
             </fieldset>
-            <fieldset class="item">
+
+            <fieldset class="item" data-item="1">
                 <h4>2. <small>Add some detail about the sighting</small></h4>
                 <p>&nbsp;</p>
                 <div class="control-group">
-                    <label class="control-label" for="id_date_of_sighting">Date of Sighting</label>
-                    <div class="controls">{{ form.date_of_sighting }}</div>
+                    <label class="control-label" for="id_sighting_create-date_of_sighting">Date of Sighting</label>
+                    <div class="controls">
+                        <div class="input-append date" id="id_datepicker" data-date-format="dd/mm/yyyy" data-date="{% now 'd/m/Y' %}">
+                            {{ form.date_of_sighting }}
+                            <span class="add-on"><i class="icon-calendar"></i></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="id_reserve">Reserve</label>
+                <div class="control-group" data-item="">
+                    <label class="control-label" for="id_sighting_create-reserve">Reserve</label>
                     <div class="controls">{{ form.reserve }}</div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="id_species">Species</label>
+                    <label class="control-label" for="id_sighting_create-species">Species</label>
                     <div class="controls">{{ form.species }}</div>
                 </div>
             </fieldset>
-            <fieldset class="item">
+
+            <fieldset class="item" data-item="2">
                 <h4>3. <small>Pin-point the location of the sighting</small></h4>
                 <p>&nbsp;</p>
                 <div class="control-group">
-                    <label class="control-label" for="id_reserve">Reserve</label>
+                    <label class="control-label" for="id_sighting_create-reserve">Reserve</label>
                     <div class="controls">{{ form.reserve }}</div>
                 </div>
             </fieldset>
-            <fieldset class="item">
+
+            <fieldset class="item" data-item="3">
                 <h4>4. <small>Add some more details about the sighting</small></h4>
                 <p>&nbsp;</p>
                 <div class="control-group">
-                    <label class="control-label" for="id_estimated_number">Estimated Number</label>
+                    <label class="control-label" for="id_sighting_create-estimated_number">Estimated Number</label>
                     <div class="controls">{{ form.estimated_number }}</div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="id_sex">Gender</label>
+                    <label class="control-label" for="id_sighting_create-sex">Gender</label>
                     <div class="controls">{{ form.sex }}</div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="id_description">Notes</label>
+                    <label class="control-label">Behaviour</label>
+                    <div class="controls">
+                        <label class="checkbox inline">
+                            {{ form.with_young }} With Young &nbsp;
+                        </label>
+                        <label class="checkbox inline">
+                            {{ form.with_kill }} On a Kill
+                        </label>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="id_sighting_create-description">Notes</label>
                     <div class="controls">{{ form.description }}</div>
                 </div>
             </fieldset>

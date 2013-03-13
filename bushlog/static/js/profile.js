@@ -19,6 +19,7 @@ initSignUpForm = function () {
             $('.form-signup').submit();
         });
 
+        // add a validation method for valid passwords
         $.validator.addMethod("validpassword", function(value, element) {
             return this.optional(element) || /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\d]).*$/.test(value);
         });
@@ -51,7 +52,11 @@ initUpdateForm = function () {
         $('.btn-update-submit').click(function(){
             $('.form-update').submit();
         });
-        $('#id_datepicker').datepicker();
+
+        // initialise the datepicker
+        $('#id_datepicker').datepicker({
+            autoclose: true
+        });
 
         // initialise form validation
         $('.form-update').validate({
@@ -80,8 +85,7 @@ initResetPasswordForm = function () {
         $('.form-resetpassword').validate({
             messages: {
                 "reset_password-email": {
-                    required: "Email is required.",
-                    remote: "Email entered is not registered."
+                    remote: "is not registered."
                 }
             }
         });
@@ -101,8 +105,7 @@ initResendActivationForm = function () {
         $('.form-resendactivation').validate({
             messages: {
                 "resend_activation-email": {
-                    required: "Email is required.",
-                    remote: "Email entered is not registered."
+                    remote: "is not registered."
                 }
             }
         });

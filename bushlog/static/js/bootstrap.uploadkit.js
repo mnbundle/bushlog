@@ -6,7 +6,6 @@ var UKEventType = {
 
 var UploadKit = function(input) {
   if (!window['plupload']) {
-    console.error('Unable to initialize UploadKit; Plupload dependency not found');
     return null;
   }
 
@@ -63,10 +62,6 @@ var UploadKit = function(input) {
   });
 
   var responses = this.responses = [];
-
-  uploader.bind('Init', function(uploader, params) {
-    console.log('Initialized UploadKit uploader with ' + params.runtime + ' runtime');
-  });
 
   uploader.bind('FilesAdded', function(uploader, files) {
     $info.hide();
@@ -212,6 +207,8 @@ var UploadKit = function(input) {
   });
 
   uploader.init();
+
+  return null;
 };
 
 UploadKit.prototype = {

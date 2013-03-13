@@ -1,6 +1,7 @@
 from django import forms
 from django.core.urlresolvers import reverse_lazy
 
+from bushlog import widgets
 from bushlog.apps.location.models import Country
 from bushlog.apps.profile.models import UserProfile, User
 from bushlog.utils import choices
@@ -8,7 +9,7 @@ from bushlog.utils import choices
 
 class SignInForm(forms.Form):
     username_email = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'span12', 'placeholder': 'Username / Email address'})
+        widget=widgets.EmailInput(attrs={'class': 'span12', 'placeholder': 'Username / Email address'})
     )
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'span12', 'placeholder': 'Password'})
@@ -38,7 +39,7 @@ class SignUpModelForm(forms.ModelForm):
                     'remote': reverse_lazy('profile:validate', args=['unique'])
                 }
             ),
-            'email': forms.TextInput(
+            'email': widgets.EmailInput(
                 attrs={'class': 'span3 required email ', 'remote': reverse_lazy('profile:validate', args=['unique'])}
             ),
             'password': forms.PasswordInput(attrs={'class': 'span3 required validpassword', 'minlength': 8}),
@@ -69,7 +70,7 @@ class UpdateModelForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'input-modal-inline', 'placeholder': 'Last name'}), max_length=30, required=False
     )
     email = forms.EmailField(
-        widget=forms.TextInput(
+        widget=widgets.EmailInput(
             attrs={'class': 'span3 required email', 'remote': reverse_lazy('profile:validate', args=['unique'])}
         ),
         required=True
@@ -111,7 +112,7 @@ class UpdateModelForm(forms.ModelForm):
 
 class ResetPasswordForm(forms.Form):
     email = forms.EmailField(
-        widget=forms.TextInput(
+        widget=widgets.EmailInput(
             attrs={'class': 'span3 required email', 'remote': reverse_lazy('profile:validate', args=['exists'])}
         ),
         required=True
@@ -120,7 +121,7 @@ class ResetPasswordForm(forms.Form):
 
 class ResendActivationForm(forms.Form):
     email = forms.EmailField(
-        widget=forms.TextInput(
+        widget=widgets.EmailInput(
             attrs={'class': 'span3 required email', 'remote': reverse_lazy('profile:validate', args=['exists'])}
         ),
         required=True

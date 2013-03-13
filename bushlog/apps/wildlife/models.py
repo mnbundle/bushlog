@@ -31,6 +31,7 @@ class Species(models.Model):
     similiar_species = models.ManyToManyField("self", related_name="similiar_species", blank=True, null=True)
 
     class Meta:
+        ordering = ['common_name']
         verbose_name_plural = "Species"
 
     def __unicode__(self):

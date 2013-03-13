@@ -1,6 +1,6 @@
-enableCarouselControl = function (carousel_ele, ele, action) {
+enableCarouselControl = function (carousel_ele, ele) {
     ele.click(function(){
-        carousel_ele.carousel(action);
+        carousel_ele.carousel(ele.data("action"));
     }).removeClass("disabled");
 }
 
@@ -8,13 +8,34 @@ disableCarouselControl = function (ele) {
     ele.unbind("click").addClass("disabled");
 }
 
+toggleCarouselControl = function (old_ele, new_ele) {
+    old_ele.hide();
+    new_ele.show();
+}
+
 initNewSightingForm = function () {
     $.get('/sighting/create/', function(data) {
 
         // loads the form into the form container and sets the submit action
-        $('.new_sighting-container').append(data);
-        $('.btn-new_sighting-submit').click(function(){
-            $('.form-new_sighting').submit();
+        $(".new_sighting-container").html(data);
+        $(".btn-new_sighting-submit").click(function (){
+            if($(".form-new_sighting").valid()){
+                $(".form-new_sighting").submit();
+            }
+            else {
+                var item_number = $(".error:first").parent().data('item');
+                $("#new_sighting-carousel").carousel(item_number);
+            }
+        });
+
+        // initialise the datepicker
+        $('#id_datepicker').datepicker({
+            autoclose: true
+        });
+
+        // initialise form validation
+        $('.form-new_sighting').validate({
+            ignore: []
         });
 
         // initialise the form wizard controls
@@ -23,21 +44,24 @@ initNewSightingForm = function () {
         });
         var next_btn = $("#btn-next");
         var prev_btn = $("#btn-prev");
+        var save_btn = $(".btn-new_sighting-submit");
 
+        toggleCarouselControl(save_btn, next_btn);
         enableCarouselControl(carousel_ele, next_btn, "next");
 
         carousel_ele.bind('slid', function (){
             if($('#new_sighting-carousel .carousel-inner .item:first').hasClass('active')) {
                 disableCarouselControl(prev_btn);
-                enableCarouselControl(carousel_ele, next_btn, "next");
+                enableCarouselControl(carousel_ele, next_btn);
             }
             else if($('#new_sighting-carousel .carousel-inner .item:last').hasClass('active')) {
-                disableCarouselControl(next_btn);
-                enableCarouselControl(carousel_ele, prev_btn, "prev");
+                toggleCarouselControl(next_btn, save_btn);
+                enableCarouselControl(carousel_ele, prev_btn);
             }
             else {
-                enableCarouselControl(carousel_ele, prev_btn, "prev");
-                enableCarouselControl(carousel_ele, next_btn, "next");
+                enableCarouselControl(carousel_ele, prev_btn);
+                toggleCarouselControl(save_btn, next_btn);
+                enableCarouselControl(carousel_ele, next_btn);
             }
         });
 
@@ -48,7 +72,7 @@ initNewSightingForm = function () {
 
         $('input.uk-input[type="file"]').bind(UKEventType.FileUploaded, function(e) {
             var data = $.parseJSON(e.response.response);
-            var image_ids_ele = $("#id_image_ids");
+            var image_ids_ele = $("#id_sighting_create-image_ids");
 
             var image_ids = image_ids_ele.val();
             if(image_ids) {
@@ -62,15 +86,3 @@ initNewSightingForm = function () {
 
     });
 }
-
-$(document).ready(function() {
-
-    // initialise sightings forms
-    initNewSightingForm();
-
-    // initialise the modals with required options
-    $('#id_new_sighting').modal({
-        keyboard: false,
-        show: false
-    });
-});

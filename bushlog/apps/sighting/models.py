@@ -17,10 +17,10 @@ class Sighting(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     date_of_sighting = models.DateTimeField()
 
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
 
     estimated_number = models.IntegerField(blank=True, null=True)
-    sex = models.CharField(max_length=20, choices=choices(['male', 'female', 'both']))
+    sex = models.CharField(max_length=20, choices=choices(['Male', 'Female', 'Both']), blank=True, null=True)
     with_young = models.BooleanField(default=False)
     with_kill = models.BooleanField(default=False)
 
