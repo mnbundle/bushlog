@@ -224,7 +224,7 @@
                 6,
                 7
             ],
-            "marker": "markers/baboon-monkey.png",
+            "marker": "markers/baboon.png",
             "default_image": "defaults/baboon.png",
             "common_name": "Chacma Baboon",
             "general_info": "The Chacma baboon, also known as the Cape baboon, is, like all other baboons, from the Old World monkey family. It is one of the largest of all baboons and monkeys.",
@@ -243,7 +243,7 @@
                 5,
                 7
             ],
-            "marker": "markers/baboon-monkey.png",
+            "marker": "markers/monkey.png",
             "default_image": "defaults/monkey.png",
             "common_name": "Vervet Monkey",
             "general_info": "The vervet monkey, or simply vervet, is an Old World monkey of the family Cercopithecidae native to Africa. The term \"vervet\" is also used to refer to all the members of the genus Chlorocebus.",
@@ -262,7 +262,7 @@
                 5,
                 6
             ],
-            "marker": "markers/baboon-monkey.png",
+            "marker": "markers/monkey.png",
             "default_image": "defaults/monkey.png",
             "common_name": "Samango Monkey",
             "general_info": "Samango monkey, also known as the white-throated monkey or Sykes' monkey, is an Old World monkey found between Ethiopia and South Africa, including south and east Democratic Republic of Congo.",

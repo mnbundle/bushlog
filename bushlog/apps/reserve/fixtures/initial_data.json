@@ -1,65 +1,62 @@
 [
     {
-        "pk": 1, 
-        "model": "reserve.reserve", 
+        "pk": 1,
+        "model": "reserve.reserve",
         "fields": {
-            "website": "http://www.kznwildlife.com/", 
-            "bottom_left_bound": 1, 
-            "description": "The Hluhluwe Umfolozi Park is the only park under formal conservation in KwaZulu Natal where the Big Five occur. Established in 1895, this is the oldest game park in South Africa along with nearby St Lucia Reserve. Set in the heart of Zululand.", 
-            "country": 213, 
+            "website": "http://www.kznwildlife.com/",
+            "border": 1,
+            "description": "The Hluhluwe Umfolozi Park is the only park under formal conservation in KwaZulu Natal where the Big Five occur. Established in 1895, this is the oldest game park in South Africa along with nearby St Lucia Reserve. Set in the heart of Zululand.",
+            "country": 213,
             "species": [
-                1, 
-                2, 
-                3, 
-                4, 
-                5, 
+                1,
+                2,
+                3,
+                4,
+                5,
                 6
-            ], 
-            "top_right_bound": 2, 
-            "slug": "hluhluwe-game-reserve", 
+            ],
+            "slug": "hluhluwe-game-reserve",
             "name": "Hluhluwe Game Reserve"
         }
-    }, 
+    },
     {
-        "pk": 2, 
-        "model": "reserve.reserve", 
+        "pk": 2,
+        "model": "reserve.reserve",
         "fields": {
-            "website": "http://www.sanparks.co.za/", 
-            "bottom_left_bound": 3, 
-            "description": "The largest game reserve in South Africa, the Kruger National Park is larger than Israel. Nearly 2 million hectares of land that stretch for 352 kilometres (20 000 square kilometres) from north to south along the Mozambique border.", 
-            "country": 213, 
+            "website": "http://www.sanparks.co.za/",
+            "border": 1,
+            "description": "The largest game reserve in South Africa, the Kruger National Park is larger than Israel. Nearly 2 million hectares of land that stretch for 352 kilometres (20 000 square kilometres) from north to south along the Mozambique border.",
+            "country": 213,
             "species": [
-                1, 
-                2, 
-                3, 
-                4, 
-                5, 
-                6, 
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
                 7
-            ], 
-            "top_right_bound": 4, 
-            "slug": "kruger-national-park", 
+            ],
+            "slug": "kruger-national-park",
             "name": "Kruger National Park"
         }
-    }, 
+    },
     {
-        "pk": 3, 
-        "model": "reserve.reserve", 
+        "pk": 3,
+        "model": "reserve.reserve",
         "fields": {
-            "website": "http://www.sanparks.co.za/", 
-            "bottom_left_bound": 5, 
-            "description": "Situated in a malaria free area just one hour's drive from the South African coastal city of Port Elizabeth, the magnificently diverse Addo Elephant Park offers a wide variety of game viewing, outdoor adventure, accommodation and cultural experience.", 
-            "country": 213, 
+            "website": "http://www.sanparks.co.za/",
+            "border": 1,
+            "description": "Situated in a malaria free area just one hour's drive from the South African coastal city of Port Elizabeth, the magnificently diverse Addo Elephant Park offers a wide variety of game viewing, outdoor adventure, accommodation and cultural experience.",
+            "country": 213,
             "species": [
-                1, 
-                2, 
-                3, 
-                4, 
-                5, 
+                1,
+                2,
+                3,
+                4,
+                5,
                 6
-            ], 
-            "top_right_bound": 6, 
-            "slug": "addo-elephant-national-park", 
+            ],
+            "slug": "addo-elephant-national-park",
             "name": "Addo Elephant National Park"
         }
     }
