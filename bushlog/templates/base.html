@@ -31,10 +31,10 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="{% url index %}"><img src="{{ STATIC_URL }}img/layout/logo-drk.png" width="106" height="30" /></a>
+                    <a class="brand" href="{% url 'index' %}"><img src="{{ STATIC_URL }}img/layout/logo-drk.png" width="106" height="30" /></a>
                     {% if request.user.is_authenticated %}
                         <div class="btn-group pull-right">
-                            <a class="btn" href="{% url profile:index request.user.username %}"><i class="icon-user"></i> {{ user.username }}</a>
+                            <a class="btn" href="{% url 'profile:index' request.user.username %}"><i class="icon-user"></i> {{ user.username }}</a>
                             <a class="btn dropdown-toggle" data-toggle="dropdown">
                                 <span class="caret"></span>
                             </a>
@@ -42,7 +42,7 @@
                                 <li><a href="#id_update_modal" data-toggle="modal"><i class="icon-pencil"></i>&nbsp; Update Profile</a></li>
                                 <li><a href="#privacy"><i class="icon-lock"></i>&nbsp; Privacy Settings</a></li>
                                 <li class="divider"></li>
-                                <li><a href="{% url profile:signout %}"><i class="icon-remove-sign"></i>&nbsp; Sign Out</a></li>
+                                <li><a href="{% url 'profile:signout' %}"><i class="icon-remove-sign"></i>&nbsp; Sign Out</a></li>
                             </ul>
                         </div>
                     {% else %}
@@ -54,10 +54,10 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{% url index %}"><i class="icon-lock"></i> Sign In</a></li>
+                                <li><a href="{% url 'index' %}"><i class="icon-lock"></i> Sign In</a></li>
                                 <li class="divider"></li>
-                                <li><a href="{% url socialauth_begin 'google-oauth2' %}"><i class="icon-google"></i> Sign In With Google</a></li>
-                                <li><a href="{% url socialauth_begin 'facebook' %}"><i class="icon-facebook"></i> Sign In With Facebook</a></li>
+                                <li><a href="{% url 'socialauth_begin' 'google-oauth2' %}"><i class="icon-google"></i> Sign In With Google</a></li>
+                                <li><a href="{% url 'socialauth_begin' 'facebook' %}"><i class="icon-facebook"></i> Sign In With Facebook</a></li>
                             </ul>
                         </div>
                     {% endif %}
@@ -81,7 +81,7 @@
             <div class="row-fluid">
                 <div class="span12">
                     <ul class="nav nav-pills pull-right">
-                        <li><a href="{% url index %}">Home</a></li>
+                        <li><a href="{% url 'index' %}">Home</a></li>
                         <li><a href="#">About</a></li>
                         <li><a href="#">Legal</a></li>
                         <li><a href="#">Developers</a></li>

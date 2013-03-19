@@ -17,7 +17,7 @@
                     {% endif %}
                     <div class="media-body">
                         <h6>
-                            <a href="{% url profile:index object.user.profile.slug %}">{{ object.user.username }}</a>
+                            <a href="{% url 'profile:index' object.user.profile.slug %}">{{ object.user.username }}</a>
                             <small> added a new sighting of a </small>
                             <a href="{{ object.species.get_absolute_url }}">{{ object.species.common_name }}</a>
                             <small> in the </small>

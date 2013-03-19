@@ -11,7 +11,7 @@ class SightingAdmin(admin.ModelAdmin):
     list_display = ['species', 'reserve', 'user', 'with_young', 'with_kill', 'date_of_sighting']
     list_display_links = ['species', 'reserve', 'user']
     search_fields = ['species', 'reserve', 'user', 'date_of_sighting']
-    list_filter = ['with_young', 'with_kill', 'reserve']
+    list_filter = ['with_young', 'with_kill', 'reserve', 'species__common_name']
     inlines = [SightingImageTabularInline]
 
 

@@ -11,7 +11,7 @@ class Reserve(models.Model):
     slug = models.SlugField()
     description = models.CharField(max_length=250)
     country = models.ForeignKey(Country, related_name='users', blank=True, null=True)
-    website = models.URLField(verify_exists=True)
+    website = models.URLField()
     species = models.ManyToManyField(Species, related_name='reserves')
     bottom_left_bound = models.ForeignKey(Coordinate, related_name="bottom_left_bound")
     top_right_bound = models.ForeignKey(Coordinate, related_name="top_right_bound")

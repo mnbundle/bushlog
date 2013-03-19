@@ -1,4 +1,4 @@
-<form class="form-vertical form-signin" method="post" action="{% url profile:signin %}">
+<form class="form-vertical form-signin" method="post" action="{% url 'profile:signin' %}">
     {% csrf_token %}
     {{ form.username_email }}
     {{ form.password }}
@@ -12,8 +12,8 @@
             <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-            <li><a href="{% url socialauth_begin 'google-oauth2' %}"><i class="icon-google"></i> Sign In With Google</a></li>
-            <li><a href="{% url socialauth_begin 'facebook' %}"><i class="icon-facebook"></i> Sign In With Facebook</a></li>
+            <li><a href="{% url 'socialauth_begin' 'google-oauth2' %}"><i class="icon-google"></i> Sign In With Google</a></li>
+            <li><a href="{% url 'socialauth_begin' 'facebook' %}"><i class="icon-facebook"></i> Sign In With Facebook</a></li>
             <li class="divider"></li>
             <li><a href="#id_signup_modal" data-toggle="modal"><i class="icon-user"></i> Sign Up</a></li>
             <li><a href="#id_resetpassword_modal" data-toggle="modal"><i class="icon-question-sign"></i> Forgot Password</a></li>

@@ -1,4 +1,4 @@
-<form class="form-horizontal form-update" method="post" action="{% url profile:update %}">
+<form class="form-horizontal form-update" method="post" action="{% url 'profile:update' %}">
     {% csrf_token %}
     <div class="control-group">
         <label class="control-label" for="id_update-username">Username</label>

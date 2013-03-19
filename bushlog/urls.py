@@ -1,30 +1,11 @@
 from django.conf import settings
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views import generic
 
-from tastypie.api import Api
-
-from bushlog.apps.location.api import CoordinateResource
-from bushlog.apps.profile.api import UserResource
-from bushlog.apps.reserve.api import ReserveResource
-from bushlog.apps.sighting.api import SightingResource
-from bushlog.apps.wildlife.api import SpeciesResource, SpeciesInfoResource
-
 # set admin to autodiscover registered admin classes
 admin.autodiscover()
-
-# instantiate the api
-v1_api = Api(api_name='v1')
-
-# register api resources
-v1_api.register(CoordinateResource())
-v1_api.register(ReserveResource())
-v1_api.register(SightingResource())
-v1_api.register(SpeciesResource())
-v1_api.register(SpeciesInfoResource())
-v1_api.register(UserResource())
 
 # static url patterns
 urlpatterns = patterns('',
@@ -35,11 +16,6 @@ urlpatterns = patterns('',
 urlpatterns += patterns('',
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls))
-)
-
-# api urls
-urlpatterns += patterns('',
-    url(r'^api/', include('bushlog.api.urls'))
 )
 
 # user profile url patterns
@@ -64,7 +40,7 @@ urlpatterns += patterns('',
 
 # comments framework patterns
 urlpatterns += patterns('',
-    (r'^comments/', include('django.contrib.comments.urls'))
+    url(r'^comments/', include('django.contrib.comments.urls', namespace='comments'))
 )
 
 # social auth urls
@@ -72,7 +48,7 @@ urlpatterns += patterns('',
     url(r'social/', include('social_auth.urls'))
 )
 
-# serves static file while DEBUG is true
+# serves static file in development
 urlpatterns += staticfiles_urlpatterns()
 
 # serves media files in development

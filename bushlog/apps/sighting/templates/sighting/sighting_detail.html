@@ -49,17 +49,17 @@
         <div class="span3 pull-right">
             <div class="media">
                 {% if object.user.profile.avatar %}
-                    <a class="pull-left" href="{% url profile:index object.user.profile.slug %}">
+                    <a class="pull-left" href="{% url 'profile:index' object.user.profile.slug %}">
                         <img class="media-object img-rounded" src="{% resize_image object.user.profile.avatar 50 50 %}" width="50" height="50" />
                     </a>
                 {% else %}
-                    <a class="pull-left" href="{% url profile:index object.user.username %}">
+                    <a class="pull-left" href="{% url 'profile:index' object.user.username %}">
                         <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.gender|default:"male" }}.png" width="50" height="50" />
                     </a>
                 {% endif %}
                 <div class="media-body">
                     <h6>
-                        <a href="{% url profile:index object.user.profile.slug %}">{{ object.user.username }}</a><br/>
+                        <a href="{% url 'profile:index' object.user.profile.slug %}">{{ object.user.username }}</a><br/>
                         <i class="icon-time"></i>
                         <small>{{ object.date_of_sighting.date|fuzzy_date }}</small>
                     </h6>

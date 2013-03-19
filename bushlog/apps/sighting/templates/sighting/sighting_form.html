@@ -1,4 +1,4 @@
-<form class="form-horizontal form-new_sighting" method="post" action="{% url sighting:create %}">
+<form class="form-horizontal form-new_sighting" method="post" action="{% url 'sighting:create' %}">
     {% csrf_token %}
     <div id="new_sighting-carousel" class="carousel slide">
         <div class="carousel-inner">
@@ -6,7 +6,7 @@
                 <h4>1. <small>Add photos of the sighting (Not required)</small></h4>
                 <p>&nbsp;</p>
                 {{ form.image_ids }}
-                <input type="file" class="uk-input input" name="image" multiple="multiple" data-upload-url="{% url sighting:create_image %}" data-max-file-size="5mb" data-file-resize='{"width": 800, "height": 600, "quality": 90}'/>
+                <input type="file" class="uk-input input" name="image" multiple="multiple" data-upload-url="{% url 'sighting:create_image' %}" data-max-file-size="5mb" data-file-resize='{"width": 800, "height": 600, "quality": 90}'/>
             </fieldset>
 
             <fieldset class="item" data-item="1">

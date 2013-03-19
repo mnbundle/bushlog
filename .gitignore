@@ -10,4 +10,4 @@ bin/
 include/
 lib/
 bushlog/static/admin
-bushlog/media
+media/
