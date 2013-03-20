@@ -5,7 +5,7 @@ from django.db import models
 from bushlog.apps.location.models import Coordinate
 from bushlog.apps.reserve.models import Reserve
 from bushlog.apps.wildlife.models import Species
-from bushlog.utils import choices
+from bushlog.utils import choices, get_exif_data, get_gps_data
 
 
 class Sighting(models.Model):
@@ -33,6 +33,9 @@ class Sighting(models.Model):
 
     @property
     def mapdata(self):
+        """
+        Return required map data for use in Google maps.
+        """
         return {
             'lat': str(self.location.latitude),
             'lng': str(self.location.longitude),
@@ -46,6 +49,9 @@ class Sighting(models.Model):
 
     @property
     def cover_image(self):
+        """
+        Returns the first image as a cover image.
+        """
         image_list = self.images.all()
         if image_list:
             return image_list[0].image
@@ -62,6 +68,14 @@ class SightingImage(models.Model):
     def __unicode__(self):
         return unicode(self.sighting)
 
+    @property
+    def exif_data(self):
+        print self.image.path
+        return get_exif_data(self.image.path)
+
+    @property
+    def gps_data(self):
+        return get_gps_data(self.exif_data)
+
     def get_absolute_url(self):
-        #return reverse('api', kwargs={'pk': str(self.id), 'resource_name': 'sightingimage', 'api_name': 'v1.0'})
         return "/api/v1.0/sightingimage/%s/" % self.id

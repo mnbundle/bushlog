@@ -1,8 +1,11 @@
 from cStringIO import StringIO
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
-import Image as pil
 import os
+
+from dateutil.relativedelta import relativedelta
+
+import Image as pil
+from PIL.ExifTags import GPSTAGS, TAGS
 
 
 def choices(item_list):
@@ -84,3 +87,74 @@ def image_resize(image, width=None, height=None):
     final_file.close()
 
     return resized_image_url
+
+
+def get_exif_data(image_path):
+    """
+    Returns all the image's exif data as a dict.
+    """
+    image_file = pil.open(image_path)
+    raw_exif_data = image_file._getexif()
+    if not raw_exif_data:
+        return {}
+
+    exif_data = {}
+    for key, value in raw_exif_data.items():
+        decoded_key = TAGS.get(key, key)
+        exif_data[decoded_key] = value
+
+    return exif_data
+
+
+def convert_to_degress(value):
+    """
+    Helper function to convert the GPS coordinates stored in the EXIF to degress in float format
+    """
+    degrees = float(value[0][0]) / float(value[0][1])
+    minutes = float(value[1][0]) / float(value[1][1])
+    seconds = float(value[2][0]) / float(value[2][1])
+
+    return degrees + (minutes / 60.0) + (seconds / 3600.0)
+
+
+def get_coordinates(gps_data):
+    """
+    Returns the latitude and longitude, from the provided gps_data, if available.
+    """
+    latitude = None
+    longitude = None
+
+    gps_latitude = gps_data.get('GPSLatitude', None)
+    gps_latitude_ref = gps_data.get('GPSLatitudeRef', None)
+    gps_longitude = gps_data.get('GPSLongitude', None)
+    gps_longitude_ref = gps_data.get('GPSLongitudeRef', None)
+
+    if all([gps_latitude, gps_latitude_ref, gps_longitude, gps_longitude_ref]):
+        latitude = convert_to_degress(gps_latitude)
+        if gps_latitude_ref != "N":
+            latitude = 0 - latitude
+
+        longitude = convert_to_degress(gps_longitude)
+        if gps_longitude_ref != "E":
+            longitude = 0 - longitude
+
+    return {
+        'lat': latitude,
+        'lng': longitude
+    }
+
+
+def get_gps_data(exif_data):
+    """
+    Return GPS data.
+    """
+    raw_gps_data = exif_data.get('GPSInfo', None)
+    if not raw_gps_data:
+        return {}
+
+    gps_data = {}
+    for key, value in raw_gps_data.items():
+        decoded_key = GPSTAGS.get(key, key)
+        gps_data[decoded_key] = value
+
+    return get_coordinates(gps_data)
