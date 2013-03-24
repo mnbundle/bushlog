@@ -5,9 +5,9 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.views import generic
 
-from bushlog.apps.profile.decorators import json_response
 from bushlog.apps.profile.forms import ResetPasswordForm, SignInForm, SignUpModelForm, UpdateModelForm, ResendActivationForm
 from bushlog.apps.profile.models import UserProfile
+from bushlog.decorators import json_response
 
 
 class IndexDetailView(generic.DetailView):

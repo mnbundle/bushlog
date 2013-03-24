@@ -1,27 +1,47 @@
+from datetime import datetime
+
 from django import forms
 
 from bushlog import widgets
 from bushlog.apps.sighting.models import Sighting
-from bushlog.utils import choices
 
 
 class CreateForm(forms.ModelForm):
     image_ids = forms.CharField(widget=forms.HiddenInput(), required=False)
+    latitude = forms.FloatField(widget=forms.HiddenInput())
+    longitude = forms.FloatField(widget=forms.HiddenInput())
+    time_of_sighting = forms.TimeField(
+        widget=forms.TimeInput(attrs={'readonly': 'readonly', 'class': 'required time'})
+    )
 
     class Meta:
         model = Sighting
         fields = [
-            'reserve', 'species', 'date_of_sighting', 'description', 'estimated_number', 'sex', 'with_young',
-            'with_kill'
+            'reserve', 'species', 'date_of_sighting', 'time_of_sighting', 'description', 'estimated_number', 'sex',
+            'with_young', 'with_kill'
         ]
         widgets = {
             'reserve': forms.Select(attrs={'class': 'span3 required'}),
             'species': forms.Select(attrs={'class': 'span3 required'}),
-            'date_of_sighting': forms.DateInput(attrs={'readonly': 'readonly', 'class': 'required date'}, format='%d/%m/%Y'),
+            'date_of_sighting': forms.DateInput(attrs={'readonly': 'readonly', 'class': 'required localdate'}),
             'description': forms.Textarea(attrs={'class': 'span3', 'rows': 3, 'maxlength': 1000}),
             'estimated_number': widgets.NumberInput(attrs={'class': 'span3 number'}),
             'sex': forms.Select(attrs={'class': 'span3'})
         }
 
-    def save(self, *args, **kwargs):
-        super(CreateForm, self).save(*args, **kwargs)
+    def clean(self):
+        cleaned_data = super(CreateForm, self).clean()
+
+        # reformat the date to include the time
+        date_of_sighting = cleaned_data.get('date_of_sighting')
+        time_of_sighting = cleaned_data.get('time_of_sighting')
+        cleaned_data['date_of_sighting'] = datetime(
+            date_of_sighting.year,
+            date_of_sighting.month,
+            date_of_sighting.day,
+            time_of_sighting.hour,
+            time_of_sighting.minute
+        )
+
+        return cleaned_data
+

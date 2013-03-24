@@ -4,6 +4,7 @@
         "model": "reserve.reserve",
         "fields": {
             "website": "http://www.kznwildlife.com/",
+            "location": 66,
             "border": 1,
             "description": "The Hluhluwe Umfolozi Park is the only park under formal conservation in KwaZulu Natal where the Big Five occur. Established in 1895, this is the oldest game park in South Africa along with nearby St Lucia Reserve. Set in the heart of Zululand.",
             "country": 213,
@@ -24,6 +25,7 @@
         "model": "reserve.reserve",
         "fields": {
             "website": "http://www.sanparks.co.za/",
+            "location": 65,
             "border": 1,
             "description": "The largest game reserve in South Africa, the Kruger National Park is larger than Israel. Nearly 2 million hectares of land that stretch for 352 kilometres (20 000 square kilometres) from north to south along the Mozambique border.",
             "country": 213,
@@ -45,6 +47,7 @@
         "model": "reserve.reserve",
         "fields": {
             "website": "http://www.sanparks.co.za/",
+            "location": 67,
             "border": 1,
             "description": "Situated in a malaria free area just one hour's drive from the South African coastal city of Port Elizabeth, the magnificently diverse Addo Elephant Park offers a wide variety of game viewing, outdoor adventure, accommodation and cultural experience.",
             "country": 213,

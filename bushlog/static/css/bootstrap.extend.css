@@ -17,6 +17,7 @@ a {color:#333}
 a.btn {outline-width:0!important}
 a:hover {color:#5BB75B}
 .date input {width:229px!important;}
+.time input {width:229px!important;}
 .help-inline {font-size:80%}
 .light {opacity: 0.7}
 .lighter {opacity: 0.4}
@@ -33,3 +34,4 @@ a:hover {color:#5BB75B}
 .align-left {text-align:left}
 .align-center {text-align:center}
 .align-right {text-align:right}
+.sighting-map {height:400px!important}

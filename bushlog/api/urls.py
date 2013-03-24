@@ -1,26 +1,30 @@
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls import patterns, url, include
 
-from tastypie.api import NamespacedApi
+from rest_framework.urlpatterns import format_suffix_patterns
 
-from bushlog.apps.location.api import CoordinateResource
-from bushlog.apps.profile.api import UserResource
-from bushlog.apps.reserve.api import ReserveResource
-from bushlog.apps.sighting.api import SightingResource, SightingImageResource
-from bushlog.apps.wildlife.api import SpeciesResource, SpeciesInfoResource
 
-# instantiate the api
-v1_api = NamespacedApi(api_name='v1.0', urlconf_namespace='api')
-
-# register api resources
-v1_api.register(CoordinateResource())
-v1_api.register(ReserveResource())
-v1_api.register(SightingResource())
-v1_api.register(SightingImageResource())
-v1_api.register(SpeciesResource())
-v1_api.register(SpeciesInfoResource())
-v1_api.register(UserResource())
-
-# api urls
-urlpatterns = patterns('',
-    url(r'^', include(v1_api.urls)),
+# static url patterns
+urlpatterns = patterns('bushlog.api.views',
+    url(r'^$', 'index')
 )
+
+# reserve api url patterns
+urlpatterns += patterns('bushlog.api.views',
+    url(r'^reserves/$', 'reserve_list', name='reserve_list'),
+    url(r'^reserves/(?P<pk>\d+)/$', 'reserve_detail', name='reserve_detail')
+)
+
+# sighting api url patterns
+urlpatterns += patterns('bushlog.api.views',
+    url(r'^species/$', 'species_list', name='species_list'),
+    url(r'^species/(?P<pk>\d+)/$', 'species_detail', name='species_detail')
+)
+
+# wildlife api url patterns
+urlpatterns += patterns('bushlog.api.views',
+    url(r'^sightingimages/$', 'sightingimage_list', name='sightingimage_list'),
+    url(r'^sightingimages/(?P<pk>\d+)/$', 'sightingimage_detail', name='sightingimage_detail')
+)
+
+# format suffixes
+urlpatterns = format_suffix_patterns(urlpatterns, allowed=['json', 'api'])

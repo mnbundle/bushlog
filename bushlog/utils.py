@@ -7,6 +7,8 @@ from dateutil.relativedelta import relativedelta
 import Image as pil
 from PIL.ExifTags import GPSTAGS, TAGS
 
+EXIF_INCLUDE_KEYS = ['Make', 'DateTimeOriginal', 'Model']
+
 
 def choices(item_list):
     """
@@ -89,19 +91,23 @@ def image_resize(image, width=None, height=None):
     return resized_image_url
 
 
-def get_exif_data(image_path):
+def get_exif_data(image_path, exif_include_keys=EXIF_INCLUDE_KEYS):
     """
     Returns all the image's exif data as a dict.
     """
+    print exif_include_keys
     image_file = pil.open(image_path)
     raw_exif_data = image_file._getexif()
     if not raw_exif_data:
-        return {}
+        return None
 
     exif_data = {}
     for key, value in raw_exif_data.items():
         decoded_key = TAGS.get(key, key)
-        exif_data[decoded_key] = value
+        if decoded_key in exif_include_keys:
+            if decoded_key == "DateTimeOriginal":
+                value = datetime.strptime(value, "%Y:%m:%d %H:%M:%S")
+            exif_data[decoded_key] = value
 
     return exif_data
 
@@ -139,18 +145,23 @@ def get_coordinates(gps_data):
             longitude = 0 - longitude
 
     return {
-        'lat': latitude,
-        'lng': longitude
+        'latitude': latitude,
+        'longitude': longitude
     }
 
 
-def get_gps_data(exif_data):
+def get_gps_data(image_path):
     """
     Return GPS data.
     """
+    exif_data = get_exif_data(image_path, exif_include_keys=['GPSInfo'])
+    print exif_data
+    if not exif_data:
+        return None
+
     raw_gps_data = exif_data.get('GPSInfo', None)
     if not raw_gps_data:
-        return {}
+        return None
 
     gps_data = {}
     for key, value in raw_gps_data.items():

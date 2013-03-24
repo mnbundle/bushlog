@@ -556,6 +556,33 @@
         }
     },
     {
+        "pk": 65,
+        "model": "location.coordinate",
+        "fields": {
+            "latitude": "31.563721",
+            "longitude": "-24.166802",
+            "polygon": 1
+        }
+    },
+    {
+        "pk": 66,
+        "model": "location.coordinate",
+        "fields": {
+            "latitude": "31.915283",
+            "longitude": "-28.256006",
+            "polygon": 1
+        }
+    },
+    {
+        "pk": 67,
+        "model": "location.coordinate",
+        "fields": {
+            "latitude": "25.581665",
+            "longitude": "-33.321349",
+            "polygon": 1
+        }
+    },
+    {
         "pk": 1,
         "model": "location.country",
         "fields": {

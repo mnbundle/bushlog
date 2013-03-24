@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.views import generic
 
 from bushlog.apps.sighting.forms import CreateForm
+from bushlog.apps.location.models import Coordinate
 from bushlog.apps.sighting.models import Sighting, SightingImage
 
 
@@ -34,23 +35,35 @@ class SightingCreateView(generic.CreateView):
 
     def form_valid(self, form):
         """
-        Set a success message if the form is valid.
+        Set the location and user associated to the sighting and set a success message if the form is valid.
         """
-        obj = form.save()
+        obj = form.save(commit=False)
+        obj.user = self.request.user
+        obj.location = Coordinate.objects.create(
+            latitude=form.cleaned_data.get('latitude', -21.987887),
+            longitude=form.cleaned_data.get('longitude', 23.699001),
+        )
+        obj.save()
 
-        for image_id in self.request.POST.get('image_ids').split(','):
-            image_obj = SightingImage.objects.get(id=image_id)
-            image_obj.sighting = obj
-            image_obj.save()
+        print form.errors
+
+        for image_id in form.cleaned_data.get('image_ids', '').split(','):
+            try:
+                image_obj = SightingImage.objects.get(id=image_id)
+                image_obj.sighting = obj
+                image_obj.save()
+            except ValueError:
+                pass
 
         messages.add_message(self.request, messages.SUCCESS, "Your sighting has been added.")
 
-        return reverse_lazy('sighting:index', args=[obj.reserve.slug, obj.species.slug, obj.id])
+        return HttpResponseRedirect(reverse_lazy('sighting:index', args=[obj.reserve.slug, obj.species.slug, obj.id]))
 
     def form_invalid(self, form):
         """
         Set an error message if the form is invalid.
         """
+        print form.errors
         messages.add_message(self.request, messages.ERROR, self.error_msg)
         return HttpResponseRedirect(self.error_url)
 

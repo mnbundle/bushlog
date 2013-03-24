@@ -43,9 +43,15 @@ urlpatterns += patterns('',
     url(r'^comments/', include('django.contrib.comments.urls', namespace='comments'))
 )
 
-# social auth urls
+# social auth url patterns
 urlpatterns += patterns('',
     url(r'social/', include('social_auth.urls'))
+)
+
+# api url patterns
+urlpatterns += patterns('',
+    url(r'^api/', include('bushlog.api.urls', namespace='api')),
+    url(r'^api/auth/', include('rest_framework.urls', namespace='rest_framework'))
 )
 
 # serves static file in development

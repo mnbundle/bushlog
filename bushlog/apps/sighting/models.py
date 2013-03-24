@@ -70,12 +70,11 @@ class SightingImage(models.Model):
 
     @property
     def exif_data(self):
-        print self.image.path
         return get_exif_data(self.image.path)
 
     @property
     def gps_data(self):
-        return get_gps_data(self.exif_data)
+        return get_gps_data(self.image.path)
 
     def get_absolute_url(self):
-        return "/api/v1.0/sightingimage/%s/" % self.id
+        return reverse_lazy('api:sightingimage_detail', args=[self.pk])

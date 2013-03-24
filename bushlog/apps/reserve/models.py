@@ -1,19 +1,21 @@
 from django.core.urlresolvers import reverse_lazy
 from django.db import models
 
-from bushlog.apps.location.models import Country, Polygon
+from bushlog.apps.location.models import Coordinate, Country, Polygon
 from bushlog.apps.wildlife.models import Species
 from bushlog.utils import historical_date
 
 
 class Reserve(models.Model):
+    species = models.ManyToManyField(Species, related_name='reserves')
+    border = models.ForeignKey(Polygon, related_name='reserves')
+    location = models.ForeignKey(Coordinate)
+    country = models.ForeignKey(Country, related_name='users', blank=True, null=True)
+
     name = models.CharField(max_length=50)
     slug = models.SlugField()
     description = models.CharField(max_length=250)
-    country = models.ForeignKey(Country, related_name='users', blank=True, null=True)
     website = models.URLField()
-    species = models.ManyToManyField(Species, related_name='reserves')
-    border = models.ForeignKey(Polygon, related_name='reserves')
 
     class Meta:
         ordering = ['name']
