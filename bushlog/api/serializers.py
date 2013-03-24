@@ -44,5 +44,5 @@ class SpeciesSerializer(serializers.HyperlinkedModelSerializer):
         model = Species
         fields = [
             'id', 'common_name', 'scientific_name', 'classification', 'general_info', 'similiar_species', 'female_info',
-            'male_info', 'resource_uri'
+            'male_info', 'marker', 'resource_uri'
         ]

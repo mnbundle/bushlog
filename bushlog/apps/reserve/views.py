@@ -8,12 +8,24 @@ class IndexDetailView(generic.DetailView):
     model = Reserve
 
 
-class SerachPointView(generic.View):
+class SearchPointView(generic.View):
 
     @json_response
-    def get(self, request, type, *args, **kwargs):
-        pass
+    def get(self, request, *args, **kwargs):
+        coordinates = {
+            'latitude': request.GET.get('latitude'),
+            'longitude': request.GET.get('longitude')
+        }
+
+        try:
+            reserve = [obj for obj in Reserve.objects.all() if obj.sighting_in_reserve(coordinates)][0]
+            return {
+                'id': reserve.id,
+                'name': reserve.name
+            }
+        except IndexError:
+            return None
 
 
 index = IndexDetailView.as_view()
-search_point = SerachPointView.as_view()
+search_point = SearchPointView.as_view()

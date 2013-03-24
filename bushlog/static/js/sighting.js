@@ -28,9 +28,12 @@ formatTime = function (date) {
 }
 
 formatDate = function (date) {
+    var raw_day = date.getUTCDate();
+    var raw_month = date.getUTCMonth() + 1;
+
     var year = date.getUTCFullYear();
-    var month = date.getUTCMonth() >= 10 ? date.getUTCMonth() : "0" + date.getUTCMonth();
-    var day = date.getUTCDate() >= 10 ? date.getUTCDate() : "0" + date.getUTCDate();
+    var month = raw_month >= 10 ? raw_month : "0" + raw_month;
+    var day = raw_day >= 10 ? raw_day : "0" + raw_day;
 
     var strDate = year + '-' + month + '-' + day;
 
@@ -38,36 +41,69 @@ formatDate = function (date) {
 }
 
 initSightingMap = function () {
+    var sighting_map_ele = $('.sighting-map');
+
     var markers = [{address: "South Africa"}];
+    var species_marker = $('#id_sighting_create-species').data('marker');
+    var reserve = $('#id_sighting_create-reserve option:selected').text();
+    var address = reserve ? reserve : "South Africa"
+
+    var latitude_ele = $('#id_sighting_create-latitude');
+    var longitude_ele = $('#id_sighting_create-longitude');
+
+    sighting_map_ele.gmap3({clear: {first: true}});
+
     var getlatlng = {
-        address:  "South Africa",
+        address: address,
         callback: function(results){
-            if ( !results ) return;
+            if (!results) return;
+
+            latitude_ele.val(results[0].geometry.location.kb);
+            longitude_ele.val(results[0].geometry.location.lb);
 
             $(this).gmap3({
                 marker:{
-                    latLng: results[0].geometry.location
+                    latLng: results[0].geometry.location,
+                    events:{
+                        dragend: function(marker, event) {
+                            latitude_ele.val(marker.position.lat());
+                            longitude_ele.val(marker.position.lng());
+                        }
+                    },
+                    options: {
+                        icon: species_marker,
+                        draggable: true
+                    }
                 }
             });
-
-            console.log(results[0]);
 
             $(this).gmap3('get').fitBounds(results[0].geometry.bounds);
         }
     }
+
     var autofit = null;
     var zoom = 13;
 
-    var latitude = $('#id_sighting_create-latitude').val();
-    var longitude = $('#id_sighting_create-longitude').val();
-
-    var reserve = $('#id_sighting_create-reserve option:selected').text();
+    var latitude = latitude_ele.val();
+    var longitude = longitude_ele.val();
 
     if (latitude && longitude) {
-        markers = [{latLng: [latitude, longitude]}];
+        markers = [{
+            latLng: [latitude, longitude],
+            events:{
+                dragend: function(marker, event) {
+                    latitude_ele.val(marker.position.lat());
+                    longitude_ele.val(marker.position.lng());
+                }
+            },
+            options: {
+                icon: species_marker,
+                draggable: true
+            }
+        }];
         getlatlng = {};
         zoom = 13;
-        autofit = 'autofit'
+        autofit = 'autofit';
     }
     else {
         if (reserve) {
@@ -76,7 +112,7 @@ initSightingMap = function () {
         }
     }
 
-    $('.sighting-map').gmap3({
+    sighting_map_ele.gmap3({
         map: {
             options: {
                 zoom: zoom,
@@ -92,9 +128,9 @@ initSightingMap = function () {
             }
         },
         marker: {
-            values: markers,
+            values: markers
         },
-        getlatlng: getlatlng
+        getlatlng: getlatlng,
     }, autofit);
 }
 
@@ -103,7 +139,7 @@ initNewSightingForm = function () {
 
         // loads the form into the form container and sets the submit action
         $(".new_sighting-container").html(data);
-        $(".btn-new_sighting-submit").click(function (){
+        $(".btn-new_sighting-submit").click(function() {
             if($(".form-new_sighting").valid()){
                 $(".form-new_sighting").submit();
             }
@@ -127,6 +163,19 @@ initNewSightingForm = function () {
         // initialise form validation
         $('.form-new_sighting').validate({
             ignore: []
+        });
+
+        // reset the marker to the reserve bounds
+        $('#id_sighting_create-reserve').change(function() {
+            $('#id_sighting_create-latitude').val('');
+            $('#id_sighting_create-longitude').val('');
+        });
+
+        // set the species marker
+        $('#id_sighting_create-species').change(function() {
+            $.get('/api/species/' + $(this).val() + '/', function(data) {
+                $('#id_sighting_create-species').data('marker', "/media/" + data.marker);
+            });
         });
 
         // initialise the form wizard controls
@@ -193,12 +242,18 @@ initNewSightingForm = function () {
                 }
             }
 
-            // extract and set the image's gps data
+            // extract and set the image's gps data and reserve
             if (data.gps_data) {
                 latitude_ele.val(data.gps_data.latitude);
                 longitude_ele.val(data.gps_data.longitude);
+
+                $.get('/reserve/search-point/', {
+                    latitude: data.gps_data.latitude,
+                    longitude: data.gps_data.longitude
+                }, function(data) {
+                    $('#id_sighting_create-reserve').val(data.id);
+                });
             }
         });
-
     });
 }

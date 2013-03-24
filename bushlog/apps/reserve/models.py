@@ -1,15 +1,14 @@
 from django.core.urlresolvers import reverse_lazy
 from django.db import models
 
-from bushlog.apps.location.models import Coordinate, Country, Polygon
+from bushlog.apps.location.models import Country, Polygon
 from bushlog.apps.wildlife.models import Species
-from bushlog.utils import historical_date
+from bushlog.utils import historical_date, point_in_polygon
 
 
 class Reserve(models.Model):
     species = models.ManyToManyField(Species, related_name='reserves')
-    border = models.ForeignKey(Polygon, related_name='reserves')
-    location = models.ForeignKey(Coordinate)
+    border = models.ForeignKey(Polygon, related_name='reserves', blank=True, null=True)
     country = models.ForeignKey(Country, related_name='users', blank=True, null=True)
 
     name = models.CharField(max_length=50)
@@ -26,6 +25,15 @@ class Reserve(models.Model):
     @property
     def number_of_sightings(self):
         return self.sightings.filter(date_of_sighting__gte=historical_date(month=1)).count()
+
+    def sighting_in_reserve(self, coordinates):
+        latitude = float(coordinates['latitude'])
+        longitude = float(coordinates['longitude'])
+
+        print latitude, ", ", longitude, ", ", self.border.points
+        print
+
+        return point_in_polygon(latitude, longitude, self.border.points)
 
     def get_absolute_url(self):
         return reverse_lazy('reserve:index', args=[self.slug])

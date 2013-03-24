@@ -95,7 +95,6 @@ def get_exif_data(image_path, exif_include_keys=EXIF_INCLUDE_KEYS):
     """
     Returns all the image's exif data as a dict.
     """
-    print exif_include_keys
     image_file = pil.open(image_path)
     raw_exif_data = image_file._getexif()
     if not raw_exif_data:
@@ -155,7 +154,6 @@ def get_gps_data(image_path):
     Return GPS data.
     """
     exif_data = get_exif_data(image_path, exif_include_keys=['GPSInfo'])
-    print exif_data
     if not exif_data:
         return None
 
@@ -169,3 +167,30 @@ def get_gps_data(image_path):
         gps_data[decoded_key] = value
 
     return get_coordinates(gps_data)
+
+
+def point_in_polygon(latitude, longitude, polygon):
+    """
+    Determine whether or not a point can be found in a poyligon.
+    """
+    polygon_length = len(polygon)
+    is_inside =False
+
+    polygon_latitude_start, polygon_longitude_start = polygon[0]
+    for i in range(polygon_length + 1):
+        polygon_latitude_current, polygon_longitude_current = polygon[i % polygon_length]
+        if longitude > min(polygon_longitude_start, polygon_longitude_current):
+            if longitude <= max(polygon_longitude_start, polygon_longitude_current):
+                if latitude <= max(polygon_latitude_start, polygon_latitude_current):
+                    if polygon_longitude_start != polygon_longitude_current:
+                        latitude_intersect = (
+                            (longitude-polygon_longitude_start) *
+                            (polygon_latitude_current-polygon_latitude_start) /
+                            (polygon_longitude_current-polygon_longitude_start) +
+                            polygon_latitude_start
+                        )
+                    if polygon_latitude_start == polygon_latitude_current or latitude <= latitude_intersect:
+                        is_inside = not is_inside
+        polygon_latitude_start, polygon_longitude_start = polygon_latitude_current, polygon_longitude_current
+
+    return is_inside

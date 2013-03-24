@@ -52,7 +52,7 @@ initRegion = function () {
                     }
                 },
                 cluster:{
-                    radius: 30,
+                    radius: 50,
                     clickable: true,
                     events: {
                         click: function(cluster, events, context){

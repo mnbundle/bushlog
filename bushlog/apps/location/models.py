@@ -9,8 +9,14 @@ class Polygon(models.Model):
 
     def as_json(self):
         return json.dumps({
-            'polygon': [[coordinate.latitude, coordinate.longitude] for coordinate in self.coordinates.all()]
+            'polygon': [
+                [float(coordinate.latitude), float(coordinate.longitude)] for coordinate in self.coordinates.all()
+            ]
         })
+
+    @property
+    def points(self):
+        return [[float(coordinate.latitude), float(coordinate.longitude)] for coordinate in self.coordinates.all()]
 
 
 class Coordinate(models.Model):
