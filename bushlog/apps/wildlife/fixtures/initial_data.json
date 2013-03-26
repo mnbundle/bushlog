@@ -1,272 +1,972 @@
 [
-    {
-        "pk": 1,
-        "model": "wildlife.speciesinfo",
-        "fields": {
-            "horn_length": null,
-            "length": null,
-            "mass": "3500",
-            "height": "3400"
-        }
-    },
-    {
-        "pk": 2,
-        "model": "wildlife.speciesinfo",
-        "fields": {
-            "horn_length": null,
-            "length": null,
-            "mass": "6300",
-            "height": "4000"
-        }
-    },
-    {
-        "pk": 3,
-        "model": "wildlife.speciesinfo",
-        "fields": {
-            "horn_length": null,
-            "length": "2700",
-            "mass": "152",
-            "height": "1000"
-        }
-    },
-    {
-        "pk": 4,
-        "model": "wildlife.speciesinfo",
-        "fields": {
-            "horn_length": null,
-            "length": "3300",
-            "mass": "225",
-            "height": "1200"
-        }
-    },
-    {
-        "pk": 5,
-        "model": "wildlife.speciesinfo",
-        "fields": {
-            "horn_length": null,
-            "length": "2100",
-            "mass": "60",
-            "height": "800"
-        }
-    },
-    {
-        "pk": 6,
-        "model": "wildlife.speciesinfo",
-        "fields": {
-            "horn_length": null,
-            "length": "2100",
-            "mass": "90",
-            "height": "800"
-        }
-    },
-    {
-        "pk": 7,
-        "model": "wildlife.speciesinfo",
-        "fields": {
-            "horn_length": null,
-            "length": "2200",
-            "mass": "60",
-            "height": "800"
-        }
-    },
-    {
-        "pk": 8,
-        "model": "wildlife.speciesinfo",
-        "fields": {
-            "horn_length": null,
-            "length": "2200",
-            "mass": "60",
-            "height": "800"
-        }
-    },
-    {
-        "pk": 9,
-        "model": "wildlife.speciesinfo",
-        "fields": {
-            "horn_length": null,
-            "length": "1200",
-            "mass": "16",
-            "height": null
-        }
-    },
-    {
-        "pk": 10,
-        "model": "wildlife.speciesinfo",
-        "fields": {
-            "horn_length": null,
-            "length": "1600",
-            "mass": "32",
-            "height": null
-        }
-    },
-    {
-        "pk": 11,
-        "model": "wildlife.speciesinfo",
-        "fields": {
-            "horn_length": null,
-            "length": "1100",
-            "mass": "4",
-            "height": null
-        }
-    },
-    {
-        "pk": 12,
-        "model": "wildlife.speciesinfo",
-        "fields": {
-            "horn_length": null,
-            "length": "1300",
-            "mass": "5.5",
-            "height": null
-        }
-    },
-    {
-        "pk": 13,
-        "model": "wildlife.speciesinfo",
-        "fields": {
-            "horn_length": null,
-            "length": "1200",
-            "mass": "4.5",
-            "height": null
-        }
-    },
-    {
-        "pk": 14,
-        "model": "wildlife.speciesinfo",
-        "fields": {
-            "horn_length": null,
-            "length": "1400",
-            "mass": "10",
-            "height": null
-        }
-    },
-    {
-        "pk": 1,
-        "model": "wildlife.species",
-        "fields": {
-            "female_info": 1,
-            "classification": "herbivore",
-            "scientific_name": "Loxodonta africana",
-            "male_info": 2,
-            "similiar_species": [],
-            "marker": "markers/elephant.png",
-            "default_image": "defaults/elephant.png",
-            "common_name": "African Elephant",
-            "general_info": "African elephants are the elephants of the genus Loxodonta, consisting of two extant species: the African bush elephant and the smaller African forest elephant. Loxodonta is one of the two existing genera in the family Elephantidae.",
-            "slug": "african-elephant"
-        }
-    },
-    {
-        "pk": 2,
-        "model": "wildlife.species",
-        "fields": {
-            "female_info": 3,
-            "classification": "carnivore",
-            "scientific_name": "Panthera leo",
-            "male_info": 4,
-            "similiar_species": [
-                3,
-                4
-            ],
-            "marker": "markers/lion.png",
-            "default_image": "defaults/lion.png",
-            "common_name": "Lion",
-            "general_info": "The lion is one of the four big cats in the genus Panthera and a member of the family Felidae. With some males exceeding 250 kg in weight, it is the second-largest living cat after the tiger.",
-            "slug": "lion"
-        }
-    },
-    {
-        "pk": 3,
-        "model": "wildlife.species",
-        "fields": {
-            "female_info": 5,
-            "classification": "carnivore",
-            "scientific_name": "Panthera pardus",
-            "male_info": 6,
-            "similiar_species": [
-                2,
-                4
-            ],
-            "marker": "markers/leopard.png",
-            "default_image": "defaults/leopard.png",
-            "common_name": "Leopard",
-            "general_info": "The leopard, Panthera pardus, is a member of the Felidae family and the smallest of the four \"big cats\" in the genus Panthera, the other three being the tiger, lion, and jaguar.",
-            "slug": "leopard"
-        }
-    },
-    {
-        "pk": 4,
-        "model": "wildlife.species",
-        "fields": {
-            "female_info": 7,
-            "classification": "carnivore",
-            "scientific_name": "Acinonyx jubatus",
-            "male_info": 8,
-            "similiar_species": [
-                2,
-                3
-            ],
-            "marker": "markers/cheetah.png",
-            "default_image": "defaults/cheetah.png",
-            "common_name": "Cheetah",
-            "general_info": "The cheetah is a large-sized feline inhabiting most of Africa and parts of the Middle East. It is the only extant member of the genus Acinonyx.",
-            "slug": "cheetah"
-        }
-    },
-    {
-        "pk": 5,
-        "model": "wildlife.species",
-        "fields": {
-            "female_info": 9,
-            "classification": "omnivore",
-            "scientific_name": "Papio cynocephalus ursinus",
-            "male_info": 10,
-            "similiar_species": [
-                6,
-                7
-            ],
-            "marker": "markers/baboon.png",
-            "default_image": "defaults/baboon.png",
-            "common_name": "Chacma Baboon",
-            "general_info": "The Chacma baboon, also known as the Cape baboon, is, like all other baboons, from the Old World monkey family. It is one of the largest of all baboons and monkeys.",
-            "slug": "chacma-baboon"
-        }
-    },
-    {
-        "pk": 6,
-        "model": "wildlife.species",
-        "fields": {
-            "female_info": 11,
-            "classification": "omnivore",
-            "scientific_name": "Chlorocebus pygerythrus",
-            "male_info": 12,
-            "similiar_species": [
-                5,
-                7
-            ],
-            "marker": "markers/monkey.png",
-            "default_image": "defaults/monkey.png",
-            "common_name": "Vervet Monkey",
-            "general_info": "The vervet monkey, or simply vervet, is an Old World monkey of the family Cercopithecidae native to Africa. The term \"vervet\" is also used to refer to all the members of the genus Chlorocebus.",
-            "slug": "vervet-monkey"
-        }
-    },
-    {
-        "pk": 7,
-        "model": "wildlife.species",
-        "fields": {
-            "female_info": 13,
-            "classification": "herbivore",
-            "scientific_name": "Cercopithecus albogularis",
-            "male_info": 14,
-            "similiar_species": [
-                5,
-                6
-            ],
-            "marker": "markers/monkey.png",
-            "default_image": "defaults/monkey.png",
-            "common_name": "Samango Monkey",
-            "general_info": "Samango monkey, also known as the white-throated monkey or Sykes' monkey, is an Old World monkey found between Ethiopia and South Africa, including south and east Democratic Republic of Congo.",
-            "slug": "samango-monkey"
-        }
+{
+    "pk": 1,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": null,
+        "mass": "3500",
+        "height": "3400"
     }
+},
+{
+    "pk": 2,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": null,
+        "mass": "6300",
+        "height": "4000"
+    }
+},
+{
+    "pk": 3,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "2700",
+        "mass": "152",
+        "height": "1000"
+    }
+},
+{
+    "pk": 4,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "3300",
+        "mass": "225",
+        "height": "1200"
+    }
+},
+{
+    "pk": 5,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "2100",
+        "mass": "60",
+        "height": "800"
+    }
+},
+{
+    "pk": 6,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "2100",
+        "mass": "90",
+        "height": "800"
+    }
+},
+{
+    "pk": 7,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "2200",
+        "mass": "60",
+        "height": "800"
+    }
+},
+{
+    "pk": 8,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "2200",
+        "mass": "60",
+        "height": "800"
+    }
+},
+{
+    "pk": 9,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "1200",
+        "mass": "16",
+        "height": null
+    }
+},
+{
+    "pk": 10,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "1600",
+        "mass": "32",
+        "height": null
+    }
+},
+{
+    "pk": 11,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "1100",
+        "mass": "4",
+        "height": null
+    }
+},
+{
+    "pk": 12,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "1300",
+        "mass": "5.5",
+        "height": null
+    }
+},
+{
+    "pk": 13,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "1200",
+        "mass": "4.5",
+        "height": null
+    }
+},
+{
+    "pk": 14,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "1400",
+        "mass": "10",
+        "height": null
+    }
+},
+{
+    "pk": 15,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "1600",
+        "mass": "50",
+        "height": null
+    }
+},
+{
+    "pk": 16,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "1000",
+        "mass": "15",
+        "height": null
+    }
+},
+{
+    "pk": 17,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "900",
+        "mass": "3.5",
+        "height": "300"
+    }
+},
+{
+    "pk": 18,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "820",
+        "mass": "4",
+        "height": "350"
+    }
+},
+{
+    "pk": 19,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "1000",
+        "mass": "8",
+        "height": "400"
+    }
+},
+{
+    "pk": 20,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "1100",
+        "mass": "10",
+        "height": "400"
+    }
+},
+{
+    "pk": 21,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "1300",
+        "mass": "25",
+        "height": "750"
+    }
+},
+{
+    "pk": 22,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "950",
+        "mass": "12",
+        "height": "300"
+    }
+},
+{
+    "pk": 23,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "1600",
+        "mass": "70",
+        "height": "850"
+    }
+},
+{
+    "pk": 24,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "1400",
+        "mass": "47",
+        "height": "800"
+    }
+},
+{
+    "pk": 25,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "1400",
+        "mass": "42",
+        "height": "800"
+    }
+},
+{
+    "pk": 26,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "900",
+        "mass": "8",
+        "height": "500"
+    }
+},
+{
+    "pk": 27,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "900",
+        "mass": "3.5",
+        "height": "350"
+    }
+},
+{
+    "pk": 28,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "570",
+        "mass": "1.5",
+        "height": "250"
+    }
+},
+{
+    "pk": 29,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "1100",
+        "mass": "10",
+        "height": "600"
+    }
+},
+{
+    "pk": 30,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": "1000",
+        "mass": "15",
+        "height": "400"
+    }
+},
+{
+    "pk": 31,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": null,
+        "mass": "300",
+        "height": "1300"
+    }
+},
+{
+    "pk": 32,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": null,
+        "mass": "300",
+        "height": "1500"
+    }
+},
+{
+    "pk": 33,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": null,
+        "mass": "320",
+        "height": "1300"
+    }
+},
+{
+    "pk": 34,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": "1000",
+        "length": null,
+        "mass": "1000",
+        "height": "1600"
+    }
+},
+{
+    "pk": 35,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": "1500",
+        "length": null,
+        "mass": "2150",
+        "height": "1800"
+    }
+},
+{
+    "pk": 36,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": null,
+        "mass": "60",
+        "height": "600"
+    }
+},
+{
+    "pk": 37,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": null,
+        "mass": "90",
+        "height": "700"
+    }
+},
+{
+    "pk": 38,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": null,
+        "mass": "80",
+        "height": "800"
+    }
+},
+{
+    "pk": 39,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": null,
+        "mass": "1350",
+        "height": "1500"
+    }
+},
+{
+    "pk": 40,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": null,
+        "mass": "1600",
+        "height": "1500"
+    }
+},
+{
+    "pk": 41,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": null,
+        "mass": "800",
+        "height": "4300"
+    }
+},
+{
+    "pk": 42,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": null,
+        "length": null,
+        "mass": "1200",
+        "height": "4700"
+    }
+},
+{
+    "pk": 43,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": "1000",
+        "length": null,
+        "mass": "550",
+        "height": "1400"
+    }
+},
+{
+    "pk": 44,
+    "model": "wildlife.speciesinfo",
+    "fields": {
+        "horn_length": "1000",
+        "length": null,
+        "mass": "700",
+        "height": "1400"
+    }
+},
+{
+    "pk": 1,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 1,
+        "classification": "herbivore",
+        "scientific_name": "Loxodonta africana",
+        "male_info": 2,
+        "similiar_species": [],
+        "marker": "markers/elephant.png",
+        "default_image": "defaults/elephant.png",
+        "common_name": "African Elephant",
+        "general_info": "African elephants are the elephants of the genus Loxodonta, consisting of two extant species: the African bush elephant and the smaller African forest elephant. Loxodonta is one of the two existing genera in the family Elephantidae.",
+        "slug": "african-elephant"
+    }
+},
+{
+    "pk": 2,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 3,
+        "classification": "carnivore",
+        "scientific_name": "Panthera leo",
+        "male_info": 4,
+        "similiar_species": [
+            4,
+            3
+        ],
+        "marker": "markers/lion.png",
+        "default_image": "defaults/lion.png",
+        "common_name": "Lion",
+        "general_info": "The lion is one of the four big cats in the genus Panthera and a member of the family Felidae. With some males exceeding 250 kg in weight, it is the second-largest living cat after the tiger.",
+        "slug": "lion"
+    }
+},
+{
+    "pk": 3,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 5,
+        "classification": "carnivore",
+        "scientific_name": "Panthera pardus",
+        "male_info": 6,
+        "similiar_species": [
+            4,
+            2
+        ],
+        "marker": "markers/leopard.png",
+        "default_image": "defaults/leopard.png",
+        "common_name": "Leopard",
+        "general_info": "The leopard, Panthera pardus, is a member of the Felidae family and the smallest of the four \"big cats\" in the genus Panthera, the other three being the tiger, lion, and jaguar.",
+        "slug": "leopard"
+    }
+},
+{
+    "pk": 4,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 7,
+        "classification": "carnivore",
+        "scientific_name": "Acinonyx jubatus",
+        "male_info": 8,
+        "similiar_species": [
+            3,
+            2
+        ],
+        "marker": "markers/cheetah.png",
+        "default_image": "defaults/cheetah.png",
+        "common_name": "Cheetah",
+        "general_info": "The cheetah is a large-sized feline inhabiting most of Africa and parts of the Middle East. It is the only extant member of the genus Acinonyx.",
+        "slug": "cheetah"
+    }
+},
+{
+    "pk": 5,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 9,
+        "classification": "omnivore",
+        "scientific_name": "Papio cynocephalus ursinus",
+        "male_info": 10,
+        "similiar_species": [
+            7,
+            6
+        ],
+        "marker": "markers/baboon.png",
+        "default_image": "defaults/baboon.png",
+        "common_name": "Chacma Baboon",
+        "general_info": "The Chacma baboon, also known as the Cape baboon, is, like all other baboons, from the Old World monkey family. It is one of the largest of all baboons and monkeys.",
+        "slug": "chacma-baboon"
+    }
+},
+{
+    "pk": 6,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 11,
+        "classification": "omnivore",
+        "scientific_name": "Chlorocebus pygerythrus",
+        "male_info": 12,
+        "similiar_species": [
+            5,
+            7
+        ],
+        "marker": "markers/monkey.png",
+        "default_image": "defaults/monkey.png",
+        "common_name": "Vervet Monkey",
+        "general_info": "The vervet monkey, or simply vervet, is an Old World monkey of the family Cercopithecidae native to Africa. The term \"vervet\" is also used to refer to all the members of the genus Chlorocebus.",
+        "slug": "vervet-monkey"
+    }
+},
+{
+    "pk": 7,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 13,
+        "classification": "herbivore",
+        "scientific_name": "Cercopithecus albogularis",
+        "male_info": 14,
+        "similiar_species": [
+            5,
+            6
+        ],
+        "marker": "markers/monkey.png",
+        "default_image": "defaults/monkey.png",
+        "common_name": "Samango Monkey",
+        "general_info": "Samango monkey, also known as the white-throated monkey or Sykes' monkey, is an Old World monkey found between Ethiopia and South Africa, including south and east Democratic Republic of Congo.",
+        "slug": "samango-monkey"
+    }
+},
+{
+    "pk": 8,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 15,
+        "classification": "insectivore",
+        "scientific_name": "Orycteropus afer",
+        "male_info": 15,
+        "similiar_species": [],
+        "marker": "markers/aardvark.png",
+        "default_image": "defaults/aardvark.png",
+        "common_name": "Aardvark",
+        "general_info": "The aardvark is a medium-sized, burrowing, nocturnal mammal native to Africa. It is the only living species of the order Tubulidentata, although other prehistoric species and genera of Tubulidentata are known.",
+        "slug": "aardvark"
+    }
+},
+{
+    "pk": 9,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 16,
+        "classification": "insectivore",
+        "scientific_name": "Manis temminckii",
+        "male_info": 16,
+        "similiar_species": [],
+        "marker": "markers/pangolin.png",
+        "default_image": "defaults/pangolin.png",
+        "common_name": "Pangolin",
+        "general_info": "A pangolin is a mammal of the order Pholidota. The one extant family, Manidae, has one genus, Manis, which comprises eight species. A number of extinct species are known",
+        "slug": "pangolin"
+    }
+},
+{
+    "pk": 10,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 17,
+        "classification": "omnivore",
+        "scientific_name": "Vulpes chama",
+        "male_info": 17,
+        "similiar_species": [],
+        "marker": "markers/fox-jackal.png",
+        "default_image": "defaults/fox-jackal.png",
+        "common_name": "Cape Fox",
+        "general_info": "The Cape fox, also called the cama fox or the silver-backed fox, is a small fox. It has black or silver gray fur with flanks and underside in light yellow. The tip of its tail is always black.",
+        "slug": "cape-fox"
+    }
+},
+{
+    "pk": 11,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 18,
+        "classification": "omnivore",
+        "scientific_name": "Otocyon megalotis",
+        "male_info": 18,
+        "similiar_species": [],
+        "marker": "markers/fox-jackal.png",
+        "default_image": "defaults/fox-jackal.png",
+        "common_name": "Bat-eared Fox",
+        "general_info": "The bat-eared fox is a canid of the African savanna, named for its large ears. Fossil records show this canid to first appear during the middle Pleistocene, about 800,000 years ago.",
+        "slug": "bat-eared-fox"
+    }
+},
+{
+    "pk": 12,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 19,
+        "classification": "omnivore",
+        "scientific_name": "Canis mesomelas",
+        "male_info": 19,
+        "similiar_species": [],
+        "marker": "markers/fox-jackal.png",
+        "default_image": "defaults/fox-jackal.png",
+        "common_name": "Black-backed Jackal",
+        "general_info": "The black-backed jackal, also known as the silver-backed or red jackal, is a species of jackal which inhabits two areas of the African continent separated by roughly 900 km.",
+        "slug": "black-backed-jackal"
+    }
+},
+{
+    "pk": 13,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 20,
+        "classification": "omnivore",
+        "scientific_name": "Canis adustus",
+        "male_info": 20,
+        "similiar_species": [],
+        "marker": "markers/fox-jackal.png",
+        "default_image": "defaults/fox-jackal.png",
+        "common_name": "Side-striped Jackal",
+        "general_info": "The side-striped jackal is a species of jackal, native to central and southern Africa. Unlike its cousin, the smaller black-backed jackal, which dwells in open plains, the side-striped jackal primarily dwells in woodland and scrub areas.",
+        "slug": "side-striped-jackal"
+    }
+},
+{
+    "pk": 14,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 21,
+        "classification": "carnivore",
+        "scientific_name": "Lycaon pictus",
+        "male_info": 21,
+        "similiar_species": [],
+        "marker": "markers/wilddog.png",
+        "default_image": "defaults/wilddog.png",
+        "common_name": "Wild Dog",
+        "general_info": "Lycaon pictus is a canid found only in Africa, especially in savannas and lightly wooded areas. It is variously called the African wild dog, African hunting dog, Cape hunting dog and painted dog.",
+        "slug": "wild-dog"
+    }
+},
+{
+    "pk": 15,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 22,
+        "classification": "omnivore",
+        "scientific_name": "Mellivora capensis",
+        "male_info": 22,
+        "similiar_species": [],
+        "marker": "markers/honey-badger.png",
+        "default_image": "defaults/honey-badger.png",
+        "common_name": "Honey Badger",
+        "general_info": "The honey badger, also known as the ratel, is a species of mustelid native to Africa, Southwest Asia, and the Indian Subcontinent.",
+        "slug": "honey-badger"
+    }
+},
+{
+    "pk": 16,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 23,
+        "classification": "carnivore",
+        "scientific_name": "Crocuta crocuta",
+        "male_info": 23,
+        "similiar_species": [],
+        "marker": "markers/hyaena.png",
+        "default_image": "defaults/hyaena.png",
+        "common_name": "Spotted Hyena",
+        "general_info": "The spotted hyena, also known as the laughing hyena or tiger wolf, is a species of hyena native to Sub-Saharan Africa.",
+        "slug": "spotted-hyena"
+    }
+},
+{
+    "pk": 17,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 25,
+        "classification": "omnivore",
+        "scientific_name": "Hyaena brunnea",
+        "male_info": 24,
+        "similiar_species": [],
+        "marker": "markers/hyaena.png",
+        "default_image": "defaults/hyaena.png",
+        "common_name": "Brown Hyena",
+        "general_info": "The brown hyena is a species of hyena found in Namibia, Botswana, western and southern Zimbabwe, southern Mozambique and South Africa. It is currently the rarest species of hyena.",
+        "slug": "brown-hyena"
+    }
+},
+{
+    "pk": 18,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 26,
+        "classification": "insectivore",
+        "scientific_name": "Proteles cristatus",
+        "male_info": 26,
+        "similiar_species": [],
+        "marker": "markers/hyaena.png",
+        "default_image": "defaults/hyaena.png",
+        "common_name": "Aardwolf",
+        "general_info": "The aardwolf is a small, insectivorous mammal, native to East Africa and Southern Africa. Its name means \"earth wolf\" in the Afrikaans / Dutch language. It is also called \"maanhaar jackal\". The aardwolf is in the same family as the hyenas.",
+        "slug": "aardwolf"
+    }
+},
+{
+    "pk": 19,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 27,
+        "classification": "carnivore",
+        "scientific_name": "Felis silvestris lybica",
+        "male_info": 27,
+        "similiar_species": [],
+        "marker": "markers/cat.png",
+        "default_image": "defaults/cat.png",
+        "common_name": "African Wild Cat",
+        "general_info": "The African wildcat is a wildcat subspecies that occurs across northern Africa and extends around the periphery of the Arabian Peninsula to the Caspian Sea.",
+        "slug": "african-wild-cat"
+    }
+},
+{
+    "pk": 20,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 28,
+        "classification": "carnivore",
+        "scientific_name": "Felis nigripes",
+        "male_info": 28,
+        "similiar_species": [],
+        "marker": "markers/cat.png",
+        "default_image": "defaults/cat.png",
+        "common_name": "Small Spotted Cat",
+        "general_info": "The small spotted or black-footed cat is the smallest African cat, and is endemic in the south west arid zone of the southern African subregion. It is one of the lesser studied African carnivores.",
+        "slug": "small-spotted-cat"
+    }
+},
+{
+    "pk": 21,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 29,
+        "classification": "carnivore",
+        "scientific_name": "Leptailurus serval",
+        "male_info": 29,
+        "similiar_species": [],
+        "marker": "markers/serval.png",
+        "default_image": "defaults/serval.png",
+        "common_name": "Serval",
+        "general_info": "The serval known in Afrikaans as Tierboskat, \"tiger-forest-cat\", is a medium-sized African wild cat. DNA studies have shown that the serval is closely related to the African golden cat and the caracal.",
+        "slug": "serval"
+    }
+},
+{
+    "pk": 22,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 30,
+        "classification": "carnivore",
+        "scientific_name": "Caracal caracal",
+        "male_info": 30,
+        "similiar_species": [],
+        "marker": "markers/caracal.png",
+        "default_image": "defaults/caracal.png",
+        "common_name": "Caracal",
+        "general_info": "The caracal, also known as the desert lynx, is a wild cat that is widely distributed across Africa, central Asia and southwest Asia into India. In 2002 the IUCN listed the caracal as Least Concern as it is widespread and relatively common.",
+        "slug": "caracal"
+    }
+},
+{
+    "pk": 23,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 31,
+        "classification": "herbivore",
+        "scientific_name": "Equus zebra zebra",
+        "male_info": 31,
+        "similiar_species": [],
+        "marker": "markers/zebra.png",
+        "default_image": "defaults/zebra.png",
+        "common_name": "Cape Mountain Zebra",
+        "general_info": "The Cape mountain zebra, Equus zebra zebra, is a subspecies of the mountain zebra, named for Cape Province of South Africa and found in the Western Cape and Eastern Cape areas. They mainly eat grass but if little food is left they will eat bushes.",
+        "slug": "cape-mountain-zebra"
+    }
+},
+{
+    "pk": 24,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 32,
+        "classification": "herbivore",
+        "scientific_name": "Equus zebra hartmannae",
+        "male_info": 32,
+        "similiar_species": [],
+        "marker": "markers/zebra.png",
+        "default_image": "defaults/zebra.png",
+        "common_name": "Hartmann's Mountain Zebra",
+        "general_info": "Hartmann's mountain zebra (Equus zebra hartmannae) is a subspecies of the mountain zebra found in far south-western Angola and western Namibia. Hartmann's mountain zebras prefer to live in small groups of 7-12 individuals. They are agile climbers.",
+        "slug": "hartmanns-mountain-zebra"
+    }
+},
+{
+    "pk": 25,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 33,
+        "classification": "herbivore",
+        "scientific_name": "Equus burchelli",
+        "male_info": 33,
+        "similiar_species": [],
+        "marker": "markers/zebra.png",
+        "default_image": "defaults/zebra.png",
+        "common_name": "Burchell's Zebra",
+        "general_info": "Burchell's zebra is a southern subspecies of the plains zebra. It was named after the 'Burchell' family name.",
+        "slug": "burchells-zebra"
+    }
+},
+{
+    "pk": 26,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 34,
+        "classification": "herbivore",
+        "scientific_name": "Diceros bicornis",
+        "male_info": 34,
+        "similiar_species": [],
+        "marker": "markers/black-rhino.png",
+        "default_image": "defaults/black-rhino.png",
+        "common_name": "Black Rhinoceros",
+        "general_info": "The black rhinoceros or hook-lipped rhinoceros is a species of rhinoceros, native to eastern and central Africa including Kenya, Tanzania, Cameroon, South Africa, Namibia, Zimbabwe, and Angola.",
+        "slug": "black-rhinoceros"
+    }
+},
+{
+    "pk": 27,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 35,
+        "classification": "herbivore",
+        "scientific_name": "Ceratotherium simun",
+        "male_info": 35,
+        "similiar_species": [],
+        "marker": "markers/white-rhino.png",
+        "default_image": "defaults/white-rhino.png",
+        "common_name": "White Rhinoceros",
+        "general_info": "The white rhinoceros or square-lipped rhinoceros is one of the five species of rhinoceros that exist. It has a wide mouth used for grazing and is the most social of all rhino species.",
+        "slug": "white-rhinoceros"
+    }
+},
+{
+    "pk": 28,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 36,
+        "classification": "herbivore",
+        "scientific_name": "Phacochoerus africanus",
+        "male_info": 37,
+        "similiar_species": [],
+        "marker": "markers/warthog-bushpig.png",
+        "default_image": "defaults/warthog-bushpig.png",
+        "common_name": "Warthog",
+        "general_info": "The Warthog or Common Warthog is a wild member of the pig family that lives in grassland, savanna, and woodland in Sub-Saharan Africa.",
+        "slug": "warthog"
+    }
+},
+{
+    "pk": 29,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 38,
+        "classification": "omnivore",
+        "scientific_name": "Potamochoerus larvatus",
+        "male_info": 38,
+        "similiar_species": [],
+        "marker": "markers/warthog-bushpig.png",
+        "default_image": "defaults/warthog-bushpig.png",
+        "common_name": "Bushpig",
+        "general_info": "The bushpig, Potamochoerus larvatus, is a member of the pig family and lives in forests, woodland, riverine vegetation and reedbeds in East and Southern Africa.",
+        "slug": "bushpig"
+    }
+},
+{
+    "pk": 30,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 39,
+        "classification": "herbivore",
+        "scientific_name": "Hippopotamus amphibius",
+        "male_info": 40,
+        "similiar_species": [],
+        "marker": "markers/hippo.png",
+        "default_image": "defaults/hippo.png",
+        "common_name": "Hippopotamus",
+        "general_info": "The hippopotamus, or hippo, from the ancient Greek for \"river horse\", is a large, mostly herbivorous mammal in sub-Saharan Africa, and one of only two extant species in the family Hippopotamidae.",
+        "slug": "hippopotamus"
+    }
+},
+{
+    "pk": 31,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 41,
+        "classification": "herbivore",
+        "scientific_name": "Giraffa camelopardalis",
+        "male_info": 42,
+        "similiar_species": [],
+        "marker": "markers/giraffe.png",
+        "default_image": "defaults/giraffe.png",
+        "common_name": "Giraffe",
+        "general_info": "The giraffe is an African even-toed ungulate mammal, the tallest living terrestrial animal and the largest ruminant. Its species name refers to its camel-like appearance and the patches of color on its fur.",
+        "slug": "giraffe"
+    }
+},
+{
+    "pk": 32,
+    "model": "wildlife.species",
+    "fields": {
+        "female_info": 43,
+        "classification": "herbivore",
+        "scientific_name": "Syncerus caffer",
+        "male_info": 44,
+        "similiar_species": [],
+        "marker": "markers/buffalo.png",
+        "default_image": "defaults/buffalo.png",
+        "common_name": "African Buffalo",
+        "general_info": "The African buffalo, affalo, nyati, mbogo or Cape buffalo, is a large African bovine. It is not closely related to the slightly larger wild Asian water buffalo, but its ancestry remains unclear. ",
+        "slug": "african-buffalo"
+    }
+}
 ]

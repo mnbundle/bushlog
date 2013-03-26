@@ -25,7 +25,7 @@ class Coordinate(models.Model):
     polygon = models.ForeignKey(Polygon, related_name='coordinates', blank=True, null=True)
 
     def __unicode__(self):
-        return "%s,%s" % (self.latitude, self.longitude)
+        return "%s (%s,%s)" % (self.id, self.latitude, self.longitude)
 
     def as_json(self):
         return json.dumps({
