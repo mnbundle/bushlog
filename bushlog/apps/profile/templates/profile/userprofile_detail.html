@@ -6,7 +6,8 @@
 
     {% load sighting %}
 
-    {% sighting_map limit=5 user=object.user %}
+    {% sighting_map limit=10 user=object.user %}
+
     <div class="row-fluid">
         <div class="span8">
             <div class="page-header">
@@ -17,21 +18,28 @@
                     </a>
                 </h2>
             </div>
+
             {% latest_sightings split=2 limit=10 user=object.user %}
+
         </div>
         <div class="span3 pull-right">
-            <div class="pull-center">
-                {% if object.avatar %}
-                    <img src="{% resize_image object.avatar 220 220 %}" class="img-rounded" width="220" height="220" />
+            <div class="media">
+                {% if object.user.profile.avatar %}
+                    <a class="pull-left" href="{% url 'profile:index' object.user.profile.slug %}">
+                        <img class="media-object img-rounded" src="{% resize_image object.user.profile.avatar 50 50 %}" width="50" height="50" />
+                    </a>
                 {% else %}
-                    <img src="{{ STATIC_URL }}img/layout/profile-{{ object.gender|default:"male" }}.png" class="img-rounded" width="220" height="220" />
+                    <a class="pull-left" href="{% url 'profile:index' object.user.username %}">
+                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.gender|default:"male" }}.png" width="50" height="50" />
+                    </a>
                 {% endif %}
-            </div>
-            <div>
-                <h4>
-                    <strong>{{ object.user.username }} </strong><br/>
-                    <small>{{ object.country|default:"Unknown Location" }}</small>
-                </h4>
+                <div class="media-body">
+                    <h6>
+                        <a href="{% url 'profile:index' object.user.profile.slug %}">{{ object.user.username }}</a><br/>
+                        <i class="icon-map-marker"></i>
+                        <small>{{ object.country }}</small>
+                    </h6>
+                </div>
             </div>
             {% if object.biography %}
                 <hr/>
@@ -43,12 +51,8 @@
             {% if request.user == object.user %}
                 <hr/>
                 <div>
-                    <button class="btn btn-info span6" type="button">
-                        Change Avatar
-                    </button>
-                    <button class="btn btn-info span6" type="button">
-                        Update Profile
-                    </button>
+                    <a href="#id_avatar_modal" class="btn btn-info span6" data-toggle="modal">Change Avatar</a>
+                    <a href="#id_update_modal" class="btn btn-info span6" data-toggle="modal">Update Profile</a>
                 </div>
                 <div>
 

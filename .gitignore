@@ -10,4 +10,5 @@ bin/
 include/
 lib/
 bushlog/static/admin
-media/
+bushlog/media/avatars
+bushlog/media/sightings

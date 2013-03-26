@@ -1,63 +1,102 @@
 [
 {
-    "pk": 1,
-    "model": "reserve.reserve",
+    "pk": 1, 
+    "model": "reserve.reserve", 
     "fields": {
-        "website": "http://www.kznwildlife.com/",
-        "description": "The Hluhluwe Umfolozi Park is the only park under formal conservation in KwaZulu Natal where the Big Five occur. Established in 1895, this is the oldest game park in South Africa along with nearby St Lucia Reserve. Set in the heart of Zululand.",
-        "country": 213,
+        "website": "http://www.kznwildlife.com/", 
+        "description": "The Hluhluwe Umfolozi Park is the only park under formal conservation in KwaZulu Natal where the Big Five occur. Established in 1895, this is the oldest game park in South Africa along with nearby St Lucia Reserve. Set in the heart of Zululand.", 
+        "country": 213, 
         "species": [
-            1,
-            5,
-            4,
-            3,
-            2,
+            1, 
+            5, 
+            4, 
+            3, 
+            2, 
             6
-        ],
-        "border": 2,
+        ], 
+        "border": 2, 
         "slug": "hluhluwe-imfolozi-game-reserve", 
         "name": "Hluhluwe-Imfolozi Game Reserve"
     }
 },
 {
-    "pk": 2,
-    "model": "reserve.reserve",
+    "pk": 2, 
+    "model": "reserve.reserve", 
     "fields": {
-        "website": "http://www.sanparks.co.za/",
-        "description": "The largest game reserve in South Africa, the Kruger National Park is larger than Israel. Nearly 2 million hectares of land that stretch for 352 kilometres (20 000 square kilometres) from north to south along the Mozambique border.",
-        "country": 213,
+        "website": "http://www.sanparks.co.za/", 
+        "description": "The largest game reserve in South Africa, the Kruger National Park is larger than Israel. Nearly 2 million hectares of land that stretch for 352 kilometres (20 000 square kilometres) from north to south along the Mozambique border.", 
+        "country": 213, 
         "species": [
-            1,
-            5,
-            4,
-            3,
-            2,
-            7,
+            1, 
+            5, 
+            4, 
+            3, 
+            2, 
+            7, 
             6
-        ],
-        "border": 1,
-        "slug": "kruger-national-park",
+        ], 
+        "border": 1, 
+        "slug": "kruger-national-park", 
         "name": "Kruger National Park"
     }
 },
 {
-    "pk": 3,
-    "model": "reserve.reserve",
+    "pk": 3, 
+    "model": "reserve.reserve", 
     "fields": {
-        "website": "http://www.sanparks.co.za/",
-        "description": "Situated in a malaria free area just one hour's drive from the South African coastal city of Port Elizabeth, the magnificently diverse Addo Elephant Park offers a wide variety of game viewing, outdoor adventure, accommodation and cultural experience.",
-        "country": 213,
+        "website": "http://www.sanparks.co.za/", 
+        "description": "Situated in a malaria free area just one hour's drive from the South African coastal city of Port Elizabeth, the magnificently diverse Addo Elephant Park offers a wide variety of game viewing, outdoor adventure, accommodation and cultural experience.", 
+        "country": 213, 
         "species": [
-            1,
-            5,
-            4,
-            3,
-            2,
+            1, 
+            5, 
+            4, 
+            3, 
+            2, 
             6
-        ],
-        "border": 3,
-        "slug": "addo-elephant-national-park",
+        ], 
+        "border": 3, 
+        "slug": "addo-elephant-national-park", 
         "name": "Addo Elephant National Park"
+    }
+},
+{
+    "pk": 4, 
+    "model": "reserve.reserve", 
+    "fields": {
+        "website": "http://www.parksnorthwest.co.za/", 
+        "description": "The Pilanesberg Game Reserve is located in North West Province in South Africa, west of Pretoria. The park borders with the entertainment complex Sun City. The park is currently administered by the North West Parks and Tourism Board.", 
+        "country": 213, 
+        "species": [
+            1, 
+            5, 
+            4, 
+            3, 
+            2, 
+            6
+        ], 
+        "border": 4, 
+        "slug": "pilanesberg-game-reserve", 
+        "name": "Pilanesberg Game Reserve"
+    }
+},
+{
+    "pk": 5, 
+    "model": "reserve.reserve", 
+    "fields": {
+        "website": "http://www.kznwildlife.com/", 
+        "description": "Mkhuze Game Reserve (also spelt Mkuze) is a 360-square-kilometre (140 sq mi) game reserve in northern Zululand, KwaZulu-Natal, South Africa. It was proclaimed a protected area on February 1912.", 
+        "country": 213, 
+        "species": [
+            1, 
+            5, 
+            4, 
+            3, 
+            6
+        ], 
+        "border": 5, 
+        "slug": "mkhuze-game-reserve", 
+        "name": "Mkhuze Game Reserve"
     }
 }
 ]

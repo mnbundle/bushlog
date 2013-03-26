@@ -48,6 +48,8 @@ initSightingMap = function () {
     var reserve = $('#id_sighting_create-reserve option:selected').text();
     var address = reserve ? reserve : "South Africa"
 
+    console.log(address)
+
     var latitude_ele = $('#id_sighting_create-latitude');
     var longitude_ele = $('#id_sighting_create-longitude');
 
@@ -205,6 +207,15 @@ initNewSightingForm = function () {
 
                 if ($("fieldset.item.active").data('item') == 2) {
                     initSightingMap();
+                }
+
+                if ($("fieldset.item.active").data('item') == 1) {
+                    next_btn.click(function () {
+                        if(!$(".form-new_sighting").valid()){
+                            var item_number = $(".error:first").parent().data('item');
+                            $("#new_sighting-carousel").carousel(item_number);
+                        }
+                    });
                 }
             }
         });

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% load reserve %}
+
+    {% featured_reserve_maps limit=3 %}
+
+    <div class="row-fluid">
+        <div class="span8">
+            <div class="page-header">
+                <h1>About BushLog</h1>
+            </div>
+            <p>BushLog has been a few years in the making, a lot of that time spent planning, and is essential an
+            interactive application which allows registered users to share their wildlife sightings with other
+            like-minded people.</p>
+        </div>
+        <div class="span3 pull-right">
+            <div class="page-header">
+                <h3>Stay In Touch</h3>
+            </div>
+            <p>
+                <a href="#">
+                    <img src="{{ STATIC_URL }}img/icons/social/twitter.png" width="60" height="60" />
+                </a>
+                <a href="#">
+                    <img src="{{ STATIC_URL }}img/icons/social/facebook.png" width="60" height="60" />
+                </a>
+                <a href="#">
+                    <img src="{{ STATIC_URL }}img/icons/social/youtube.png" width="60" height="60" />
+                </a>
+            </p>
+        </div>
+    </div>
+    <p>&nbsp;</p>
+    <div class="row-fluid">
+        <div class="span8">
+            <div class="page-header">
+                <h1>Conservation</h1>
+            </div>
+            <p>We believe that the data collected can also be used for the greater-good of conservation, and therefor
+            share logged sighting with registered and accredited researchers and conservation organisations. So you are
+            in effect helping with the study and preservation of our precious wildlife.</p>
+
+            <p>BushLog is non-profit and though the contributions of our advertisers we will be able to fund
+            conservation efforts. We believe in a hands on approach to funding such causes, and therefore prefer to
+            sponsor assets, man-hours and the likes rather than making direct cash donations.</p>
+        </div>
+    </div>
+{% endblock %}

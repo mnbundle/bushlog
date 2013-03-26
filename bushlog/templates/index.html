@@ -4,7 +4,8 @@
 
     {% load reserve %}
 
-    {% featured_reserve_maps %}
+    {% featured_reserve_maps limit=3 %}
+
     <div class="row-fluid">
         {% if not request.user.is_authenticated %}
             <div class="hero-unit span8 hero-unit-small hero-unit-index">
@@ -16,8 +17,8 @@
                 biodiversity.</p>
                 <div class="spacer">&nbsp;</div>
                 <div class="pull-right">
-                    <button class="btn btn-success" type="button">About BushLog</button>
-                    <button class="btn btn-info" type="button">Researcher Registration</button>
+                    <a href="{% url 'about' %}" class="btn btn-success" type="button">About BushLog</a>
+                    <a href="{% url 'researchers' %}" class="btn btn-info" type="button">Researcher Registration</a>
                 </div>
             </div>
             <div class="hero-unit span4 hero-unit-small hero-unit-index signin-container">
@@ -26,35 +27,35 @@
             </div>
         {% else %}
             <div class="hero-unit span4 hero-unit-small hero-unit-index">
-                <h1>Spotted Anything?</h1>
+                <h1>What Is BushLog?</h1>
                 <p>&nbsp;</p>
-                <p>Have you spotted any wildlife lately. Than</p>
+                <p>A fun, interactive way to record and share your wildlife sightings.</p>
                 <div class="spacer">&nbsp;</div>
                 <div class="pull-right">
-                    <a class="btn btn-success btn-header pull-right" href="#id_new_sighting" data-toggle="modal">
-                        <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
+                    <a href="{% url 'about' %}" class="btn btn-success btn-header pull-right">
+                        <i class="icon-book icon-white"></i> &nbsp;Read More
                     </a>
                 </div>
             </div>
             <div class="hero-unit span4 hero-unit-small hero-unit-index">
-                <h1>Spotted Anything?</h1>
+                <h1>Sightings Near Me?</h1>
                 <p>&nbsp;</p>
-                <p>Have you spotted any wildlife lately. Than</p>
+                <p>Search for recent sighting's in your immediate vacinity.</p>
                 <div class="spacer">&nbsp;</div>
                 <div class="pull-right">
-                    <a class="btn btn-success btn-header pull-right" href="#id_new_sighting" data-toggle="modal">
-                        <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
+                    <a href="#search" class="btn btn-success btn-header pull-right">
+                        <i class="icon-search icon-white"></i> &nbsp;Search
                     </a>
                 </div>
             </div>
             <div class="hero-unit span4 hero-unit-small hero-unit-index">
-                <h1>Spotted Anything?</h1>
+                <h1>Log A Sighting?</h1>
                 <p>&nbsp;</p>
-                <p>Have you spotted any wildlife lately. Than</p>
+                <p>Have you spotted any wildlife recently. Add a new sighting.</p>
                 <div class="spacer">&nbsp;</div>
                 <div class="pull-right">
                     <a class="btn btn-success btn-header pull-right" href="#id_new_sighting" data-toggle="modal">
-                        <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
+                        <i class="icon-plus icon-white"></i> &nbsp;Add Sighting
                     </a>
                 </div>
             </div>
@@ -67,8 +68,10 @@
                 <h1>Latest Activity</h1>
             </div>
             <p>&nbsp;</p>
+
             {% load sighting %}
-            {% latest_sightings split=3 limit=10 %}
+            {% latest_sightings split=3 limit=12 %}
+
             <p></p>
         </div>
     </div>

@@ -36,10 +36,12 @@
                     {% if object.user.profile.gender == 'Male' %} he {% elif object.user.profile.gender == 'Female' %} she {% else %} was {% endif %}
                     spotted on {{ object.date_of_sighting.date }} at {{ object.date_of_sighting.time }}
                 </p>
-                <blockquote>
-                    <p>{{ object.description }}</p>
-                    <small>{{ object.user.username }}</small>
-                </blockquote>
+                {% if object.description %}
+                    <blockquote>
+                        <p>{{ object.description }}</p>
+                        <small>{{ object.user.username }}</small>
+                    </blockquote>
+                {% endif %}
             </div>
             <div class="page-header">
                 <h3>Similiar Sightings</h3>
