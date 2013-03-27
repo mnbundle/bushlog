@@ -30,9 +30,6 @@ class Reserve(models.Model):
         latitude = float(coordinates['latitude'])
         longitude = float(coordinates['longitude'])
 
-        print latitude, ", ", longitude, ", ", self.border.points
-        print
-
         return point_in_polygon(latitude, longitude, self.border.points)
 
     def get_absolute_url(self):

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+{% load sighting %}
+
+{% block content %}
+    {% sighting_map limit=10 coordinates=coordinates %}
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="page-header">
+                <h2>
+                    Sightings Near You
+                    <a class="btn btn-success btn-header pull-right" href="#id_new_sighting" data-toggle="modal">
+                        <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
+                    </a>
+                </h2>
+            </div>
+            {% latest_sightings split=3 limit=24 coordinates=coordinates %}
+        </div>
+    </div>
+{% endblock %}

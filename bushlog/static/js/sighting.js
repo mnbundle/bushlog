@@ -266,5 +266,12 @@ initNewSightingForm = function () {
                 });
             }
         });
+
+        var date_ele = $("#id_sighting_create-date_of_sighting");
+
+        if (!date_ele.val()) {
+            date = new Date()
+            date_ele.val(formatDate(date));
+        }
     });
 }

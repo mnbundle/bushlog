@@ -16,6 +16,7 @@ class Sighting(models.Model):
 
     date_added = models.DateTimeField(auto_now_add=True)
     date_of_sighting = models.DateTimeField()
+    public = models.BooleanField(default=True)
 
     description = models.TextField(blank=True, null=True)
 
@@ -56,6 +57,12 @@ class Sighting(models.Model):
         if image_list:
             return image_list[0].image
         return None
+
+    def in_proximity(self, latitude, longitude, radius):
+        point_latitude = float(self.location.latitude)
+        point_longitude = float(self.location.longitude)
+
+        return ((float(latitude) - point_latitude) ** 2 + (float(longitude) - point_longitude) ** 2) <= radius ** 2
 
     def get_absolute_url(self):
         return reverse_lazy('sighting:index', args=[self.reserve.slug, self.species.slug, str(self.id)])

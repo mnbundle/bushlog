@@ -12,6 +12,16 @@ class IndexDetailView(generic.DetailView):
     model = Sighting
 
 
+class SearchListView(generic.ListView):
+    model = Sighting
+    template_name = 'sighting/sighting_search.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(SearchListView, self).get_context_data(**kwargs)
+        context['coordinates'] = self.kwargs
+        return context
+
+
 class SightingCreateView(generic.CreateView):
     model = Sighting
     form_class = CreateForm
@@ -45,8 +55,6 @@ class SightingCreateView(generic.CreateView):
         )
         obj.save()
 
-        print form.errors
-
         for image_id in form.cleaned_data.get('image_ids', '').split(','):
             try:
                 image_obj = SightingImage.objects.get(id=image_id)
@@ -63,7 +71,6 @@ class SightingCreateView(generic.CreateView):
         """
         Set an error message if the form is invalid.
         """
-        print form.errors
         messages.add_message(self.request, messages.ERROR, self.error_msg)
         return HttpResponseRedirect(self.error_url)
 
@@ -73,5 +80,6 @@ class SightingImageCreateView(generic.CreateView):
 
 
 index = IndexDetailView.as_view()
+search = SearchListView.as_view()
 create = SightingCreateView.as_view()
 create_image = SightingImageCreateView.as_view()

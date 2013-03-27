@@ -5,7 +5,7 @@ from django import template
 from django.utils.translation import ungettext, ugettext
 
 from bushlog.apps.sighting.models import Sighting
-from bushlog.utils import image_resize
+from bushlog.utils import image_resize, historical_date
 
 register = template.Library()
 
@@ -32,17 +32,40 @@ def sighting_map(context, limit=3, *args, **kwargs):
     except IndexError:
         keyword = None
 
-    print keyword
+    coordinates = kwargs.get('coordinates')
 
     if kwargs:
-        obj_list = Sighting.objects.filter(**kwargs)[:limit]
+        if coordinates:
+            obj_list = [
+                obj for obj in Sighting.objects.filter(date_of_sighting__gte=historical_date(day=1))
+                if obj.in_proximity(coordinates['latitude'], coordinates['longitude'], 0.3)
+            ][:limit]
+        else:
+            obj_list = Sighting.objects.filter(**kwargs)[:limit]
     else:
         obj_list = Sighting.objects.all()[:limit]
 
+    mapdata = [obj.mapdata for obj in obj_list]
+    if coordinates:
+        mapdata.append({
+            'lat': str(coordinates['latitude']),
+            'lng': str(coordinates['longitude']),
+            'options': {
+                'icon': '/media/markers/user.png'
+            },
+            'data': {
+                'href': '/sighting/search/%s/%s/' % (
+                    coordinates['latitude'],
+                    coordinates['longitude']
+                )
+            }
+        })
+
     return {
-        'object': context['object'],
-        'mapdata': json.dumps([obj.mapdata for obj in obj_list]),
-        'keyword': keyword
+        'object': context.get('object'),
+        'mapdata': json.dumps(mapdata),
+        'keyword': keyword,
+        'coordinates': coordinates
     }
 
 
@@ -53,10 +76,18 @@ def latest_sightings(context, split=1, limit=3, exclude_pk={}, *args, **kwargs):
     except IndexError:
         keyword = None
 
+    coordinates = kwargs.get('coordinates')
+
     if kwargs:
-        object_list = Sighting.objects.filter(**kwargs)
+        if coordinates:
+            object_list = [
+                obj for obj in Sighting.objects.filter(date_of_sighting__gte=historical_date(day=1))
+                if obj.in_proximity(coordinates['latitude'], coordinates['longitude'], 0.3)
+            ]
+        else:
+            object_list = Sighting.objects.filter(**kwargs)
     else:
-        object_list = Sighting.objects.all()[:limit]
+        object_list = Sighting.objects.all()
 
     if exclude_pk:
         object_list = object_list.exclude(pk=exclude_pk)

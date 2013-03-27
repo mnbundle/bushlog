@@ -137,6 +137,24 @@ toggleMapSize = function (map, ele) {
     }
 }
 
+proximitySearch = function (position) {
+    if (!position) {
+        window.location = "/"
+        return;
+    }
+
+    window.location = "/sighting/search/" + position.coords.latitude + "/" + position.coords.longitude + "/";
+}
+
+getLocation = function () {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(proximitySearch);
+    }
+    else {
+        proximitySearch();
+    }
+}
+
 $(document).ready(function() {
 
     // initiate all carousel components
@@ -148,5 +166,10 @@ $(document).ready(function() {
     // expand map
     $('#expand-map').click(function () {
         toggleMapSize($(".map"), $(this));
+    });
+
+    // redirect to the proximity search page
+    $('.btn-search-proximity').click(function () {
+        getLocation();
     });
 });
