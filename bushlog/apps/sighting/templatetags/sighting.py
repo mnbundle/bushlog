@@ -4,6 +4,7 @@ import json
 from django import template
 from django.utils.translation import ungettext, ugettext
 
+from bushlog.apps.reserve.models import Reserve
 from bushlog.apps.sighting.models import Sighting
 from bushlog.utils import image_resize, historical_date
 
@@ -40,6 +41,13 @@ def sighting_map(context, limit=3, *args, **kwargs):
                 obj for obj in Sighting.objects.filter(date_of_sighting__gte=historical_date(day=1))
                 if obj.in_proximity(coordinates['latitude'], coordinates['longitude'], 0.3)
             ][:limit]
+
+            try:
+                context['object'] = [obj for obj in Reserve.objects.all() if obj.sighting_in_reserve(coordinates)][0]
+                keyword = 'reserve'
+            except IndexError:
+                pass
+
         else:
             obj_list = Sighting.objects.filter(**kwargs)[:limit]
     else:

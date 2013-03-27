@@ -6,16 +6,29 @@
 {% block content %}
     {% sighting_map limit=10 coordinates=coordinates %}
     <div class="row-fluid">
-        <div class="span12">
+        <div class="span{% if object %}8{% else %}12{% endif %}">
             <div class="page-header">
                 <h2>
                     Sightings Near You
+                    <small><em>Last 24 Hours</em></small>
                     <a class="btn btn-success btn-header pull-right" href="#id_new_sighting" data-toggle="modal">
                         <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
                     </a>
                 </h2>
             </div>
-            {% latest_sightings split=3 limit=24 coordinates=coordinates %}
+            {% latest_sightings split=2 limit=20 coordinates=coordinates %}
         </div>
+        {% if object %}
+            <div class="span3 pull-right">
+                <p>&nbsp;</p>
+                <div>
+                    <div class="page-header">
+                        <h4><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></h4>
+                    </div>
+                    <small>{{ object.description|default:"" }}</small>
+                    <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.name }}", target="blank">Wikipedia</a></small></h6>
+                </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
