@@ -22,3 +22,6 @@ class Command(BaseCommand):
             )
             print "Coordinate created: ", obj.id
 
+        print "**************************"
+        print "Border polygon created: ", polygon.id
+
