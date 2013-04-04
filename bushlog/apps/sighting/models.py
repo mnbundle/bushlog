@@ -16,7 +16,6 @@ class Sighting(models.Model):
 
     date_added = models.DateTimeField(auto_now_add=True)
     date_of_sighting = models.DateTimeField()
-    public = models.BooleanField(default=True)
 
     description = models.TextField(blank=True, null=True)
 

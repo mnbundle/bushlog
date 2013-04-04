@@ -100,7 +100,12 @@ def latest_sightings(context, split=1, limit=3, exclude_pk={}, *args, **kwargs):
     if exclude_pk:
         object_list = object_list.exclude(pk=exclude_pk)
 
-    return {'object_list': object_list[:limit], 'split': split, 'keyword': keyword}
+    return {
+        'object': context.get('object'),
+        'object_list': object_list[:limit],
+        'split': split,
+        'keyword': keyword
+    }
 
 
 @register.filter
@@ -136,3 +141,8 @@ def fuzzy_date(timestamp, to=None):
         return "in " + date_str
     else:
         return date_str + " ago"
+
+
+@register.simple_tag
+def sighting_count():
+    return Sighting.objects.all().count()

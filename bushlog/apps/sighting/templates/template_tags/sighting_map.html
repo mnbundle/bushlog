@@ -15,8 +15,10 @@
                     {% elif keyword == 'pk' %}
                         Sighting of {{ object.species.common_name }} in {{ object.reserve.name }}
                     {% endif %}
-                    <div class="pull-right hint">
-                        <a href="#" rel="tooltip" title="Expand&nbsp;Map" data-placement="left"><i id="expand-map" class="icon-chevron-down icon-white"></i></a>
+                    <div class="pull-right">
+                        <a href="#" class="hint" rel="tooltip" title="Expand&nbsp;Map" data-placement="left">
+                            <i id="expand-map" class="icon-chevron-down icon-white"></i>
+                        </a>
                     </div>
                 </h5>
             </div>

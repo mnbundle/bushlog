@@ -11,7 +11,6 @@
         "user": 2,
         "date_added": "2012-06-20T21:47:48.321",
         "date_of_sighting": "2012-06-20T21:47:33",
-        "public": true,
         "species": 1,
         "estimated_number": 30,
         "reserve": 3
@@ -29,7 +28,6 @@
         "user": 2,
         "date_added": "2012-06-20T21:48:50.551",
         "date_of_sighting": "2012-06-20T21:48:41",
-        "public": true,
         "species": 2,
         "estimated_number": 3,
         "reserve": 3
@@ -47,7 +45,6 @@
         "user": 2,
         "date_added": "2012-06-20T21:49:39.011",
         "date_of_sighting": "2012-06-20T21:49:27",
-        "public": true,
         "species": 3,
         "estimated_number": 1,
         "reserve": 3
@@ -65,7 +62,6 @@
         "user": 2,
         "date_added": "2012-06-20T21:51:08.213",
         "date_of_sighting": "2012-06-20T21:50:42",
-        "public": true,
         "species": 1,
         "estimated_number": 68,
         "reserve": 2
@@ -83,7 +79,6 @@
         "user": 1,
         "date_added": "2012-06-20T21:51:54.670",
         "date_of_sighting": "2012-06-20T21:51:38",
-        "public": true,
         "species": 2,
         "estimated_number": 15,
         "reserve": 2
@@ -101,7 +96,6 @@
         "user": 2,
         "date_added": "2012-06-20T21:52:36.317",
         "date_of_sighting": "2012-06-20T21:52:26",
-        "public": true,
         "species": 3,
         "estimated_number": 3,
         "reserve": 2
@@ -119,7 +113,6 @@
         "user": 1,
         "date_added": "2012-06-20T21:53:40.583",
         "date_of_sighting": "2012-06-20T21:53:26",
-        "public": true,
         "species": 1,
         "estimated_number": 3,
         "reserve": 1
@@ -137,7 +130,6 @@
         "user": 2,
         "date_added": "2012-06-20T21:54:53.586",
         "date_of_sighting": "2012-06-20T21:54:39",
-        "public": true,
         "species": 2,
         "estimated_number": 1,
         "reserve": 1
@@ -155,7 +147,6 @@
         "user": 2,
         "date_added": "2012-06-20T21:55:36.660",
         "date_of_sighting": "2012-06-20T21:55:28",
-        "public": true,
         "species": 3,
         "estimated_number": 1,
         "reserve": 1

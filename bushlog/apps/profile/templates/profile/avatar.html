@@ -1,0 +1,4 @@
+<form class="form-avatar" method="post" action="{% url 'profile:avatar' %}">
+    {% csrf_token %}
+    {{ form.avatar }}
+</form>

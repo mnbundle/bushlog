@@ -29,6 +29,13 @@ class ReserveListAPIView(generics.ListCreateAPIView):
     model = Reserve
     serializer_class = ReserveSerializer
 
+    def get_queryset(self):
+        queryset = Reserve.objects.all()
+        name = self.request.QUERY_PARAMS.get('name')
+        if name:
+            queryset = queryset.filter(name__icontains=name)
+        return queryset
+
 
 class ReserveDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     """
@@ -70,6 +77,13 @@ class SpeciesListAPIView(generics.ListCreateAPIView):
     """
     model = Species
     serializer_class = SpeciesSerializer
+
+    def get_queryset(self):
+        queryset = Species.objects.all()
+        name = self.request.QUERY_PARAMS.get('name')
+        if name:
+            queryset = queryset.filter(common_name__icontains=name)
+        return queryset
 
 
 class SpeciesDetailAPIView(generics.RetrieveUpdateDestroyAPIView):

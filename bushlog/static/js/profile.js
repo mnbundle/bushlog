@@ -72,6 +72,25 @@ initUpdateForm = function () {
     });
 }
 
+initAvatarForm = function () {
+    $.get('/profile/avatar/', function(data) {
+
+        // loads the form into the form container
+        $('.avatar-container').html(data);
+
+        // initialise the file inputs to use upload kit
+        $('#id_avatar-avatar').each(function (index, element) {
+            console.log("INIT");
+            new UploadKit(element);
+        });
+
+        $('#id_avatar-avatar').bind(UKEventType.FileUploaded, function(e) {
+            var data = $.parseJSON(e.response.response);
+            window.location = data.redirect_url;
+        });
+    });
+}
+
 initResetPasswordForm = function () {
     $.get('/profile/reset-password/', function(data) {
 

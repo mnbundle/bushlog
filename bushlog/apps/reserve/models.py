@@ -9,7 +9,7 @@ from bushlog.utils import historical_date, point_in_polygon
 class Reserve(models.Model):
     species = models.ManyToManyField(Species, related_name='reserves')
     border = models.ForeignKey(Polygon, related_name='reserves')
-    country = models.ForeignKey(Country, related_name='users')
+    country = models.ManyToManyField(Country, related_name='reserves')
 
     name = models.CharField(max_length=50)
     slug = models.SlugField()

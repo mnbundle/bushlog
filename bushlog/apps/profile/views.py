@@ -1,11 +1,13 @@
+import json
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
-from django.http import HttpResponseRedirect, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django.views import generic
 
-from bushlog.apps.profile.forms import ResetPasswordForm, SignInForm, SignUpModelForm, UpdateModelForm, ResendActivationForm
+from bushlog.apps.profile.forms import AvatarModelForm, ResetPasswordForm, SignInForm, SignUpModelForm, UpdateModelForm, ResendActivationForm
 from bushlog.apps.profile.models import UserProfile
 from bushlog.decorators import json_response
 
@@ -162,7 +164,7 @@ class UpdateFormView(generic.FormView):
             form.save()
             messages.add_message(
                 self.request, messages.SUCCESS,
-                "Your profile hase been successfully updated."
+                "Your profile has been updated successfully."
             )
             return HttpResponseRedirect(self.success_url)
 
@@ -174,6 +176,56 @@ class UpdateFormView(generic.FormView):
         """
         messages.add_message(self.request, messages.ERROR, self.error_msg)
         return HttpResponseRedirect(self.error_url)
+
+
+class AvatarFormView(generic.FormView):
+    template_name = "profile/avatar.html"
+    form_class = AvatarModelForm
+    error_msg = "Updating your avatar failed. Please try again."
+    form_prefix = "avatar"
+
+    def render_to_response(self, context, **response_kwargs):
+        """
+        Ensure only ajax requests are allowed to render this view.
+        """
+        if self.request.is_ajax():
+            return super(AvatarFormView, self).render_to_response(context, **response_kwargs)
+        return HttpResponseBadRequest()
+
+    def get_form_kwargs(self):
+        kwargs = super(generic.FormView, self).get_form_kwargs()
+        if self.form_prefix:
+            kwargs.update({'prefix': self.form_prefix})
+        if hasattr(self.request.user, 'profile'):
+            kwargs.update({'instance': self.request.user.profile})
+        return kwargs
+
+    def form_valid(self, form):
+        """
+        Set a success message if the form is valid.
+        """
+        form.save()
+        messages.add_message(self.request, messages.SUCCESS, "Your avatar has been updated successfully.")
+        return HttpResponse(
+            json.dumps({
+                'success': True,
+                'redirect_url': str(reverse_lazy('profile:index', args=[self.request.user.profile.slug]))
+            }),
+            content_type='application/json'
+        )
+
+    def form_invalid(self, form):
+        """
+        Set an error message if the form is invalid.
+        """
+        messages.add_message(self.request, messages.ERROR, self.error_msg)
+        return HttpResponse(
+            json.dumps({
+                'success': False,
+                'redirect_url': str(reverse_lazy('profile:index', args=[self.request.user.profile.slug]))
+            }),
+            content_type='application/json'
+        )
 
 
 class ResetPasswordFormView(generic.FormView):
@@ -327,6 +379,7 @@ index = IndexDetailView.as_view()
 signin = SignInFormView.as_view()
 signup = SignUpFormView.as_view()
 update = UpdateFormView.as_view()
+avatar = AvatarFormView.as_view()
 reset_password = ResetPasswordFormView.as_view()
 resend_activation = ResendActivationFormView.as_view()
 signout = SignOutRedirectView.as_view()

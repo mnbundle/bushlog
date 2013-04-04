@@ -5,7 +5,9 @@
     "fields": {
         "website": "http://www.kznwildlife.com/",
         "description": "The Hluhluwe Umfolozi Park is the only park under formal conservation in KwaZulu Natal where the Big Five occur. Established in 1895, this is the oldest game park in South Africa along with nearby St Lucia Reserve. Set in the heart of Zululand.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             32,
             1,
@@ -51,7 +53,9 @@
     "fields": {
         "website": "http://www.sanparks.co.za/",
         "description": "The largest game reserve in South Africa, the Kruger National Park is larger than Israel. Nearly 2 million hectares of land that stretch for 352 kilometres (20 000 square kilometres) from north to south along the Mozambique border.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             8,
             18,
@@ -112,7 +116,9 @@
     "fields": {
         "website": "http://www.sanparks.co.za/",
         "description": "Situated in a malaria free area just one hour's drive from the South African coastal city of Port Elizabeth, the magnificently diverse Addo Elephant Park offers a wide variety of game viewing, outdoor adventure, accommodation and cultural experience.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             8,
             18,
@@ -165,7 +171,9 @@
     "fields": {
         "website": "http://www.parksnorthwest.co.za/",
         "description": "The Pilanesberg Game Reserve is located in North West Province in South Africa, west of Pretoria. The park borders with the entertainment complex Sun City. The park is currently administered by the North West Parks and Tourism Board.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             8,
             18,
@@ -222,7 +230,9 @@
     "fields": {
         "website": "http://www.kznwildlife.com/",
         "description": "Mkhuze Game Reserve (also spelt Mkuze) is a 360-square-kilometre (140 sq mi) game reserve in northern Zululand, KwaZulu-Natal, South Africa. It was proclaimed a protected area on February 1912.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             8,
             32,
@@ -269,7 +279,10 @@
     "fields": {
         "website": "http://www.sanparks.co.za/",
         "description": "Kgalagadi Transfrontier Park is a large wildlife preserve and conservation area in southern Africa. The park straddles the border between South Africa and Botswana and comprises two adjoining national parks.",
-        "country": 213,
+        "country": [
+            213,
+            31
+        ],
         "species": [
             8,
             19,
@@ -309,7 +322,9 @@
     "fields": {
         "website": "http://www.parksnorthwest.co.za/",
         "description": "The Madikwe Game Reserve is a protected area in South Africa, part of the latest park developments in the country. Named after the Madikwe or Marico River, on whose basin it is located, it was opened in 1991.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             8,
             18,
@@ -365,7 +380,9 @@
     "fields": {
         "website": "http://www.sanparks.co.za/",
         "description": "Mapungubwe National Park is a national park in Limpopo Province, South Africa. It is located by the Kolope River, south of the confluence of the Limpopo and Shashe rivers",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             8,
             1,
@@ -411,7 +428,9 @@
     "fields": {
         "website": "http://www.sanparks.co.za/",
         "description": "Marakele National Park is a National Park that is part of the Waterberg Biosphere in Limpopo Province, South Africa.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             8,
             1,
@@ -451,7 +470,9 @@
     "fields": {
         "website": "http://www.sanparks.co.za/",
         "description": "Loskop Dam Nature Reserve is situated in northern Mpumalanga province, South Africa. The reserve covers approximately 22,850 ha, if the approximately 2,350 ha surface area of the reservoir is included.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             8,
             18,
@@ -494,7 +515,9 @@
     "fields": {
         "website": "http://www.kznwildlife.com/",
         "description": "Ithala Game Reserve, 290 km\u00b2 of rugged, mountainous thornveld in northern KwaZulu-Natal, about 400 km north of Durban. It is one of the youngest game parks in South Africa.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             8,
             1,
@@ -536,7 +559,9 @@
     "fields": {
         "website": "http://www.kznwildlife.com/",
         "description": "iSimangaliso Wetland Park is situated on the east coast of KwaZulu-Natal, South Africa, about 275 kilometres north of Durban.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             32,
             1,
@@ -583,7 +608,9 @@
     "fields": {
         "website": "http://www.kznwildlife.com/",
         "description": "Ndumo Game Reserve is a small South African game reserve located in the far northeast district of KwaZulu-Natal known as Maputaland. It is situated on the border with Mozambique where the Pongola River joins the Great Usutu River.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             32,
             26,
@@ -614,7 +641,9 @@
     "fields": {
         "website": "http://www.kznwildlife.com/",
         "description": "Tembe Elephant Park is a 30 012 ha game reserve in Maputaland, KwaZulu-Natal, South Africa. It is adjacent to Ndumo Game Reserve. The park was developed by Tembe Tribal Authority and Ezemvelo KZN Wildlife. ",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             32,
             1,
@@ -658,7 +687,9 @@
     "fields": {
         "website": "http://www.sanparks.co.za/",
         "description": "Golden Gate Highlands National Park is located in Free State, Republic of South Africa, near the Lesotho border. It covers an area of 340 km\u00b2.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             18,
             19,
@@ -690,7 +721,9 @@
     "fields": {
         "website": "http://www.sanparks.co.za/",
         "description": "Mountain Zebra National Park is a national park in the Eastern Cape province of South Africa proclaimed in July, 1937 for the purpose of providing a nature reserve for the endangered Cape Mountain Zebra.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             18,
             32,
@@ -729,7 +762,9 @@
     "fields": {
         "website": "http://www.sanparks.co.za/",
         "description": "Table Mountain National Park, previously known as the Cape Peninsula National Park, is a national park in Cape Town, South Africa, proclaimed on 29 May 1998.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             51,
             61,
@@ -753,7 +788,9 @@
     "fields": {
         "website": "http://www.sanparks.co.za/",
         "description": "The West Coast National Park lies 120 km north of Cape Town in the Western Cape province of South Africa. It is 27,500 hectares in size.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             19,
             11,
@@ -781,7 +818,9 @@
     "fields": {
         "website": "http://www.sanparks.co.za/",
         "description": "The Karoo National Park, founded in 1979, is a wildlife reserve in the isolated Karoo area of the Western Cape, South Africa near Beaufort West. The area is mostly semi-desert and is well known for its isolation.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             32,
             19,
@@ -819,8 +858,11 @@
     "model": "reserve.reserve",
     "fields": {
         "website": "http://www.sanparks.co.za/",
-        "description": "The \u01c0Ai-\u01c0Ais/Richtersveld Transfrontier Park is a peace park straddling the border between South Africa and Namibia. It was formed in 2003 by combining the Namibian \u01c0Ai-\u01c0Ais Hot Springs Game Park and the South African Richtersveld National Park.",
-        "country": 213,
+        "description": "The Richtersveld Transfrontier Park is a peace park straddling the border between South Africa and Namibia. It was formed in 2003 by combining the Namibian \u01c0Ai-\u01c0Ais Hot Springs Game Park and the South African Richtersveld National Park.",
+        "country": [
+            213,
+            162
+        ],
         "species": [
             18,
             19,
@@ -850,7 +892,9 @@
     "fields": {
         "website": "http://www.sanparks.co.za/",
         "description": "Augrabies Falls National Park is a national park located around the Augrabies Falls, about 120 km west of Upington in the Northern Cape Province, South Africa. It was established in 1966.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             8,
             18,
@@ -883,7 +927,9 @@
     "fields": {
         "website": "http://www.sanparks.co.za/",
         "description": "Mokala National Park is a reserve established in the Plooysburg area south-west of Kimberley in the Northern Cape, South Africa on 19 June 2007. The size of the Park is 26 485 hectares",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             8,
             18,
@@ -927,7 +973,9 @@
     "fields": {
         "website": "http://www.sanparks.co.za/",
         "description": "Namaqua National Park is a South African national park situated approximately 495 km north of Cape Town and 22 km northwest of Kamieskroon. It has an area of more than 700 km\u00b2.",
-        "country": 213,
+        "country": [
+            213
+        ],
         "species": [
             8,
             18,

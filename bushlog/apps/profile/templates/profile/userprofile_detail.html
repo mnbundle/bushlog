@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ object.user.username|capfirst }}'s BushLog{% endblock %}
+{% block title %}{{ object.user.username|capfirst }}'s Bushlog{% endblock %}
 
 {% block content %}
 
@@ -12,7 +12,7 @@
         <div class="span8">
             <div class="page-header">
                 <h2>
-                    {{ object.user.username|capfirst }}'s BushLog
+                    {{ object.user.username|capfirst }}'s Bushlog
                     <a class="btn btn-success btn-header pull-right" href="#id_new_sighting" data-toggle="modal">
                         <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
                     </a>
@@ -25,13 +25,21 @@
         <div class="span3 pull-right">
             <div class="media">
                 {% if object.user.profile.avatar %}
-                    <a class="pull-left" href="{% url 'profile:index' object.user.profile.slug %}">
-                        <img class="media-object img-rounded" src="{% resize_image object.user.profile.avatar 50 50 %}" width="50" height="50" />
-                    </a>
+                    {% if request.user == object.user %}
+                        <a href="#id_avatar_modal" data-toggle="modal" class="hint pull-left" rel="tooltip" title="Update&nbsp;Avatar" data-placement="top">
+                            <img class="media-object img-rounded" src="{% resize_image object.user.profile.avatar 50 50 %}" width="50" height="50" />
+                        </a>
+                    {% else %}
+                        <img class="media-object img-rounded pull-left" src="{% resize_image object.user.profile.avatar 50 50 %}" width="50" height="50" />
+                    {% endif %}
                 {% else %}
-                    <a class="pull-left" href="{% url 'profile:index' object.user.username %}">
-                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.gender|default:"male" }}.png" width="50" height="50" />
-                    </a>
+                    {% if request.user == object.user %}
+                        <a href="#id_avatar_modal" data-toggle="modal" class="hint pull-left" rel="tooltip" title="Add&nbsp;Avatar" data-placement="top">
+                            <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.gender|default:"male" }}.png" width="50" height="50" />
+                        </a>
+                    {% else %}
+                        <img class="media-object img-rounded pull-left" src="{{ STATIC_URL }}img/layout/profile-{{ object.gender|default:"male" }}.png" width="50" height="50" />
+                    {% endif %}
                 {% endif %}
                 <div class="media-body">
                     <h6>
@@ -46,18 +54,6 @@
                 <div>
                     <small>{{ object.biography|default:"" }}</small>
                 </div>
-            {% endif %}
-
-            {% if request.user == object.user %}
-                <hr/>
-                <div>
-                    <a href="#id_avatar_modal" class="btn btn-info span6" data-toggle="modal">Change Avatar</a>
-                    <a href="#id_update_modal" class="btn btn-info span6" data-toggle="modal">Update Profile</a>
-                </div>
-                <div>
-
-                </div>
-                <div class="spacer">&nbsp;</div>
             {% endif %}
         </div>
     </div>

@@ -143,7 +143,8 @@ proximitySearch = function (position) {
         return;
     }
 
-    window.location = "/sighting/search/" + position.coords.latitude + "/" + position.coords.longitude + "/";
+    // redirect to the sighting search
+    window.location = "/sighting/search/?latitude=" + position.coords.latitude + "&longitude=" + position.coords.longitude;
 }
 
 getLocation = function () {
@@ -155,13 +156,92 @@ getLocation = function () {
     }
 }
 
+initSearchForm = function () {
+    var typeahead_obj;
+    var time_out;
+
+    // initialize ajax auto suggestion
+    $('#id_search').typeahead({
+        minLength: 3,
+        source: function (query, process) {
+
+            // fix the z-index of the typeahead menu
+            $(".typeahead.dropdown-menu").css('z-index', '1031');
+
+            var search_list = [];
+            var urls = {};
+
+            if (time_out) {
+                clearTimeout(time_out);
+            }
+
+            time_out = setTimeout(function () {
+                if (!$('#id_search').is('[readonly]')){
+
+                    $('#id_search').attr('readonly', true);
+                    $('#id_search-wait').show().addClass('wait');
+
+                    // compile a list of related reserves
+                    $.get("/api/reserves/", {name: query}, function (data) {
+                        $.each(data.results, function (index, obj) {
+                            search_list.push(obj.name);
+                            urls[obj.name] = obj.site_url;
+                        });
+
+                        // compile a list of related species
+                        $.get("/api/species/", {name: query}, function (data) {
+                            $.each(data.results, function (index, obj) {
+                                search_list.push(obj.common_name);
+                                urls[obj.common_name] = obj.site_url;
+                            });
+
+                            $('#id_search').removeAttr('readonly');
+                            $('#id_search-wait').hide().removeClass('wait');
+
+                            typeahead_obj = process(search_list);
+                            $.each(typeahead_obj.$menu.children(), function (index, obj) {
+                                $(obj).data('url', urls[$(obj).data('value')]);
+                            });
+
+                            return typeahead_obj;
+                        });
+                    });
+                }
+            }, 500);
+        },
+
+        updater: function(value) {
+            $.each(typeahead_obj.$menu.children(), function (index, obj) {
+                if ($(obj).data('value') == value) {
+                    $('#id_search').focus();
+
+                    $("#id_search-btn").click(function () {
+                        window.location = $(obj).data('url');
+                    });
+
+                    $('#id_search').keypress(function(event){
+                        var keycode = event.keyCode ? event.keyCode : event.which;
+                        if (keycode == '13') {
+                            window.location = $(obj).data('url');
+                        }
+                    });
+                }
+            });
+            return value;
+        }
+    });
+}
+
 $(document).ready(function() {
 
     // initiate all carousel components
     initCarousel();
 
     // initiate all tooltips
-    $(".hint a").tooltip();
+    $(".hint").tooltip();
+
+    // initiate the search form
+    initSearchForm();
 
     // expand map
     $('#expand-map').click(function () {

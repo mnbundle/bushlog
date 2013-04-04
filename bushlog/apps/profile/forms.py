@@ -110,6 +110,33 @@ class UpdateModelForm(forms.ModelForm):
             self.instance.user.save()
 
 
+class AvatarModelForm(forms.ModelForm):
+    avatar = forms.ImageField(
+        widget=forms.FileInput(
+            attrs={
+                'class': 'uk-input input',
+                'data-upload-url': reverse_lazy('profile:avatar'),
+                'data-max-file-size': '5mb',
+                'data-file-resize': '{"width": 640, "height": 480, "quality": 90}'
+            }
+        )
+    )
+
+    class Meta:
+        model = UserProfile
+        fields = ['avatar']
+        widgets = {
+            'avatar': forms.FileInput(
+                attrs={
+                    'class': 'uk-input input',
+                    'data-upload-url': reverse_lazy('profile:avatar'),
+                    'data-max-file-size': '5mb',
+                    'data-file-resize': '{"width": 640, "height": 480, "quality": 90}'
+                }
+            )
+        }
+
+
 class ResetPasswordForm(forms.Form):
     email = forms.EmailField(
         widget=widgets.EmailInput(

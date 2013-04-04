@@ -64,6 +64,7 @@
                 <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.common_name }}", target="blank">Wikipedia</a></small></h6>
             </div>
             {% if object.similiar_species.all %}
+                <p>&nbsp;</p>
                 <div>
                     <div class="page-header">
                         <h4>Similiar Species</h4>
@@ -78,6 +79,7 @@
                     {% endfor %}
                 </div>
             {% endif %}
+            <p>&nbsp;</p>
             <div>
                 <div class="page-header">
                     <h4>Occurs In</h4>
@@ -85,7 +87,7 @@
                 {% for reserve in object.reserves.all %}
                     <small>
                         <div>
-                            <i class="icon-map-marker">&nbsp;</i> &nbsp;
+                            <i class="icon-leaf">&nbsp;</i> &nbsp;
                             <a href="{{ reserve.get_absolute_url }}">{{ reserve.name }}</a>
                         </div>
                     </small>

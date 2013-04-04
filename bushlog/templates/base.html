@@ -7,10 +7,10 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-        <title>{% block title %}BushLog | Wildlife Sightings in Southern Africa{% endblock %}</title>
+        <title>{% block title %}Bushlog | Wildlife Sightings in Southern Africa{% endblock %}</title>
         <meta name="description" content="Wildlife Sightings in Southern Africa.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="BushLog">
+        <meta name="author" content="Bushlog">
 
         <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" type="text/css"/>
         <style type="text/css">
@@ -35,16 +35,29 @@
                     <a class="brand" href="{% url 'index' %}"><img src="{{ STATIC_URL }}img/layout/logo-drk.png" width="106" height="30" /></a>
                     {% if request.user.is_authenticated %}
                         <div class="btn-group pull-right">
-                            <a class="btn" href="{% url 'profile:index' request.user.username %}"><i class="icon-user"></i> {{ user.username }}</a>
+                            <a class="btn" href="{% url 'profile:index' request.user.username %}">
+                                <i class="icon-user"></i> {{ user.username }}
+                            </a>
                             <a class="btn dropdown-toggle" data-toggle="dropdown">
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="#id_update_modal" data-toggle="modal"><i class="icon-pencil"></i>&nbsp; Update Profile</a></li>
+                                <li><a href="#id_avatar_modal" data-toggle="modal"><i class="icon-camera"></i>&nbsp; Update Avatar</a></li>
                                 <!--<li><a href="#privacy"><i class="icon-lock"></i>&nbsp; Privacy Settings</a></li>-->
                                 <li class="divider"></li>
                                 <li><a href="{% url 'profile:signout' %}"><i class="icon-remove-sign"></i>&nbsp; Sign Out</a></li>
                             </ul>
+                        </div>
+                        <div class="pull-right">&nbsp; &nbsp;</div>
+                        <div class="search-form pull-right">
+                            <div class="input-append">
+                                <input id="id_search" class="span3" type="search" placeholder="Search...">
+                                <button id="id_search-btn" class="btn" type="button">
+                                    <i class="icon-search"></i>
+                                </button>
+                            </div>
+                            <span id="id_search-wait" class="hide"></span>
                         </div>
                     {% else %}
                         <div class="btn-group pull-right">
@@ -57,8 +70,12 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{% url 'index' %}"><i class="icon-lock"></i> Sign In</a></li>
                                 <li class="divider"></li>
-                                <li><a href="{% url 'socialauth_begin' 'google-oauth2' %}"><i class="icon-google"></i> Sign In With Google</a></li>
-                                <li><a href="{% url 'socialauth_begin' 'facebook' %}"><i class="icon-facebook"></i> Sign In With Facebook</a></li>
+                                <li><a href="{% url 'socialauth_begin' 'google-oauth2' %}">
+                                    <i class="icon-google"></i> Sign In With Google
+                                </a></li>
+                                <li><a href="{% url 'socialauth_begin' 'facebook' %}">
+                                    <i class="icon-facebook"></i> Sign In With Facebook
+                                </a></li>
                             </ul>
                         </div>
                     {% endif %}
@@ -85,9 +102,9 @@
                         <li><a href="{% url 'index' %}">Home</a></li>
                         <li><a href="{% url 'about' %}">About</a></li>
                         <li><a href="{% url 'legal' %}">Legal</a></li>
-                        <!--<li><a href="#">Developers</a></li>-->
+                        <!--<li><a href="#">Developers</a></li>
                         <li><a href="{% url 'researchers' %}">Researchers</a></li>
-                        <!--<li><a href="#">Advertising</a></li>-->
+                        <li><a href="#">Advertising</a></li>-->
                     </ul>
                 </div>
             </div>
@@ -128,6 +145,9 @@
 
                     // initialise sightings forms
                     initNewSightingForm();
+
+                    // initialise avatar form
+                    initAvatarForm();
 
                     // initialise the update modal with required options
                     $('#id_update_modal').modal({

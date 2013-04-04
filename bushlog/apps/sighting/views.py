@@ -18,7 +18,15 @@ class SearchListView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(SearchListView, self).get_context_data(**kwargs)
-        context['coordinates'] = self.kwargs
+
+        latitude = self.request.GET.get('latitude')
+        longitude = self.request.GET.get('longitude')
+        if latitude and longitude:
+            context['coordinates'] = {
+                'latitude': latitude,
+                'longitude': longitude
+            }
+
         return context
 
 

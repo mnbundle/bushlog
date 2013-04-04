@@ -221,12 +221,14 @@ initNewSightingForm = function () {
         });
 
         // initialise the file inputs to use upload kit
-        $('input.uk-input[type="file"]').each(function(index, element) {
+        $('#id_image').each(function (index, element) {
             new UploadKit(element);
         });
 
-        $('input.uk-input[type="file"]').bind(UKEventType.FileUploaded, function(e) {
+        $('#id_image').bind(UKEventType.FileUploaded, function(e) {
             var data = $.parseJSON(e.response.response);
+
+            console.log('UPLOADED')
 
             var image_ids_ele = $("#id_sighting_create-image_ids");
             var latitude_ele = $("#id_sighting_create-latitude");

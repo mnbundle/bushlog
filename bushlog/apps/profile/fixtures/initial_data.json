@@ -89,7 +89,7 @@
         "model": "sites.site",
         "fields": {
             "domain": "bushlog.com",
-            "name": "BushLog"
+            "name": "Bushlog"
         }
     }
 ]

@@ -4,9 +4,9 @@ from bushlog.apps.reserve.models import Reserve
 
 
 class ReserveAdmin(admin.ModelAdmin):
-    list_display = ['name', 'country']
+    list_display = ['name']
     list_display_links = ['name']
-    search_fields = ['name', 'country']
+    search_fields = ['name']
     prepopulated_fields = {
         'slug': ['name']
     }
