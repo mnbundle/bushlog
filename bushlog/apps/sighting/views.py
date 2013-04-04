@@ -15,9 +15,15 @@ class IndexDetailView(generic.DetailView):
         """
         Ensure only public sightings are served unless the user is the owner of this sighting.
         """
-        if self.object.user == self.request.user:
+        if (self.object.user == self.request.user) or self.object.public:
             return super(IndexDetailView, self).render_to_response(context, **response_kwargs)
         raise Http404
+
+    def get_queryset(self):
+        return self.model.objects.filter(
+            reserve__slug=self.kwargs.get('reserve_slug'),
+            species__slug=self.kwargs.get('species_slug')
+        )
 
 
 class SearchListView(generic.ListView):

@@ -183,7 +183,7 @@ initNewSightingForm = function () {
             $.get('/api/species/' + $(this).val() + '/', function(data) {
                 $('#id_sighting_create-species').data('marker', "/media/" + data.marker);
                 if (!data.public) {
-                    $('.new_sighting-alert_msg').text(data.common_name + " is a protected species. Only you will be able to see this sighting.")
+                    $('.new_sighting-alert_msg').text(data.common_name + " is a protected species. Only you can see this sighting.")
                     $('.new_sighting-alert').show();
                     setTimeout("$('.alert').fadeOut('slow')", 5000);
                 }
