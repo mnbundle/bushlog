@@ -1,5 +1,6 @@
 from cStringIO import StringIO
 from datetime import datetime
+import hashlib
 import os
 
 from dateutil.relativedelta import relativedelta
@@ -15,6 +16,10 @@ def choices(item_list):
     Convert a list to a choices tuple
     """
     return tuple((i, i) for i in item_list)
+
+
+def generate_key(instance, method):
+    return hashlib.md5("%s|%s|%s" % (instance.__class__.__name__, instance.pk, method)).hexdigest()
 
 
 def historical_date(*args, **kwargs):

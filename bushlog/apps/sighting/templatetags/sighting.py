@@ -14,9 +14,9 @@ register = template.Library()
 @register.simple_tag(takes_context=True)
 def latest_sightings_mapdata(context, limit=3, *args, **kwargs):
     if kwargs:
-        obj_list = Sighting.objects.filter(**kwargs)[:limit]
+        obj_list = Sighting.objects.public().filter(**kwargs)[:limit]
     else:
-        obj_list = Sighting.objects.all()[:limit]
+        obj_list = Sighting.objects.public()[:limit]
 
     return json.dumps([obj.mapdata for obj in obj_list])
 
@@ -27,20 +27,21 @@ def resize_image(image, width=None, height=None):
 
 
 @register.inclusion_tag("template_tags/sighting_map.html", takes_context=True)
-def sighting_map(context, limit=3, *args, **kwargs):
+def sighting_map(context, limit=3, protected=1, *args, **kwargs):
     try:
         keyword = kwargs.keys()[0]
     except IndexError:
         keyword = None
 
     coordinates = kwargs.get('coordinates')
+    bounds = []
 
     if kwargs:
         if coordinates:
-            obj_list = [
-                obj for obj in Sighting.objects.filter(date_of_sighting__gte=historical_date(day=1))
+            object_list = [
+                obj for obj in Sighting.objects.public().filter(date_of_sighting__gte=historical_date(day=1))
                 if obj.in_proximity(coordinates['latitude'], coordinates['longitude'], 0.3)
-            ][:limit]
+            ]
 
             try:
                 context['object'] = [obj for obj in Reserve.objects.all() if obj.sighting_in_reserve(coordinates)][0]
@@ -49,11 +50,25 @@ def sighting_map(context, limit=3, *args, **kwargs):
                 pass
 
         else:
-            obj_list = Sighting.objects.filter(**kwargs)[:limit]
-    else:
-        obj_list = Sighting.objects.all()[:limit]
+            object_list = Sighting.objects.filter(**kwargs)
+            if protected:
+                object_list = object_list.public()
 
-    mapdata = [obj.mapdata for obj in obj_list]
+        reserve = kwargs.get('reserve')
+
+        if reserve:
+            bounds = [
+                [value['latitude'], value['longitude']] for key, value in reserve.bounds.items()
+                if key != 'center_point'
+            ]
+            print bounds
+
+    else:
+        object_list = Sighting.objects.all()
+        if protected:
+            object_list = object_list.public()
+
+    mapdata = [obj.mapdata for obj in object_list[:limit]]
     if coordinates:
         mapdata.append({
             'lat': str(coordinates['latitude']),
@@ -72,30 +87,39 @@ def sighting_map(context, limit=3, *args, **kwargs):
     return {
         'object': context.get('object'),
         'mapdata': json.dumps(mapdata),
+        'bounds': json.dumps(bounds),
         'keyword': keyword,
         'coordinates': coordinates
     }
 
 
 @register.inclusion_tag("template_tags/latest_sightings.html", takes_context=True)
-def latest_sightings(context, split=1, limit=3, exclude_pk={}, *args, **kwargs):
+def latest_sightings(context, split=1, limit=3, protected=1, exclude_pk={}, *args, **kwargs):
     try:
         keyword = kwargs.keys()[0]
     except IndexError:
         keyword = None
+
+    if exclude_pk:
+        keyword = 'exclude_pk'
 
     coordinates = kwargs.get('coordinates')
 
     if kwargs:
         if coordinates:
             object_list = [
-                obj for obj in Sighting.objects.filter(date_of_sighting__gte=historical_date(day=1))
+                obj for obj in Sighting.objects.public().filter(date_of_sighting__gte=historical_date(day=1))
                 if obj.in_proximity(coordinates['latitude'], coordinates['longitude'], 0.3)
             ]
         else:
             object_list = Sighting.objects.filter(**kwargs)
+            if protected:
+                object_list = object_list.public()
+
     else:
-        object_list = Sighting.objects.all()
+        object_list = Sighting.objects.filter(species__public=True)
+        if protected:
+            object_list = object_list.public()
 
     if exclude_pk:
         object_list = object_list.exclude(pk=exclude_pk)

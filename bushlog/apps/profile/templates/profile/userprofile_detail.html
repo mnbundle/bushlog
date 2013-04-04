@@ -6,7 +6,11 @@
 
     {% load sighting %}
 
-    {% sighting_map limit=10 user=object.user %}
+    {% if request.user == object.user %}
+        {% sighting_map protected=0 limit=10 user=object.user %}
+    {% else %}
+        {% sighting_map limit=10 user=object.user %}
+    {% endif %}
 
     <div class="row-fluid">
         <div class="span8">
@@ -19,7 +23,11 @@
                 </h2>
             </div>
 
-            {% latest_sightings split=2 limit=10 user=object.user %}
+            {% if request.user == object.user %}
+                {% latest_sightings protected=0 split=2 limit=10 user=object.user %}
+            {% else %}
+                {% latest_sightings split=2 limit=10 user=object.user %}
+            {% endif %}
 
         </div>
         <div class="span3 pull-right">

@@ -15,7 +15,7 @@
 {% load wildlife %}
 
 {% block content %}
-    {% sighting_map limit=1 pk=object.pk %}
+    {% sighting_map limit=1 protected=0 pk=object.pk %}
     <div class="row-fluid">
         <div class="span8">
             <div class="page-header">
@@ -47,7 +47,7 @@
             <div class="page-header">
                 <h3>Similiar Sightings</h3>
             </div>
-            {% latest_sightings split=2 limit=10 species=object.species reserve=object.reserve exclude_pk=object.pk %}
+            {% latest_sightings split=2 limit=10 exclude_pk=object.pk species=object.species reserve=object.reserve %}
         </div>
         <div class="span3 pull-right">
             <div class="media">

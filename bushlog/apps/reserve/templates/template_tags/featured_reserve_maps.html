@@ -4,7 +4,7 @@
     <div class="carousel-inner">
         {% for obj in obj_list %}
             <div class="{% if forloop.first %}active {% endif %}item">
-                <div id="map-{{ obj.slug }}" class="map well" data-map='{% latest_sightings_mapdata limit=5 reserve=obj %}'></div>
+                <div id="map-{{ obj.slug }}" class="map well" data-map='{% latest_sightings_mapdata limit=5 reserve=obj %}' data-bounds='[]'></div>
                 <div class="carousel-caption rounded-corners-bottom">
                     <h5>
                         <i class="icon-map-marker icon-white"></i>&nbsp; {{ obj.name }}

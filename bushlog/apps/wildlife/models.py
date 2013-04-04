@@ -1,6 +1,7 @@
 from django.core.urlresolvers import reverse_lazy
 from django.db import models
 
+from bushlog.apps.wildlife.managers import SpeciesManager
 from bushlog.utils import choices
 
 
@@ -33,6 +34,8 @@ class Species(models.Model):
     male_info = models.ForeignKey(SpeciesInfo, related_name="male_info")
 
     similiar_species = models.ManyToManyField("self", related_name="similiar_species", blank=True, null=True)
+
+    objects = SpeciesManager()
 
     class Meta:
         ordering = ['common_name']

@@ -1,9 +1,10 @@
+from django.core.cache import cache
 from django.core.urlresolvers import reverse_lazy
 from django.db import models
 
 from bushlog.apps.location.models import Country, Polygon
 from bushlog.apps.wildlife.models import Species
-from bushlog.utils import historical_date, point_in_polygon
+from bushlog.utils import generate_key, historical_date, point_in_polygon
 
 
 class Reserve(models.Model):
@@ -24,7 +25,48 @@ class Reserve(models.Model):
 
     @property
     def number_of_sightings(self):
-        return self.sightings.filter(date_of_sighting__gte=historical_date(month=1)).count()
+        return self.sightings.public().filter(date_of_sighting__gte=historical_date(month=1)).count()
+
+    @property
+    def bounds(self):
+        cache_key = generate_key(self, 'bounds')
+        obj = cache.get(cache_key)
+
+        if not obj:
+            points = self.border.points
+            latitudes = [p[0] for p in points]
+            longitudes = [p[1] for p in points]
+
+            north_bound = min(latitudes)
+            south_bound = max(latitudes)
+            west_bound = max(longitudes)
+            east_bound = min(longitudes)
+
+            obj = {
+                'north_west': {
+                    'latitude': north_bound,
+                    'longitude': west_bound
+                },
+                'north_east': {
+                    'latitude': north_bound,
+                    'longitude': east_bound
+                },
+                'south_west': {
+                    'latitude': south_bound,
+                    'longitude': west_bound
+                },
+                'south_east': {
+                    'latitude': south_bound,
+                    'longitude': east_bound
+                },
+                'centre_point': {
+                    'latitude': north_bound - ((north_bound - south_bound) / 2),
+                    'longitude': west_bound - ((west_bound - east_bound) / 2)
+                }
+            }
+            cache.set(cache_key, obj)
+
+        return obj
 
     def sighting_in_reserve(self, coordinates):
         latitude = float(coordinates['latitude'])

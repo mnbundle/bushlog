@@ -80,7 +80,6 @@ initAvatarForm = function () {
 
         // initialise the file inputs to use upload kit
         $('#id_avatar-avatar').each(function (index, element) {
-            console.log("INIT");
             new UploadKit(element);
         });
 

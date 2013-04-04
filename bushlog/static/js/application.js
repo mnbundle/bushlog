@@ -1,9 +1,32 @@
 initRegion = function () {
     var ele = $('.item.active .map');
     var markers = ele.data('map');
+    var bounds = ele.data('bounds');
 
     // setup for a single marker
     var autofit = 'autofit';
+    var center = [];
+
+    var polygon = {
+        options: {
+            strokeOpacity: 0,
+            fillOpacity: 0,
+            paths:[
+                [-20.0, 11.5],
+                [-20.0, 40.0],
+                [-35.0, 40.0],
+                [-35.0, 11.5]
+            ]
+        }
+    }
+
+    if (!$.isEmptyObject(markers)) {
+        polygon = {}
+    }
+    else if (!$.isEmptyObject(bounds)) {
+        polygon.options.paths = bounds;
+    }
+
     var mapTypeControl = false;
     var navigationControl = false;
     var scrollwheel = false;
@@ -13,6 +36,7 @@ initRegion = function () {
     // setup for single marker
     if (markers.length == 1) {
         autofit = null;
+        center = markers[0];
     }
 
     // setup for a single carousel item
@@ -32,15 +56,15 @@ initRegion = function () {
         ele.gmap3({
             map: {
                 options: {
-                    center: markers[0],
                     zoom: 13,
+                    center: center,
                     mapTypeControl: mapTypeControl,
                     panControl: false,
                     navigationControl: navigationControl,
                     scrollwheel: scrollwheel,
                     streetViewControl: false,
                     mapTypeControlOptions: mapTypeControlOptions,
-                    mapTypeId: google.maps.MapTypeId.TERRAIN,
+                    //mapTypeId: google.maps.MapTypeId.TERRAIN,
                     zoomControlOptions: zoomControlOptions
                 }
             },
@@ -77,7 +101,8 @@ initRegion = function () {
                         height: 40
                     }
                 }
-            }
+            },
+            polygon: polygon
         }, autofit);
     }
 

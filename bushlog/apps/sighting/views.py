@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
-from django.http import HttpResponseRedirect, HttpResponseBadRequest
+from django.http import Http404, HttpResponseRedirect, HttpResponseBadRequest
 from django.views import generic
 
 from bushlog.apps.sighting.forms import CreateForm
@@ -10,6 +10,14 @@ from bushlog.apps.sighting.models import Sighting, SightingImage
 
 class IndexDetailView(generic.DetailView):
     model = Sighting
+
+    def render_to_response(self, context, **response_kwargs):
+        """
+        Ensure only public sightings are served unless the user is the owner of this sighting.
+        """
+        if self.object.user == self.request.user:
+            return super(IndexDetailView, self).render_to_response(context, **response_kwargs)
+        raise Http404
 
 
 class SearchListView(generic.ListView):

@@ -8,12 +8,13 @@ from bushlog.apps.wildlife.models import Species, SpeciesInfo
 class ReserveSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.Field()
     species = serializers.ManyHyperlinkedRelatedField(view_name='api:species_detail')
+    bounds = serializers.Field(source='bounds')
     site_url = serializers.HyperlinkedIdentityField(view_name='reserve:index')
     resource_url = serializers.HyperlinkedIdentityField(view_name='api:reserve_detail')
 
     class Meta:
         model = Reserve
-        fields = ['id', 'name', 'description', 'website', 'species', 'site_url', 'resource_url']
+        fields = ['id', 'name', 'description', 'website', 'species', 'site_url', 'bounds', 'resource_url']
 
 
 class SightingImageSerializer(serializers.HyperlinkedModelSerializer):
@@ -44,6 +45,6 @@ class SpeciesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Species
         fields = [
-            'id', 'common_name', 'scientific_name', 'classification', 'general_info', 'similiar_species', 'female_info',
+            'id', 'public', 'common_name', 'scientific_name', 'classification', 'general_info', 'similiar_species', 'female_info',
             'male_info', 'marker', 'site_url', 'resource_url'
         ]

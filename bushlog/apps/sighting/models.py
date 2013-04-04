@@ -4,6 +4,7 @@ from django.db import models
 
 from bushlog.apps.location.models import Coordinate
 from bushlog.apps.reserve.models import Reserve
+from bushlog.apps.sighting.managers import SightingManager
 from bushlog.apps.wildlife.models import Species
 from bushlog.utils import choices, get_exif_data, get_gps_data
 
@@ -23,6 +24,8 @@ class Sighting(models.Model):
     sex = models.CharField(max_length=20, choices=choices(['Male', 'Female', 'Both']), blank=True, null=True)
     with_young = models.BooleanField(default=False)
     with_kill = models.BooleanField(default=False)
+
+    objects = SightingManager()
 
     class Meta:
         ordering = ['-date_of_sighting']
@@ -56,6 +59,10 @@ class Sighting(models.Model):
         if image_list:
             return image_list[0].image
         return None
+
+    @property
+    def public(self):
+        return self.species.public
 
     def in_proximity(self, latitude, longitude, radius):
         point_latitude = float(self.location.latitude)

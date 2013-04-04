@@ -45,14 +45,14 @@
     {% endfor %}
 {% else %}
     <div class="row-fluid">
-        No recent sightings found
+        No {% if keyword == 'exclude_pk' %}similiar{% else %}recent{% endif %} sightings found
         {% if keyword == 'user' %}
             by {{ object.user.username|capfirst }}.
         {% elif keyword == 'reserve' %}
             in the {{ object.name }}.
         {% elif keyword == 'species' %}
             of {{ object.common_name }}.
-        {% elif keyword == 'pk' %}
+        {% elif keyword == 'exclude_pk' %}
             of {{ object.species.common_name }} in {{ object.reserve.name }}.
         {% endif %}
     </div>
