@@ -40,6 +40,30 @@ formatDate = function (date) {
     return strDate;
 }
 
+setCurrentLocation = function () {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function () {
+            var latitude = position.coords.latitude.toFixed(6);  // -28.490419
+            var longitude = position.coords.longitude.toFixed(6);  // 28.714142
+
+            $('#id_sighting_create-latitude').val(latitude);
+            $('#id_sighting_create-longitude').val(longitude);
+
+            $.get('/reserve/search-point/', {latitude: latitude, longitude: longitude}, function(data) {
+                $('#id_sighting_create-reserve').val(data.id);
+                $(".info-detect-location").text("GPS Coordinates Detected. Click Next to continue.");
+                $(".btn-detect-location").hide();
+                $(".help-detect-location").hide();
+            });
+        });
+    }
+    else {
+        $(".info-detect-location").text("GPS Coordinates Not Detected. Click Next to continue.");
+        $(".btn-detect-location").hide();
+        $(".help-detect-location").show();
+    }
+}
+
 initSightingMap = function () {
     var sighting_map_ele = $('.sighting-map');
 
@@ -97,8 +121,8 @@ initSightingMap = function () {
             latLng: [latitude, longitude],
             events:{
                 dragend: function(marker, event) {
-                    latitude_ele.val(marker.position.lat());
-                    longitude_ele.val(marker.position.lng());
+                    latitude_ele.val(marker.position.lat().toFixed(6));
+                    longitude_ele.val(marker.position.lng().toFixed(6));
                 }
             },
             options: {
@@ -148,6 +172,9 @@ initNewSightingForm = function () {
             }
         });
 
+        // initialise the current location button
+        $('.btn-detect-location').click(setCurrentLocation);
+
         // initialise the datepicker
         $('#id_datepicker').datepicker({
             autoclose: true
@@ -166,9 +193,6 @@ initNewSightingForm = function () {
 
         // reset the marker to the reserve bounds
         $('#id_sighting_create-reserve').change(function() {
-            $('#id_sighting_create-latitude').val('');
-            $('#id_sighting_create-longitude').val('');
-
             $.get('/api/reserves/' + $(this).val() + '/', function(data) {
                 var ele = $('#id_sighting_create-reserve');
                 ele.removeData('bounds');
@@ -216,16 +240,18 @@ initNewSightingForm = function () {
                 enableCarouselControl(carousel_ele, next_btn);
 
                 if ($("fieldset.item.active").data('item') == 2) {
-                    initSightingMap();
+                    $('#id_sighting_create-reserve').change();
+                    $('#id_sighting_create-species').change();
                 }
 
-                if ($("fieldset.item.active").data('item') == 1) {
-                    next_btn.click(function () {
-                        if(!$(".form-new_sighting").valid()){
-                            var item_number = $(".error:first").parent().data('item');
-                            $("#new_sighting-carousel").carousel(item_number);
-                        }
-                    });
+                if ($("fieldset.item.active").data('item') == 3) {
+                    if (!$(".form-new_sighting").valid()) {
+                        var item_number = $(".error:first").parent().data('item');
+                        $("#new_sighting-carousel").carousel(item_number);
+                    }
+                    else{
+                        initSightingMap();
+                    }
                 }
             }
         });
@@ -237,8 +263,6 @@ initNewSightingForm = function () {
 
         $('#id_image').bind(UKEventType.FileUploaded, function(e) {
             var data = $.parseJSON(e.response.response);
-
-            console.log('UPLOADED')
 
             var image_ids_ele = $("#id_sighting_create-image_ids");
             var latitude_ele = $("#id_sighting_create-latitude");
@@ -270,12 +294,16 @@ initNewSightingForm = function () {
                 latitude_ele.val(data.gps_data.latitude);
                 longitude_ele.val(data.gps_data.longitude);
 
+                $(".info-detect-location").text("GPS Coordinates Detected. Click Next to continue.");
+                $(".btn-detect-location").hide();
+                $(".help-detect-location").hide();
+
                 $.get('/reserve/search-point/', {
                     latitude: data.gps_data.latitude,
                     longitude: data.gps_data.longitude
                 }, function(data) {
                     $('#id_sighting_create-reserve').val(data.id);
-                    $('#id_sighting_create-reserve').change();
+                    $(".form-new_sighting").valid();
                 });
             }
         });
@@ -285,6 +313,14 @@ initNewSightingForm = function () {
         if (!date_ele.val()) {
             date = new Date()
             date_ele.val(formatDate(date));
+        }
+
+        if (typeof window.setReserve == 'function') {
+            setReserve();
+        }
+
+        if (typeof window.setSpecies == 'function') {
+            setSpecies();
         }
     });
 }

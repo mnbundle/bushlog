@@ -2,6 +2,14 @@
 
 {% block title %}{{ object.name }} Wildlife Sightings{% endblock %}
 
+{% block extra_js %}
+    <script type="text/javascript">
+        setReserve = function() {
+            $('#id_sighting_create-reserve').val('{{ object.id }}');
+        }
+    </script>
+{% endblock %}
+
 {% block content %}
     {% load sighting %}
     {% sighting_map limit=5 reserve=object %}

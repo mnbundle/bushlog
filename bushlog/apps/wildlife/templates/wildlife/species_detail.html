@@ -2,6 +2,14 @@
 
 {% block title %}{{ object.common_name }} Sightings in Southern Africa{% endblock %}
 
+{% block extra_js %}
+    <script type="text/javascript">
+        setSpecies = function() {
+            $('#id_sighting_create-species').val('{{ object.id }}');
+        }
+    </script>
+{% endblock %}
+
 {% load humanize %}
 {% load sighting %}
 {% load wildlife %}

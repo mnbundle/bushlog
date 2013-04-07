@@ -8,6 +8,11 @@
                 <div class="carousel-caption rounded-corners-bottom">
                     <h5>
                         <i class="icon-map-marker icon-white"></i>&nbsp; {{ obj.name }}
+                        <div class="pull-right">
+                            <a href="{{ obj.get_absolute_url }}" class="hint" rel="tooltip" title="More&nbsp;Sightings" data-placement="left">
+                                <i class="icon-chevron-right icon-white"></i>
+                            </a>
+                        </div>
                     </h5>
                 </div>
             </div>

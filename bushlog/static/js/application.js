@@ -169,7 +169,7 @@ proximitySearch = function (position) {
     }
 
     // redirect to the sighting search
-    window.location = "/sighting/search/?latitude=" + position.coords.latitude + "&longitude=" + position.coords.longitude;
+    window.location = "/sighting/search/?latitude=" + position.coords.latitude.toFixed(6) + "&longitude=" + position.coords.longitude.toFixed(6);
 }
 
 getLocation = function () {
@@ -269,7 +269,7 @@ $(document).ready(function() {
     initSearchForm();
 
     // expand map
-    $('#expand-map').click(function () {
+    $('.icon-expand-map').click(function () {
         toggleMapSize($(".map"), $(this));
     });
 

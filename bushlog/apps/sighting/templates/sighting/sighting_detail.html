@@ -8,6 +8,14 @@
 
 {% block extra_js %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.lightbox.min.js"></script>
+    <script type="text/javascript">
+        setSpecies = function() {
+            $('#id_sighting_create-species').val('{{ object.species.id }}');
+        }
+        setReserve = function() {
+            $('#id_sighting_create-reserve').val('{{ object.reserve.id }}');
+        }
+    </script>
 {% endblock %}
 
 {% load humanize %}

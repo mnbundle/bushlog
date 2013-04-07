@@ -9,15 +9,15 @@
                     {% if keyword == 'user' %}
                         {{ object.user.username|capfirst }}'s Latest Sightings
                     {% elif keyword == 'reserve' %}
-                        Latest Sightings in the {{ object.name }}
+                        {% if mapdata != '[]' %}Latest Sightings{% else %}No Recent Sightings{% endif %} in the {{ object.name }}
                     {% elif keyword == 'species' %}
-                        Latest Sightings of {{ object.common_name }}
+                        {% if mapdata != '[]' %}Latest Sightings{% else %}No Recent Sightings{% endif %} of {{ object.common_name }}
                     {% elif keyword == 'pk' %}
                         Sighting of {{ object.species.common_name }} in {{ object.reserve.name }}
                     {% endif %}
                     <div class="pull-right">
                         <a href="#" class="hint" rel="tooltip" title="Expand&nbsp;Map" data-placement="left">
-                            <i id="expand-map" class="icon-chevron-down icon-white"></i>
+                            <i class="icon-chevron-down icon-white icon-expand-map"></i>
                         </a>
                     </div>
                 </h5>

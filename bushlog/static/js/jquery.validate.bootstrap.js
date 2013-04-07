@@ -1,7 +1,7 @@
 (function($) {
   $.validator.setDefaults({
     errorClass: 'error',
-    validClass: 'success',
+    validClass: 'success-hackedout',
     errorElement: 'span',
     highlight: function(element, errorClass, validClass) {
       var $obj;
@@ -35,7 +35,7 @@
     creditcard: 'is not a valid credit card number',
     equalTo: 'is not the same value again',
     accept: 'is not a value with a valid extension',
-    maxlength: jQuery.validator.format('needs to be more than {0} characters'),
+    maxlength: jQuery.validator.format('needs to be no more than {0} characters'),
     minlength: jQuery.validator.format('needs to be at least {0} characters'),
     rangelength: jQuery.validator.format('needs to be a value between {0} and {1} characters long'),
     range: jQuery.validator.format('needs to be a value between {0} and {1}'),
