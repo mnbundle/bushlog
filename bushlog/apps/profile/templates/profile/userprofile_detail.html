@@ -2,9 +2,9 @@
 
 {% block title %}{{ object.user.username|capfirst }}'s Bushlog{% endblock %}
 
-{% block content %}
+{% load sighting %}
 
-    {% load sighting %}
+{% block content %}
 
     {% if request.user == object.user %}
         {% sighting_map protected=0 limit=10 user=object.user %}
@@ -13,7 +13,7 @@
     {% endif %}
 
     <div class="row-fluid">
-        <div class="span8">
+        <div class="span8 hidden-phone">
             <div class="page-header">
                 <h2>
                     {{ object.user.username|capfirst }}'s Bushlog
@@ -28,9 +28,51 @@
             {% else %}
                 {% latest_sightings split=2 limit=10 user=object.user %}
             {% endif %}
+        </div>
+
+        <div class="span8 visible-phone">
+            <div class="media">
+                {% if object.user.profile.avatar %}
+                    {% if request.user == object.user %}
+                        <a href="#id_avatar_modal" data-toggle="modal" class="hint pull-left" rel="tooltip" title="Update&nbsp;Avatar" data-placement="top">
+                            <img class="media-object img-rounded" src="{% resize_image object.user.profile.avatar 50 50 %}" width="50" height="50" />
+                        </a>
+                    {% else %}
+                        <img class="media-object img-rounded pull-left" src="{% resize_image object.user.profile.avatar 50 50 %}" width="50" height="50" />
+                    {% endif %}
+                {% else %}
+                    {% if request.user == object.user %}
+                        <a href="#id_avatar_modal" data-toggle="modal" class="hint pull-left" rel="tooltip" title="Add&nbsp;Avatar" data-placement="top">
+                            <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.gender|default:"male" }}.png" width="50" height="50" />
+                        </a>
+                    {% else %}
+                        <img class="media-object img-rounded pull-left" src="{{ STATIC_URL }}img/layout/profile-{{ object.gender|default:"male" }}.png" width="50" height="50" />
+                    {% endif %}
+                {% endif %}
+                <div class="media-body">
+                    <h6>
+                        <a href="{% url 'profile:index' object.user.profile.slug %}">{{ object.user.username|capfirst }}'s Bushlog</a><br/>
+                        <i class="icon-map-marker"></i>
+                        <small>{{ object.country }}</small>
+                    </h6>
+                </div>
+            </div>
+
+            <div>
+                <small>{{ object.biography|default:"" }}</small>
+            </div>
+
+            <hr/>
+
+            {% if request.user == object.user %}
+                {% latest_sightings protected=0 split=2 limit=5 user=object.user %}
+            {% else %}
+                {% latest_sightings split=2 limit=5 user=object.user %}
+            {% endif %}
 
         </div>
-        <div class="span3 pull-right">
+
+        <div class="span3 pull-right hidden-phone">
             <div class="media">
                 {% if object.user.profile.avatar %}
                     {% if request.user == object.user %}

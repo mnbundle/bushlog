@@ -1,8 +1,8 @@
 .brand {margin:4px 0px}
 .brand img {margin-bottom:-5px}
-.navbar .btn-group, .search-form, .dropdown {margin-top:8px}
-.navbar .dropdown {margin-top:3px}
-.navbar .dropdown-menu {padding:10px;}
+.navbar .btn-group, .search-form {margin-top:8px}
+.navbar .search-form-phone {margin-top:3px}
+#id_dropdown-menu-search-phone {padding:10px 10px 0px 10px;}
 .carousel-caption h5,.carousel-caption p {color:#ffffff;margin-top:-5px;height:5px}
 .rounded-corners-bottom {border-radius:0px 0px 4px 4px}
 .rounded-corners-top {border-radius:4px 4px 0px 0px}
@@ -26,7 +26,9 @@ a:hover {color:#5BB75B}
 .lightest {opacity: 0.1}
 .invert {filter: invert(100%);-webkit-filter:invert(100%);-moz-filter:invert(100%);-o-filter:invert(100%);-ms-filter:invert(100%)}
 .spacer {height:10px}
-.media-body h6 {margin-top:5px}
+.media-body h6 {margin-top:0px}
+.media .pull-left {float:left}
+.media .pull-right {float:right}
 .icon-block-wht {display:block;background:white;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;padding:3px}
 .fix-left {margin-left:0px}
 .padding-left-sml {margin-left:2px!important}

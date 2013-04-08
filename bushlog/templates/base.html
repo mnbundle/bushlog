@@ -16,7 +16,7 @@
         <style type="text/css">
             body {
                 padding-top: 80px;
-                padding-bottom: 40px;
+                padding-bottom: 0px;
             }
         </style>
         <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.responsive.min.css" type="text/css"/>
@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.extend.css" type="text/css"/>
         <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.datepicker.css" type="text/css"/>
         <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.timepicker.css" type="text/css"/>
+        <link href="{{ STATIC_URL }}/img/icons/apple-touch-icon.png" rel="apple-touch-icon" />
         {% block extra_css %}{% endblock %}
 
         <script src="{{ STATIC_URL }}js/modernizr.min.js"></script>
@@ -34,9 +35,31 @@
                 <div class="container">
                     <a class="brand" href="{% url 'index' %}"><img src="{{ STATIC_URL }}img/layout/logo-drk.png" width="106" height="30" /></a>
                     {% if request.user.is_authenticated %}
+                        <div class="btn-group pull-right visible-phone">
+                            <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-search"></i>
+                                <span class="caret"></span>
+                            </a>
+                            <ul id="id_dropdown-menu-search-phone" class="dropdown-menu">
+                                <li>
+                                    <div class="input-append">
+                                        <input id="id_search-phone" class="span3" type="text" placeholder="Search...">
+                                        <button id="id_search-btn-phone" class="btn" type="button">
+                                            <i class="icon-search"></i>
+                                        </button>
+                                    </div>
+                                    <span id="id_search-wait-phone" class="hide"></span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="pull-right visible-phone">&nbsp;</div>
+
                         <div class="btn-group pull-right">
                             <a class="btn" href="{% url 'profile:index' request.user.username %}">
-                                <i class="icon-user"></i> {{ user.username }}
+                                <i class="icon-user"></i>
+                                <span class="hidden-phone">{{ user.username }}</span>
+                                <span class="visible-phone">{{ user.username|truncatechars:8 }}</span>
                             </a>
                             <a class="btn dropdown-toggle" data-toggle="dropdown">
                                 <span class="caret"></span>
@@ -49,7 +72,9 @@
                                 <li><a href="{% url 'profile:signout' %}"><i class="icon-remove-sign"></i>&nbsp; Sign Out</a></li>
                             </ul>
                         </div>
-                        <div class="pull-right hidden-phone">&nbsp; &nbsp;</div>
+
+                        <div class="pull-right">&nbsp;</div>
+
                         <div class="search-form pull-right hidden-phone">
                             <div class="input-append">
                                 <input id="id_search" class="span3" type="search" placeholder="Search...">
@@ -95,7 +120,6 @@
                 </script>
             {% endif %}
             {% block content %}{% endblock %}
-            <hr>
             <div class="row-fluid">
                 <div class="span12">
                     <ul class="nav nav-pills pull-right">

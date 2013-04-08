@@ -3,6 +3,7 @@
 {% block content %}
 
     {% load reserve %}
+    {% load sighting %}
 
     {% featured_reserve_maps limit=3 %}
 
@@ -37,7 +38,7 @@
                     </a>
                 </div>
             </div>
-            <div class="hero-unit span4 hero-unit-small hero-unit-index">
+            <div class="hero-unit span4 hero-unit-small hero-unit-index hidden-phone">
                 <h1>Sightings Near Me?</h1>
                 <p>&nbsp;</p>
                 <p>Search for the latest sightings in your immediate vacinity.</p>
@@ -48,7 +49,7 @@
                     </button>
                 </div>
             </div>
-            <div class="hero-unit span4 hero-unit-small hero-unit-index">
+            <div class="hero-unit span4 hero-unit-small hero-unit-index hidden-phone">
                 <h1>Log A Sighting?</h1>
                 <p>&nbsp;</p>
                 <p>Have you spotted any wildlife recently. Add a new sighting.</p>
@@ -62,13 +63,40 @@
         {% endif %}
     </div>
 
+
+    <div class="row-fluid visible-phone">
+        {% if not request.user.is_authenticated %}
+
+        {% else %}
+            <div class="hero-unit span3 hero-unit-small">
+                <h4>Search Near Me? <small>Search for the latest sightings in your immediate vacinity.</small></h4>
+                <button class="btn btn-success btn-header pull-right btn-search-proximity">
+                    <i class="icon-search icon-white"></i> &nbsp;Search
+                </button>
+                <p>&nbsp;</p>
+            </div>
+            <div class="hero-unit span3 hero-unit-small">
+                <h4>Log A Sighting? <small>Have you spotted any wildlife recently. Add a new sighting.</small></h4>
+                <a class="btn btn-success btn-header pull-right" href="#id_new_sighting" data-toggle="modal">
+                    <i class="icon-plus icon-white"></i> &nbsp;Add Sighting
+                </a>
+                <p>&nbsp;</p>
+            </div>
+        {% endif %}
+    </div>
+
     <div class="row-fluid hidden-phone">
         <div class="page-header">
             <h1>Latest Activity</h1>
         </div>
         <p>&nbsp;</p>
-
-        {% load sighting %}
         {% latest_sightings split=3 limit=12 %}
+    </div>
+
+    <div class="row-fluid visible-phone">
+        <div class="page-header">
+            <h4>Latest Activity</h4>
+        </div>
+        {% latest_sightings split=1 limit=5 %}
     </div>
 {% endblock %}

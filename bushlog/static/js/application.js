@@ -192,6 +192,12 @@ initSearchForm = function () {
     var search_btn = $("#id_search-btn");
     var search_wait = $('#id_search-wait');
 
+    if ($(document).width() <= 767) {
+        search_input = $('#id_search-phone');
+        search_btn = $("#id_search-btn-phone");
+        search_wait = $('#id_search-wait-phone');
+    }
+
     // initialize ajax auto suggestion
     search_input.typeahead({
         minLength: 3,
@@ -284,8 +290,15 @@ $(document).ready(function() {
     $('.btn-search-proximity').click(function () {
         getLocation();
     });
+
+    // remove the default action of the dropdown menu
+    $('#id_dropdown-menu-search-phone').click(function (event) {
+        event.stopPropagation();
+    });
 });
 
 $(window).resize(function() {
 
+    // initiate the serach form if the document size changes
+    initSearchForm();
 });

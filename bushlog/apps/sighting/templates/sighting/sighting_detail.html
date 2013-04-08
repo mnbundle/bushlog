@@ -79,41 +79,13 @@
             <hr/>
             <div class="span12">
                 {% if object.images.all.0 %}
-                    <div class="hint span4">
-                        <a href="#id_sighting_lightbox_1" data-toggle="lightbox" rel="tooltip" title="Enlarge&nbsp;Image" data-placement="top">
-                            <img class="img-rounded" src="{% resize_image object.images.all.0.image 60 60 %}" width="60" height="60" />
+                    <div class="span12">
+                        <a href="#id_sighting_lightbox_1" data-toggle="lightbox">
+                            <img class="img-rounded" src="{% resize_image object.images.all.0.image 270 200 %}" width="270" height="200" />
                         </a>
                     </div>
-                {% else %}
-                    <div class="span4">
-                        <img class="img-rounded lightest" src="{% resize_image object.species.default_image 60 60 %}" width="60" height="60" />
-                    </div>
+                    <p>&nbsp;</p>
                 {% endif %}
-
-                {% if object.images.all.1 %}
-                    <div class="hint span4">
-                        <a href="#id_sighting_lightbox_2" data-toggle="lightbox" rel="tooltip" title="Enlarge&nbsp;Image" data-placement="top">
-                            <img class="img-rounded" src="{% resize_image object.images.all.1.image 60 60 %}" width="60" height="60" />
-                        </a>
-                    </div>
-                {% else %}
-                    <div class="span4">
-                        <img class="img-rounded lightest" src="{% resize_image object.species.default_image 60 60 %}" width="60" height="60" />
-                    </div>
-                {% endif %}
-
-                {% if object.images.all.2 %}
-                    <div class="hint span4">
-                        <a href="#id_sighting_lightbox_3" data-toggle="lightbox" rel="tooltip" title="Enlarge&nbsp;Image" data-placement="top">
-                            <img class="img-rounded" src="{% resize_image object.images.all.2.image 60 60 %}" width="60" height="60" />
-                        </a>
-                    </div>
-                {% else %}
-                    <div class="span4">
-                        <img class="img-rounded lightest" src="{% resize_image object.species.default_image 60 60 %}" width="60" height="60" />
-                    </div>
-                {% endif %}
-                <div class="span4"></div>
             </div>
             <div>
                 <h4>

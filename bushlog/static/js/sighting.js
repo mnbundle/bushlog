@@ -51,14 +51,14 @@ setCurrentLocation = function () {
 
             $.get('/reserve/search-point/', {latitude: latitude, longitude: longitude}, function(data) {
                 $('#id_sighting_create-reserve').val(data.id);
-                $(".info-detect-location").text("GPS Coordinates Detected. Click Next to continue.");
+                $(".info-detect-location").text("GPS Coordinates detected. Click next to continue.");
                 $(".btn-detect-location").hide();
                 $(".help-detect-location").hide();
             });
         });
     }
     else {
-        $(".info-detect-location").text("GPS Coordinates Not Detected. Click Next to continue.");
+        $(".info-detect-location").text("GPS Coordinates not detected. Click next to continue.");
         $(".btn-detect-location").hide();
         $(".help-detect-location").show();
     }
@@ -294,7 +294,7 @@ initNewSightingForm = function () {
                 latitude_ele.val(data.gps_data.latitude);
                 longitude_ele.val(data.gps_data.longitude);
 
-                $(".info-detect-location").text("GPS Coordinates Detected. Click Next to continue.");
+                $(".info-detect-location").text("GPS Coordinates detected. Click next to continue.");
                 $(".btn-detect-location").hide();
                 $(".help-detect-location").hide();
 

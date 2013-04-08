@@ -4,6 +4,11 @@
     <div class="carousel-inner">
         <div class="active item">
             <div class="map well rounded-corners-top" data-map='{{ mapdata }}' data-bounds='{{ bounds }}'></div>
+
+            <a class="btn btn-success btn-header span12 pull-right visible-phone" href="#id_new_sighting" data-toggle="modal">
+                <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
+            </a>
+
             <div class="carousel-caption rounded-corners-bottom hidden-phone">
                 <h5><i class="icon-map-marker icon-white"></i>&nbsp;
                     {% if keyword == 'user' %}

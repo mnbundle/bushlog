@@ -15,9 +15,11 @@
 {% load wildlife %}
 
 {% block content %}
-    {% sighting_map limit=5 species=object %}
+
+    {% sighting_map limit=10 species=object %}
+
     <div class="row-fluid">
-        <div class="span8">
+        <div class="span8 hidden-phone">
             <div class="page-header">
                 <h2>
                     {{ object.common_name }}
@@ -27,9 +29,109 @@
                     </a>
                 </h2>
             </div>
+
             {% latest_sightings split=2 limit=20 species=object %}
+
         </div>
-        <div class="span3 pull-right">
+
+        <div class="span8 visible-phone">
+            <h4>{{ object.common_name }}<br/><small><em>{{ object.scientific_name }}</em></small></h4>
+            
+            <p>
+                <small>{{ object.general_info|default:"" }}</small>
+                <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.common_name }}", target="blank">Wikipedia</a></small></h6>
+            </p>
+
+            <div class="accordion" id="id_accordion-species_info">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#id_accordion-species_info" href="#id_accordion-species_info_body">
+                            Species Info
+                        </a>
+                    </div>
+                    <div id="id_accordion-species_info_body" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <small>
+                                <p><strong>Classification:</strong> {{ object.classification|capfirst }}</p>
+                                {% if object.male_info.height or object.female_info.height %}
+                                    <p>
+                                        <strong>Height:</strong>
+                                        {% if object.male_info.height %}{{ object.male_info.height|humanize_measurement:"m" }} (M){% endif %}
+                                        {% if object.female_info.height %}{{ object.female_info.height|humanize_measurement:"m" }} (F){% endif %}
+                                    </p>
+                                {% endif %}
+                                {% if object.male_info.length or object.female_info.length %}
+                                    <p>
+                                        <strong>Length:</strong>
+                                        {% if object.male_info.length %}{{ object.male_info.length|humanize_measurement:"m" }} (M){% endif %}
+                                        {% if object.female_info.length %}{{ object.female_info.length|humanize_measurement:"m" }} (F){% endif %}
+                                    </p>
+                                {% endif %}
+                                {% if object.male_info.mass or object.female_info.mass %}
+                                    <p>
+                                        <strong>Mass:</strong>
+                                        {% if object.male_info.mass %}{{ object.male_info.mass|intcomma }}kg (M){% endif %}
+                                        {% if object.female_info.mass %}{{ object.female_info.mass|intcomma }}kg (F){% endif %}
+                                    </p>
+                                {% endif %}
+                                {% if object.male_info.horn_length or object.female_info.horn_length %}
+                                    <p>
+                                        <strong>Horn Length:</strong>
+                                        {% if object.male_info.horn_length %}{{ object.male_info.horn_length }}mm (M){% endif %}
+                                        {% if object.female_info.horn_length %}{{ object.female_info.horn_length }}mm (F){% endif %}
+                                    </p>
+                                {% endif %}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#id_accordion-species_info" href="#id_accordion-similiar_species_body">
+                            Similiar Species
+                        </a>
+                    </div>
+                    <div id="id_accordion-similiar_species_body" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            {% for species in object.similiar_species.all %}
+                                <small>
+                                    <div>
+                                        <img src="{% resize_image species.default_image 30 30 %}" class="img-rounded invert" width="30" height="30" /> &nbsp;
+                                        <a href="{{ species.get_absolute_url }}">{{ species.common_name }}</a>
+                                    </div>
+                                </small>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#id_accordion-species_info" href="#id_accordion-occurs_in_body">
+                            Occurs In
+                        </a>
+                    </div>
+                    <div id="id_accordion-occurs_in_body" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            {% for reserve in object.reserves.all %}
+                                <small>
+                                    <div>
+                                        <i class="icon-leaf">&nbsp;</i> &nbsp;
+                                        <a href="{{ reserve.get_absolute_url }}">{{ reserve.name }}</a>
+                                    </div>
+                                </small>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
+
+            {% latest_sightings split=2 limit=5 species=object %}
+
+        </div>
+
+        <div class="span3 pull-right hidden-phone">
             <div>
                 <div class="page-header">
                     <h4>Species Info</h4>
