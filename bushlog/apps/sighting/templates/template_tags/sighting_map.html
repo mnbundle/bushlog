@@ -4,7 +4,7 @@
     <div class="carousel-inner">
         <div class="active item">
             <div class="map well rounded-corners-top" data-map='{{ mapdata }}' data-bounds='{{ bounds }}'></div>
-            <div class="carousel-caption rounded-corners-bottom">
+            <div class="carousel-caption rounded-corners-bottom hidden-phone">
                 <h5><i class="icon-map-marker icon-white"></i>&nbsp;
                     {% if keyword == 'user' %}
                         {{ object.user.username|capfirst }}'s Latest Sightings
@@ -14,6 +14,8 @@
                         {% if mapdata != '[]' %}Latest Sightings{% else %}No Recent Sightings{% endif %} of {{ object.common_name }}
                     {% elif keyword == 'pk' %}
                         Sighting of {{ object.species.common_name }} in {{ object.reserve.name }}
+                    {% elif keyword == 'coordinates' %}
+                        Sightings Near You
                     {% endif %}
                     <div class="pull-right">
                         <a href="#" class="hint" rel="tooltip" title="Expand&nbsp;Map" data-placement="left">

@@ -1,7 +1,8 @@
 .brand {margin:4px 0px}
 .brand img {margin-bottom:-5px}
-.navbar .btn-group {margin-top:8px}
-.navbar .search-form {margin-top:8px}
+.navbar .btn-group, .search-form, .dropdown {margin-top:8px}
+.navbar .dropdown {margin-top:3px}
+.navbar .dropdown-menu {padding:10px;}
 .carousel-caption h5,.carousel-caption p {color:#ffffff;margin-top:-5px;height:5px}
 .rounded-corners-bottom {border-radius:0px 0px 4px 4px}
 .rounded-corners-top {border-radius:4px 4px 0px 0px}
@@ -36,5 +37,6 @@ a:hover {color:#5BB75B}
 .align-center {text-align:center}
 .align-right {text-align:right}
 .sighting-map {height:400px!important}
-.dropdown-menu .active a, .dropdown-menu .active a:hover {background:#EEE}
+.dropdown-menu a:hover {background:#5bb75b!important}
+.dropdown-menu .active a {background:#5bb75b!important}
 .wait {width:16px;height:16px;z-index:1032;background-image:url('/static/img/icons/loader.gif');margin-top:-28px;margin-left:248px;display:block;position:absolute}

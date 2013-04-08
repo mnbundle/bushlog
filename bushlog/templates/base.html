@@ -9,7 +9,7 @@
 
         <title>{% block title %}Bushlog | Wildlife Sightings in Southern Africa{% endblock %}</title>
         <meta name="description" content="Wildlife Sightings in Southern Africa.">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <meta name="author" content="Bushlog">
 
         <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" type="text/css"/>
@@ -49,8 +49,8 @@
                                 <li><a href="{% url 'profile:signout' %}"><i class="icon-remove-sign"></i>&nbsp; Sign Out</a></li>
                             </ul>
                         </div>
-                        <div class="pull-right">&nbsp; </div>
-                        <div class="search-form pull-right">
+                        <div class="pull-right hidden-phone">&nbsp; &nbsp;</div>
+                        <div class="search-form pull-right hidden-phone">
                             <div class="input-append">
                                 <input id="id_search" class="span3" type="search" placeholder="Search...">
                                 <button id="id_search-btn" class="btn" type="button">

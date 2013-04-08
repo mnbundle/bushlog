@@ -168,8 +168,11 @@ proximitySearch = function (position) {
         return;
     }
 
+    var latitude = position.coords.latitude.toFixed(6);
+    var longitude = position.coords.longitude.toFixed(6);
+
     // redirect to the sighting search
-    window.location = "/sighting/search/?latitude=" + position.coords.latitude.toFixed(6) + "&longitude=" + position.coords.longitude.toFixed(6);
+    window.location = "/sighting/search/?latitude=" + latitude + "&longitude=" + longitude;
 }
 
 getLocation = function () {
@@ -185,8 +188,12 @@ initSearchForm = function () {
     var typeahead_obj;
     var time_out;
 
+    var search_input = $('#id_search');
+    var search_btn = $("#id_search-btn");
+    var search_wait = $('#id_search-wait');
+
     // initialize ajax auto suggestion
-    $('#id_search').typeahead({
+    search_input.typeahead({
         minLength: 3,
         source: function (query, process) {
 
@@ -201,10 +208,10 @@ initSearchForm = function () {
             }
 
             time_out = setTimeout(function () {
-                if (!$('#id_search').is('[readonly]')){
+                if (!search_input.is('[readonly]')){
 
-                    $('#id_search').attr('readonly', true);
-                    $('#id_search-wait').show().addClass('wait');
+                    search_input.attr('readonly', true);
+                    search_wait.show().addClass('wait');
 
                     // compile a list of related reserves
                     $.get("/api/reserves/", {name: query}, function (data) {
@@ -220,8 +227,8 @@ initSearchForm = function () {
                                 urls[obj.common_name] = obj.site_url;
                             });
 
-                            $('#id_search').removeAttr('readonly');
-                            $('#id_search-wait').hide().removeClass('wait');
+                            search_input.removeAttr('readonly');
+                            search_wait.hide().removeClass('wait');
 
                             typeahead_obj = process(search_list);
                             $.each(typeahead_obj.$menu.children(), function (index, obj) {
@@ -238,13 +245,13 @@ initSearchForm = function () {
         updater: function(value) {
             $.each(typeahead_obj.$menu.children(), function (index, obj) {
                 if ($(obj).data('value') == value) {
-                    $('#id_search').focus();
+                    search_input.focus();
 
-                    $("#id_search-btn").click(function () {
+                    search_btn.click(function () {
                         window.location = $(obj).data('url');
                     });
 
-                    $('#id_search').keypress(function(event){
+                    search_input.keypress(function(event){
                         var keycode = event.keyCode ? event.keyCode : event.which;
                         if (keycode == '13') {
                             window.location = $(obj).data('url');
@@ -277,4 +284,8 @@ $(document).ready(function() {
     $('.btn-search-proximity').click(function () {
         getLocation();
     });
+});
+
+$(window).resize(function() {
+
 });

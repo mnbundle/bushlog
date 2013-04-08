@@ -4,7 +4,7 @@
         <label class="control-label" for="id_update-username">Username</label>
         <div class="controls">{{ form.username }}</div>
     </div>
-    <div class="control-group">
+    <div class="control-group hidden-phone">
         <label class="control-label" for="id_update-full_name">Full name</label>
         <div class="controls">{{ form.first_name }} &nbsp; &nbsp; {{ form.last_name }}</div>
     </div>
@@ -12,15 +12,15 @@
         <label class="control-label" for="id_update-email">Email address</label>
         <div class="controls">{{ form.email }}</div>
     </div>
-    <div class="control-group">
+    <div class="control-group hidden-phone">
         <label class="control-label" for="id_update-country">Country</label>
         <div class="controls">{{ form.country }}</div>
     </div>
-    <div class="control-group">
+    <div class="control-group hidden-phone">
         <label class="control-label" for="id_update-gender">Gender</label>
         <div class="controls">{{ form.gender }}</div>
     </div>
-    <div class="control-group">
+    <div class="control-group hidden-phone">
         <label class="control-label" for="id_update-birth_date">Date of Birth</label>
         <div class="controls">
             <div class="input-append date" id="id_datepicker" data-date="01/01/1970" data-date-format="dd/mm/yyyy" data-date-viewmode="years">
