@@ -10,11 +10,14 @@
     </script>
 {% endblock %}
 
+{% load sighting %}
+
 {% block content %}
-    {% load sighting %}
-    {% sighting_map limit=5 reserve=object %}
+
+    {% sighting_map limit=10 reserve=object %}
+
     <div class="row-fluid">
-        <div class="span8">
+        <div class="span8 hidden-phone">
             <div class="page-header">
                 <h2>
                     {{ object.name }}
@@ -23,9 +26,56 @@
                     </a>
                 </h2>
             </div>
+
             {% latest_sightings split=2 limit=20 reserve=object %}
+
         </div>
-        <div class="span3 pull-right">
+
+        <div class="span8 visible-phone">
+            <h4>
+                {{ object.name }}
+            </h4>
+
+            <h4>
+                <small>{{ object.country.all|join:" | " }}</small><br/>
+                <small>{{ object.website|urlize }}</small>
+            </h4>
+
+            <hr/>
+
+            <p>
+                <small>{{ object.description|default:"" }}</small>
+                <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.name }}", target="blank">Wikipedia</a></small></h6>
+            </p>
+
+            <div class="accordion" id="id_accordion-species_info">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#id_accordion-species_info" href="#id_accordion-species_info_body">
+                            Species List
+                            <i class="pull-right icon-chevron-down"></i>
+                        </a>
+                    </div>
+                    <div id="id_accordion-species_info_body" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            {% for species in object.species.all %}
+                                <small><div>
+                                    <img src="{% resize_image species.default_image 30 30 %}" class="img-rounded invert" width="30" height="30" /> &nbsp;
+                                    <a href="{{ species.get_absolute_url }}">{{ species.common_name }}</a>
+                                </div></small>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
+
+            {% latest_sightings split=2 limit=5 reserve=object %}
+
+        </div>
+
+        <div class="span3 pull-right hidden-phone">
             <div>
                 <h4>
                     <strong>{{ object.country.all|join:" | " }}</strong><br/>

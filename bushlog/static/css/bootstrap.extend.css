@@ -42,3 +42,4 @@ a:hover {color:#5BB75B}
 .dropdown-menu a:hover {background:#5bb75b!important}
 .dropdown-menu .active a {background:#5bb75b!important}
 .wait {width:16px;height:16px;z-index:1032;background-image:url('/static/img/icons/loader.gif');margin-top:-28px;margin-left:248px;display:block;position:absolute}
+.accordion-heading a {color:#333;text-decoration:none}

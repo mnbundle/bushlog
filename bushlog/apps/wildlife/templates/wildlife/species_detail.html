@@ -36,7 +36,7 @@
 
         <div class="span8 visible-phone">
             <h4>{{ object.common_name }}<br/><small><em>{{ object.scientific_name }}</em></small></h4>
-            
+
             <p>
                 <small>{{ object.general_info|default:"" }}</small>
                 <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.common_name }}", target="blank">Wikipedia</a></small></h6>
@@ -47,6 +47,7 @@
                     <div class="accordion-heading">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#id_accordion-species_info" href="#id_accordion-species_info_body">
                             Species Info
+                            <i class="pull-right icon-chevron-down"></i>
                         </a>
                     </div>
                     <div id="id_accordion-species_info_body" class="accordion-body collapse">
@@ -89,6 +90,7 @@
                     <div class="accordion-heading">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#id_accordion-species_info" href="#id_accordion-similiar_species_body">
                             Similiar Species
+                            <i class="pull-right icon-chevron-down"></i>
                         </a>
                     </div>
                     <div id="id_accordion-similiar_species_body" class="accordion-body collapse">
@@ -108,6 +110,7 @@
                     <div class="accordion-heading">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#id_accordion-species_info" href="#id_accordion-occurs_in_body">
                             Occurs In
+                            <i class="pull-right icon-chevron-down"></i>
                         </a>
                     </div>
                     <div id="id_accordion-occurs_in_body" class="accordion-body collapse">
