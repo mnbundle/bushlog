@@ -48,15 +48,15 @@
                 <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.name }}", target="blank">Wikipedia</a></small></h6>
             </p>
 
-            <div class="accordion" id="id_accordion-species_info">
+            <div class="accordion" id="id_accordion-species_list">
                 <div class="accordion-group">
                     <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#id_accordion-species_info" href="#id_accordion-species_info_body">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#id_accordion-species_list" href="#id_accordion-species_list_body">
                             Species List
                             <i class="pull-right icon-chevron-down"></i>
                         </a>
                     </div>
-                    <div id="id_accordion-species_info_body" class="accordion-body collapse">
+                    <div id="id_accordion-species_list_body" class="accordion-body collapse">
                         <div class="accordion-inner">
                             {% for species in object.species.all %}
                                 <small><div>

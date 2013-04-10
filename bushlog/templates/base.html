@@ -65,9 +65,20 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#id_update_modal" data-toggle="modal"><i class="icon-pencil"></i>&nbsp; Update Profile</a></li>
-                                <li><a href="#id_avatar_modal" data-toggle="modal"><i class="icon-camera"></i>&nbsp; Update Avatar</a></li>
-                                <!--<li><a href="#privacy"><i class="icon-lock"></i>&nbsp; Privacy Settings</a></li>-->
+                                <li class="hidden-phone">
+                                    <a href="#id_update_modal" data-toggle="modal"><i class="icon-pencil"></i>&nbsp; Update Profile</a>
+                                </li>
+                                <li class="hidden-phone">
+                                    <a href="#id_avatar_modal" data-toggle="modal"><i class="icon-camera"></i>&nbsp; Update Avatar</a>
+                                </li>
+                                <!--<li class="hidden-phone"><a href="#privacy"><i class="icon-lock"></i>&nbsp; Privacy Settings</a></li>-->
+                                <li class="visible-phone">
+                                    <a href="{% url 'profile:forms' 'update' %}" data-toggle="modal"><i class="icon-pencil"></i>&nbsp; Update Profile</a>
+                                </li>
+                                <li class="visible-phone">
+                                    <a href="{% url 'profile:forms' 'avatar' %}" data-toggle="modal"><i class="icon-camera"></i>&nbsp; Update Avatar</a>
+                                </li>
+                                <!--<li class="hidden-phone"><a href="#privacy"><i class="icon-lock"></i>&nbsp; Privacy Settings</a></li>-->
                                 <li class="divider"></li>
                                 <li><a href="{% url 'profile:signout' %}"><i class="icon-remove-sign"></i>&nbsp; Sign Out</a></li>
                             </ul>
@@ -85,7 +96,7 @@
                             <span id="id_search-wait" class="hide"></span>
                         </div>
                     {% else %}
-                        <div class="btn-group pull-right">
+                        <div class="btn-group pull-right hidden-phone">
                             <a class="btn btn-success" href="#id_signup_modal" data-toggle="modal">
                                 <i class="icon-user icon-white"></i> Sign Up
                             </a>
@@ -95,12 +106,39 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{% url 'index' %}"><i class="icon-lock"></i> Sign In</a></li>
                                 <li class="divider"></li>
-                                <li><a href="{% url 'socialauth_begin' 'google-oauth2' %}">
-                                    <i class="icon-google"></i> Sign In With Google
-                                </a></li>
-                                <li><a href="{% url 'socialauth_begin' 'facebook' %}">
-                                    <i class="icon-facebook"></i> Sign In With Facebook
-                                </a></li>
+                                <li>
+                                    <a href="{% url 'socialauth_begin' 'google-oauth2' %}">
+                                        <i class="icon-google"></i> Sign In With Google
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'socialauth_begin' 'facebook' %}">
+                                        <i class="icon-facebook"></i> Sign In With Facebook
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="btn-group pull-right visible-phone">
+                            <a class="btn btn-success" href="{% url 'profile:forms' 'signup' %}">
+                                <i class="icon-user icon-white"></i> Sign Up
+                            </a>
+                            <a class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'index' %}"><i class="icon-lock"></i> Sign In</a></li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="{% url 'socialauth_begin' 'google-oauth2' %}">
+                                        <i class="icon-google"></i> Sign In With Google
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'socialauth_begin' 'facebook' %}">
+                                        <i class="icon-facebook"></i> Sign In With Facebook
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     {% endif %}
@@ -138,10 +176,12 @@
             </div>
         </div>
 
-        {% include 'profile/modals.html' %}
-        {% if request.user.is_authenticated %}
-            {% include 'sighting/modals.html' %}
-        {% endif %}
+        {% block modals %}
+            {% include 'profile/modals.html' %}
+            {% if request.user.is_authenticated %}
+                {% include 'sighting/modals.html' %}
+            {% endif %}
+        {% endblock %}
 
         <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false"></script>
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

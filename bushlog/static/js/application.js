@@ -1,7 +1,7 @@
 initRegion = function () {
     var ele = $('.item.active .map');
-    var markers = ele.data('map');
-    var bounds = ele.data('bounds');
+    var markers = ele.data('map') ? ele.data('map') : [];
+    var bounds = ele.data('bounds') ? ele.data('bounds') : {};
 
     // setup for a single marker
     var autofit = 'autofit';
@@ -168,8 +168,8 @@ proximitySearch = function (position) {
         return;
     }
 
-    var latitude = position.coords.latitude.toFixed(6);
-    var longitude = position.coords.longitude.toFixed(6);
+    var latitude = -28.067133 //position.coords.latitude.toFixed(6);
+    var longitude = 32.104797 //position.coords.longitude.toFixed(6);
 
     // redirect to the sighting search
     window.location = "/sighting/search/?latitude=" + latitude + "&longitude=" + longitude;

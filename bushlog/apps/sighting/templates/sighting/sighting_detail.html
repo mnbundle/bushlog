@@ -23,9 +23,11 @@
 {% load wildlife %}
 
 {% block content %}
+
     {% sighting_map limit=1 protected=0 pk=object.pk %}
+
     <div class="row-fluid">
-        <div class="span8">
+        <div class="span8 hidden-phone">
             <div class="page-header">
                 <h2>
                     {{ object.species.common_name }}
@@ -55,9 +57,12 @@
             <div class="page-header">
                 <h3>Similiar Sightings</h3>
             </div>
+
             {% latest_sightings split=2 limit=10 exclude_pk=object.pk species=object.species reserve=object.reserve %}
+
         </div>
-        <div class="span3 pull-right">
+
+        <div class="span8 visible-phone">
             <div class="media">
                 {% if object.user.profile.avatar %}
                     <a class="pull-left" href="{% url 'profile:index' object.user.profile.slug %}">
@@ -76,17 +81,79 @@
                     </h6>
                 </div>
             </div>
+
             <hr/>
-            <div class="span12">
-                {% if object.images.all.0 %}
+
+            <h4>
+                <a href="{{ object.species.get_absolute_url }}">{{ object.species.common_name }}</a><br/>
+                <small><em><a href="{{ object.reserve.get_absolute_url }}">{{ object.reserve.name }}</a></em></small>
+            </h2>
+            <p>
+                <small>
+                    {{ object.user.username|capfirst }} added this sighting, {{ object.date_added.date|fuzzy_date }}, of
+                    {% if object.estimated_number == 1 %} a {% endif %}
+                    {{ object.species.common_name }}
+                    in the {{ object.reserve.name }}, which
+                    {% if object.user.profile.gender == 'Male' %} he {% elif object.user.profile.gender == 'Female' %} she {% else %} was {% endif %}
+                    spotted on {{ object.date_of_sighting.date }} at {{ object.date_of_sighting.time }}
+                </small>
+            </p>
+            {% if object.description %}
+                <blockquote>
+                    <p>{{ object.description }}</p>
+                    <small>{{ object.user.username }}</small>
+                </blockquote>
+            {% endif %}
+
+            {% if object.images.all.0 %}
+                <div class="span12">
+                    <img class="img-rounded" src="{% resize_image object.images.all.0.image 270 200 %}" width="270" height="200" />
+                </div>
+                <p>&nbsp;</p>
+            {% endif %}
+
+            <p>&nbsp;</p>
+            <div class="page-header">
+                <h4>Similiar Sightings</h4>
+            </div>
+
+            {% latest_sightings split=2 limit=5 exclude_pk=object.pk species=object.species reserve=object.reserve %}
+
+        </div>
+
+        <div class="span3 pull-right hidden-phone">
+            <div class="media">
+                {% if object.user.profile.avatar %}
+                    <a class="pull-left" href="{% url 'profile:index' object.user.profile.slug %}">
+                        <img class="media-object img-rounded" src="{% resize_image object.user.profile.avatar 50 50 %}" width="50" height="50" />
+                    </a>
+                {% else %}
+                    <a class="pull-left" href="{% url 'profile:index' object.user.username %}">
+                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.gender|default:"male" }}.png" width="50" height="50" />
+                    </a>
+                {% endif %}
+                <div class="media-body">
+                    <h6>
+                        <a href="{% url 'profile:index' object.user.profile.slug %}">{{ object.user.username }}</a><br/>
+                        <i class="icon-time"></i>
+                        <small>{{ object.date_of_sighting.date|fuzzy_date }}</small>
+                    </h6>
+                </div>
+            </div>
+
+            <hr/>
+
+            {% if object.images.all.0 %}
+                <div class="span12">
                     <div class="span12">
                         <a href="#id_sighting_lightbox_1" data-toggle="lightbox">
                             <img class="img-rounded" src="{% resize_image object.images.all.0.image 270 200 %}" width="270" height="200" />
                         </a>
                     </div>
-                    <p>&nbsp;</p>
-                {% endif %}
-            </div>
+                </div>
+                <p>&nbsp;</p>
+            {% endif %}
+
             <div>
                 <h4>
                     <img src="{% resize_image object.species.default_image 50 50 %}" class="invert" width="50" height="50" />

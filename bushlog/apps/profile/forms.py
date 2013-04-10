@@ -18,7 +18,8 @@ class SignInForm(forms.Form):
 
 
 class SignUpModelForm(forms.ModelForm):
-    username = forms.CharField(max_length=15, widget=forms.TextInput(attrs={
+    username = forms.CharField(max_length=15, widget=forms.TextInput(
+        attrs={
             'class': 'span3 required',
             'minlength': 4,
             'remote': reverse_lazy('profile:validate', args=['unique'])

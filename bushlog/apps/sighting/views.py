@@ -101,7 +101,20 @@ class SightingImageCreateView(generic.CreateView):
     model = SightingImage
 
 
+class FormsView(generic.TemplateView):
+    template_name = 'sighting/forms.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(FormsView, self).get_context_data(**kwargs)
+        context.update({
+            'type': kwargs.get('type')
+        })
+
+        return context
+
+
 index = IndexDetailView.as_view()
 search = SearchListView.as_view()
 create = SightingCreateView.as_view()
 create_image = SightingImageCreateView.as_view()
+forms = FormsView.as_view()

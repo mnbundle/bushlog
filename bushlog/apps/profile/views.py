@@ -358,6 +358,18 @@ class ValidateView(generic.View):
         return False if type == 'unique' else True
 
 
+class FormsView(generic.TemplateView):
+    template_name = 'profile/forms.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(FormsView, self).get_context_data(**kwargs)
+        context.update({
+            'type': kwargs.get('type')
+        })
+
+        return context
+
+
 class AssociateRedirectView(generic.RedirectView):
     permanent = False
 
@@ -384,5 +396,6 @@ reset_password = ResetPasswordFormView.as_view()
 resend_activation = ResendActivationFormView.as_view()
 signout = SignOutRedirectView.as_view()
 validate = ValidateView.as_view()
+forms = FormsView.as_view()
 associate = AssociateRedirectView.as_view()
 inactive = InactiveRedirectView.as_view()

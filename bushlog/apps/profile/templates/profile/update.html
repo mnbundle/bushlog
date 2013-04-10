@@ -12,11 +12,11 @@
         <label class="control-label" for="id_update-email">Email address</label>
         <div class="controls">{{ form.email }}</div>
     </div>
-    <div class="control-group hidden-phone">
+    <div class="control-group">
         <label class="control-label" for="id_update-country">Country</label>
         <div class="controls">{{ form.country }}</div>
     </div>
-    <div class="control-group hidden-phone">
+    <div class="control-group">
         <label class="control-label" for="id_update-gender">Gender</label>
         <div class="controls">{{ form.gender }}</div>
     </div>
@@ -25,7 +25,7 @@
         <div class="controls">
             <div class="input-append date" id="id_datepicker" data-date="01/01/1970" data-date-format="dd/mm/yyyy" data-date-viewmode="years">
                 {{ form.birth_date }}
-                <span class="btn add-on"><i class="icon-calendar"></i></span>
+                <span class="btn add-on hidden-phone"><i class="icon-calendar"></i></span>
             </div>
         </div>
     </div>

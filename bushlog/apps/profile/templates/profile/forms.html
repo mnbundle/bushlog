@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <!-- Sign up form -->
+    {% if type == 'signup' %}
+        <div class="modal-header">
+            <h3>Sign Up</h3>
+        </div>
+        <div>
+            <p>&nbsp;</p>
+            <div class="signup-container"></div>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-back">Close</a>
+            <a class="btn btn-success btn-signup-submit">Sign Up</a>
+        </div>
+    {% endif %}
+
+    {% if request.user.is_authenticated %}
+        <!-- Edit profile modal -->
+        {% if type == 'update' %}
+            <div class="modal-header">
+                <h3>Update Your Profile</h3>
+            </div>
+            <div>
+                <p>&nbsp;</p>
+                <div class="update-container"></div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-back">Close</a>
+                <a class="btn btn-success btn-update-submit">Update</a>
+            </div>
+        {% endif %}
+    {% endif %}
+
+    <!-- Forgot password modal -->
+    {% if type == 'resetpassword' %}
+        <div class="modal-header">
+            <h3>Reset Password</h3>
+        </div>
+        <div>
+            <p>&nbsp;</p>
+            <div class="resetpassword-container"></div>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-back">Close</a>
+            <a class="btn btn-success btn-resetpassword-submit">Reset</a>
+        </div>
+    {% endif %}
+
+    <!-- Resend activation modal -->
+    {% if type == 'resendactivation' %}
+        <div class="modal-header">
+            <h3>Resend Profile Activation Email</h3>
+        </div>
+        <div>
+            <p>&nbsp;</p>
+            <div class="resendactivation-container"></div>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-back">Close</a>
+            <a class="btn btn-success btn-resendactivation-submit">Resend</a>
+        </div>
+    {% endif %}
+
+    <!-- Avatar modal -->
+    {% if type == 'avatar' %}
+        <div class="modal-header">
+            <h3>Update Your Avatar</h3>
+        </div>
+        <div>
+            <p>&nbsp;</p>
+            <div class="avatar-container"></div>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-back">Close</a>
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block modals %}{% endblock %}

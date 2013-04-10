@@ -11,7 +11,7 @@
 
     <div class="row-fluid">
         <div class="span7">
-            <div>
+            <div class="hidden-phone">
                 <div class="page-header">
                     <h1>About Bushlog</h1>
                 </div>
@@ -20,9 +20,18 @@
                 with other like-minded people.</p>
             </div>
 
+            <div class="visible-phone">
+                <div class="page-header">
+                    <h4>About Bushlog</h4>
+                </div>
+                <p>Bushlog has been a few years in the making, a lot of that time spent planning, and is
+                essentially an interactive application which allows registered users to share their wildlife sightings
+                with other like-minded people.</p>
+            </div>
+
             <p>&nbsp;</p>
 
-            <div>
+            <div class="hidden-phone">
                 <div class="span6">
                     <div class="hero-unit hero-unit-small align-center">
                         <h1>{% user_count %}</h1>
@@ -37,7 +46,7 @@
                 </div>
             </div>
 
-            <div>
+            <div class="hidden-phone">
                 <div class="span4">
                     <div class="hero-unit hero-unit-small align-center">
                         <h1>{% reserve_count %}</h1>
@@ -58,7 +67,7 @@
                 </div>
             </div>
 
-            <!--<div>
+            <!--<div class="hidden-phone">
                 <div class="span6">
                     <div class="hero-unit hero-unit-small align-center">
                         <h1>23,890</h1>
@@ -74,7 +83,7 @@
             </div>-->
         </div>
 
-        <div class="span4 pull-right">
+        <div class="span4 pull-right hidden-phone">
             <div class="hero-unit hero-unit-small">
                 <h2>What's New?</h2>
                 <p>&nbsp;</p>
@@ -96,6 +105,23 @@
                 conservation efforts. We believe in a hands on approach to funding such causes, and therefore prefer to
                 sponsor assets, man-hours and the likes rather than making direct cash donations.</p>
             </div>
+        </div>
+
+         <div class="span4 pull-right visible-phone">
+            <div class="hero-unit hero-unit-small">
+                <h2>What's New?</h2>
+                <p>Bushlog has finally been launched and although it's still in a beta phase, development has been
+                stepped up and we will be releasing new features fortnightly.</p>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <div class="page-header">
+                <h4>Conservation</h4>
+            </div>
+            <p>We believe that the data collected can be used for conservation efforts, and therefor share logged
+            sighting with registered and accredited researchers and conservation organisations. So you are in
+            effect helping with the study and preservation of our precious wildlife.</p>
         </div>
     </div>
 {% endblock %}

@@ -151,4 +151,10 @@ $(document).ready(function() {
         keyboard: false,
         show: false
     });
+
+    // set an action for the close button if in phone resolution
+    $('.btn-back').click(function (event) {
+        event.preventDefault();
+        history.back(1);
+    });
 });
