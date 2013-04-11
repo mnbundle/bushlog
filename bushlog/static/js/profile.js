@@ -83,8 +83,8 @@ initAvatarForm = function () {
             new UploadKit(element);
         });
 
-        $('#id_avatar-avatar').bind(UKEventType.FileUploaded, function(e) {
-            var data = $.parseJSON(e.response.response);
+        $('#id_avatar-avatar').bind(UKEventType.FileUploaded, function(event) {
+            var data = $.parseJSON(event.response.response);
             window.location = data.redirect_url;
         });
     });
@@ -150,11 +150,5 @@ $(document).ready(function() {
     $('#id_resendactivation_modal').modal({
         keyboard: false,
         show: false
-    });
-
-    // set an action for the close button if in phone resolution
-    $('.btn-back').click(function (event) {
-        event.preventDefault();
-        history.back(1);
     });
 });

@@ -106,6 +106,7 @@
             {% endif %}
 
             {% if object.images.all.0 %}
+                <p>&nbsp;</p>
                 <div class="span12">
                     <img class="img-rounded" src="{% resize_image object.images.all.0.image 270 200 %}" width="270" height="200" />
                 </div>

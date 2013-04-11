@@ -1,12 +1,20 @@
+from datetime import date
+from os import path
+
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
 from django.db import models
+from django.template.defaultfilters import date as format_date
 
 from bushlog.apps.location.models import Coordinate
 from bushlog.apps.reserve.models import Reserve
 from bushlog.apps.sighting.managers import SightingManager
 from bushlog.apps.wildlife.models import Species
-from bushlog.utils import choices, get_exif_data, get_gps_data
+from bushlog.utils import choices, get_exif_data, get_gps_data, random_string
+
+
+def uploadpath(instance, filename):
+    return "%s.jpg" % path.join('sightings', format_date(date.today(), 'Y/m'), random_string())
 
 
 class Sighting(models.Model):
@@ -76,7 +84,7 @@ class Sighting(models.Model):
 
 class SightingImage(models.Model):
     sighting = models.ForeignKey(Sighting, related_name="images", blank=True, null=True)
-    image = models.ImageField(upload_to="sightings/%Y/%m/", max_length=250)
+    image = models.ImageField(upload_to=uploadpath, max_length=250)
 
     def __unicode__(self):
         return unicode(self.sighting)

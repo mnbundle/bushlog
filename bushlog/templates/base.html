@@ -189,33 +189,42 @@
             window.jQuery || document.write('<script src="{{ STATIC_URL }}js/jquery.min.js"><\/script>')
         </script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.datepicker.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.timepicker.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/gmap3.min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.validate.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.validate.bootstrap.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/plupload.full.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.uploadkit.js"></script>
-
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.datepicker.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.bootbox.min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/application.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/profile.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/sighting.js"></script>
         <!--[if lt IE 9]>
             <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
+
+        {% block js_optional %}
+            <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.timepicker.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/plupload.full.min.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.uploadkit.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/profile.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/sighting.js"></script>
+        {% endblock %}
 
         {% if request.user.is_authenticated %}
             <script type="text/javascript">
                 $(document).ready(function() {
 
                     // initialise update form
-                    initUpdateForm();
+                    if (typeof window.initUpdateForm == 'function') {
+                        initUpdateForm();
+                    }
 
                     // initialise sightings forms
-                    initNewSightingForm();
+                    if (typeof window.initNewSightingForm == 'function') {
+                        initNewSightingForm();
+                    }
 
                     // initialise avatar form
-                    initAvatarForm();
+                    if (typeof window.initAvatarForm == 'function') {
+                        initAvatarForm();
+                    }
 
                     // initialise the update modal with required options
                     $('#id_update_modal').modal({

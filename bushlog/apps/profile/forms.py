@@ -14,7 +14,7 @@ class SignInForm(forms.Form):
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'span12', 'placeholder': 'Password'})
     )
-    remember_me = forms.BooleanField(required=False)
+    remember_me = forms.BooleanField(initial=True, required=False)
 
 
 class SignUpModelForm(forms.ModelForm):
@@ -65,10 +65,12 @@ class UpdateModelForm(forms.ModelForm):
         required=True
     )
     first_name = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'input-modal-inline', 'placeholder': 'First name'}), max_length=30, required=False
+        widget=forms.TextInput(attrs={'class': 'input-modal-inline', 'placeholder': 'First name'}),
+        max_length=30, required=False
     )
     last_name = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'input-modal-inline', 'placeholder': 'Last name'}), max_length=30, required=False
+        widget=forms.TextInput(attrs={'class': 'input-modal-inline', 'placeholder': 'Last name'}),
+        max_length=30, required=False
     )
     email = forms.EmailField(
         widget=widgets.EmailInput(
@@ -83,7 +85,7 @@ class UpdateModelForm(forms.ModelForm):
         widgets = {
             'biography': forms.Textarea(attrs={'class': 'span3', 'rows': 3, 'maxlength': 250}),
             'gender': forms.Select(attrs={'class': 'span3'}, choices=choices(['Male', 'Female'])),
-            'birth_date': forms.DateInput(attrs={'readonly': 'readonly'}, format='%d/%m/%Y'),
+            'birth_date': forms.DateInput(attrs={'readonly': 'readonly'}, format='%Y-%m-%d'),
             'country': forms.Select(
                 attrs={'class': 'span3'}, choices=tuple([(obj.id, obj.name) for obj in Country.objects.all()])
             ),

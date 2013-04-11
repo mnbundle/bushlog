@@ -1,4 +1,4 @@
-<form class="form-horizontal form-new_sighting" method="post" action="{% url 'sighting:create' %}">
+<form class="form-horizontal form-new_sighting" method="post" action="{% url 'sighting:create' %}" enctype="multipart/form-data">
     {% csrf_token %}
     <div id="new_sighting-carousel" class="carousel slide">
         <div class="carousel-inner">
@@ -29,18 +29,18 @@
                 <div class="control-group">
                     <label class="control-label" for="id_sighting_create-date_of_sighting">Date of Sighting</label>
                     <div class="controls">
-                        <div class="input-append date" id="id_datepicker" data-date-format="yyyy-mm-dd" data-date="{% now 'Y-m-d' %}">
-                            {{ form.date_of_sighting }}
+                        <div class="input-prepend date" id="id_datepicker_sighting" data-date-format="yyyy-mm-dd" data-date="{% now 'Y-m-d' %}">
                             <span class="btn add-on"><i class="icon-calendar"></i></span>
+                            {{ form.date_of_sighting }}
                         </div>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="id_sighting_create-time_of_sighting">Time of Sighting</label>
                     <div class="controls">
-                        <div class="input-append time">
-                            {{ form.time_of_sighting }}
+                        <div class="input-prepend time">
                             <span class="btn add-on"><i class="icon-time" id="id_timepicker"></i></span>
+                            {{ form.time_of_sighting }}
                         </div>
                     </div>
                 </div>

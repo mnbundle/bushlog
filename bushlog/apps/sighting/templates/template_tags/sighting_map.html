@@ -5,7 +5,7 @@
         <div class="active item">
             <div class="map well rounded-corners-top" data-map='{{ mapdata }}' data-bounds='{{ bounds }}'></div>
 
-            <a class="btn btn-success btn-header span12 pull-right visible-phone" href="#id_new_sighting" data-toggle="modal">
+            <a class="btn btn-success btn-header span12 pull-right visible-phone" href="{% url 'sighting:forms' 'create' %}">
                 <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
             </a>
 

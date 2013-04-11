@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404, HttpResponseRedirect, HttpResponseBadRequest
 from django.views import generic
+from django.views.decorators.csrf import csrf_exempt
 
 from bushlog.apps.sighting.forms import CreateForm
 from bushlog.apps.location.models import Coordinate
@@ -87,7 +88,7 @@ class SightingCreateView(generic.CreateView):
 
         messages.add_message(self.request, messages.SUCCESS, "Your sighting has been added.")
 
-        return HttpResponseRedirect(reverse_lazy('sighting:index', args=[obj.reserve.slug, obj.species.slug, obj.id]))
+        return HttpResponseRedirect(obj.get_absolute_url())
 
     def form_invalid(self, form):
         """

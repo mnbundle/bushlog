@@ -14,18 +14,33 @@
                 <button class="close" onclick="$(this).parent().fadeOut('slow');">×</button>
                 <strong class="new_sighting-alert_type"></strong> <span class="new_sighting-alert_msg"></span>
             </div>
-            <div class="new_sighting-container"></div>
+            <div class="new_sighting-container">
+                <div class="align-center loader">
+                    <p>&nbsp;</p>
+                    <img src="{{ STATIC_URL }}img/icons/loader.gif"/> &nbsp; Loading...
+                    <p>&nbsp;</p>
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
             <a href="#" class="btn btn-back">Close</a>
             <a id="btn-prev" data-action="prev" class="btn disabled">
-                <i class="icon-chevron-left"></i> &nbsp;Previous
+                <i class="icon-chevron-left"></i> &nbsp;Back
             </a>
             <a id="btn-next" data-action="next" class="btn btn-success">
                 Next&nbsp; <i class="icon-chevron-right icon-white"></i>
             </a>
-            <a class="btn btn-success btn-new_sighting-submit">Save</a>
+            <a class="btn btn-success btn-new_sighting-submit hide">Save</a>
         </div>
     {% endif %}
 
 {% endblock %}
+
+{% block js_optional %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.timepicker.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plupload.full.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.uploadkit.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/sighting.js"></script>
+{% endblock %}
+
+{% block modals %}{% endblock %}

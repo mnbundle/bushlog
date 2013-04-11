@@ -73,6 +73,7 @@ class SignInFormView(generic.FormView):
         """
         Set an error message if the form is invalid.
         """
+        import pdb;pdb.set_trace()
         messages.add_message(self.request, messages.ERROR, self.error_msg)
         return HttpResponseRedirect(self.error_url)
 
@@ -129,7 +130,6 @@ class SignUpFormView(generic.FormView):
 class UpdateFormView(generic.FormView):
     template_name = "profile/update.html"
     form_class = UpdateModelForm
-    success_url = reverse_lazy('index')
     error_url = reverse_lazy('index')
     error_msg = "Updating your profile failed. Please try again."
     form_prefix = "update"
@@ -166,7 +166,7 @@ class UpdateFormView(generic.FormView):
                 self.request, messages.SUCCESS,
                 "Your profile has been updated successfully."
             )
-            return HttpResponseRedirect(self.success_url)
+            return HttpResponseRedirect(reverse_lazy('profile:index', args=[self.request.user.profile.slug]))
 
         return self.form_invalid(form)
 
@@ -206,12 +206,12 @@ class AvatarFormView(generic.FormView):
         """
         form.save()
         messages.add_message(self.request, messages.SUCCESS, "Your avatar has been updated successfully.")
+        print str(reverse_lazy('profile:index', args=[self.request.user.profile.slug]))
         return HttpResponse(
             json.dumps({
                 'success': True,
                 'redirect_url': str(reverse_lazy('profile:index', args=[self.request.user.profile.slug]))
-            }),
-            content_type='application/json'
+            })
         )
 
     def form_invalid(self, form):
@@ -223,8 +223,7 @@ class AvatarFormView(generic.FormView):
             json.dumps({
                 'success': False,
                 'redirect_url': str(reverse_lazy('profile:index', args=[self.request.user.profile.slug]))
-            }),
-            content_type='application/json'
+            })
         )
 
 

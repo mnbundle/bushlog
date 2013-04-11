@@ -1078,11 +1078,12 @@
         "scientific_name": "Loxodonta africana", 
         "male_info": 2, 
         "similiar_species": [], 
+        "slug": "african-elephant", 
         "marker": "markers/elephant.png", 
         "default_image": "defaults/elephant.png", 
         "common_name": "African Elephant", 
         "general_info": "African elephants are the elephants of the genus Loxodonta, consisting of two extant species: the African bush elephant and the smaller African forest elephant. Loxodonta is one of the two existing genera in the family Elephantidae.", 
-        "slug": "african-elephant"
+        "public": true
     }
 },
 {
@@ -1097,11 +1098,12 @@
             4, 
             3
         ], 
+        "slug": "lion", 
         "marker": "markers/lion.png", 
         "default_image": "defaults/lion.png", 
         "common_name": "Lion", 
         "general_info": "The lion is one of the four big cats in the genus Panthera and a member of the family Felidae. With some males exceeding 250 kg in weight, it is the second-largest living cat after the tiger.", 
-        "slug": "lion"
+        "public": true
     }
 },
 {
@@ -1116,11 +1118,12 @@
             4, 
             2
         ], 
+        "slug": "leopard", 
         "marker": "markers/leopard.png", 
         "default_image": "defaults/leopard.png", 
         "common_name": "Leopard", 
         "general_info": "The leopard, Panthera pardus, is a member of the Felidae family and the smallest of the four \"big cats\" in the genus Panthera, the other three being the tiger, lion, and jaguar.", 
-        "slug": "leopard"
+        "public": true
     }
 },
 {
@@ -1135,11 +1138,12 @@
             3, 
             2
         ], 
+        "slug": "cheetah", 
         "marker": "markers/cheetah.png", 
         "default_image": "defaults/cheetah.png", 
         "common_name": "Cheetah", 
         "general_info": "The cheetah is a large-sized feline inhabiting most of Africa and parts of the Middle East. It is the only extant member of the genus Acinonyx.", 
-        "slug": "cheetah"
+        "public": true
     }
 },
 {
@@ -1154,11 +1158,12 @@
             7, 
             6
         ], 
+        "slug": "chacma-baboon", 
         "marker": "markers/baboon.png", 
         "default_image": "defaults/baboon.png", 
         "common_name": "Chacma Baboon", 
         "general_info": "The Chacma baboon, also known as the Cape baboon, is, like all other baboons, from the Old World monkey family. It is one of the largest of all baboons and monkeys.", 
-        "slug": "chacma-baboon"
+        "public": true
     }
 },
 {
@@ -1173,11 +1178,12 @@
             5, 
             7
         ], 
+        "slug": "vervet-monkey", 
         "marker": "markers/monkey.png", 
         "default_image": "defaults/monkey.png", 
         "common_name": "Vervet Monkey", 
         "general_info": "The vervet monkey, or simply vervet, is an Old World monkey of the family Cercopithecidae native to Africa. The term \"vervet\" is also used to refer to all the members of the genus Chlorocebus.", 
-        "slug": "vervet-monkey"
+        "public": true
     }
 },
 {
@@ -1192,11 +1198,12 @@
             5, 
             6
         ], 
+        "slug": "samango-monkey", 
         "marker": "markers/monkey.png", 
         "default_image": "defaults/monkey.png", 
         "common_name": "Samango Monkey", 
         "general_info": "Samango monkey, also known as the white-throated monkey or Sykes' monkey, is an Old World monkey found between Ethiopia and South Africa, including south and east Democratic Republic of Congo.", 
-        "slug": "samango-monkey"
+        "public": true
     }
 },
 {
@@ -1208,11 +1215,12 @@
         "scientific_name": "Orycteropus afer", 
         "male_info": 15, 
         "similiar_species": [], 
+        "slug": "aardvark", 
         "marker": "markers/aardvark.png", 
         "default_image": "defaults/aardvark.png", 
         "common_name": "Aardvark", 
         "general_info": "The aardvark is a medium-sized, burrowing, nocturnal mammal native to Africa. It is the only living species of the order Tubulidentata, although other prehistoric species and genera of Tubulidentata are known.", 
-        "slug": "aardvark"
+        "public": true
     }
 },
 {
@@ -1224,11 +1232,12 @@
         "scientific_name": "Manis temminckii", 
         "male_info": 16, 
         "similiar_species": [], 
+        "slug": "pangolin", 
         "marker": "markers/pangolin.png", 
         "default_image": "defaults/pangolin.png", 
         "common_name": "Pangolin", 
         "general_info": "A pangolin is a mammal of the order Pholidota. The one extant family, Manidae, has one genus, Manis, which comprises eight species. A number of extinct species are known", 
-        "slug": "pangolin"
+        "public": true
     }
 },
 {
@@ -1242,11 +1251,12 @@
         "similiar_species": [
             11
         ], 
+        "slug": "cape-fox", 
         "marker": "markers/fox-jackal.png", 
         "default_image": "defaults/fox-jackal.png", 
         "common_name": "Cape Fox", 
         "general_info": "The Cape fox, also called the cama fox or the silver-backed fox, is a small fox. It has black or silver gray fur with flanks and underside in light yellow. The tip of its tail is always black.", 
-        "slug": "cape-fox"
+        "public": true
     }
 },
 {
@@ -1260,11 +1270,12 @@
         "similiar_species": [
             10
         ], 
+        "slug": "bat-eared-fox", 
         "marker": "markers/fox-jackal.png", 
         "default_image": "defaults/fox-jackal.png", 
         "common_name": "Bat-eared Fox", 
         "general_info": "The bat-eared fox is a canid of the African savanna, named for its large ears. Fossil records show this canid to first appear during the middle Pleistocene, about 800,000 years ago.", 
-        "slug": "bat-eared-fox"
+        "public": true
     }
 },
 {
@@ -1278,11 +1289,12 @@
         "similiar_species": [
             13
         ], 
+        "slug": "black-backed-jackal", 
         "marker": "markers/fox-jackal.png", 
         "default_image": "defaults/fox-jackal.png", 
         "common_name": "Black-backed Jackal", 
         "general_info": "The black-backed jackal, also known as the silver-backed or red jackal, is a species of jackal which inhabits two areas of the African continent separated by roughly 900 km.", 
-        "slug": "black-backed-jackal"
+        "public": true
     }
 },
 {
@@ -1296,11 +1308,12 @@
         "similiar_species": [
             12
         ], 
+        "slug": "side-striped-jackal", 
         "marker": "markers/fox-jackal.png", 
         "default_image": "defaults/fox-jackal.png", 
         "common_name": "Side-striped Jackal", 
         "general_info": "The side-striped jackal is a species of jackal, native to central and southern Africa. Unlike its cousin, the smaller black-backed jackal, which dwells in open plains, the side-striped jackal primarily dwells in woodland and scrub areas.", 
-        "slug": "side-striped-jackal"
+        "public": true
     }
 },
 {
@@ -1312,11 +1325,12 @@
         "scientific_name": "Lycaon pictus", 
         "male_info": 21, 
         "similiar_species": [], 
+        "slug": "wild-dog", 
         "marker": "markers/wilddog.png", 
         "default_image": "defaults/wilddog.png", 
         "common_name": "Wild Dog", 
         "general_info": "Lycaon pictus is a canid found only in Africa, especially in savannas and lightly wooded areas. It is variously called the African wild dog, African hunting dog, Cape hunting dog and painted dog.", 
-        "slug": "wild-dog"
+        "public": true
     }
 },
 {
@@ -1328,11 +1342,12 @@
         "scientific_name": "Mellivora capensis", 
         "male_info": 22, 
         "similiar_species": [], 
+        "slug": "honey-badger", 
         "marker": "markers/honey-badger.png", 
         "default_image": "defaults/honey-badger.png", 
         "common_name": "Honey Badger", 
         "general_info": "The honey badger, also known as the ratel, is a species of mustelid native to Africa, Southwest Asia, and the Indian Subcontinent.", 
-        "slug": "honey-badger"
+        "public": true
     }
 },
 {
@@ -1347,11 +1362,12 @@
             18, 
             17
         ], 
+        "slug": "spotted-hyena", 
         "marker": "markers/hyaena.png", 
         "default_image": "defaults/hyaena.png", 
         "common_name": "Spotted Hyena", 
         "general_info": "The spotted hyena, also known as the laughing hyena or tiger wolf, is a species of hyena native to Sub-Saharan Africa.", 
-        "slug": "spotted-hyena"
+        "public": true
     }
 },
 {
@@ -1366,11 +1382,12 @@
             18, 
             16
         ], 
+        "slug": "brown-hyena", 
         "marker": "markers/hyaena.png", 
         "default_image": "defaults/hyaena.png", 
         "common_name": "Brown Hyena", 
         "general_info": "The brown hyena is a species of hyena found in Namibia, Botswana, western and southern Zimbabwe, southern Mozambique and South Africa. It is currently the rarest species of hyena.", 
-        "slug": "brown-hyena"
+        "public": true
     }
 },
 {
@@ -1385,11 +1402,12 @@
             17, 
             16
         ], 
+        "slug": "aardwolf", 
         "marker": "markers/hyaena.png", 
         "default_image": "defaults/hyaena.png", 
         "common_name": "Aardwolf", 
         "general_info": "The aardwolf is a small, insectivorous mammal, native to East Africa and Southern Africa. Its name means \"earth wolf\" in the Afrikaans / Dutch language. It is also called \"maanhaar jackal\". The aardwolf is in the same family as the hyenas.", 
-        "slug": "aardwolf"
+        "public": true
     }
 },
 {
@@ -1403,11 +1421,12 @@
         "similiar_species": [
             20
         ], 
+        "slug": "african-wild-cat", 
         "marker": "markers/cat.png", 
         "default_image": "defaults/cat.png", 
         "common_name": "African Wild Cat", 
         "general_info": "The African wildcat is a wildcat subspecies that occurs across northern Africa and extends around the periphery of the Arabian Peninsula to the Caspian Sea.", 
-        "slug": "african-wild-cat"
+        "public": true
     }
 },
 {
@@ -1421,11 +1440,12 @@
         "similiar_species": [
             19
         ], 
+        "slug": "small-spotted-cat", 
         "marker": "markers/cat.png", 
         "default_image": "defaults/cat.png", 
         "common_name": "Small Spotted Cat", 
         "general_info": "The small spotted or black-footed cat is the smallest African cat, and is endemic in the south west arid zone of the southern African subregion. It is one of the lesser studied African carnivores.", 
-        "slug": "small-spotted-cat"
+        "public": true
     }
 },
 {
@@ -1439,11 +1459,12 @@
         "similiar_species": [
             22
         ], 
+        "slug": "serval", 
         "marker": "markers/serval.png", 
         "default_image": "defaults/serval.png", 
         "common_name": "Serval", 
         "general_info": "The serval known in Afrikaans as Tierboskat, \"tiger-forest-cat\", is a medium-sized African wild cat. DNA studies have shown that the serval is closely related to the African golden cat and the caracal.", 
-        "slug": "serval"
+        "public": true
     }
 },
 {
@@ -1457,11 +1478,12 @@
         "similiar_species": [
             21
         ], 
+        "slug": "caracal", 
         "marker": "markers/caracal.png", 
         "default_image": "defaults/caracal.png", 
         "common_name": "Caracal", 
         "general_info": "The caracal, also known as the desert lynx, is a wild cat that is widely distributed across Africa, central Asia and southwest Asia into India. In 2002 the IUCN listed the caracal as Least Concern as it is widespread and relatively common.", 
-        "slug": "caracal"
+        "public": true
     }
 },
 {
@@ -1476,11 +1498,12 @@
             25, 
             24
         ], 
+        "slug": "cape-mountain-zebra", 
         "marker": "markers/zebra.png", 
         "default_image": "defaults/zebra.png", 
         "common_name": "Cape Mountain Zebra", 
         "general_info": "The Cape mountain zebra, Equus zebra zebra, is a subspecies of the mountain zebra, named for Cape Province of South Africa and found in the Western Cape and Eastern Cape areas. They mainly eat grass but if little food is left they will eat bushes.", 
-        "slug": "cape-mountain-zebra"
+        "public": true
     }
 },
 {
@@ -1495,11 +1518,12 @@
             25, 
             23
         ], 
+        "slug": "hartmanns-mountain-zebra", 
         "marker": "markers/zebra.png", 
         "default_image": "defaults/zebra.png", 
         "common_name": "Hartmann's Mountain Zebra", 
         "general_info": "Hartmann's mountain zebra (Equus zebra hartmannae) is a subspecies of the mountain zebra found in far south-western Angola and western Namibia. Hartmann's mountain zebras prefer to live in small groups of 7-12 individuals. They are agile climbers.", 
-        "slug": "hartmanns-mountain-zebra"
+        "public": true
     }
 },
 {
@@ -1514,11 +1538,12 @@
             23, 
             24
         ], 
+        "slug": "burchells-zebra", 
         "marker": "markers/zebra.png", 
         "default_image": "defaults/zebra.png", 
         "common_name": "Burchell's Zebra", 
         "general_info": "Burchell's zebra is a southern subspecies of the plains zebra. It was named after the 'Burchell' family name.", 
-        "slug": "burchells-zebra"
+        "public": true
     }
 },
 {
@@ -1532,11 +1557,12 @@
         "similiar_species": [
             27
         ], 
+        "slug": "black-rhinoceros", 
         "marker": "markers/black-rhino.png", 
         "default_image": "defaults/black-rhino.png", 
         "common_name": "Black Rhinoceros", 
         "general_info": "The black rhinoceros or hook-lipped rhinoceros is a species of rhinoceros, native to eastern and central Africa including Kenya, Tanzania, Cameroon, South Africa, Namibia, Zimbabwe, and Angola.", 
-        "slug": "black-rhinoceros"
+        "public": false
     }
 },
 {
@@ -1550,11 +1576,12 @@
         "similiar_species": [
             26
         ], 
+        "slug": "white-rhinoceros", 
         "marker": "markers/white-rhino.png", 
         "default_image": "defaults/white-rhino.png", 
         "common_name": "White Rhinoceros", 
         "general_info": "The white rhinoceros or square-lipped rhinoceros is one of the five species of rhinoceros that exist. It has a wide mouth used for grazing and is the most social of all rhino species.", 
-        "slug": "white-rhinoceros"
+        "public": false
     }
 },
 {
@@ -1568,11 +1595,12 @@
         "similiar_species": [
             29
         ], 
+        "slug": "warthog", 
         "marker": "markers/warthog-bushpig.png", 
         "default_image": "defaults/warthog-bushpig.png", 
         "common_name": "Warthog", 
         "general_info": "The Warthog or Common Warthog is a wild member of the pig family that lives in grassland, savanna, and woodland in Sub-Saharan Africa.", 
-        "slug": "warthog"
+        "public": true
     }
 },
 {
@@ -1586,11 +1614,12 @@
         "similiar_species": [
             28
         ], 
+        "slug": "bushpig", 
         "marker": "markers/warthog-bushpig.png", 
         "default_image": "defaults/warthog-bushpig.png", 
         "common_name": "Bushpig", 
         "general_info": "The bushpig, Potamochoerus larvatus, is a member of the pig family and lives in forests, woodland, riverine vegetation and reedbeds in East and Southern Africa.", 
-        "slug": "bushpig"
+        "public": true
     }
 },
 {
@@ -1602,11 +1631,12 @@
         "scientific_name": "Hippopotamus amphibius", 
         "male_info": 40, 
         "similiar_species": [], 
+        "slug": "hippopotamus", 
         "marker": "markers/hippo.png", 
         "default_image": "defaults/hippo.png", 
         "common_name": "Hippopotamus", 
         "general_info": "The hippopotamus, or hippo, from the ancient Greek for \"river horse\", is a large, mostly herbivorous mammal in sub-Saharan Africa, and one of only two extant species in the family Hippopotamidae.", 
-        "slug": "hippopotamus"
+        "public": true
     }
 },
 {
@@ -1618,11 +1648,12 @@
         "scientific_name": "Giraffa camelopardalis", 
         "male_info": 42, 
         "similiar_species": [], 
+        "slug": "giraffe", 
         "marker": "markers/giraffe.png", 
         "default_image": "defaults/giraffe.png", 
         "common_name": "Giraffe", 
         "general_info": "The giraffe is an African even-toed ungulate mammal, the tallest living terrestrial animal and the largest ruminant. Its species name refers to its camel-like appearance and the patches of color on its fur.", 
-        "slug": "giraffe"
+        "public": true
     }
 },
 {
@@ -1634,11 +1665,12 @@
         "scientific_name": "Syncerus caffer", 
         "male_info": 44, 
         "similiar_species": [], 
+        "slug": "african-buffalo", 
         "marker": "markers/buffalo.png", 
         "default_image": "defaults/buffalo.png", 
         "common_name": "African Buffalo", 
         "general_info": "The African buffalo, affalo, nyati, mbogo or Cape buffalo, is a large African bovine. It is not closely related to the slightly larger wild Asian water buffalo, but its ancestry remains unclear. ", 
-        "slug": "african-buffalo"
+        "public": true
     }
 },
 {
@@ -1650,11 +1682,12 @@
         "scientific_name": "Taurotragus oryx", 
         "male_info": 45, 
         "similiar_species": [], 
+        "slug": "eland", 
         "marker": "markers/eland.png", 
         "default_image": "defaults/eland.png", 
         "common_name": "Eland", 
         "general_info": "The common eland, also known as the southern eland or eland antelope, is a savannah and plains antelope found in East and Southern Africa. It is a species of the family Bovidae and genus Taurotragus.", 
-        "slug": "eland"
+        "public": true
     }
 },
 {
@@ -1670,11 +1703,12 @@
             35, 
             36
         ], 
+        "slug": "kudu", 
         "marker": "markers/kudu.png", 
         "default_image": "defaults/kudu.png", 
         "common_name": "Kudu", 
         "general_info": "The greater kudu is a woodland antelope found throughout eastern and southern Africa. Despite occupying such widespread territory, they are sparsely populated in most areas, due to a declining habitat, deforestation and hunting.", 
-        "slug": "kudu"
+        "public": true
     }
 },
 {
@@ -1690,11 +1724,12 @@
             34, 
             36
         ], 
+        "slug": "nyala", 
         "marker": "markers/nyala-sitatunga.png", 
         "default_image": "defaults/nyala-sitatunga.png", 
         "common_name": "Nyala", 
         "general_info": "The nyala, also called inyala, is a spiral-horned antelope native to southern Africa. It is a species of the family Bovidae and genus Nyala, also considered to be in the genus Tragelaphus. It was first described in 1849 by George French Angas.", 
-        "slug": "nyala"
+        "public": true
     }
 },
 {
@@ -1710,11 +1745,12 @@
             34, 
             35
         ], 
+        "slug": "sitatunga", 
         "marker": "markers/nyala-sitatunga.png", 
         "default_image": "defaults/nyala-sitatunga.png", 
         "common_name": "Sitatunga", 
         "general_info": "The sitatunga or marshbuck is a swamp-dwelling antelope found throughout Central Africa, centering on the Democratic Republic of the Congo, Cameroon and parts of Southern Sudan as well as in Ghana.", 
-        "slug": "sitatunga"
+        "public": true
     }
 },
 {
@@ -1730,11 +1766,12 @@
             35, 
             36
         ], 
+        "slug": "bushbuck", 
         "marker": "markers/bushbuck.png", 
         "default_image": "defaults/bushbuck.png", 
         "common_name": "Bushbuck", 
         "general_info": "The bushbuck is the most widespread antelope in Sub-Saharan Africa, and is found in rain forests, montane forests, forest-savanna mosaics and bush savannaforest and woodland.", 
-        "slug": "bushbuck"
+        "public": true
     }
 },
 {
@@ -1748,11 +1785,12 @@
         "similiar_species": [
             39
         ], 
+        "slug": "roan-antelope", 
         "marker": "markers/roan.png", 
         "default_image": "defaults/roan.png", 
         "common_name": "Roan Antelope", 
         "general_info": "The roan antelope is a savanna antelope found in West, Central, East and Southern Africa. Roan antelope are one of the largest species of antelope.", 
-        "slug": "roan-antelope"
+        "public": true
     }
 },
 {
@@ -1766,11 +1804,12 @@
         "similiar_species": [
             38
         ], 
+        "slug": "sable-antelope", 
         "marker": "markers/sable.png", 
         "default_image": "defaults/sable.png", 
         "common_name": "Sable Antelope", 
         "general_info": "The sable antelope is an antelope which inhabits wooded savannah in East Africa south of Kenya, and in Southern Africa.", 
-        "slug": "sable-antelope"
+        "public": true
     }
 },
 {
@@ -1782,11 +1821,12 @@
         "scientific_name": "Oryx gazella", 
         "male_info": 59, 
         "similiar_species": [], 
+        "slug": "gemsbok", 
         "marker": "markers/gemsbok.png", 
         "default_image": "defaults/gemsbok.png", 
         "common_name": "Gemsbok", 
         "general_info": "The gemsbok or gemsbuck is a large antelope in the Oryx genus. It is native to the arid regions of Southern Africa, such as the Kalahari Desert. Some authorities formerly included the East African oryx as a subspecies.", 
-        "slug": "gemsbok"
+        "public": true
     }
 },
 {
@@ -1801,11 +1841,12 @@
             42, 
             43
         ], 
+        "slug": "waterbuck", 
         "marker": "markers/waterbuck-lechwe-puku.png", 
         "default_image": "defaults/waterbuck-lechwe-puku.png", 
         "common_name": "Waterbuck", 
         "general_info": "Waterbuck are found in scrub and savanna areas near water, where they eat grasses. Despite their name, waterbuck do not spend much time in the water, but will take refuge there to escape predators.", 
-        "slug": "waterbuck"
+        "public": true
     }
 },
 {
@@ -1820,11 +1861,12 @@
             43, 
             41
         ], 
+        "slug": "lechwe", 
         "marker": "markers/waterbuck-lechwe-puku.png", 
         "default_image": "defaults/waterbuck-lechwe-puku.png", 
         "common_name": "Lechwe", 
         "general_info": "The lechwe, or southern lechwe, is an antelope found in Botswana, Zambia, southeastern Democratic Republic of the Congo, northeastern Namibia, and eastern Angola, especially in the Okavango Delta, Kafue Flats and Bangweulu Swamps.", 
-        "slug": "lechwe"
+        "public": true
     }
 },
 {
@@ -1839,11 +1881,12 @@
             42, 
             41
         ], 
+        "slug": "puku", 
         "marker": "markers/waterbuck-lechwe-puku.png", 
         "default_image": "defaults/waterbuck-lechwe-puku.png", 
         "common_name": "Puku", 
         "general_info": "The puku is an antelope found in wet grasslands in southern Democratic Republic of Congo, Namibia, and Zambia.", 
-        "slug": "puku"
+        "public": true
     }
 },
 {
@@ -1857,11 +1900,12 @@
         "similiar_species": [
             45
         ], 
+        "slug": "mountain-reedbuck", 
         "marker": "markers/reedbuck.png", 
         "default_image": "defaults/reedbuck.png", 
         "common_name": "Mountain Reedbuck", 
         "general_info": "The mountain reedbuck is an antelope found in mountainous areas of much of sub-Saharan Africa.", 
-        "slug": "mountain-reedbuck"
+        "public": true
     }
 },
 {
@@ -1875,11 +1919,12 @@
         "similiar_species": [
             44
         ], 
+        "slug": "common-reedbuck", 
         "marker": "markers/reedbuck.png", 
         "default_image": "defaults/reedbuck.png", 
         "common_name": "Common Reedbuck", 
         "general_info": "The southern reedbuck, rietbok or common reedbuck is a diurnal antelope typically found in southern Africa. It was first described by Pieter Boddaert, a Dutch physician and naturalist, in 1785. It is placed in the genus Redunca and family Bovidae", 
-        "slug": "common-reedbuck"
+        "public": true
     }
 },
 {
@@ -1896,11 +1941,12 @@
             62, 
             59
         ], 
+        "slug": "grey-rhebok", 
         "marker": "markers/grysbok-oribi-steenbok-rhebok.png", 
         "default_image": "defaults/grysbok-oribi-steenbok-rhebok.png", 
         "common_name": "Grey Rhebok", 
         "general_info": "The grey rhebok or grey rhebuck, locally known as the Vaal rhebok or Vaalribbok in Afrikaans, is a species of antelope endemic to South Africa, Zimbabwe, Lesotho and Swaziland.", 
-        "slug": "grey-rhebok"
+        "public": true
     }
 },
 {
@@ -1914,11 +1960,12 @@
         "similiar_species": [
             48
         ], 
+        "slug": "black-wildebeest", 
         "marker": "markers/wildebeest.png", 
         "default_image": "defaults/wildebeest.png", 
         "common_name": "Black Wildebeest", 
         "general_info": "The black wildebeest or white-tailed gnu (Connochaetes gnou) is one of two wildebeest species. The natural populations of this species, endemic to the southern part of Africa, have been almost completely exterminated.", 
-        "slug": "black-wildebeest"
+        "public": true
     }
 },
 {
@@ -1932,11 +1979,12 @@
         "similiar_species": [
             47
         ], 
+        "slug": "blue-wildebeest", 
         "marker": "markers/wildebeest.png", 
         "default_image": "defaults/wildebeest.png", 
         "common_name": "Blue Wildebeest", 
         "general_info": "The blue wildebeest, also called the common wildebeest or the white-bearded wildebeest, is a large antelope and one of two species of wildebeest.", 
-        "slug": "blue-wildebeest"
+        "public": true
     }
 },
 {
@@ -1950,11 +1998,12 @@
         "similiar_species": [
             50
         ], 
+        "slug": "red-hartebeest", 
         "marker": "markers/hartebeest.png", 
         "default_image": "defaults/hartebeest.png", 
         "common_name": "Red Hartebeest", 
         "general_info": "The red hartebeest is a species of even-toed ungulate in the Bovidae family found in Southern Africa. More than 130,000 individuals are left. The red hartebeest is closely related to the tsessebe and the topi.", 
-        "slug": "red-hartebeest"
+        "public": true
     }
 },
 {
@@ -1968,11 +2017,12 @@
         "similiar_species": [
             49
         ], 
+        "slug": "lichtensteins-hartebeest", 
         "marker": "markers/hartebeest.png", 
         "default_image": "defaults/hartebeest.png", 
         "common_name": "Lichtenstein's Hartebeest", 
         "general_info": "Lichtenstein's hartebeest is a savannah- and floodplain-dwelling antelope found in southern Central Africa. By some, this species is classified as Sigmoceros lichtensteinii.", 
-        "slug": "lichtensteins-hartebeest"
+        "public": true
     }
 },
 {
@@ -1987,11 +2037,12 @@
             52, 
             53
         ], 
+        "slug": "bontebok", 
         "marker": "markers/blesbok-bontebok-tsessebe.png", 
         "default_image": "defaults/blesbok-bontebok-tsessebe.png", 
         "common_name": "Bontebok", 
         "general_info": "The bontebok is an antelope found in South Africa and Lesotho. The bontebok has two subspecies; the endangered bontebok, occurring naturally in the Fynbos and Renosterveld areas of the Western Cape, and the blesbok occurring in the highveld.", 
-        "slug": "bontebok"
+        "public": true
     }
 },
 {
@@ -2006,11 +2057,12 @@
             51, 
             53
         ], 
+        "slug": "blesbok", 
         "marker": "markers/blesbok-bontebok-tsessebe.png", 
         "default_image": "defaults/blesbok-bontebok-tsessebe.png", 
         "common_name": "Blesbok", 
         "general_info": "The blesbok or blesbuck is an antelope endemic to South Africa. It has a distinctive white face and forehead which inspired the name, because bles is the Afrikaans word for a blaze such as one might see on the forehead of a horse.", 
-        "slug": "blesbok"
+        "public": true
     }
 },
 {
@@ -2025,11 +2077,12 @@
             52, 
             51
         ], 
+        "slug": "tsessebe", 
         "marker": "markers/blesbok-bontebok-tsessebe.png", 
         "default_image": "defaults/blesbok-bontebok-tsessebe.png", 
         "common_name": "Tsessebe", 
         "general_info": "The common tsessebe or sassaby is one of five species of the subfamily Alcelaphinae in the family Bovidae. It is most closely related to the topi and the bontebok in the same genus.", 
-        "slug": "tsessebe"
+        "public": true
     }
 },
 {
@@ -2041,11 +2094,12 @@
         "scientific_name": "Aepyceros melampus", 
         "male_info": 87, 
         "similiar_species": [], 
+        "slug": "impala", 
         "marker": "markers/impala.png", 
         "default_image": "defaults/impala.png", 
         "common_name": "Impala", 
         "general_info": "The impala is an ecotone species \"living in light woodland with little undergrowth and grassland of low to medium height\".[9] It has an irregular distribution due to dependence on relatively flat lands with good soil drainage and water.", 
-        "slug": "impala"
+        "public": true
     }
 },
 {
@@ -2057,11 +2111,12 @@
         "scientific_name": "Antidorcas marsupialis", 
         "male_info": 89, 
         "similiar_species": [], 
+        "slug": "springbok", 
         "marker": "markers/springbok.png", 
         "default_image": "defaults/springbok.png", 
         "common_name": "Springbok", 
         "general_info": "The springbok is a medium-sized brown and white antelope of southwestern Africa.", 
-        "slug": "springbok"
+        "public": true
     }
 },
 {
@@ -2076,11 +2131,12 @@
             58, 
             57
         ], 
+        "slug": "damara-dik-dik", 
         "marker": "markers/klipspringer-dikdik-suni.png", 
         "default_image": "defaults/klipspringer-dikdik-suni.png", 
         "common_name": "Damara Dik-dik", 
         "general_info": "The Dik-dik is a small antelope found in eastern and southwestern Africa. It grows to 70 cm in length and weighs up to 7 kg when fully grown, standing to a shoulder height of about 35\u201345 cm.", 
-        "slug": "damara-dik-dik"
+        "public": true
     }
 },
 {
@@ -2095,11 +2151,12 @@
             56, 
             58
         ], 
+        "slug": "suni", 
         "marker": "markers/klipspringer-dikdik-suni.png", 
         "default_image": "defaults/klipspringer-dikdik-suni.png", 
         "common_name": "Suni", 
         "general_info": "Suni is a very small species of antelope. It occurs in south-east Africa in dense underbrush. Suni are around 12-17 inches high at the shoulder and weigh 10-12 pounds. They are usually reddish brown, darker on their back than their sides and legs.", 
-        "slug": "suni"
+        "public": true
     }
 },
 {
@@ -2114,11 +2171,12 @@
             56, 
             57
         ], 
+        "slug": "klipspringer", 
         "marker": "markers/klipspringer-dikdik-suni.png", 
         "default_image": "defaults/klipspringer-dikdik-suni.png", 
         "common_name": "Klipspringer", 
         "general_info": "The klipspringer lives from the Cape of Good Hope, where it is found in mountain fynbos, through the rest of Southern Africa, where it is found in rocky koppies in woodland and savanna, north to East Africa and into the highly mountainous highlands.", 
-        "slug": "klipspringer"
+        "public": true
     }
 },
 {
@@ -2134,11 +2192,12 @@
             46, 
             62
         ], 
+        "slug": "steenbok", 
         "marker": "markers/grysbok-oribi-steenbok-rhebok.png", 
         "default_image": "defaults/grysbok-oribi-steenbok-rhebok.png", 
         "common_name": "Steenbok", 
         "general_info": "The steenbok, is a common small antelope of southern and eastern Africa. It is sometimes known as the steinbuck or steinbok.", 
-        "slug": "steenbok"
+        "public": true
     }
 },
 {
@@ -2154,11 +2213,12 @@
             46, 
             62
         ], 
+        "slug": "oribi", 
         "marker": "markers/grysbok-oribi-steenbok-rhebok.png", 
         "default_image": "defaults/grysbok-oribi-steenbok-rhebok.png", 
         "common_name": "Oribi", 
         "general_info": "Oribi are graceful slender-legged, long-necked small antelope found in grassland almost throughout sub-Saharan Africa. ", 
-        "slug": "oribi"
+        "public": true
     }
 },
 {
@@ -2175,11 +2235,12 @@
             62, 
             59
         ], 
+        "slug": "cape-grysbok", 
         "marker": "markers/grysbok-oribi-steenbok-rhebok.png", 
         "default_image": "defaults/grysbok-oribi-steenbok-rhebok.png", 
         "common_name": "Cape Grysbok", 
         "general_info": "The Cape or southern grysbok is a small antelope that is endemic to the Western Cape region of South Africa between Albany and the Cedarberg mountains. It has a rough, reddish sandy coat flecked in white.", 
-        "slug": "cape-grysbok"
+        "public": true
     }
 },
 {
@@ -2196,11 +2257,12 @@
             60, 
             59
         ], 
+        "slug": "sharpes-grysbok", 
         "marker": "markers/grysbok-oribi-steenbok-rhebok.png", 
         "default_image": "defaults/grysbok-oribi-steenbok-rhebok.png", 
         "common_name": "Sharpe's Grysbok", 
         "general_info": "The Sharpe's or northern grysbok is a small, shy, solitary antelope of south-eastern Africa\u2014Transvaal, Caprivi Strip, Botswana, Mozambique, Zimbabwe, Zambia, Malawi and Tanzania to Lake Victoria.", 
-        "slug": "sharpes-grysbok"
+        "public": true
     }
 },
 {
@@ -2215,11 +2277,12 @@
             64, 
             65
         ], 
+        "slug": "red-duiker", 
         "marker": "markers/duiker.png", 
         "default_image": "defaults/duiker.png", 
         "common_name": "Red Duiker", 
         "general_info": "The red forest duiker, Natal duiker, or Natal red duiker is a small antelope found in central to southern Africa. It is found in forests and shrublands in Malawi, Mozambique, and southern Tanzania.", 
-        "slug": "red-duiker"
+        "public": true
     }
 },
 {
@@ -2234,11 +2297,12 @@
             65, 
             63
         ], 
+        "slug": "blue-duiker", 
         "marker": "markers/duiker.png", 
         "default_image": "defaults/duiker.png", 
         "common_name": "Blue Duiker", 
         "general_info": "The blue duiker is a small, forest-dwelling duiker found in the Central Africa and southern South Africa. Blue duikers stand around 35 cm tall at the shoulder and weigh 4 kg.They are the smallest of the antelope family.", 
-        "slug": "blue-duiker"
+        "public": true
     }
 },
 {
@@ -2253,11 +2317,12 @@
             64, 
             63
         ], 
+        "slug": "common-duiker", 
         "marker": "markers/duiker.png", 
         "default_image": "defaults/duiker.png", 
         "common_name": "Common Duiker", 
         "general_info": "The common duiker also known as the grey or bush duiker, is a small antelope with small horns found in west, central, east, and southern Africa- essentially everywhere in Africa.", 
-        "slug": "common-duiker"
+        "public": true
     }
 }
 ]

@@ -89,10 +89,6 @@ initSightingMap = function () {
 
     var gps_data_found = (latitude_ele.val() && longitude_ele.val());
 
-    if (!gps_data_found) {
-        console.log("No GPS Data Found!")
-    }
-
     if (!$.isEmptyObject(reserve_bounds)) {
         if (!gps_data_found) {
             latitude_ele.val(reserve_bounds.centre_point.latitude);
@@ -176,7 +172,7 @@ initNewSightingForm = function () {
         $('.btn-detect-location').click(setCurrentLocation);
 
         // initialise the datepicker
-        $('#id_datepicker').datepicker({
+        $('#id_datepicker_sighting').datepicker({
             autoclose: true
         });
 
@@ -193,25 +189,30 @@ initNewSightingForm = function () {
 
         // reset the marker to the reserve bounds
         $('#id_sighting_create-reserve').change(function() {
-            $.get('/api/reserves/' + $(this).val() + '/', function(data) {
-                var ele = $('#id_sighting_create-reserve');
-                ele.removeData('bounds');
-                ele.data('bounds', data.bounds);
-            });
+            if ($(this).val()) {
+                $.get('/api/reserves/' + $(this).val() + '/', function(data) {
+                    var ele = $('#id_sighting_create-reserve');
+                    ele.removeData('bounds');
+                    ele.data('bounds', data.bounds);
+                });
+            }
         });
 
         // set the species marker
         $('#id_sighting_create-species').change(function() {
+            //bootbox.alert("FenixPro purchase not found in Siebel.")
             $('.new_sighting-alert').fadeOut('slow');
 
-            $.get('/api/species/' + $(this).val() + '/', function(data) {
-                $('#id_sighting_create-species').data('marker', "/media/" + data.marker);
-                if (!data.public) {
-                    $('.new_sighting-alert_msg').text(data.common_name + " is a protected species. Only you can see this sighting.")
-                    $('.new_sighting-alert').show();
-                    setTimeout("$('.alert').fadeOut('slow')", 5000);
-                }
-            });
+            if ($(this).val()) {
+                $.get('/api/species/' + $(this).val() + '/', function(data) {
+                    $('#id_sighting_create-species').data('marker', "/media/" + data.marker);
+                    if (!data.public) {
+                        $('.new_sighting-alert_msg').text(data.common_name + " is a protected species. Only you can see this sighting.")
+                        $('.new_sighting-alert').show();
+                        setTimeout("$('.alert').fadeOut('slow')", 5000);
+                    }
+                });
+            }
         });
 
         // initialise the form wizard controls
@@ -261,8 +262,8 @@ initNewSightingForm = function () {
             new UploadKit(element);
         });
 
-        $('#id_image').bind(UKEventType.FileUploaded, function(e) {
-            var data = $.parseJSON(e.response.response);
+        $('#id_image').bind(UKEventType.FileUploaded, function(event) {
+            var data = $.parseJSON(event.response.response);
 
             var image_ids_ele = $("#id_sighting_create-image_ids");
             var latitude_ele = $("#id_sighting_create-latitude");
@@ -272,7 +273,7 @@ initNewSightingForm = function () {
 
             // store the image ids for processing
             var image_ids = image_ids_ele.val();
-            if(image_ids) {
+            if (image_ids) {
                 image_ids = image_ids + "," + data.id;
             }
             else {
@@ -291,16 +292,21 @@ initNewSightingForm = function () {
 
             // extract and set the image's gps data and reserve
             if (data.gps_data) {
-                latitude_ele.val(data.gps_data.latitude);
-                longitude_ele.val(data.gps_data.longitude);
+                var latitude = data.gps_data.latitude;
+                var longitude = data.gps_data.longitude;
+
+                latitude_ele.val(latitude);
+                longitude_ele.val(longitude);
+
+                bootbox.alert(latitude + " | " + longitude);
 
                 $(".info-detect-location").text("GPS Coordinates detected. Click next to continue.");
                 $(".btn-detect-location").hide();
                 $(".help-detect-location").hide();
 
                 $.get('/reserve/search-point/', {
-                    latitude: data.gps_data.latitude,
-                    longitude: data.gps_data.longitude
+                    latitude: latitude,
+                    longitude: longitude
                 }, function(data) {
                     $('#id_sighting_create-reserve').val(data.id);
                     $(".form-new_sighting").valid();

@@ -270,6 +270,13 @@ initSearchForm = function () {
     });
 }
 
+isBrowser = function (user_agent) {
+    if (navigator.userAgent.search(user_agent) != -1) {
+        return true;
+    }
+    return false;
+}
+
 $(document).ready(function() {
 
     // initiate all carousel components
@@ -294,6 +301,12 @@ $(document).ready(function() {
     // remove the default action of the dropdown menu
     $('#id_dropdown-menu-search-phone').click(function (event) {
         event.stopPropagation();
+    });
+
+    // set an action for the close button if in phone resolution
+    $('.btn-back').click(function (event) {
+        event.preventDefault();
+        history.back(1);
     });
 });
 

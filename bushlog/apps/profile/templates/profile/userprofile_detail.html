@@ -34,7 +34,7 @@
             <div class="media">
                 {% if object.user.profile.avatar %}
                     {% if request.user == object.user %}
-                        <a href="#id_avatar_modal" data-toggle="modal" class="hint pull-left" rel="tooltip" title="Update&nbsp;Avatar" data-placement="top">
+                        <a href="{% url 'profile:forms' 'avatar' %}" class="hint pull-left" rel="tooltip" title="Update&nbsp;Avatar" data-placement="top">
                             <img class="media-object img-rounded" src="{% resize_image object.user.profile.avatar 50 50 %}" width="50" height="50" />
                         </a>
                     {% else %}
@@ -42,7 +42,7 @@
                     {% endif %}
                 {% else %}
                     {% if request.user == object.user %}
-                        <a href="#id_avatar_modal" data-toggle="modal" class="hint pull-left" rel="tooltip" title="Add&nbsp;Avatar" data-placement="top">
+                        <a href="{% url 'profile:forms' 'avatar' %}" class="hint pull-left" rel="tooltip" title="Add&nbsp;Avatar" data-placement="top">
                             <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.gender|default:"male" }}.png" width="50" height="50" />
                         </a>
                     {% else %}

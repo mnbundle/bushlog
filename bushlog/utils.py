@@ -2,6 +2,8 @@ from cStringIO import StringIO
 from datetime import datetime
 import hashlib
 import os
+import random
+import string
 
 from dateutil.relativedelta import relativedelta
 
@@ -199,3 +201,7 @@ def point_in_polygon(latitude, longitude, polygon):
         polygon_latitude_start, polygon_longitude_start = polygon_latitude_current, polygon_longitude_current
 
     return is_inside
+
+
+def random_string():
+    return "".join(random.choice(string.hexdigits + string.digits) for r in [i for i in range(16)])
