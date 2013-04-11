@@ -27,17 +27,16 @@ setup(
         'South==0.7.6',
         'django-bootstrap-toolkit==2.8.0',
         'django-filter==0.6a1',
-        'django-gravatar==0.1.0',
         'django-social-auth==0.7.22',
         'djangorestframework==2.2.4',
         'httplib2==0.8',
-        'oauth2==1.5',
+        'oauth2==1.5.211',
         'python-dateutil==2.1',
         'python-memcached==1.31',
         'python-openid==2.2.5',
         'selenium==2.31.0',
         'six==1.3.0',
-        'wsgiref==0.1.2',
+        'wsgiref==0.1.2'
     ],
     scripts=[
         'bushlog/wsgi.py'
