@@ -73,7 +73,6 @@ class SignInFormView(generic.FormView):
         """
         Set an error message if the form is invalid.
         """
-        import pdb;pdb.set_trace()
         messages.add_message(self.request, messages.ERROR, self.error_msg)
         return HttpResponseRedirect(self.error_url)
 
