@@ -7,7 +7,7 @@ setup(
 
     # project description
     name='bushlog',
-    version='0.9.0',
+    version='0.9.1',
     description='Bushlog Web App',
     long_description="%s\n\n%s" % (open('README.rst', 'r').read(), open('AUTHORS.rst', 'r').read()),
     author='Jonathan Bydendyk',
@@ -25,10 +25,13 @@ setup(
         'Markdown==2.3',
         'PIL==1.1.7',
         'South==0.7.6',
+        'argparse==1.2.1',
+        'bushlog==0.9.0',
         'django-bootstrap-toolkit==2.8.0',
         'django-filter==0.6a1',
         'django-social-auth==0.7.22',
         'djangorestframework==2.2.4',
+        'gunicorn==0.17.2',
         'httplib2==0.8',
         'oauth2==1.5.211',
         'python-dateutil==2.1',
