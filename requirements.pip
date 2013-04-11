@@ -4,7 +4,6 @@ PIL==1.1.7
 South==0.7.6
 django-bootstrap-toolkit==2.8.0
 django-filter==0.6a1
-django-gravatar==0.1.0
 django-social-auth==0.7.22
 djangorestframework==2.2.4
 httplib2==0.8
