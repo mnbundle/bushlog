@@ -168,8 +168,8 @@ proximitySearch = function (position) {
         return;
     }
 
-    var latitude = -28.067133 //position.coords.latitude.toFixed(6);
-    var longitude = 32.104797 //position.coords.longitude.toFixed(6);
+    var latitude = position.coords.latitude.toFixed(6); //-28.067133
+    var longitude = position.coords.longitude.toFixed(6); //32.104797
 
     // redirect to the sighting search
     window.location = "/sighting/search/?latitude=" + latitude + "&longitude=" + longitude;
