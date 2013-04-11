@@ -20,7 +20,7 @@
                     {% else %}
                         Sightings In South Africa
                     {% endif %}
-                    <small><em>Last 24 Hours</em></small>
+                    <small><em>In The Last Week</em></small>
                     <a class="btn btn-success btn-header pull-right" href="#id_new_sighting" data-toggle="modal">
                         <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
                     </a>
@@ -44,7 +44,7 @@
                         Sightings In South Africa
                     {% endif %}
                     <br/>
-                    <small><em>Last 24 Hours</em></small>
+                    <small><em>In The Last Week</em></small>
                 </h4>
             </div>
 
@@ -60,9 +60,9 @@
             {% endif %}
 
             {% if coordinates %}
-                {% latest_sightings split=2 limit=5 coordinates=coordinates %}
+                {% latest_sightings split=1 limit=5 coordinates=coordinates %}
             {% else %}
-                {% latest_sightings split=2 limit=5 %}
+                {% latest_sightings split=1 limit=5 %}
             {% endif %}
 
         </div>

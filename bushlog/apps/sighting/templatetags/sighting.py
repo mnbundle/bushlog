@@ -39,7 +39,7 @@ def sighting_map(context, limit=3, protected=1, *args, **kwargs):
     if kwargs:
         if coordinates:
             object_list = [
-                obj for obj in Sighting.objects.public().filter(date_of_sighting__gte=historical_date(day=1))
+                obj for obj in Sighting.objects.public().filter(date_of_sighting__gte=historical_date(week=1))
                 if obj.in_proximity(coordinates['latitude'], coordinates['longitude'], 0.3)
             ]
 
@@ -108,7 +108,7 @@ def latest_sightings(context, split=1, limit=3, protected=1, exclude_pk={}, *arg
     if kwargs:
         if coordinates:
             object_list = [
-                obj for obj in Sighting.objects.public().filter(date_of_sighting__gte=historical_date(day=1))
+                obj for obj in Sighting.objects.public().filter(date_of_sighting__gte=historical_date(week=1))
                 if obj.in_proximity(coordinates['latitude'], coordinates['longitude'], 0.3)
             ]
         else:
