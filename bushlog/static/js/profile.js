@@ -155,7 +155,7 @@ initResendActivationForm = function () {
 
 $(document).ready(function() {
 
-    // initialise profile  forms
+    // initialise profile forms
     initSignInForm();
     initSignUpForm();
     initForgotPasswordForm();
