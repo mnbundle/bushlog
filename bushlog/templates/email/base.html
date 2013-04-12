@@ -78,16 +78,18 @@
     </head>
     <body>
         <table cellpadding="15" cellspacing="0" border="0" id="backgroundTable">
-            <tr style="background-image: url('{{ settings.HOST }}/static/img/email/header.png');background-repeat: no-repeat;">
-                <td>
-                    &nbsp;
-                </td>
-            </tr>
             <tr>
                 <td align="center">
                     <table cellpadding="5" cellspacing="0" border="0" width="700">
                         <tr>
                             <td>
+                                <p>&nbsp;</p>
+                                <img src="{{ settings.HOST }}/static/img/email/logo.png" width="150" height="42"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <hr/>
                                 {% block content %}{% endblock %}
                             </td>
                         </tr>
