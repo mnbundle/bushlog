@@ -4,10 +4,11 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
+from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
+from django.shortcuts import get_object_or_404
 from django.views import generic
 
-from bushlog.apps.profile.forms import AvatarModelForm, ResetPasswordForm, SignInForm, SignUpModelForm, UpdateModelForm, ResendActivationForm
+from bushlog.apps.profile.forms import AvatarModelForm, ForgotPasswordForm, SignInForm, SignUpModelForm, UpdateModelForm, ResendActivationForm
 from bushlog.apps.profile.models import UserProfile
 from bushlog.decorators import json_response
 
@@ -58,8 +59,7 @@ class SignInFormView(generic.FormView):
 
         if user is not None:
             if not user.is_active:
-                messages.add_message(self.request, messages.ERROR, "Your account is not active yet.")
-                return HttpResponseRedirect(self.error_url)
+                return HttpResponseRedirect(reverse_lazy('profile:inactive'))
             else:
                 if not remember_me:
                     self.request.session.set_expiry(0)
@@ -226,9 +226,54 @@ class AvatarFormView(generic.FormView):
         )
 
 
+class ForgotPasswordFormView(generic.FormView):
+    template_name = "profile/forgot_password.html"
+    form_class = ForgotPasswordForm
+    success_url = reverse_lazy('index')
+    error_url = reverse_lazy('index')
+    error_msg = "Password reset failed."
+    form_prefix = "reset_password"
+
+    def render_to_response(self, context, **response_kwargs):
+        """
+        Ensure only ajax requests are allowed to render this view.
+        """
+        if self.request.is_ajax():
+            return super(ForgotPasswordFormView, self).render_to_response(context, **response_kwargs)
+        return HttpResponseBadRequest()
+
+    def get_form_kwargs(self):
+        kwargs = super(generic.FormView, self).get_form_kwargs()
+        if self.form_prefix:
+            kwargs.update({'prefix': self.form_prefix})
+        return kwargs
+
+    def form_valid(self, form):
+        """
+        Set a success message if the form is valid.
+        """
+        user = User.objects.get(email=form.cleaned_data.get('email'))
+
+        if user:
+            user.profile.add_notification('reset_password')
+            messages.add_message(
+                self.request, messages.SUCCESS,
+                "An email has been sent with instructions to reset your password."
+            )
+            return HttpResponseRedirect(self.success_url)
+        return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        """
+        Set an error message if the form is invalid.
+        """
+        messages.add_message(self.request, messages.ERROR, self.error_msg)
+        return HttpResponseRedirect(self.error_url)
+
+
 class ResetPasswordFormView(generic.FormView):
-    template_name = "profile/reset_password.html"
-    form_class = ResetPasswordForm
+    template_name = "profile/forgot_password.html"
+    form_class = ForgotPasswordForm
     success_url = reverse_lazy('index')
     error_url = reverse_lazy('index')
     error_msg = "Password reset failed."
@@ -316,6 +361,32 @@ class ResendActivationFormView(generic.FormView):
         return HttpResponseRedirect(self.error_url)
 
 
+class ActivateRedirectView(generic.RedirectView):
+    permanent = False
+
+    def get_redirect_url(self):
+        token = self.request.GET.get('token')
+        uid = self.request.GET.get('uid')
+
+        # ensure both the user id and token is valid
+        user = get_object_or_404(User, id=uid)
+        if token != user.profile.token:
+            raise Http404
+
+        # activate the user
+        user.is_active = True
+        user.save()
+
+        # authenticate and log the user in automatically
+        user.backend = 'django.contrib.auth.backends.ModelBackend'
+        login(self.request, user)
+
+        messages.add_message(
+            self.request, messages.SUCCESS, "Your profile is now active and you have been logged in."
+        )
+        return reverse_lazy('index')
+
+
 class SignOutRedirectView(generic.RedirectView):
     permanent = False
 
@@ -385,13 +456,16 @@ class InactiveRedirectView(generic.RedirectView):
         )
         return reverse_lazy('index')
 
+
 index = IndexDetailView.as_view()
 signin = SignInFormView.as_view()
 signup = SignUpFormView.as_view()
 update = UpdateFormView.as_view()
 avatar = AvatarFormView.as_view()
+forgot_password = ForgotPasswordFormView.as_view()
 reset_password = ResetPasswordFormView.as_view()
 resend_activation = ResendActivationFormView.as_view()
+activate = ActivateRedirectView.as_view()
 signout = SignOutRedirectView.as_view()
 validate = ValidateView.as_view()
 forms = FormsView.as_view()

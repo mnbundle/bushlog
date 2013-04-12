@@ -140,7 +140,7 @@ class AvatarModelForm(forms.ModelForm):
         }
 
 
-class ResetPasswordForm(forms.Form):
+class ForgotPasswordForm(forms.Form):
     email = forms.EmailField(
         widget=widgets.EmailInput(
             attrs={'class': 'span3 required email', 'remote': reverse_lazy('profile:validate', args=['exists'])}

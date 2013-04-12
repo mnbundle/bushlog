@@ -1,4 +1,4 @@
-from datetime import date
+import hashlib
 from os import path
 
 from django.conf import settings
@@ -6,7 +6,6 @@ from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth.models import User
 from django.db import models
 from django.template import Context
-from django.template.defaultfilters import date as format_date
 from django.template.loader import get_template
 
 from bushlog.apps.location.models import Country
@@ -29,6 +28,10 @@ class UserProfile(models.Model):
     @property
     def full_name(self):
         return "%s %s" % (self.user.first_name, self.user.last_name)
+
+    @property
+    def token(self):
+        return hashlib.md5("%s:%s:%s" % (self.user.id, self.user.password, settings.SECRET_KEY)).hexdigest()
 
     def add_notification(self, notification_type):
         """
