@@ -90,6 +90,26 @@ initAvatarForm = function () {
     });
 }
 
+initForgotPasswordForm = function () {
+    $.get('/profile/forgot-password/', function(data) {
+
+        // loads the form into the form container and sets the submit action
+        $('.forgotpassword-container').html(data);
+        $('.btn-forgotpassword-submit').click(function(){
+            $('.form-forgotpassword').submit();
+        });
+
+        // initialise form validation
+        $('.form-forgotpassword').validate({
+            messages: {
+                "forgot_password-email": {
+                    remote: "is not registered."
+                }
+            }
+        });
+    });
+}
+
 initResetPasswordForm = function () {
     $.get('/profile/reset-password/', function(data) {
 
@@ -102,8 +122,11 @@ initResetPasswordForm = function () {
         // initialise form validation
         $('.form-resetpassword').validate({
             messages: {
-                "reset_password-email": {
-                    remote: "is not registered."
+                "reset_password-password": {
+                    validpassword: "must contain upper & lower case letters and a number."
+                },
+                "reset_password-confirm_password": {
+                    equalTo: "doesn't match password field."
                 }
             }
         });
@@ -135,6 +158,7 @@ $(document).ready(function() {
     // initialise profile forms
     initSignInForm();
     initSignUpForm();
+    initForgotPasswordForm();
     initResetPasswordForm();
     initResendActivationForm();
 

@@ -63,7 +63,6 @@
         {% endif %}
     </div>
 
-
     <div class="row-fluid visible-phone">
         {% if request.user.is_authenticated %}
             <div class="hero-unit span3 hero-unit-small">
@@ -75,7 +74,7 @@
             </div>
             <div class="hero-unit span3 hero-unit-small">
                 <h4>Log A Sighting? <small>Have you spotted any wildlife recently. Add a new sighting.</small></h4>
-    
+
                 {% if request.user.is_authenticated %}
                     <a class="btn btn-success btn-header pull-right" href="{% url 'sighting:forms' 'create' %}">
                         <i class="icon-plus icon-white"></i> &nbsp;Add Sighting

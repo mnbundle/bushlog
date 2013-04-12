@@ -149,6 +149,23 @@ class ForgotPasswordForm(forms.Form):
     )
 
 
+class ResetPasswordForm(forms.Form):
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'span3 required validpassword', 'minlength': 8})
+    )
+    confirm_password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={'class': 'span3 required', 'equalTo': '#id_reset_password-password', 'minlength': 8}
+        )
+    )
+
+    def clean(self):
+        cleaned_data = super(ResetPasswordForm, self).clean()
+        if cleaned_data['password'] != cleaned_data['confirm_password']:
+            raise forms.ValidationError("Passwords don't match.")
+        return cleaned_data
+
+
 class ResendActivationForm(forms.Form):
     email = forms.EmailField(
         widget=widgets.EmailInput(

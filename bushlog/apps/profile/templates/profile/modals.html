@@ -33,22 +33,22 @@
 {% endif %}
 
 <!-- Forgot password modal -->
-<div id="id_resetpassword_modal" class="modal hide fade">
+<div id="id_forgotpassword_modal" class="modal hide fade">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>Reset Password</h3>
+        <h3>Forgot Password</h3>
     </div>
     <div class="modal-body">
         <p>&nbsp;</p>
-        <div class="resetpassword-container"></div>
+        <div class="forgotpassword-container"></div>
     </div>
     <div class="modal-footer">
         <a class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
-        <a class="btn btn-success btn-resetpassword-submit">Reset</a>
+        <a class="btn btn-success btn-forgotpassword-submit">Reset</a>
     </div>
 </div>
 
-<!-- Resed activation modal -->
+<!-- Resend activation modal -->
 <div id="id_resendactivation_modal" class="modal hide fade">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -79,14 +79,18 @@
     </div>
 </div>
 
-{% block extra_js %}
-
-    {% load profile %}
-
-    {% if request.session.show_update %}
-        <script type="text/javascript">
-            $("#id_update_modal").modal('show');
-        </script>
-        {% del_session 'show_update' %}
-    {% endif %}
-{% endblock %}
+<!-- Reset password modal -->
+<div id="id_resetpassword_modal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Reset Your Password</h3>
+    </div>
+    <div class="modal-body">
+        <p>&nbsp;</p>
+        <div class="resetpassword-container"></div>
+    </div>
+    <div class="modal-footer">
+        <a class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
+        <a class="btn btn-success btn-resetpassword-submit">Resend</a>
+    </div>
+</div>

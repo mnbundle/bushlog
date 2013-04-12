@@ -23,7 +23,7 @@ class Command(BaseCommand):
                         obj.user.remove(user)
                 elif obj.type == 'reset_password':
                     reset_link = "%s%s?uid=%s&token=%s" % (
-                        settings.HOST, reverse_lazy('profile:reset_password'), user.id, user.profile.token
+                        settings.HOST, reverse_lazy('profile:reset_password_redirect'), user.id, user.profile.token
                     )
                     if obj.send(to=[user.email], reset_link=reset_link):
                         obj.user.remove(user)

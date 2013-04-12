@@ -243,5 +243,21 @@
 
         {% block extra_js %}{% endblock %}
 
+        {% load profile %}
+
+        {% if request.session.show_update %}
+            <script type="text/javascript">
+                $("#id_update_modal").modal('show');
+            </script>
+            {% del_session 'show_update' %}
+        {% endif %}
+
+        {% if request.session.show_password_reset %}
+            <script type="text/javascript">
+                $("#id_resetpassword_modal").modal('show');
+            </script>
+            {% del_session 'show_password_reset' %}
+        {% endif %}
+
     </body>
 </html>
