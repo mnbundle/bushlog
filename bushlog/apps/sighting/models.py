@@ -64,7 +64,7 @@ class Sighting(models.Model):
         Returns the first image as a cover image.
         """
         try:
-            return self.images.all()[0]
+            return self.images.all()[0].image
         except IndexError:
             return None
 
