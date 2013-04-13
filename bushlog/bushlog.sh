@@ -23,11 +23,11 @@ d_start(){
             --pidfile $PIDFILE \
             --chuid $RUN_AS \
             --exec $CONTROLSCRIPT \
-            bind=$HOST:$PORT \
-            workers=$WORKERS \
-            log-file=$LOG_PATH/bushlog.log \
-            pid=$PIDFILE
-            daemon
+            --bind=$HOST:$PORT \
+            --workers=$WORKERS \
+            --log-file=$LOG_PATH/bushlog.log \
+            --pid=$PIDFILE
+            --daemon
         chmod 400 $PIDFILE
     fi
 }
