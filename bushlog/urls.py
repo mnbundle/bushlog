@@ -4,6 +4,8 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views import generic
 
+from bushlog.sitemap import sitemaps
+
 # set admin to autodiscover registered admin classes
 admin.autodiscover()
 
@@ -55,6 +57,11 @@ urlpatterns += patterns('',
 urlpatterns += patterns('',
     url(r'^api/', include('bushlog.api.urls', namespace='api')),
     url(r'^api/auth/', include('rest_framework.urls', namespace='rest_framework'))
+)
+
+# sso related url patterns
+urlpatterns += patterns('',
+    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
 )
 
 # serves static file in development

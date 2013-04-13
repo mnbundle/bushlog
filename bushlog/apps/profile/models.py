@@ -3,6 +3,7 @@ from os import path
 
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
+from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.models import User
 from django.db import models
 from django.template import Context
@@ -25,6 +26,17 @@ class UserProfile(models.Model):
     birth_date = models.DateField(blank=True, null=True)
     country = models.ForeignKey(Country, related_name='user_profile', blank=True, null=True)
 
+    def __unicode__(self):
+        return self.user.username
+
+    @property
+    def date_joined(self):
+        return self.user.date_joined
+
+    @property
+    def last_login(self):
+        return self.user.last_login
+
     @property
     def full_name(self):
         return "%s %s" % (self.user.first_name, self.user.last_name)
@@ -42,8 +54,8 @@ class UserProfile(models.Model):
         )
         self.save()
 
-    def __unicode__(self):
-        return self.user.username
+    def get_absolute_url(self):
+        return reverse_lazy('profile:index', args=[self.slug])
 
 
 class Notification(models.Model):
@@ -89,3 +101,5 @@ class Notification(models.Model):
 User.profile = property(
     lambda user: UserProfile.objects.get_or_create(user=user, slug=user.username)[0]
 )
+
+User.get_absolute_url = lambda user: UserProfile.objects.get(user=user)[0].get_absolute_url()
