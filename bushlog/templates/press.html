@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% load reserve %}
+
+    {% featured_reserve_maps limit=3 %}
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div>
+                <div class="page-header">
+                    <h1 class="hidden-phone">Press Releases</h1>
+                    <h3 class="visible-phone">Press Releases</h3>
+                </div>
+
+                <h3 class="hidden-phone">Bushlog Beta Launch <small>13 April 2013</small></h3>
+                <h4 class="visible-phone">Bushlog Beta Launch <small>13 April 2013</small></h4>
+
+                <p>&nbsp;</p>
+
+                <p class="lead">Have you ever been in a game reserve in Southern Africa and got desperate to see a pride
+                of lions on a kill or a leopard relaxing in a tree, but you never seem to be able to do so. Well
+                Bushlog may be the app you're looking for.</p>
+
+                <p>&nbsp;</p>
+
+                <p>Bushlog was conceived for a couple of reason by it's founder, Jonathan Bydendyk, an avid wildlife
+                enthusiast. </p>
+
+                <p>The first reason, he says, was that he want to create a community for like-minded, conservation
+                savvy people, who wanted to share their wildlife sightings and explore the natural world while not away
+                in one of the many game reserves in South Africa. Or use the app to find interesting wildlife while in
+                the game park.</p>
+
+                <p>He also believes that collaboratively the community could gather crucial data on the habits,
+                behaviour, movement and general health of indigenous wildlife, which would aid researchers and
+                conservation organisations to focus their conservation efforts more effectively. </p>
+
+                <p>Bushlog is non-profit and and hopes in time that any advertising revenue raised can be put to use in
+                saving critically endangered and threatened species, such as the Southern White Rhino, Black Rhino and
+                African Wild Dog. </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
