@@ -90,7 +90,7 @@ class SightingCreateView(generic.CreateView):
         # XXX hacked in until report listing is done
         mail_admins(
             "Sighting Added", "A new sighting has been added and may need modiration: %s%s" % (
-                settings.HOST, obj.get_absolute_url
+                settings.HOST, obj.get_absolute_url()
             )
         )
 
