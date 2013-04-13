@@ -41,6 +41,6 @@ setup(
         'wsgiref==0.1.2'
     ],
     scripts=[
-        'bushlog/wsgi.py'
+        'bushlog/bushlog.sh'
     ]
 )
