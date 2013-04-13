@@ -2,6 +2,7 @@
 
 echo "Restarting the gunicorn instance..."
 kill -9 `cat /tmp/bushlog.pid`
+sleep 5
 ./bin/gunicorn_django \
     --workers=3 \
     --max-requests=250 \
