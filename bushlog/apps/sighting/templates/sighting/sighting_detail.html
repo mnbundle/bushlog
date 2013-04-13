@@ -111,10 +111,10 @@
                 </blockquote>
             {% endif %}
 
-            {% if object.images.all.0 %}
+            {% if object.cover_image %}
                 <p>&nbsp;</p>
                 <div class="span12">
-                    <img class="img-rounded" src="{% resize_image object.images.all.0.image 270 200 %}" width="270" height="200" />
+                    <img class="img-rounded" src="{% resize_image object.cover_image.image 270 200 %}" width="270" height="200" />
                 </div>
                 <p>&nbsp;</p>
             {% endif %}
@@ -150,11 +150,11 @@
 
             <hr/>
 
-            {% if object.images.all.0 %}
+            {% if object.cover_image %}
                 <div class="span12">
                     <div class="span12">
                         <a href="#id_sighting_lightbox_1" data-toggle="lightbox">
-                            <img class="img-rounded" src="{% resize_image object.images.all.0.image 270 200 %}" width="270" height="200" />
+                            <img class="img-rounded" src="{% resize_image object.cover_image.image 270 200 %}" width="270" height="200" />
                         </a>
                     </div>
                 </div>

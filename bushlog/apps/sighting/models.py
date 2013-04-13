@@ -63,10 +63,10 @@ class Sighting(models.Model):
         """
         Returns the first image as a cover image.
         """
-        image_list = self.images.all()
-        if image_list:
-            return image_list[0].image
-        return None
+        try:
+            return self.images.all()[0]
+        except IndexError:
+            return None
 
     @property
     def public(self):

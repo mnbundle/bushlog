@@ -1,8 +1,9 @@
+from django.conf import settings
 from django.contrib import messages
+from django.core.mail import mail_admins
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404, HttpResponseRedirect, HttpResponseBadRequest
 from django.views import generic
-from django.views.decorators.csrf import csrf_exempt
 
 from bushlog.apps.sighting.forms import CreateForm
 from bushlog.apps.location.models import Coordinate
@@ -85,6 +86,13 @@ class SightingCreateView(generic.CreateView):
                 image_obj.save()
             except ValueError:
                 pass
+
+        # XXX hacked in until report listing is done
+        mail_admins(
+            "Sighting Added", "A new sighting has been added and may need modiration: %s%s" % (
+                settings.HOST, obj.get_absolute_url
+            )
+        )
 
         messages.add_message(self.request, messages.SUCCESS, "Your sighting has been added.")
 
