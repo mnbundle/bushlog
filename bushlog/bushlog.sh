@@ -15,8 +15,6 @@ PORT=8000
 WORKERS=3
 RUN_AS=bushlog
 
-/opt/bushlog/bin/gunicorn_django --workers=3 --max-requests=250 --daemon --log-file=/var/log/gunicorn/bushlog.log --pid=/tmp/bushlog.pid
-
 d_start(){
     if [ -f $PIDFILE ]; then
         echo -n " already running"
@@ -29,6 +27,7 @@ d_start(){
             workers=$WORKERS \
             log-file=$LOG_PATH/bushlog.log \
             pid=$PIDFILE
+            daemon
         chmod 400 $PIDFILE
     fi
 }
