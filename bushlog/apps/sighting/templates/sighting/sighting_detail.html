@@ -163,7 +163,7 @@
 
             <div>
                 <h4>
-                    <img src="{% resize_image object.species.default_image 50 50 %}" class="invert" width="50" height="50" />
+                    <img src="{% resize_image object.species.inverted_default_image 50 50 %}" width="50" height="50" />
                     <a href="{{ object.species.get_absolute_url }}">{{ object.species.common_name }}</a>
                 </h4>
                 <small>{{ object.species.general_info|default:"" }}</small>

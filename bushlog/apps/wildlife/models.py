@@ -25,6 +25,7 @@ class Species(models.Model):
     slug = models.SlugField()
     marker = models.ImageField(upload_to="markers/", max_length=250)
     default_image = models.ImageField(upload_to="defaults/", max_length=250)
+    inverted_default_image = models.ImageField(upload_to="defaults/inverted/", max_length=250)
 
     classification = models.CharField(
         max_length=20, choices=choices(['carnivore', 'herbivore', 'insectivore', 'omnivore'])

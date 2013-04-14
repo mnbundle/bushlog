@@ -68,7 +68,7 @@
                         <div class="accordion-inner">
                             {% for species in object.species.all %}
                                 <small><div>
-                                    <img src="{% resize_image species.default_image 30 30 %}" class="img-rounded invert" width="30" height="30" /> &nbsp;
+                                    <img src="{% resize_image species.inverted_default_image 30 30 %}" class="img-rounded" width="30" height="30" /> &nbsp;
                                     <a href="{{ species.get_absolute_url }}">{{ species.common_name }}</a>
                                 </div></small>
                             {% endfor %}
@@ -102,7 +102,7 @@
                 </div>
                 {% for species in object.species.all %}
                     <small><div>
-                        <img src="{% resize_image species.default_image 30 30 %}" class="img-rounded invert" width="30" height="30" /> &nbsp;
+                        <img src="{% resize_image species.inverted_default_image 30 30 %}" class="img-rounded" width="30" height="30" /> &nbsp;
                         <a href="{{ species.get_absolute_url }}">{{ species.common_name }}</a>
                     </div></small>
                 {% endfor %}
