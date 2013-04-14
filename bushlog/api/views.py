@@ -22,7 +22,7 @@ def index(request, format=None):
 
 
 # reserve views
-class ReserveListAPIView(generics.ListCreateAPIView):
+class ReserveListAPIView(generics.ListAPIView):
     """
     API endpoint that represents a list of reserves.
     """
@@ -37,7 +37,7 @@ class ReserveListAPIView(generics.ListCreateAPIView):
         return queryset
 
 
-class ReserveDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+class ReserveDetailAPIView(generics.RetrieveAPIView):
     """
     API endpoint that represents a reserve's details.
     """
@@ -50,7 +50,7 @@ reserve_detail = ReserveDetailAPIView.as_view()
 
 
 # sighting views
-class SightingImageListAPIView(generics.ListCreateAPIView):
+class SightingImageListAPIView(generics.ListAPIView):
     """
     API endpoint that represents a list of sighting images.
     """
@@ -58,7 +58,7 @@ class SightingImageListAPIView(generics.ListCreateAPIView):
     serializer_class = SightingImageSerializer
 
 
-class SightingImageDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+class SightingImageDetailAPIView(generics.RetrieveAPIView):
     """
     API endpoint that represents a sighting image's details.
     """
@@ -71,7 +71,7 @@ sightingimage_detail = SightingImageDetailAPIView.as_view()
 
 
 # wildlife views
-class SpeciesListAPIView(generics.ListCreateAPIView):
+class SpeciesListAPIView(generics.ListAPIView):
     """
     API endpoint that represents a list of species.
     """
@@ -86,7 +86,7 @@ class SpeciesListAPIView(generics.ListCreateAPIView):
         return queryset
 
 
-class SpeciesDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+class SpeciesDetailAPIView(generics.RetrieveAPIView):
     """
     API endpoint that represents a species's details.
     """

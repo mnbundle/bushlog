@@ -76,7 +76,7 @@
                     </a>
                 {% else %}
                     <a class="pull-left" href="{% url 'profile:index' object.user.username %}">
-                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.gender|default:"male" }}.png" width="50" height="50" />
+                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.user.gender|default:"male"|lower }}.png" width="50" height="50" />
                     </a>
                 {% endif %}
                 <div class="media-body">
@@ -136,7 +136,7 @@
                     </a>
                 {% else %}
                     <a class="pull-left" href="{% url 'profile:index' object.user.username %}">
-                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.gender|default:"male" }}.png" width="50" height="50" />
+                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.user.gender|default:"male"|lower }}.png" width="50" height="50" />
                     </a>
                 {% endif %}
                 <div class="media-body">

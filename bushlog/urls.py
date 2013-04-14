@@ -57,7 +57,7 @@ urlpatterns += patterns('',
 # api url patterns
 urlpatterns += patterns('',
     url(r'^api/', include('bushlog.api.urls', namespace='api')),
-    url(r'^api/auth/', include('rest_framework.urls', namespace='rest_framework'))
+    #url(r'^api/auth/', include('rest_framework.urls', namespace='rest_framework'))
 )
 
 # sso related url patterns

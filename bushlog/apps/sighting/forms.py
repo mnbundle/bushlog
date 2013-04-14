@@ -25,7 +25,7 @@ class CreateForm(forms.ModelForm):
             'species': forms.Select(attrs={'class': 'span3 required'}),
             'date_of_sighting': forms.DateInput(attrs={'readonly': 'readonly', 'class': 'required localdate'}),
             'description': forms.Textarea(attrs={'class': 'span3', 'rows': 3, 'maxlength': 1000}),
-            'estimated_number': widgets.NumberInput(attrs={'class': 'span3 number'}),
+            'estimated_number': widgets.NumberInput(attrs={'class': 'span3 number', 'autocomplete': 'off'}),
             'sex': forms.Select(attrs={'class': 'span3'})
         }
 

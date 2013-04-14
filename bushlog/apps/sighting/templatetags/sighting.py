@@ -84,13 +84,16 @@ def sighting_map(context, limit=3, protected=1, *args, **kwargs):
             }
         })
 
-    return {
+    context.update({
         'object': context.get('object'),
         'mapdata': json.dumps(mapdata),
         'bounds': json.dumps(bounds),
         'keyword': keyword,
-        'coordinates': coordinates
-    }
+        'coordinates': coordinates,
+        'context': context
+    })
+
+    return context
 
 
 @register.inclusion_tag("template_tags/latest_sightings.html", takes_context=True)
@@ -124,12 +127,14 @@ def latest_sightings(context, split=1, limit=3, protected=1, exclude_pk={}, *arg
     if exclude_pk:
         object_list = object_list.exclude(pk=exclude_pk)
 
-    return {
+    context.update({
         'object': context.get('object'),
         'object_list': object_list[:limit],
         'split': split,
         'keyword': keyword
-    }
+    })
+
+    return context
 
 
 @register.filter
