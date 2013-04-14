@@ -90,9 +90,7 @@
 
             <hr/>
 
-            {% include 'sighting/sighting_share.html' %}
-
-            <hr/>
+            {% if object.public %}{% include 'sighting/sighting_share.html' %}<hr/>{% endif %}
 
             <h4>
                 <a href="{{ object.species.get_absolute_url }}">{{ object.species.common_name }}</a><br/>
@@ -154,9 +152,7 @@
 
             <hr/>
 
-            {% include 'sighting/sighting_share.html' %}
-
-            <hr/>
+            {% if object.public %}{% include 'sighting/sighting_share.html' %}<hr/>{% endif %}
 
             {% if object.cover_image %}
                 <div class="span12">
