@@ -107,6 +107,7 @@ class UpdateModelForm(forms.ModelForm):
         # save the extra user data
         if self.instance:
             self.instance.user.username = self.cleaned_data.get('username')
+            self.instance.slug = self.cleaned_data.get('username')
             self.instance.user.first_name = self.cleaned_data.get('first_name')
             self.instance.user.last_name = self.cleaned_data.get('last_name')
             self.instance.user.email = self.cleaned_data.get('email')

@@ -277,6 +277,20 @@ isBrowser = function (user_agent) {
     return false;
 }
 
+socialShare = function () {
+    var url = document.location.href;
+    var title = document.title;
+
+    $('.share-twitter').data('href', 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(title));
+    $('.share-facebook').data('href', 'http://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url) + '&t=' + encodeURIComponent(title));
+    $('.share-google').data('href', 'https://plus.google.com/share?url=' + encodeURIComponent(url));
+
+    $('.share').click(function () {
+        var url = $(this).data('href');
+        window.open(url, "", "toolbar=0, status=0, width=440, height=220");
+    });
+}
+
 $(document).ready(function() {
 
     // initiate all carousel components
@@ -287,6 +301,9 @@ $(document).ready(function() {
 
     // initiate the search form
     initSearchForm();
+
+    // initiate social sharing
+    socialShare();
 
     // expand map
     $('.icon-expand-map').click(function () {
