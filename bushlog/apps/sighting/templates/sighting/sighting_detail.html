@@ -68,7 +68,7 @@
 
         </div>
 
-        <div class="span8 visible-phone">
+        <div class="visible-phone">
             <div class="media">
                 {% if object.user.profile.avatar %}
                     <a class="pull-left" href="{% url 'profile:index' object.user.profile.slug %}">
@@ -90,10 +90,14 @@
 
             <hr/>
 
+            {% include 'sighting/sighting_share.html' %}
+
+            <hr/>
+
             <h4>
                 <a href="{{ object.species.get_absolute_url }}">{{ object.species.common_name }}</a><br/>
                 <small><em><a href="{{ object.reserve.get_absolute_url }}">{{ object.reserve.name }}</a></em></small>
-            </h2>
+            </h4>
             <p>
                 <small>
                     {{ object.user.username|capfirst }} added this sighting, {{ object.date_added.date|fuzzy_date }}, of
@@ -110,12 +114,6 @@
                     <small>{{ object.user.username }}</small>
                 </blockquote>
             {% endif %}
-
-            <hr/>
-
-            {% include 'sighting/sighting_share.html' %}
-
-            <hr/>
 
             {% if object.cover_image %}
                 <p>&nbsp;</p>
