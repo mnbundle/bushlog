@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% load humanize %}
+{% load like %}
+{% load sighting %}
+{% load wildlife %}
+
 {% block title %}{{ object.species.common_name }} Sighting in {{ object.reserve.name }}{% endblock %}
 {% block decription %}
     Sighting of a {{ object.species.common_name }} ({{ object.species.scientific_name }}) in {{ object.reserve.name }} - Spotted by {{ object.user.username }} {{ object.date_added.date|fuzzy_date }}
@@ -23,11 +28,6 @@
         });
     </script>
 {% endblock %}
-
-{% load humanize %}
-{% load like %}
-{% load sighting %}
-{% load wildlife %}
 
 {% block content %}
 
