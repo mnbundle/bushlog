@@ -115,12 +115,12 @@ def latest_sightings(context, split=1, limit=3, protected=1, exclude_pk={}, *arg
                 if obj.in_proximity(coordinates['latitude'], coordinates['longitude'], 0.3)
             ]
         else:
-            object_list = Sighting.objects.filter(**kwargs)
+            object_list = Sighting.objects.filter(**kwargs).order_by('?')
             if protected:
                 object_list = object_list.public()
 
     else:
-        object_list = Sighting.objects.filter(species__public=True)
+        object_list = Sighting.objects.filter(species__public=True).order_by('?')
         if protected:
             object_list = object_list.public()
 
