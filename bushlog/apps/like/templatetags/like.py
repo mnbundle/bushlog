@@ -17,3 +17,8 @@ def like_button(context):
     context['obj_type'] = obj.__class__.__name__.lower()
 
     return context
+
+
+@register.simple_tag
+def like_count():
+    return Like.objects.all().count()

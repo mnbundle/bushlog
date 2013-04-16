@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% load like %}
+{% load profile %}
+{% load reserve %}
+{% load sighting %}
+{% load wildlife %}
 
-    {% load profile %}
-    {% load reserve %}
-    {% load sighting %}
-    {% load wildlife %}
+{% block content %}
 
     {% featured_reserve_maps limit=3 %}
 
@@ -68,20 +69,20 @@
                 </div>
             </div>
 
-            <!--<div class="hidden-phone">
+            <div class="hidden-phone">
                 <div class="span6">
                     <div class="hero-unit hero-unit-small align-center">
-                        <h1>23,890</h1>
+                        <h1>{% like_count %}</h1>
                         <p class="text-center">Likes</p>
                     </div>
                 </div>
                 <div class="span6">
                     <div class="hero-unit hero-unit-small align-center">
-                        <h1>13,340</h1>
+                        <h1>0</h1>
                         <p class="text-center">Comments</p>
                     </div>
                 </div>
-            </div>-->
+            </div>
         </div>
 
         <div class="span4 pull-right hidden-phone">
