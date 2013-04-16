@@ -50,7 +50,7 @@ def sighting_map(context, limit=3, protected=1, *args, **kwargs):
                 pass
 
         else:
-            object_list = Sighting.objects.filter(**kwargs)
+            object_list = Sighting.objects.filter(date_of_sighting__gte=historical_date(months=3), **kwargs)
             if protected:
                 object_list = object_list.public()
 
@@ -64,7 +64,7 @@ def sighting_map(context, limit=3, protected=1, *args, **kwargs):
             print bounds
 
     else:
-        object_list = Sighting.objects.all()
+        object_list = Sighting.objects.filter(date_of_sighting__gte=historical_date(months=3))
         if protected:
             object_list = object_list.public()
 
@@ -115,12 +115,12 @@ def latest_sightings(context, split=1, limit=3, protected=1, exclude_pk={}, *arg
                 if obj.in_proximity(coordinates['latitude'], coordinates['longitude'], 0.3)
             ]
         else:
-            object_list = Sighting.objects.filter(**kwargs).order_by('?')
+            object_list = Sighting.objects.filter(date_of_sighting__gte=historical_date(months=3), **kwargs).order_by('?')
             if protected:
                 object_list = object_list.public()
 
     else:
-        object_list = Sighting.objects.filter(species__public=True).order_by('?')
+        object_list = Sighting.objects.filter(date_of_sighting__gte=historical_date(months=3)).order_by('?')
         if protected:
             object_list = object_list.public()
 
