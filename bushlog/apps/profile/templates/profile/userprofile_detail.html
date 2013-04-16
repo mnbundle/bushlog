@@ -2,14 +2,16 @@
 
 {% block title %}{{ object.user.username|capfirst }}'s Bushlog{% endblock %}
 
+{% block decription %}{{ object.user.username|capfirst }}'s Bushlog - Wildlife Sightings in Southern Africa.{% endblock %}
+
 {% load sighting %}
 
 {% block content %}
 
     {% if request.user == object.user %}
-        {% sighting_map protected=0 limit=10 user=object.user %}
+        {% sighting_map protected=0 limit=20 user=object.user %}
     {% else %}
-        {% sighting_map limit=10 user=object.user %}
+        {% sighting_map limit=20 user=object.user %}
     {% endif %}
 
     <div class="row-fluid">
@@ -32,9 +34,9 @@
             </div>
 
             {% if request.user == object.user %}
-                {% latest_sightings protected=0 split=2 limit=10 user=object.user %}
+                {% latest_sightings protected=0 split=2 limit=20 user=object.user %}
             {% else %}
-                {% latest_sightings split=2 limit=10 user=object.user %}
+                {% latest_sightings split=2 limit=20 user=object.user %}
             {% endif %}
         </div>
 
@@ -73,9 +75,9 @@
             <hr/>
 
             {% if request.user == object.user %}
-                {% latest_sightings protected=0 split=2 limit=5 user=object.user %}
+                {% latest_sightings protected=0 split=2 limit=10 user=object.user %}
             {% else %}
-                {% latest_sightings split=2 limit=5 user=object.user %}
+                {% latest_sightings split=2 limit=10 user=object.user %}
             {% endif %}
 
         </div>

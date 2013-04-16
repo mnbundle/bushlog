@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}{{ object.common_name }} Sightings in Southern Africa{% endblock %}
+{% block decription %}Sightings of {{ object.common_name }} ({{ object.scientific_name }}) in Southern Africa{% endblock %}
 
 {% block extra_js %}
     <script type="text/javascript">
@@ -16,7 +17,7 @@
 
 {% block content %}
 
-    {% sighting_map limit=10 species=object %}
+    {% sighting_map limit=20 species=object %}
 
     <div class="row-fluid">
         <div class="span8 hidden-phone">
@@ -138,7 +139,7 @@
 
             <hr/>
 
-            {% latest_sightings split=2 limit=5 species=object %}
+            {% latest_sightings split=2 limit=10 species=object %}
 
         </div>
 

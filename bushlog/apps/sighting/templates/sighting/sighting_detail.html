@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}{{ object.species.common_name }}  Sighting in {{ object.reserve.name }}{% endblock %}
+{% block title %}{{ object.species.common_name }} Sighting in {{ object.reserve.name }}{% endblock %}
+{% block decription %}
+    Sighting of a {{ object.species.common_name }} ({{ object.species.scientific_name }}) in {{ object.reserve.name }} - Spotted by {{ object.user.username }} {{ object.date_added.date|fuzzy_date }}
+{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.lightbox.min.css" type="text/css"/>

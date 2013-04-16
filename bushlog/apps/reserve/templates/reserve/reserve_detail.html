@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}{{ object.name }} Wildlife Sightings{% endblock %}
+{% block decription %}Wildlife Sightings in {{ object.name }}, {{ object.country.all|join:" | " }}{% endblock %}
 
 {% block extra_js %}
     <script type="text/javascript">
@@ -14,7 +15,7 @@
 
 {% block content %}
 
-    {% sighting_map limit=10 reserve=object %}
+    {% sighting_map limit=20 reserve=object %}
 
     <div class="row-fluid">
         <div class="span8 hidden-phone">
@@ -79,7 +80,7 @@
 
             <hr/>
 
-            {% latest_sightings split=2 limit=5 reserve=object %}
+            {% latest_sightings split=2 limit=10 reserve=object %}
 
         </div>
 
