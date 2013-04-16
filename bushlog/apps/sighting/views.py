@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.mail import mail_admins
 from django.core.urlresolvers import reverse_lazy
-from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
+from django.http import Http404, HttpResponseRedirect, HttpResponseBadRequest
 from django.views import generic
 
 from bushlog.apps.sighting.forms import CreateForm
