@@ -9,11 +9,11 @@
                     <div class="media">
                         {% if object.cover_image %}
                             <a class="pull-left" href="{{ object.get_absolute_url }}">
-                                <img class="media-object img-rounded" src="{% resize_image object.cover_image 50 50 %}" width="50" height="50" />
+                                <img class="media-object img-rounded" src="{% resize_image object.cover_image 50 50 %}" width="50" height="50" alt="{{ object.species.common_name }} sighting in {{ object.reserve.name }}"/>
                             </a>
                         {% else %}
                             <a class="pull-left" href="{{ object.get_absolute_url }}">
-                                <img class="media-object img-rounded lightest" src="{% resize_image object.species.default_image 50 50 %}" width="50" height="50" />
+                                <img class="media-object img-rounded lightest" src="{% resize_image object.species.default_image 50 50 %}" width="50" height="50" alt="{{ object.species.common_name }} sighting in {{ object.reserve.name }}" />
                             </a>
                         {% endif %}
                         <div class="media-body">
