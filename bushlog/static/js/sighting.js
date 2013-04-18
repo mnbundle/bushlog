@@ -153,6 +153,79 @@ initSightingMap = function () {
     sighting_map_ele.gmap3({trigger: 'init'});
 }
 
+initAutoComplateInput = function (input_selector, ele_selector, api_uri) {
+    var input = $(input_selector);
+    var ele = $(ele_selector)
+    var time_out;
+    var typeahead_obj;
+
+    input.click(function () {
+        $(this).removeAttr('readonly').removeClass('cancel').val('');
+    });
+
+    input.typeahead({
+        minLength: 3,
+        source: function (query, process) {
+            var search_list = [];
+            var ids = {};
+
+            $('#new_sighting-carousel .carousel-inner').css('overflow', 'visible');
+            $('.modal-body').css('overflow', 'visible');
+
+            if (time_out) {
+                clearTimeout(time_out);
+            }
+
+            time_out = setTimeout(function () {
+                if (!input.is('[readonly]')){
+                    input.attr('readonly', true).addClass('wait');
+
+                    // compile a list of related reserves
+                    $.get(api_uri, {name: query}, function (data) {
+                        $.each(data.results, function (index, obj) {
+                            var name;
+                            if (obj.name) {
+                                name = obj.name;
+                            }
+                            else {
+                                name = obj.common_name;
+                            }
+
+                            search_list.push(name);
+                            ids[name] = obj.id;
+                        });
+                        input.removeAttr('readonly').removeClass('wait');
+
+                        typeahead_obj = process(search_list);
+
+                        $.each(typeahead_obj.$menu.children(), function (index, obj) {
+                            $(obj).data('id', ids[$(obj).data('value')]);
+                        });
+
+                        return typeahead_obj;
+                    });
+                }
+            }, 500);
+        },
+
+        updater: function(value) {
+            $.each(typeahead_obj.$menu.children(), function (index, obj) {
+                if ($(obj).data('value') == value) {
+                    ele.val($(obj).data('id'));
+                    ele.change();
+                }
+            });
+
+            $('#new_sighting-carousel .carousel-inner').css('overflow', 'hidden');
+            $('.modal-body').css('overflow', 'hidden');
+
+            input.attr('readonly', true).addClass('cancel');
+
+            return value;
+        }
+    });
+}
+
 initNewSightingForm = function () {
     $.get('/sighting/create/', function(data) {
 
@@ -192,15 +265,14 @@ initNewSightingForm = function () {
             if ($(this).val()) {
                 $.get('/api/reserves/' + $(this).val() + '/', function(data) {
                     var ele = $('#id_sighting_create-reserve');
-                    ele.removeData('bounds');
                     ele.data('bounds', data.bounds);
                 });
             }
         });
+        initAutoComplateInput('#id_sighting_create-reserve_search', '#id_sighting_create-reserve', '/api/reserves/');
 
         // set the species marker
         $('#id_sighting_create-species').change(function() {
-            //bootbox.alert("FenixPro purchase not found in Siebel.")
             $('.new_sighting-alert').fadeOut('slow');
 
             if ($(this).val()) {
@@ -214,6 +286,7 @@ initNewSightingForm = function () {
                 });
             }
         });
+        initAutoComplateInput('#id_sighting_create-species_search', '#id_sighting_create-species', '/api/species/');
 
         // initialise the form wizard controls
         var carousel_ele = $("#new_sighting-carousel").carousel({

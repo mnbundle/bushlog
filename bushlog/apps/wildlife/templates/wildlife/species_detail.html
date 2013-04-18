@@ -7,6 +7,7 @@
     <script type="text/javascript">
         setSpecies = function() {
             $('#id_sighting_create-species').val('{{ object.id }}');
+            $('#id_sighting_create-species_search').val('{{ object.common_name }}').attr('readonly', true).addClass('cancel');
         }
     </script>
 {% endblock %}

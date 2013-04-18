@@ -43,9 +43,12 @@ a:hover {color:#5BB75B}
 .dropdown-menu .active a {background:#5bb75b!important}
 .dropdown-info a:hover {background:#49AFCD!important}
 .dropdown-info .active a {background:#49AFCD!important}
-.wait {width:16px;height:16px;z-index:1032;background-image:url('/static/img/icons/loader.gif');margin-top:-28px;margin-left:248px;display:block;position:absolute}
+.wait {background:url('/static/img/icons/wait.gif') no-repeat right}
+.cancel {background:url('/static/img/icons/cancel.png') no-repeat right}
 .accordion-heading a {color:#333;text-decoration:none}
 .social-twitter {display:block;width:24px;height:24px;background:url('/static/img/icons/social/twitter.png') no-repeat;background-position:0px 0px;margin-right:5px}
 .social-facebook {display:block;width:24px;height:24px;background:url('/static/img/icons/social/facebook.png') no-repeat;background-position:0px 0px;margin-right:5px}
 .social-twitter:hover {background-position:-24px 0px}
 .social-facebook:hover {background-position:-24px 0px}
+.typeahead.dropdown-menu {z-index:9999}
+

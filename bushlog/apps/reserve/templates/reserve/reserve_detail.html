@@ -7,6 +7,7 @@
     <script type="text/javascript">
         setReserve = function() {
             $('#id_sighting_create-reserve').val('{{ object.id }}');
+            $('#id_sighting_create-reserve_search').val('{{ object.name }}').attr('readonly', true).addClass('cancel');
         }
     </script>
 {% endblock %}

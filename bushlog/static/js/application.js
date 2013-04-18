@@ -190,21 +190,16 @@ initSearchForm = function () {
 
     var search_input = $('#id_search');
     var search_btn = $("#id_search-btn");
-    var search_wait = $('#id_search-wait');
 
     if ($(document).width() <= 767) {
         search_input = $('#id_search-phone');
         search_btn = $("#id_search-btn-phone");
-        search_wait = $('#id_search-wait-phone');
     }
 
     // initialize ajax auto suggestion
     search_input.typeahead({
         minLength: 3,
         source: function (query, process) {
-
-            // fix the z-index of the typeahead menu
-            $(".typeahead.dropdown-menu").css('z-index', '1031');
 
             var search_list = [];
             var urls = {};
@@ -216,8 +211,7 @@ initSearchForm = function () {
             time_out = setTimeout(function () {
                 if (!search_input.is('[readonly]')){
 
-                    search_input.attr('readonly', true);
-                    search_wait.show().addClass('wait');
+                    search_input.attr('readonly', true).addClass('wait');
 
                     // compile a list of related reserves
                     $.get("/api/reserves/", {name: query}, function (data) {
@@ -233,8 +227,7 @@ initSearchForm = function () {
                                 urls[obj.common_name] = obj.site_url;
                             });
 
-                            search_input.removeAttr('readonly');
-                            search_wait.hide().removeClass('wait');
+                            search_input.removeAttr('readonly').removeClass('wait');
 
                             typeahead_obj = process(search_list);
                             $.each(typeahead_obj.$menu.children(), function (index, obj) {

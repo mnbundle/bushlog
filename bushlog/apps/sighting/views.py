@@ -91,7 +91,7 @@ class SightingCreateView(generic.CreateView):
         mail_admins(
             "Sighting Added", "A new sighting has been added and may need modiration: %s%s" % (
                 settings.HOST, obj.get_absolute_url()
-            )
+            ), fail_silently=True
         )
 
         messages.add_message(self.request, messages.SUCCESS, "Your sighting has been added.")

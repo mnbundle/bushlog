@@ -51,7 +51,7 @@ urlpatterns += patterns('',
 
 # comments framework patterns
 urlpatterns += patterns('',
-    url(r'^comments/', include('django.contrib.comments.urls', namespace='comments'))
+    url(r'^comments/', include('django.contrib.comments.urls'))
 )
 
 # social auth url patterns

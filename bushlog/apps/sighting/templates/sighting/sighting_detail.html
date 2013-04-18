@@ -19,9 +19,11 @@
     <script type="text/javascript">
         setSpecies = function() {
             $('#id_sighting_create-species').val('{{ object.species.id }}');
+            $('#id_sighting_create-species_search').val('{{ object.species.common_name }}').attr('readonly', true).addClass('cancel');
         }
         setReserve = function() {
             $('#id_sighting_create-reserve').val('{{ object.reserve.id }}');
+            $('#id_sighting_create-reserve_search').val('{{ object.reserve.name }}').attr('readonly', true).addClass('cancel');
         }
         $(document).ready(function() {
             initLikeButton();
@@ -66,7 +68,9 @@
                     </blockquote>
                 {% endif %}
             </div>
+
             <p>&nbsp;</p>
+
             <div class="page-header">
                 <h3>Similiar Sightings</h3>
             </div>
@@ -83,11 +87,11 @@
                     </a>
                 {% else %}
                     <a class="pull-left" href="{% url 'profile:index' object.user.username %}">
-                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.user.gender|default:"male"|lower }}.png" width="50" height="50" />
+                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.user.profile.gender|default:"male"|lower }}.png" width="50" height="50" />
                     </a>
                 {% endif %}
                 <div class="media-body">
-                    <span class="span6">
+                    <div class="span6">
                         <h6>
                             <a href="{% url 'profile:index' object.user.profile.slug %}">{{ object.user.username }}</a><br/>
                             <i class="icon-time"></i>
@@ -97,7 +101,7 @@
                             <!--<i class="icon-comment"></i>
                             <small><span class="like-count">0</span> Comments</small>-->
                         </h6>
-                    </span>
+                    </div>
                 </div>
             </div>
 
@@ -155,7 +159,7 @@
                     </a>
                 {% else %}
                     <a class="pull-left" href="{% url 'profile:index' object.user.username %}">
-                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.user.gender|default:"male"|lower }}.png" width="50" height="50" />
+                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.user.profile.gender|default:"male"|lower }}.png" width="50" height="50" />
                     </a>
                 {% endif %}
                 <div class="media-body">

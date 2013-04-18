@@ -10,6 +10,8 @@ class CreateForm(forms.ModelForm):
     image_ids = forms.CharField(widget=forms.HiddenInput(), required=False)
     latitude = forms.FloatField(widget=forms.HiddenInput())
     longitude = forms.FloatField(widget=forms.HiddenInput())
+    reserve_search = forms.CharField(widget=forms.TextInput(attrs={'class': 'span3 required'}))
+    species_search = forms.CharField(widget=forms.TextInput(attrs={'class': 'span3 required'}))
     time_of_sighting = forms.TimeField(
         widget=forms.TimeInput(attrs={'readonly': 'readonly', 'class': 'required time'})
     )
@@ -21,8 +23,8 @@ class CreateForm(forms.ModelForm):
             'with_young', 'with_kill'
         ]
         widgets = {
-            'reserve': forms.Select(attrs={'class': 'span3 required'}),
-            'species': forms.Select(attrs={'class': 'span3 required'}),
+            'reserve': forms.HiddenInput(),
+            'species': forms.HiddenInput(),
             'date_of_sighting': forms.DateInput(attrs={'readonly': 'readonly', 'class': 'required localdate'}),
             'description': forms.Textarea(attrs={'class': 'span3', 'rows': 3, 'maxlength': 1000}),
             'estimated_number': widgets.NumberInput(attrs={'class': 'span3 number', 'autocomplete': 'off'}),
