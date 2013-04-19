@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from bushlog.apps.like.models import Like
+from bushlog.apps.action.models import Like
 
 
 class LikeTestCase(TestCase):

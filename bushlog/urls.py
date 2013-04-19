@@ -26,7 +26,7 @@ urlpatterns += patterns('',
 
 # like url patterns
 urlpatterns += patterns('',
-    url(r'^like/', include('bushlog.apps.like.urls', namespace='like'))
+    url(r'^action/', include('bushlog.apps.action.urls', namespace='like'))
 )
 
 # user profile url patterns

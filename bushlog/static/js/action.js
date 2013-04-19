@@ -17,7 +17,7 @@ initLikeButton = function () {
     btn.click(function () {
         if (!$(this).hasClass('disabled')) {
             $.post(
-                '/like/' + $(this).data('type') + '/',
+                '/action/like/' + $(this).data('type') + '/',
                 {id: $(this).data('oid'), csrfmiddlewaretoken: csrftoken},
                 function (data) {
                     if (data.success) {

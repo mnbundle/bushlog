@@ -1,12 +1,12 @@
 from django.contrib.contenttypes.models import ContentType
 from django.views import generic
 
-from bushlog.apps.like.models import Like
+from bushlog.apps.action.models import Like
 from bushlog.apps.sighting.models import Sighting
 from bushlog.decorators import json_response
 
 
-class CreateView(generic.View):
+class LikeView(generic.View):
 
     @json_response
     def post(self, request, *args, **kwargs):
@@ -36,4 +36,4 @@ class CreateView(generic.View):
             'success': created,
         }
 
-create = CreateView.as_view()
+like = LikeView.as_view()

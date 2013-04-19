@@ -1,3 +1,4 @@
+
 {% if request.user.is_authenticated %}
     <button class="btn btn-success {% if liked %}disabled{% endif %} like" data-oid="{{ object.id }}" data-type="{{ obj_type }}" data-count="{{ like_count }}">
         <i class="icon-star{% if not liked %}-empty{% endif %} icon-white like-icon"></i>&nbsp;

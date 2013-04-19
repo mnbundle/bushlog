@@ -35,6 +35,7 @@ a:hover {color:#5BB75B}
 .input-modal-inline {width:110px}
 .cluster {width:30px;height:30px;border-radius:15px;background:#FFF;font-weight:bold;line-height:30px;text-align:center}
 .btn-header {margin-top:10px}
+.btn-map {margin-top:-10px}
 .align-left {text-align:left}
 .align-center {text-align:center}
 .align-right {text-align:right}
@@ -51,4 +52,6 @@ a:hover {color:#5BB75B}
 .social-twitter:hover {background-position:-24px 0px}
 .social-facebook:hover {background-position:-24px 0px}
 .typeahead.dropdown-menu {z-index:9999}
-
+.comment {font-size:12px}
+.close-comment {margin-top:-3px}
+.comment-input-append {margin-left:0px!important;}
