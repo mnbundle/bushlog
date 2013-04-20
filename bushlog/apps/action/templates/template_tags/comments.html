@@ -1,0 +1,43 @@
+
+{% load sighting %}
+
+<div class="input-inline form-comment">
+    <textarea class="input-block-level comment" placeholder="Write a comment..." rows="1" maxlength="500" value=""></textarea>
+    {% if request.user.is_authenticated %}
+        <button class="btn btn-success btn-comment pull-right" data-count="{{ comment_count }}" data-oid="{{ object.id }}" data-type="{{ object_type }}">
+            <i class="icon-comment icon-white"></i>&nbsp;Post
+        </button>
+    {% else %}
+        <a class="btn btn-success pull-right hidden-phone" href="#id_signup_modal" data-toggle="modal">
+            <i class="icon-comment icon-white"></i>&nbsp;Post
+        </a>
+
+        <a class="btn btn-success pull-right visible-phone" href="{% url 'profile:forms' 'signup' %}">
+            <i class="icon-comment icon-white"></i>&nbsp;Post
+        </a>
+    {% endif %}
+    <div class="spacer"></div>
+</div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<div class="container-comment">
+    {% for comment in comment_list %}
+        <div class="media">
+            {% if request.user == object.user or request.user == comment.user or request.user.is_superuser %}
+                <button type="button" class="close close-comment pull-right" data-comment_id="{{ comment.id }}" data-type="{{ object_type }}">&times;</button>
+            {% endif %}
+
+            {% if comment.user.profile.avatar %}
+                <img class="media-object img-rounded pull-left img-profile" src="{% resize_image comment.user.profile.avatar 35 35 %}" width="35" height="35" onclick="window.location='{{ comment.user.profile.get_absolute_url }}'"/>
+            {% else %}
+                <img class="media-object img-rounded pull-left img-profile" src="{{ STATIC_URL }}img/layout/profile-{{ comment.user.profile.gender|default:"male"|lower }}.png" width="35" height="35" onclick="window.location='{{ comment.user.profile.get_absolute_url }}'"/>
+            {% endif %}
+
+            <div class="media-body">
+                <blockquote>{{ comment.comment }}<small>{{ comment.date_added.date|fuzzy_date }}</small></blockquote>
+            </div>
+        </div>
+    {% endfor %}
+</div>

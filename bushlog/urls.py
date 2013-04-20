@@ -49,11 +49,6 @@ urlpatterns += patterns('',
     url(r'^wildlife/', include('bushlog.apps.wildlife.urls', namespace='wildlife'))
 )
 
-# comments framework patterns
-urlpatterns += patterns('',
-    url(r'^comments/', include('django.contrib.comments.urls'))
-)
-
 # social auth url patterns
 urlpatterns += patterns('',
     url(r'social/', include('social_auth.urls'))

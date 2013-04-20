@@ -1,6 +1,6 @@
 from django import template
 
-from bushlog.apps.action.models import Like
+from bushlog.apps.action.models import Comment, Like
 
 register = template.Library()
 
@@ -22,3 +22,20 @@ def like_button(context):
 @register.simple_tag
 def like_count():
     return Like.objects.all().count()
+
+
+@register.inclusion_tag("template_tags/comments.html", takes_context=True)
+def comments(context):
+    obj = context['object']
+    obj_list = Comment.by_object(obj)
+
+    context['comment_count'] = obj_list.count()
+    context['object_type'] = obj.__class__.__name__.lower()
+    context['comment_list'] = obj_list
+
+    return context
+
+
+@register.simple_tag
+def comment_count():
+    return Comment.objects.all().count()

@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% load humanize %}
@@ -27,6 +28,7 @@
         }
         $(document).ready(function() {
             initLikeButton();
+            initCommentForm();
         });
     </script>
 {% endblock %}
@@ -81,7 +83,7 @@
             <div class="page-header">
                 <h3>Comments</h3>
             </div>
-            {% include 'sighting/sighting_comments.html' %}
+            {% comments %}
 
         </div>
 
@@ -105,7 +107,7 @@
                         <i class="icon-star"></i>
                         <small><span class="like-count">0</span> Likes</small> &nbsp;
                         <i class="icon-comment"></i>
-                        <small><span class="like-count">0</span> Comments</small>
+                        <small><span class="comment-count">0</span> Comments</small>
                     </h6>
                 </div>
             </div>
@@ -154,7 +156,7 @@
             <div class="page-header">
                 <h4>Comments</h4>
             </div>
-            {% include 'sighting/sighting_comments.html' %}
+            {% comments %}
 
         </div>
 
