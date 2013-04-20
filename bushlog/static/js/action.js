@@ -70,8 +70,7 @@ initCommentForm = function () {
     }
 
     count_ele.text(current_count);
-    btn_close.click(removePost);
-    btn_close.click( function () {
+    btn_close.click(removePost).click( function () {
         count_ele.text(current_count - 1);
     });
 
@@ -108,7 +107,9 @@ initCommentForm = function () {
                     </div>').hide().prependTo(comment_container).slideDown("slow");
 
                     comment_ele.val('').removeAttr('readonly').removeClass('wait');
-                    comment_item.children('.close-comment').click(removePost);
+                    comment_item.children('.close-comment').click(removePost).click( function () {
+                        count_ele.text(current_count - 1);
+                    });
 
                     count_ele.text(current_count + 1);
                 }
