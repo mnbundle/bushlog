@@ -71,6 +71,9 @@ initCommentForm = function () {
 
     count_ele.text(current_count);
     btn_close.click(removePost);
+    btn_close.click( function () {
+        count_ele.text(current_count - 1);
+    });
 
     btn.click(function () {
         if (!$(this).hasClass('disabled')) {
