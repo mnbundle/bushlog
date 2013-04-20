@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.core.mail import mail_admins
 from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
 from django.views import generic
@@ -85,6 +87,13 @@ class CommentView(generic.View):
             content_type=content_type,
             user=request.user,
             comment=comment
+        )
+
+        # XXX hacked in until report listing is done
+        mail_admins(
+            "Comment Added", "A new comment was added and may need modiration: %s%s" % (
+                settings.HOST, obj.content_object.get_absolute_url()
+            ), fail_silently=True
         )
 
         return {
