@@ -27,15 +27,23 @@
                 </h2>
             </div>
 
-            {% if coordinates %}
-                {% latest_sightings split=2 limit=20 coordinates=coordinates %}
+            {% if object %}
+                {% if coordinates %}
+                    {% latest_sightings split=2 limit=20 coordinates=coordinates %}
+                {% else %}
+                    {% latest_sightings split=2 limit=20 %}
+                {% endif %}
             {% else %}
-                {% latest_sightings split=2 limit=20 %}
+                {% if coordinates %}
+                    {% latest_sightings split=3 limit=24 coordinates=coordinates %}
+                {% else %}
+                    {% latest_sightings split=3 limit=24 %}
+                {% endif %}
             {% endif %}
 
         </div>
 
-        <div class="span{% if object %}8{% else %}12{% endif %} visible-phone">
+        <div class="span12 visible-phone">
             <div class="page-header">
                 <h4>
                     {% if coordinates %}
@@ -60,9 +68,9 @@
             {% endif %}
 
             {% if coordinates %}
-                {% latest_sightings split=1 limit=5 coordinates=coordinates %}
+                {% latest_sightings split=1 limit=10 coordinates=coordinates %}
             {% else %}
-                {% latest_sightings split=1 limit=5 %}
+                {% latest_sightings split=1 limit=10 %}
             {% endif %}
 
         </div>

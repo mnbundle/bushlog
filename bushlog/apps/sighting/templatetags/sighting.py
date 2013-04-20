@@ -60,7 +60,6 @@ def sighting_map(context, limit=3, protected=1, *args, **kwargs):
                 [value['latitude'], value['longitude']] for key, value in reserve.bounds.items()
                 if key != 'center_point'
             ]
-            print bounds
 
     else:
         object_list = Sighting.objects.all()

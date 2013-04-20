@@ -76,7 +76,7 @@
             <div class="page-header">
                 <h3>Similiar Sightings</h3>
             </div>
-            {% latest_sightings split=2 limit=10 exclude_pk=object.pk species=object.species reserve=object.reserve %}
+            {% latest_sightings split=2 limit=6 exclude_pk=object.pk species=object.species reserve=object.reserve %}
 
             <p>&nbsp;</p>
             <p>&nbsp;</p>
@@ -150,7 +150,7 @@
             <div class="page-header">
                 <h4>Similiar Sightings</h4>
             </div>
-            {% latest_sightings split=1 limit=10 exclude_pk=object.pk species=object.species reserve=object.reserve %}
+            {% latest_sightings split=1 limit=3 exclude_pk=object.pk species=object.species reserve=object.reserve %}
 
             <p>&nbsp;</p>
             <div class="page-header">
