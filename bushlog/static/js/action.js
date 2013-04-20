@@ -106,6 +106,8 @@ initCommentForm = function () {
 
                     comment_ele.val('').removeAttr('readonly').removeClass('wait');
                     comment_item.children('.close-comment').click(removePost);
+
+                    count_ele.text(current_count + 1);
                 }
             });
         }

@@ -7,7 +7,7 @@ setup(
 
     # project description
     name='bushlog',
-    version='0.9.4',
+    version='0.9.5',
     description='Bushlog Web App',
     long_description="%s\n\n%s" % (open('README.rst', 'r').read(), open('AUTHORS.rst', 'r').read()),
     author='Jonathan Bydendyk',
