@@ -52,7 +52,7 @@ a:hover {color:#5BB75B}
 .social-twitter:hover {background-position:-24px 0px}
 .social-facebook:hover {background-position:-24px 0px}
 .typeahead.dropdown-menu {z-index:9999}
-.comment {font-size:12px}
+.container-comment {font-size:12px}
 .close-comment {margin-top:-3px}
 .comment-input-append {margin-left:0px!important;}
 .img-profile {cursor:pointer}
