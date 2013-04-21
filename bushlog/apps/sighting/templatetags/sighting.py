@@ -95,7 +95,7 @@ def sighting_map(context, limit=3, protected=1, *args, **kwargs):
 
 
 @register.inclusion_tag("template_tags/latest_sightings.html", takes_context=True)
-def latest_sightings(context, split=1, limit=3, protected=1, exclude_pk={}, *args, **kwargs):
+def latest_sightings(context, split=1, limit=3, offset=0, protected=1, exclude_pk={}, *args, **kwargs):
     try:
         keyword = kwargs.keys()[0]
     except IndexError:
@@ -127,7 +127,7 @@ def latest_sightings(context, split=1, limit=3, protected=1, exclude_pk={}, *arg
 
     context.update({
         'object': context.get('object'),
-        'object_list': object_list[:limit],
+        'object_list': object_list[offset:limit],
         'split': split,
         'keyword': keyword
     })

@@ -8,6 +8,12 @@ urlpatterns = patterns('bushlog.api.views',
     url(r'^$', 'index')
 )
 
+# sighting api url patterns
+urlpatterns += patterns('bushlog.api.views',
+    url(r'^users/$', 'user_list', name='user_list'),
+    url(r'^users/(?P<pk>\d+)/$', 'user_detail', name='user_detail')
+)
+
 # reserve api url patterns
 urlpatterns += patterns('bushlog.api.views',
     url(r'^reserves/$', 'reserve_list', name='reserve_list'),
@@ -22,6 +28,8 @@ urlpatterns += patterns('bushlog.api.views',
 
 # wildlife api url patterns
 urlpatterns += patterns('bushlog.api.views',
+    url(r'^sightings/$', 'sighting_list', name='sighting_list'),
+    url(r'^sightings/(?P<pk>\d+)/$', 'sighting_detail', name='sighting_detail'),
     url(r'^sightingimages/$', 'sightingimage_list', name='sightingimage_list'),
     url(r'^sightingimages/(?P<pk>\d+)/$', 'sightingimage_detail', name='sightingimage_detail')
 )

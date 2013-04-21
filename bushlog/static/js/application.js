@@ -222,14 +222,14 @@ initSearchForm = function () {
                     $.get("/api/reserves/", {name: query}, function (data) {
                         $.each(data.results, function (index, obj) {
                             search_list.push(obj.name);
-                            urls[obj.name] = obj.site_url;
+                            urls[obj.name] = "/reserve/" + obj.slug + "/";
                         });
 
                         // compile a list of related species
                         $.get("/api/species/", {name: query}, function (data) {
                             $.each(data.results, function (index, obj) {
                                 search_list.push(obj.common_name);
-                                urls[obj.common_name] = obj.site_url;
+                                urls[obj.common_name] = "/wildlife/" + obj.slug + "/";
                             });
 
                             search_input.removeAttr('readonly').removeClass('wait');

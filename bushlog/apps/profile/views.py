@@ -205,7 +205,6 @@ class AvatarFormView(generic.FormView):
         """
         form.save()
         messages.add_message(self.request, messages.SUCCESS, "Your avatar has been updated successfully.")
-        print str(reverse_lazy('profile:index', args=[self.request.user.profile.slug]))
         return HttpResponse(
             json.dumps({
                 'success': True,
