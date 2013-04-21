@@ -93,7 +93,11 @@ def image_resize(image, width=None, height=None):
     image_format = image_file.format
 
     # rotate the image depending on the orientation
-    image_orientation = get_exif_data(image.path).get('Orientation')
+    try:
+        image_orientation = get_exif_data(image.path).get('Orientation')
+    except AttributeError:
+        image_orientation = 1
+
     image_orientation_map = {
         3: 180,
         6: 270,
@@ -101,7 +105,7 @@ def image_resize(image, width=None, height=None):
     }
     try:
         rotated_image = image_file.rotate(image_orientation_map[image_orientation], expand=True)
-    except (KeyError, AttributeError):
+    except KeyError:
         rotated_image = image_file
 
     # store the original image width and height
