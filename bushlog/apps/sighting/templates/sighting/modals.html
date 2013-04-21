@@ -1,17 +1,15 @@
 
 {% load sighting %}
 
-{% for img in object.images.all %}
-    <!-- Image {{ forloop.counter }} modal -->
-    <div id="id_sighting_lightbox_{{ forloop.counter }}" class="lightbox hide fade" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class='lightbox-header'>
-            <button type="button" class="close" data-dismiss="lightbox" aria-hidden="true">&times;</button>
-        </div>
-        <div class='lightbox-content'>
-            <img src="{{ img.image.url }}" />
-        </div>
+<!-- Image modal -->
+<div id="id_sighting_lightbox" class="lightbox hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class='lightbox-header'>
+        <button type="button" class="close" data-dismiss="lightbox" aria-hidden="true">&times;</button>
     </div>
-{% endfor %}
+    <div class='lightbox-content'>
+        <img src="{{ object.cover_image.url }}" />
+    </div>
+</div>
 
 <!-- New Sighting Modal -->
 <div id="id_new_sighting" class="modal hide fade">

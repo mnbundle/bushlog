@@ -12,7 +12,7 @@ from dateutil.relativedelta import relativedelta
 import Image as pil
 from PIL.ExifTags import GPSTAGS, TAGS
 
-EXIF_INCLUDE_KEYS = ['Make', 'DateTimeOriginal', 'Model']
+EXIF_INCLUDE_KEYS = ['Make', 'DateTimeOriginal', 'Model', 'Orientation']
 
 
 def choices(item_list):
@@ -92,8 +92,20 @@ def image_resize(image, width=None, height=None):
     image_file = pil.open(image.path)
     image_format = image_file.format
 
+    # rotate the image depending on the orientation
+    image_orientation = get_exif_data(image.path).get('Orientation')
+    image_orientation_map = {
+        3: 180,
+        6: 270,
+        8: 90
+    }
+    try:
+        rotated_image = image_file.rotate(image_orientation_map[image_orientation], expand=True)
+    except KeyError:
+        rotated_image = image_file
+
     # store the original image width and height
-    image_width, image_height = image_file.size
+    image_width, image_height = rotated_image.size
 
     # use the original size if no size given
     resized_image_width = float(width if width else image_width)
@@ -111,7 +123,7 @@ def image_resize(image, width=None, height=None):
     # if the image is not bigger than the original size, calculate proportions and resize
     resized_width = int(image_width * image_scale)
     resized_height = int(image_height * image_scale)
-    resized_image = image_file.resize((resized_width, resized_height), pil.ANTIALIAS)
+    resized_image = rotated_image.resize((resized_width, resized_height), pil.ANTIALIAS)
 
     # crop the image as required
     crop_left = int((resized_width - resized_image_width) / 2)
@@ -139,7 +151,11 @@ def get_exif_data(image_path, exif_include_keys=EXIF_INCLUDE_KEYS):
     Returns all the image's exif data as a dict.
     """
     image_file = pil.open(image_path)
-    raw_exif_data = image_file._getexif()
+    try:
+        raw_exif_data = image_file._getexif()
+    except AttributeError:
+        raw_exif_data = None
+
     if not raw_exif_data:
         return None
 

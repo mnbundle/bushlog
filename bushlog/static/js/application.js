@@ -243,7 +243,7 @@ initSearchForm = function () {
                         });
                     });
                 }
-            }, 500);
+            }, 1000);
         },
 
         updater: function(value) {

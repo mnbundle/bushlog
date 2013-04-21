@@ -43,14 +43,16 @@ formatDate = function (date) {
 setCurrentLocation = function () {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function () {
-            var latitude = position.coords.latitude.toFixed(6);  // -28.490419
-            var longitude = position.coords.longitude.toFixed(6);  // 28.714142
+            var latitude = position.coords.latitude.toFixed(6);
+            var longitude = position.coords.longitude.toFixed(6);
 
             $('#id_sighting_create-latitude').val(latitude);
             $('#id_sighting_create-longitude').val(longitude);
 
             $.get('/reserve/search-point/', {latitude: latitude, longitude: longitude}, function(data) {
                 $('#id_sighting_create-reserve').val(data.id);
+                $('#id_sighting_create-reserve_search').val(data.name).attr('readonly', true).addClass('cancel');
+
                 $(".info-detect-location").text("GPS Coordinates detected. Click next to continue.");
                 $(".btn-detect-location").hide();
                 $(".help-detect-location").hide();
@@ -153,7 +155,7 @@ initSightingMap = function () {
     sighting_map_ele.gmap3({trigger: 'init'});
 }
 
-initAutoComplateInput = function (input_selector, ele_selector, api_uri) {
+initAutoCompleteInput = function (input_selector, ele_selector, api_uri) {
     var input = $(input_selector);
     var ele = $(ele_selector)
     var time_out;
@@ -205,7 +207,7 @@ initAutoComplateInput = function (input_selector, ele_selector, api_uri) {
                         return typeahead_obj;
                     });
                 }
-            }, 500);
+            }, 1000);
         },
 
         updater: function(value) {
@@ -269,7 +271,7 @@ initNewSightingForm = function () {
                 });
             }
         });
-        initAutoComplateInput('#id_sighting_create-reserve_search', '#id_sighting_create-reserve', '/api/reserves/');
+        initAutoCompleteInput('#id_sighting_create-reserve_search', '#id_sighting_create-reserve', '/api/reserves/');
 
         // set the species marker
         $('#id_sighting_create-species').change(function() {
@@ -286,7 +288,7 @@ initNewSightingForm = function () {
                 });
             }
         });
-        initAutoComplateInput('#id_sighting_create-species_search', '#id_sighting_create-species', '/api/species/');
+        initAutoCompleteInput('#id_sighting_create-species_search', '#id_sighting_create-species', '/api/species/');
 
         // initialise the form wizard controls
         var carousel_ele = $("#new_sighting-carousel").carousel({
@@ -371,8 +373,6 @@ initNewSightingForm = function () {
                 latitude_ele.val(latitude);
                 longitude_ele.val(longitude);
 
-                bootbox.alert(latitude + " | " + longitude);
-
                 $(".info-detect-location").text("GPS Coordinates detected. Click next to continue.");
                 $(".btn-detect-location").hide();
                 $(".help-detect-location").hide();
@@ -382,6 +382,7 @@ initNewSightingForm = function () {
                     longitude: longitude
                 }, function(data) {
                     $('#id_sighting_create-reserve').val(data.id);
+                    $('#id_sighting_create-reserve_search').val(data.name).attr('readonly', true).addClass('cancel');
                     $(".form-new_sighting").valid();
                 });
             }
