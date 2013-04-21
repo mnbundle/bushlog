@@ -30,7 +30,7 @@ class ReserveSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Reserve
-        fields = ['id', 'name', 'slug', 'description', 'website', 'species', 'site_url', 'bounds', 'resource_url']
+        fields = ['id', 'name', 'slug', 'description', 'website', 'species', 'bounds', 'resource_url']
 
 
 class SightingImageSerializer(serializers.HyperlinkedModelSerializer):
@@ -54,9 +54,7 @@ class SightingSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Sighting
-        fields = [
-            'id', 'user', 'reserve', 'species', 'images', 'date_of_sighting', 'description', 'site_url', 'resource_url'
-        ]
+        fields = ['id', 'user', 'reserve', 'species', 'images', 'date_of_sighting', 'description', 'resource_url']
 
 
 class SpeciesInfoSerializer(serializers.HyperlinkedModelSerializer):
@@ -76,5 +74,5 @@ class SpeciesSerializer(serializers.HyperlinkedModelSerializer):
         model = Species
         fields = [
             'id', 'public', 'common_name', 'scientific_name', 'slug', 'classification', 'general_info',
-            'similiar_species', 'female_info', 'male_info', 'marker', 'site_url', 'resource_url'
+            'similiar_species', 'female_info', 'male_info', 'marker', 'resource_url'
         ]
