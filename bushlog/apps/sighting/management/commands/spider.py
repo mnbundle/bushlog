@@ -153,5 +153,5 @@ class Command(BaseCommand):
                 mail_admins("Spider Report: %s" % (reserve.name), "\n\r".join(report_message), fail_silently=True)
 
             # give twitter a bit of a break
-            time.sleep(60)
+            time.sleep(10)
 
