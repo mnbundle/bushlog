@@ -36,6 +36,8 @@ setup(
         'python-dateutil==2.1',
         'python-memcached==1.31',
         'python-openid==2.2.5',
+        'python-twitter==0.8.7',
+        'simplejson==3.1.3',
         'selenium==2.31.0',
         'six==1.3.0',
         'wsgiref==0.1.2'
