@@ -40,7 +40,7 @@ class Command(BaseCommand):
         )
 
         # iterate through all reserves and query the api for results
-        for reserve in Reserve.objects.all():
+        for reserve in Reserve.objects.all().order_by('?'):
             print ""
             print "Searching: %s..." % reserve.name
 
