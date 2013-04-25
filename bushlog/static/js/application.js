@@ -282,6 +282,8 @@ socialShare = function () {
     $('.share-twitter').data('href', 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(title));
     $('.share-facebook').data('href', 'http://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url) + '&t=' + encodeURIComponent(title));
     $('.share-google').data('href', 'https://plus.google.com/share?url=' + encodeURIComponent(url));
+    $('.share-stumbleupon').data('href', 'http://www.stumbleupon.com/badge/?url=' + encodeURIComponent(url));
+    $('.share-linkedin').data('href', 'https://www.linkedin.com/cws/share?url=' + encodeURIComponent(url)) + "&token=&isFramed=true";
 
     $('.share').click(function () {
         var url = $(this).data('href');
