@@ -79,46 +79,10 @@ class Command(BaseCommand):
                 )
 
                 if coordinate_created:
-                    user, user_created = User.objects.get_or_create(
-                        username=result['user']['username']
-                    )
-
-                    if user_created:
-                        user.is_active = True
-                        user.profile.biography = result['user']['biography']
-
-                        # parse the users first name
-                        full_name = result['user']['full_name']
-                        if full_name:
-                            full_name_split = full_name.split(" ")
-                            try:
-                                user.first_name = full_name_split[0]
-                            except IndexError:
-                                pass
-
-                            try:
-                                user.last_name = full_name_split[1]
-                            except IndexError:
-                                pass
-
-                        location = result['user']['location']
-                        if location:
-                            for location_part in location.split(" "):
-                                country = Country.objects.filter(name__icontains=location_part)
-                                if country:
-                                    user.profile.country = country
-
-                        avatar_url = result['user']['avatar']
-                        if avatar_url:
-                            avatar = image_from_url(avatar_url)
-                            user.profile.avatar.save("%s.%s" % (random_string(), avatar_url[:-3]), avatar, save=True)
-
-                        user.save()
-                        user.profile.save()
-
-                    date_of_sighting = result['date']
+                    user = User.objects.get(username=result['bot'])
                     species = Species.objects.filter(common_name__icontains=result['species'])[0]
                     reserve = Reserve.objects.filter(name__icontains=result['reserve'])[0]
+                    date_of_sighting = result['date']
 
                     sighting, sighting_created = Sighting.objects.get_or_create(
                         user=user,
@@ -130,6 +94,7 @@ class Command(BaseCommand):
 
                     if sighting_created:
 
+                        sighting.description = "@%s %s" % (result['user']['username'], result['text'])
                         sighting.is_active = False
                         sighting.save()
 

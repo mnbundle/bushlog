@@ -36,6 +36,24 @@
         }
     },
     {
+        "pk": 3,
+        "model": "auth.user",
+        "fields": {
+            "username": "twitterbot",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2012-10-09T10:51:24.263",
+            "groups": [],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$10000$V89xZhO6kZHW$nM3hPjiNs21iQ//82oyApM7nCVi9G3n5W6mpk9G51/A=",
+            "email": "twitterbot@bushlog.com",
+            "date_joined": "2012-10-09T10:48:01.264"
+        }
+    },
+    {
         "pk": 1,
         "model": "profile.userprofile",
         "fields": {

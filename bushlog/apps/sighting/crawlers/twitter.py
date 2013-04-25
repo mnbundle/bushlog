@@ -22,6 +22,7 @@ def crawler(api, reserve, query, since_id=0):
     parsed_results = []
     for status in geo_tagged_results:
         parsed_result = {
+            'bot': 'twitterbot',
             'id': status.id,
             'date': twitter_date(status.created_at),
             'text': clean_twitter_text(status.text),
@@ -30,11 +31,7 @@ def crawler(api, reserve, query, since_id=0):
                 'longitude': '%.2f' % (status.geo['coordinates'][1])
             },
             'user': {
-                'username': 'twitterbot',
-                'full_name': "Twitter Bot",
-                'location': None,
-                'biography': "A twitterbot buld specifically to crawl twitter and retrieve wildlife sightings.",
-                'avatar': None
+                'username': status.user.screen_name
             },
             'species': query if query != 'hyaena' else "spotted hyaena",
             'reserve': reserve.name,

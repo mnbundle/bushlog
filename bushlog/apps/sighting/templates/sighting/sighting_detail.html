@@ -119,9 +119,7 @@
                 {% like_button %}
                 {% include 'sighting/sighting_share.html' %}
                 {% if request.user.is_superuser and not object.is_active %}
-                    <a href="{% url 'sighting:activate' object.pk %}" class="btn btn-warning">
-                        Activate
-                    </a>
+                    <a href="{% url 'sighting:activate' object.pk %}" class="btn btn-warning">Activate</a>
                 {% endif %}
             {% endif %}
 
