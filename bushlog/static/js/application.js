@@ -300,7 +300,7 @@ $(document).ready(function() {
     $(".hint").tooltip();
 
     // initiate the search form
-    initSearchForm();
+    initSearchForm(); 
 
     // initiate social sharing
     socialShare();
