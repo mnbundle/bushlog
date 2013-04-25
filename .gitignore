@@ -12,3 +12,4 @@ lib/
 bushlog/static/admin
 bushlog/media/avatars
 bushlog/media/sightings
+bushlog/static/cache
