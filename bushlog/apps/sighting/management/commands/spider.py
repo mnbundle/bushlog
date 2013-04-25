@@ -27,7 +27,7 @@ class Command(BaseCommand):
         if not query_list:
             query_list = [
                 'buffalo', 'elephant', 'jackal', 'zebra', 'caracal', 'baboon', 'cheetah', 'giraffe', 'hippo', 'badger',
-                'leopard', 'lion', 'roan', 'sable', 'serval', 'hyaena', 'wild dog'
+                'leopard', 'lion', 'roan', 'sable', 'serval', 'hyaena', 'wild dog', 'kudu', 'impala', 'warthog', 'nyala'
             ]
 
         # initiate the twitter api wrapper
@@ -39,13 +39,13 @@ class Command(BaseCommand):
         )
 
         # iterate through all reserves and query the api for results
-        for reserve in Reserve.objects.filter(name__icontains='kruger'):
-            reserve_results = []
-
+        for reserve in Reserve.objects.all():
             print ""
             print "Searching: %s..." % reserve.name
 
-            for query in query_list:
+            relevant_query_list = [q for q in query_list if reserve.species.filter(common_name__icontains=q)]
+            reserve_results = []
+            for query in relevant_query_list:
 
                 # retrieve the last id spidered from cache
                 cache_key = hashlib.md5('%s:%s' % (reserve.name, query)).hexdigest()
@@ -66,7 +66,6 @@ class Command(BaseCommand):
 
             print "-" * 20
             print "Found %s Results in %s" % (len(reserve_results), reserve.name)
-
             print ""
             print "Saving results to the database..."
 
@@ -147,8 +146,6 @@ class Command(BaseCommand):
 
             print "=" * 20
             print "%s Sightings Saved" % (count)
-
-            print "\n\r".join(report_message)
 
             # email admins for sightings moderation
             if count:
