@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.core.mail import mail_admins
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404, HttpResponseRedirect, HttpResponseBadRequest
+from django.shortcuts import get_object_or_404
 from django.views import generic
 
 from bushlog.apps.sighting.forms import CreateForm
@@ -122,8 +123,22 @@ class FormsView(generic.TemplateView):
         return context
 
 
+class ActivateRedirectView(generic.RedirectView):
+    permanent = False
+
+    def get_redirect_url(self, *args, **kwargs):
+        obj = get_object_or_404(Sighting, pk=kwargs.get('pk'))
+        obj.is_active = True
+        obj.save()
+
+        messages.add_message(self.request, messages.SUCCESS, "Your sighting has been activated.")
+
+        return obj.get_absolute_url()
+
+
 index = IndexDetailView.as_view()
 search = SearchListView.as_view()
 create = SightingCreateView.as_view()
 create_image = SightingImageCreateView.as_view()
 forms = FormsView.as_view()
+activate = ActivateRedirectView.as_view()

@@ -1,3 +1,4 @@
+import time
 import hashlib
 
 from django.conf import settings
@@ -150,4 +151,7 @@ class Command(BaseCommand):
             # email admins for sightings moderation
             if count:
                 mail_admins("Spider Report: %s" % (reserve.name), "\n\r".join(report_message), fail_silently=True)
+
+            # give twitter a bit of a break
+            time.sleep(60)
 
