@@ -23,6 +23,7 @@ class Sighting(models.Model):
     reserve = models.ForeignKey(Reserve, related_name="sightings")
     species = models.ForeignKey(Species, related_name="sightings")
 
+    is_active = models.BooleanField(default=True)
     date_added = models.DateTimeField(auto_now_add=True)
     date_of_sighting = models.DateTimeField()
 

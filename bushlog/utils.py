@@ -3,8 +3,12 @@ from datetime import datetime, date
 import hashlib
 import os
 import random
+import re
 import string
+from time import mktime, strptime
+from urllib2 import urlopen
 
+from django.core.files.base import ContentFile
 from django.utils.translation import ungettext, ugettext
 
 from dateutil.relativedelta import relativedelta
@@ -28,6 +32,15 @@ def generate_key(instance, method):
 
 def historical_date(*args, **kwargs):
     return datetime.now() - relativedelta(*args, **kwargs)
+
+
+def twitter_date(date_string):
+    date_obj = datetime.fromtimestamp(mktime(strptime(date_string, '%a, %d %b %Y %H:%M:%S +0000')))
+    return date_obj + relativedelta(hours=2)
+
+
+def clean_twitter_text(text):
+    return re.sub("(#[A-Za-z0-9_]+)|([A-Za-z0-9_]+\:[A-Za-z0-9_]+)|(@)|\.|(http[A-Za-z0-9_\.\:\/]+)", "", text).strip()
 
 
 def fuzzydate(timestamp, to=None):
@@ -122,7 +135,7 @@ def image_resize(image, width=None, height=None):
 
     # return the original image if it is smaller than the required dimensions
     if image_scale > 1:
-        return image.path
+        return image.url
 
     # if the image is not bigger than the original size, calculate proportions and resize
     resized_width = int(image_width * image_scale)
@@ -148,6 +161,10 @@ def image_resize(image, width=None, height=None):
     final_file.close()
 
     return resized_image_url
+
+
+def image_from_url(url):
+    return ContentFile(urlopen(url).read())
 
 
 def get_exif_data(image_path, exif_include_keys=EXIF_INCLUDE_KEYS):

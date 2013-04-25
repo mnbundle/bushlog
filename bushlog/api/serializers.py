@@ -26,11 +26,12 @@ class ReserveSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.Field()
     species = serializers.ManyHyperlinkedRelatedField(view_name='api:species_detail')
     bounds = serializers.Field(source='bounds')
+    bounding_box = serializers.Field(source='bounding_box')
     resource_url = serializers.HyperlinkedIdentityField(view_name='api:reserve_detail')
 
     class Meta:
         model = Reserve
-        fields = ['id', 'name', 'slug', 'description', 'website', 'species', 'bounds', 'resource_url']
+        fields = ['id', 'name', 'slug', 'description', 'website', 'species', 'bounds', 'bounding_box', 'resource_url']
 
 
 class SightingImageSerializer(serializers.HyperlinkedModelSerializer):

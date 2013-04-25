@@ -13,9 +13,9 @@ register = template.Library()
 @register.simple_tag(takes_context=True)
 def latest_sightings_mapdata(context, limit=3, *args, **kwargs):
     if kwargs:
-        obj_list = Sighting.objects.public().filter(**kwargs)[:limit]
+        obj_list = Sighting.objects.public().active().filter(**kwargs)[:limit]
     else:
-        obj_list = Sighting.objects.public()[:limit]
+        obj_list = Sighting.objects.public().active()[:limit]
 
     return json.dumps([obj.mapdata for obj in obj_list])
 
@@ -38,7 +38,7 @@ def sighting_map(context, limit=3, protected=1, *args, **kwargs):
     if kwargs:
         if coordinates:
             object_list = [
-                obj for obj in Sighting.objects.public().filter(date_of_sighting__gte=historical_date(weeks=1))
+                obj for obj in Sighting.objects.public().active().filter(date_of_sighting__gte=historical_date(weeks=1))
                 if obj.in_proximity(coordinates['latitude'], coordinates['longitude'], 0.3)
             ]
 
@@ -50,6 +50,8 @@ def sighting_map(context, limit=3, protected=1, *args, **kwargs):
 
         else:
             object_list = Sighting.objects.filter(**kwargs)
+            if not 'pk' in kwargs.keys():
+                object_list = object_list.active()
             if protected:
                 object_list = object_list.public()
 
@@ -62,7 +64,7 @@ def sighting_map(context, limit=3, protected=1, *args, **kwargs):
             ]
 
     else:
-        object_list = Sighting.objects.all()
+        object_list = Sighting.objects.active()
         if protected:
             object_list = object_list.public()
 
@@ -109,16 +111,16 @@ def latest_sightings(context, split=1, limit=3, offset=0, protected=1, exclude_p
     if kwargs:
         if coordinates:
             object_list = [
-                obj for obj in Sighting.objects.public().filter(date_of_sighting__gte=historical_date(weeks=1))
+                obj for obj in Sighting.objects.public().active().filter(date_of_sighting__gte=historical_date(weeks=1))
                 if obj.in_proximity(coordinates['latitude'], coordinates['longitude'], 0.3)
             ]
         else:
-            object_list = Sighting.objects.filter(**kwargs)
+            object_list = Sighting.objects.active().filter(**kwargs)
             if protected:
                 object_list = object_list.public()
 
     else:
-        object_list = Sighting.objects.all()
+        object_list = Sighting.objects.active()
         if protected:
             object_list = object_list.public()
 
@@ -142,4 +144,4 @@ def fuzzy_date(timestamp, to=None):
 
 @register.simple_tag
 def sighting_count():
-    return Sighting.objects.all().count()
+    return Sighting.objects.active().count()

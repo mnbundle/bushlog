@@ -83,7 +83,7 @@ class SightingListAPIView(generics.ListAPIView):
     serializer_class = SightingSerializer
 
     def get_queryset(self):
-        queryset = Sighting.objects.all()
+        queryset = Sighting.objects.active()
 
         reserve = self.request.QUERY_PARAMS.get('reserve')
         species = self.request.QUERY_PARAMS.get('species')

@@ -207,7 +207,7 @@ initAutoCompleteInput = function (input_selector, ele_selector, api_uri) {
                         return typeahead_obj;
                     });
                 }
-            }, 1000);
+            }, 500);
         },
 
         updater: function(value) {

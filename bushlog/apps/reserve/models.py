@@ -25,7 +25,7 @@ class Reserve(models.Model):
 
     @property
     def number_of_sightings(self):
-        return self.sightings.public().filter(date_of_sighting__gte=historical_date(month=1)).count()
+        return self.sightings.public().active().filter(date_of_sighting__gte=historical_date(month=1)).count()
 
     @property
     def bounds(self):
@@ -67,6 +67,16 @@ class Reserve(models.Model):
             cache.set(cache_key, obj)
 
         return obj
+
+    @property
+    def bounding_box(self):
+        bounds = self.bounds
+        return [
+            bounds['south_east']['longitude'],
+            bounds['north_west']['latitude'],
+            bounds['north_west']['longitude'],
+            bounds['south_east']['latitude'],
+        ]
 
     def sighting_in_reserve(self, coordinates):
         latitude = float(coordinates['latitude'])

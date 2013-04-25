@@ -15,7 +15,7 @@ sitemaps = {
         'queryset': Reserve.objects.all()
     }, priority=0.6),
     'sightings': GenericSitemap({
-        'queryset': Sighting.objects.all(),
+        'queryset': Sighting.objects.active().public(),
         'date_field': 'date_added'
     }, priority=0.8),
     'reserves': GenericSitemap({

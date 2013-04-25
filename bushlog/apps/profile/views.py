@@ -16,6 +16,14 @@ from bushlog.decorators import json_response
 class IndexDetailView(generic.DetailView):
     model = UserProfile
 
+    def render_to_response(self, context, **response_kwargs):
+        """
+        Ensure only active users pages can be indexed.
+        """
+        if self.object.user.is_active:
+            return super(IndexDetailView, self).render_to_response(context, **response_kwargs)
+        raise Http404
+
 
 class SignInFormView(generic.FormView):
     template_name = "profile/signin.html"

@@ -16,3 +16,13 @@ def del_session(context, key):
 @register.simple_tag
 def user_count():
     return User.objects.filter(is_active=True).count()
+
+
+@register.simple_tag
+def user_sighting_count(user):
+    return user.sightings.all().count()
+
+
+@register.simple_tag
+def user_comment_count(user):
+    return user.comments.all().count()
