@@ -63,7 +63,7 @@
                 <div class="media-body">
                     <h6>
                         <a href="{% url 'profile:index' object.user.profile.slug %}">{{ object.user.username|capfirst }}'s Bushlog</a><br/>
-                        <i class="icon-map-flag"></i>
+                        <i class="icon-flag"></i>
                         <small>{{ object.country }}</small><br/>
                         <i class="icon-map-marker"></i>
                         <small>{% user_sighting_count object.user %} Sightings</small>&nbsp;
