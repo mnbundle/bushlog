@@ -93,6 +93,7 @@ class Command(BaseCommand):
                     )
 
                     if sighting_created:
+                        #sighting.description = "@%s %s" % (result['user']['username'], result['text'])
                         sighting.is_active = False
                         sighting.save()
 
