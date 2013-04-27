@@ -291,6 +291,65 @@ socialShare = function () {
     });
 }
 
+latestSightingScroll = function () {
+    $(window).unbind('scroll');
+    var container = $('.latest-sightings:visible');
+
+    var loader = $('<div class="align-center loader"><p>&nbsp;</p><img src="/static/img/icons/loader.gif"/> &nbsp; Loading...<p>&nbsp;</p></div>');
+    loader.appendTo(container);
+
+    var split = parseInt(container.data('split'));
+    var limit = parseInt(container.data('limit'));
+    var offset = parseInt(container.data('offset'));
+    var reserve = container.data('reserve');
+    var species = container.data('species');
+    var user = container.data('user');
+
+    var latitude = container.data('latitude');
+    var longitude = container.data('longitude');
+
+    var browser_offset = 0;
+    if (isBrowser('iPhone')) {
+        browser_offset = 60;
+    }
+
+    search_data = {
+        split: split,
+        limit: limit,
+        offset: offset,
+        reserve: reserve,
+        species: species,
+        user: user,
+        latitude: latitude,
+        longitude: longitude
+    };
+
+    $.ajax({
+        url: '/sighting/latest/',
+        data: search_data,
+        type: 'GET',
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            $(window).unbind('scroll');
+            loader.hide();
+        },
+        success: function(html){
+            console.log('success');
+            if (html != 'null') {
+                container.data('limit', limit + limit);
+                container.data('offset', offset + limit);
+
+                $('.latest-sightings').append(html);
+                $(window).scroll( function() {
+                    if($(window).scrollTop() == $(document).height() - $(window).height() - browser_offset) {
+                        latestSightingScroll();
+                    }
+                });
+            }
+            loader.hide();
+        }
+    });
+}
+
 $(document).ready(function() {
 
     // initiate all carousel components
@@ -300,7 +359,7 @@ $(document).ready(function() {
     $(".hint").tooltip();
 
     // initiate the search form
-    initSearchForm(); 
+    initSearchForm();
 
     // initiate social sharing
     socialShare();

@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block title %}{{ object.common_name }} Sightings in Southern Africa{% endblock %}
@@ -9,6 +10,16 @@
             $('#id_sighting_create-species').val('{{ object.id }}');
             $('#id_sighting_create-species_search').val('{{ object.common_name }}').attr('readonly', true).addClass('cancel');
         }
+
+        // initiate continous scrolling
+        $(document).ready(function () {
+            $(window).scroll( function() {
+                if($(window).scrollTop() == $(document).height() - $(window).height()) {
+                    latestSightingScroll();
+                }
+            });
+            latestSightingScroll();
+        });
     </script>
 {% endblock %}
 
@@ -40,7 +51,7 @@
                 </h2>
             </div>
 
-            {% latest_sightings split=2 limit=20 species=object %}
+            <div class="latest-sightings" data-split="2" data-limit="20" data-offset="0" data-species="{{ object.id }}"></div>
 
         </div>
 
@@ -140,7 +151,7 @@
 
             <hr/>
 
-            {% latest_sightings split=1 limit=10 species=object %}
+            <div class="latest-sightings" data-split="1" data-limit="10" data-offset="0" data-species="{{ object.id }}"></div>
 
         </div>
 

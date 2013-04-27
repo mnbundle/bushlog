@@ -1,9 +1,24 @@
+
 {% extends "base.html" %}
 
-{% block content %}
+{% block extra_js %}
+    <script type="text/javascript">
+        // initiate continous scrolling
+        $(document).ready(function () {
+            $(window).scroll( function() {
+                if($(window).scrollTop() == $(document).height() - $(window).height()) {
+                    latestSightingScroll();
+                }
+            });
+            latestSightingScroll();
+        });
+    </script>
+{% endblock %}
 
-    {% load reserve %}
-    {% load sighting %}
+{% load reserve %}
+{% load sighting %}
+
+{% block content %}
 
     {% featured_reserve_maps limit=3 %}
 
@@ -95,13 +110,13 @@
             <h1>Latest Activity</h1>
         </div>
         <p>&nbsp;</p>
-        {% latest_sightings split=3 limit=15 %}
+        <div class="latest-sightings" data-split="3" data-limit="15" data-offset="0"></div>
     </div>
 
     <div class="row-fluid visible-phone">
         <div class="page-header">
             <h4>Latest Activity</h4>
         </div>
-        {% latest_sightings split=1 limit=10 %}
+        <div class="latest-sightings" data-split="1" data-limit="10" data-offset="0"></div>
     </div>
 {% endblock %}

@@ -131,6 +131,7 @@ def latest_sightings(context, split=1, limit=3, offset=0, protected=1, exclude_p
         'object': context.get('object'),
         'object_list': object_list[offset:limit],
         'split': split,
+        'offset': offset,
         'keyword': keyword
     })
 

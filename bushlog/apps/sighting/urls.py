@@ -9,4 +9,5 @@ urlpatterns = patterns('bushlog.apps.sighting.views',
     url(r'^create/image/$', 'create_image', name='create_image'),
     url(r'^forms/(?P<type>\w+)/$', 'forms', name='forms'),
     url(r'^activate/(?P<pk>\d+)/$', 'activate', name='activate'),
+    url(r'^latest/$', 'latest', name='latest'),
 )

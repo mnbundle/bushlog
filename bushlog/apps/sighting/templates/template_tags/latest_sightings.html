@@ -1,3 +1,4 @@
+
 {% load sighting %}
 
 {% if object_list %}
@@ -6,7 +7,7 @@
             <div class="row-fluid">
         {% endif %}
                 <div class="{% if split == 3 %}span4{% elif split == 2 %}span6{% else %}span12{% endif %}">
-                    {% if forloop.counter > split %}<hr/>{% endif %}
+                    {% if forloop.counter > split or offset %}<hr/>{% endif %}
                     <div class="media">
                         {% if object.cover_image %}
                             <a class="pull-left" href="{{ object.get_absolute_url }}">

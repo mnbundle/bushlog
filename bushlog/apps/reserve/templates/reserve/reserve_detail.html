@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block title %}{{ object.name }} Wildlife Sightings{% endblock %}
@@ -9,6 +10,16 @@
             $('#id_sighting_create-reserve').val('{{ object.id }}');
             $('#id_sighting_create-reserve_search').val('{{ object.name }}').attr('readonly', true).addClass('cancel');
         }
+
+        // initiate continous scrolling
+        $(document).ready(function () {
+            $(window).scroll( function() {
+                if($(window).scrollTop() == $(document).height() - $(window).height()) {
+                    latestSightingScroll();
+                }
+            });
+            latestSightingScroll();
+        });
     </script>
 {% endblock %}
 
@@ -37,7 +48,7 @@
                 </h2>
             </div>
 
-            {% latest_sightings split=2 limit=20 reserve=object %}
+            <div class="latest-sightings" data-split="2" data-limit="20" data-offset="0" data-reserve="{{ object.id }}"></div>
 
         </div>
 
@@ -81,7 +92,7 @@
 
             <hr/>
 
-            {% latest_sightings split=1 limit=10 reserve=object %}
+            <div class="latest-sightings" data-split="1" data-limit="10" data-offset="0" data-reserve="{{ object.id }}"></div>
 
         </div>
 

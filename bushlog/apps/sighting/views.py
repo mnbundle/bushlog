@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.core.mail import mail_admins
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404, HttpResponseRedirect, HttpResponseBadRequest
@@ -8,7 +9,10 @@ from django.views import generic
 
 from bushlog.apps.sighting.forms import CreateForm
 from bushlog.apps.location.models import Coordinate
+from bushlog.apps.reserve.models import Reserve
 from bushlog.apps.sighting.models import Sighting, SightingImage
+from bushlog.apps.sighting.templatetags.sighting import latest_sightings
+from bushlog.apps.wildlife.models import Species
 
 
 class IndexDetailView(generic.DetailView):
@@ -136,9 +140,52 @@ class ActivateRedirectView(generic.RedirectView):
         return obj.get_absolute_url()
 
 
+class LatestView(generic.TemplateView):
+    template_name = 'template_tags/latest_sightings.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(LatestView, self).get_context_data(**kwargs)
+
+        # retrieve the query string
+        get_data = self.request.GET
+        kwargs['split'] = int(get_data.get('split', 1))
+        kwargs['offset'] = int(get_data.get('offset', 0))
+        kwargs['limit'] = int(get_data.get('limit', 3))
+
+        print get_data
+
+        if 'reserve' in get_data.keys():
+            kwargs['reserve'] = get_data.get('reserve')
+            context['object'] = get_object_or_404(Reserve, id=kwargs['reserve'])
+
+        if 'species' in get_data.keys():
+            kwargs['species'] = get_data.get('species')
+            context['object'] = get_object_or_404(Species, id=kwargs['species'])
+
+        if 'user' in get_data.keys():
+            kwargs['user'] = get_data.get('user')
+            context['object'] = get_object_or_404(User, id=kwargs['user'])
+            if self.request.user == context['object']:
+                kwargs['protected'] = 0
+
+        if 'latitude' in get_data.keys() and 'longitude' in get_data.keys():
+            kwargs['coordinates'] = {
+                'latitude': get_data.get('latitude'),
+                'longitude': get_data.get('longitude'),
+            }
+
+        context = latest_sightings(context, **kwargs)
+
+        if context.get('object_list'):
+            return context
+
+        raise Http404
+
+
 index = IndexDetailView.as_view()
 search = SearchListView.as_view()
 create = SightingCreateView.as_view()
 create_image = SightingImageCreateView.as_view()
 forms = FormsView.as_view()
 activate = ActivateRedirectView.as_view()
+latest = LatestView.as_view()

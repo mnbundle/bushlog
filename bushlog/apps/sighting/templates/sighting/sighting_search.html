@@ -3,6 +3,21 @@
 {% load humanize %}
 {% load sighting %}
 
+{% block extra_js %}
+    <script type="text/javascript">
+
+        // initiate continous scrolling
+        $(document).ready(function () {
+            $(window).scroll( function() {
+                if($(window).scrollTop() == $(document).height() - $(window).height()) {
+                    latestSightingScroll();
+                }
+            });
+            latestSightingScroll();
+        });
+    </script>
+{% endblock %}
+
 {% block content %}
 
     {% if coordinates %}
@@ -27,17 +42,11 @@
                 </h2>
             </div>
 
-            {% if object %}
-                {% if coordinates %}
-                    {% latest_sightings split=2 limit=20 coordinates=coordinates %}
+            {% if coordinates %}
+                {% if object %}
+                    <div class="latest-sightings" data-split="2" data-limit="24" data-offset="0" data-reserve="{{ object.id }}" data-latitude="{{ coordinates.latitude }}" data-longitude="{{ coordinates.longitude }}"></div>
                 {% else %}
-                    {% latest_sightings split=2 limit=20 %}
-                {% endif %}
-            {% else %}
-                {% if coordinates %}
-                    {% latest_sightings split=3 limit=24 coordinates=coordinates %}
-                {% else %}
-                    {% latest_sightings split=3 limit=24 %}
+                    <div class="latest-sightings" data-split="3" data-limit="24" data-offset="0" data-latitude="{{ coordinates.latitude }}" data-longitude="{{ coordinates.longitude }}"></div>
                 {% endif %}
             {% endif %}
 
@@ -68,9 +77,11 @@
             {% endif %}
 
             {% if coordinates %}
-                {% latest_sightings split=1 limit=10 coordinates=coordinates %}
-            {% else %}
-                {% latest_sightings split=1 limit=10 %}
+                {% if object %}
+                    <div class="latest-sightings" data-split="1" data-limit="10" data-offset="0" data-reserve="{{ object.id }}" data-latitude="{{ coordinates.latitude }}" data-longitude="{{ coordinates.longitude }}"></div>
+                {% else %}
+                    <div class="latest-sightings" data-split="1" data-limit="10" data-offset="0" data-latitude="{{ coordinates.latitude }}" data-longitude="{{ coordinates.longitude }}"></div>
+                {% endif %}
             {% endif %}
 
         </div>

@@ -3,6 +3,12 @@ from django.contrib import admin
 from bushlog.apps.sighting.models import Sighting, SightingImage
 
 
+def activate(modeladmin, request, queryset):
+    for obj in queryset:
+        obj.is_active = True
+        obj.save()
+
+
 class SightingImageTabularInline(admin.TabularInline):
     model = SightingImage
 
@@ -13,6 +19,7 @@ class SightingAdmin(admin.ModelAdmin):
     search_fields = ['id', 'species__common_name', 'reserve__name', 'user__username', 'date_of_sighting']
     list_filter = ['is_active', 'with_young', 'with_kill']
     inlines = [SightingImageTabularInline]
+    actions = [activate]
 
 
 admin.site.register(Sighting, SightingAdmin)
