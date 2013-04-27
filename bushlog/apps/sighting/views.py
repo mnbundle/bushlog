@@ -152,8 +152,6 @@ class LatestView(generic.TemplateView):
         kwargs['offset'] = int(get_data.get('offset', 0))
         kwargs['limit'] = int(get_data.get('limit', 3))
 
-        print get_data
-
         if 'reserve' in get_data.keys():
             kwargs['reserve'] = get_data.get('reserve')
             context['object'] = get_object_or_404(Reserve, id=kwargs['reserve'])

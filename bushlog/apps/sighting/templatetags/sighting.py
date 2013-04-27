@@ -110,6 +110,7 @@ def latest_sightings(context, split=1, limit=3, offset=0, protected=1, exclude_p
 
     if kwargs:
         if coordinates:
+            print "HERE"
             object_list = [
                 obj for obj in Sighting.objects.public().active().filter(date_of_sighting__gte=historical_date(weeks=1))
                 if obj.in_proximity(coordinates['latitude'], coordinates['longitude'], 0.3)

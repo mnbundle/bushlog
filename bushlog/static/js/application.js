@@ -333,10 +333,9 @@ latestSightingScroll = function () {
             loader.hide();
         },
         success: function(html){
-            console.log('success');
             if (html != 'null') {
-                container.data('limit', limit + limit);
-                container.data('offset', offset + limit);
+                container.data('limit', limit + (limit - offset));
+                container.data('offset', offset + (limit - offset));
 
                 $('.latest-sightings').append(html);
                 $(window).scroll( function() {
