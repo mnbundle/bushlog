@@ -9,6 +9,12 @@ def activate(modeladmin, request, queryset):
         obj.save()
 
 
+def deactivate(modeladmin, request, queryset):
+    for obj in queryset:
+        obj.is_active = False
+        obj.save()
+
+
 class SightingImageTabularInline(admin.TabularInline):
     model = SightingImage
 
@@ -19,7 +25,7 @@ class SightingAdmin(admin.ModelAdmin):
     search_fields = ['id', 'species__common_name', 'reserve__name', 'user__username', 'date_of_sighting']
     list_filter = ['is_active', 'with_young', 'with_kill']
     inlines = [SightingImageTabularInline]
-    actions = [activate]
+    actions = [activate, deactivate]
 
 
 admin.site.register(Sighting, SightingAdmin)
