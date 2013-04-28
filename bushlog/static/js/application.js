@@ -349,6 +349,24 @@ latestSightingScroll = function () {
     });
 }
 
+showProfileUpdate = function () {
+    if ($(document).width() <= 767) {
+        window.location = '/profile/forms/update/';
+    }
+    else {
+        $("#id_update_modal").modal('show');
+    }
+}
+
+showPasswordReset = function () {
+    if ($(document).width() <= 767) {
+        window.location = '/profile/forms/resetpassword/';
+    }
+    else {
+        $("#id_resetpassword_modal").modal('show');
+    }
+}
+
 $(document).ready(function() {
 
     // initiate all carousel components

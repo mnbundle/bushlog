@@ -1,3 +1,4 @@
+
 <form class="form-vertical form-signin" method="post" action="{% url 'profile:signin' %}">
     {% csrf_token %}
     {{ form.username_email }}
@@ -29,7 +30,7 @@
                 <a href="{% url 'profile:forms' 'signup' %}"><i class="icon-user"></i> Sign Up</a>
             </li>
             <li class="visible-phone">
-                <a href="{% url 'profile:forms' 'resetpassword' %}"><i class="icon-question-sign"></i> Forgot Password</a>
+                <a href="{% url 'profile:forms' 'forgotpassword' %}"><i class="icon-question-sign"></i> Forgot Password</a>
             </li>
             <li class="visible-phone">
                 <a href="{% url 'profile:forms' 'resendactivation' %}"><i class="icon-refresh"></i> Resend Activation Email</a>

@@ -45,6 +45,26 @@
     {% endif %}
 
     <!-- Forgot password modal -->
+    {% if type == 'forgotpassword' %}
+        <div class="modal-header">
+            <h3>Forgot Password</h3>
+        </div>
+        <div class="modal-body">
+            <p>&nbsp;</p>
+            <div class="forgotpassword-container">
+                <div class="align-center loader">
+                    <img src="{{ STATIC_URL }}img/icons/loader.gif"/> &nbsp; Loading...
+                    <p>&nbsp;</p>
+                </div>
+           </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-back">Close</a>
+            <a class="btn btn-success btn-forgotpassword-submit">Reset</a>
+        </div>
+    {% endif %}
+
+    <!-- Reset password modal -->
     {% if type == 'resetpassword' %}
         <div class="modal-header">
             <h3>Reset Password</h3>
