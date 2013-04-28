@@ -96,7 +96,7 @@
                     </a>
                 {% else %}
                     <a class="pull-left" href="{% url 'profile:index' object.user.username %}">
-                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.user.profile.gender|default:"male"|lower }}.png" width="60" height="60" />
+                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.user.profile.gender|default:"male"|lower }}_60_60.png" width="60" height="60" />
                     </a>
                 {% endif %}
                 <div class="media-body">
@@ -173,7 +173,7 @@
                     </a>
                 {% else %}
                     <a class="pull-left" href="{% url 'profile:index' object.user.username %}">
-                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.user.profile.gender|default:"male"|lower }}.png" width="60" height="60" />
+                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.user.profile.gender|default:"male"|lower }}_60_60.png" width="60" height="60" />
                     </a>
                 {% endif %}
                 <div class="media-body">
