@@ -19,8 +19,8 @@ class SupportForm(forms.Form):
         """
         Sends a notification to support of the issue.
         """
-        return mail_admins(
-            "Sighting Added", "%s (%s) has reported an issue.\n\r %s" % (
+        mail_admins(
+            "Support Issue", "%s (%s) has reported an issue.\n\r %s" % (
                 self.cleaned_data.get('full_name'), self.cleaned_data.get('email'), self.cleaned_data.get('description')
             )
         )

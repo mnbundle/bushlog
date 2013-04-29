@@ -25,13 +25,12 @@ class SupportFormView(generic.FormView):
         """
         Set a success message if the form is valid.
         """
-        if form.send():
-            messages.add_message(
-                self.request, messages.SUCCESS,
-                "An email has been sent with instructions to reset your password."
-            )
-            return HttpResponseRedirect(self.success_url)
-        return self.form_invalid(form)
+        form.send()
+        messages.add_message(
+            self.request, messages.SUCCESS,
+            "Thank you for reporting this issue. We will try and resolve it as soon as possible."
+        )
+        return HttpResponseRedirect(self.success_url)
 
     def form_invalid(self, form):
         """
