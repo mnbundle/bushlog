@@ -16,6 +16,16 @@
 
     {% featured_reserve_maps limit=3 %}
 
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'press' %}">Press</a></li>
+        <li><a href="{% url 'support' %}">Support</a></li>
+        <li><a href="{% url 'legal' %}">Legal</a></li>
+        <!--<li><a href="#">Developers</a></li>
+        <li><a href="{% url 'researchers' %}">Researchers</a></li>
+        <li><a href="#">Advertising</a></li>-->
+    </ul>
+
     <div class="row-fluid">
         <div class="span7">
             <div class="hidden-phone">
@@ -29,7 +39,7 @@
 
             <div class="visible-phone">
                 <div class="page-header">
-                    <h4>About Bushlog</h4>
+                    <h3>About Bushlog</h3>
                 </div>
                 <p>Bushlog has been a few years in the making, a lot of that time spent planning, and is
                 essentially an interactive application which allows registered users to share their wildlife sightings

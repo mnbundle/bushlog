@@ -1,0 +1,56 @@
+
+{% extends "base.html" %}
+
+{% block title %}Bushlog - Terms &amp; Conditions and Privacy Policy{% endblock %}
+{% block decription %}
+    Terms &amp; Conditions and Website Privacy Policy for Bushlog
+{% endblock %}
+
+{% block content %}
+
+    {% load reserve %}
+
+    {% featured_reserve_maps limit=3 %}
+
+    <ul class="nav nav-tabs">
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'press' %}">Press</a></li>
+        <li class="active"><a href="{% url 'support' %}">Support</a></li>
+        <li><a href="{% url 'legal' %}">Legal</a></li>
+        <!--<li><a href="#">Developers</a></li>
+        <li><a href="{% url 'researchers' %}">Researchers</a></li>
+        <li><a href="#">Advertising</a></li>-->
+    </ul>
+
+    <div class="row-fluid">
+        <div class="span6">
+            <div class="page-header">
+                <h1 class="hidden-phone">Support</h1>
+                <h3 class="visible-phone">Support</h3>
+            </div>
+            <p class="lead">If you have an issue with Bushlog, please let us know. We would like to make you
+            experience as effortless and enjoyable as possible.</p>
+
+            <p class="hidden-phone">Please report issues to us by using the form on this page, giving us as much detail as possible. We'll
+            let you know as soon as the issue has been resolved. Thank you.</p>
+        </div>
+
+        <p class="visible-phone">&nbsp;</p>
+
+        <div class="span5 hero-unit hero-unit-small pull-right">
+            <h3>Report An Issue</h3>
+            <p>Please include browser and version, device and the action you were taking.</p>
+            <p>&nbsp;</p>
+            <form class="form-vertical form-support" method="post" action="{% url 'support' %}">
+                {% csrf_token %}
+                <input class="span12" id="id_support-full_name" name="support-full_name" placeholder="Full name" type="text" value="{{ request.user.profile.full_name }}">
+                <input class="span12" id="id_support-email" name="support-email" placeholder="Email address" type="email" value="{{ request.user.email }}">
+                {{ form.description }}
+                <div>&nbsp;</div>
+                <div class="pull-right">
+                    <button class="btn btn-success">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

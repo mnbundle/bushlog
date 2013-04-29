@@ -12,6 +12,16 @@
 
     {% featured_reserve_maps limit=3 %}
 
+    <ul class="nav nav-tabs">
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'press' %}">Press</a></li>
+        <li><a href="{% url 'support' %}">Support</a></li>
+        <li class="active"><a href="{% url 'legal' %}">Legal</a></li>
+        <!--<li><a href="#">Developers</a></li>
+        <li><a href="{% url 'researchers' %}">Researchers</a></li>
+        <li><a href="#">Advertising</a></li>-->
+    </ul>
+
     <div class="row-fluid">
         <div class="span12">
             <div class="hidden-phone">

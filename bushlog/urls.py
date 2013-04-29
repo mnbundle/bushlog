@@ -10,11 +10,12 @@ from bushlog.sitemap import sitemaps
 admin.autodiscover()
 
 # static url patterns
-urlpatterns = patterns('',
+urlpatterns = patterns('bushlog.views',
     url(r'^$', generic.TemplateView.as_view(template_name="index.html"), name='index'),
     url(r'^about/$', generic.TemplateView.as_view(template_name="about.html"), name='about'),
     url(r'^legal/$', generic.TemplateView.as_view(template_name="legal.html"), name='legal'),
     url(r'^press/$', generic.TemplateView.as_view(template_name="press.html"), name='press'),
+    url(r'^support/$', 'support', name='support'),
     url(r'^researchers/$', generic.TemplateView.as_view(template_name="researchers.html"), name='researchers')
 )
 

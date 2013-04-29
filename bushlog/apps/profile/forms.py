@@ -9,7 +9,7 @@ from bushlog.utils import choices
 
 class SignInForm(forms.Form):
     username_email = forms.CharField(
-        widget=widgets.EmailInput(attrs={'class': 'span12', 'placeholder': 'Username / Email address'})
+        widget=forms.TextInput(attrs={'class': 'span12', 'placeholder': 'Username / Email address'})
     )
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'span12', 'placeholder': 'Password'})
@@ -84,7 +84,7 @@ class UpdateModelForm(forms.ModelForm):
         fields = ['biography', 'gender', 'birth_date', 'country']
         widgets = {
             'biography': forms.Textarea(attrs={'class': 'span3', 'rows': 3, 'maxlength': 250}),
-            'gender': forms.Select(attrs={'class': 'span3'}, choices=choices(['Male', 'Female'])),
+            'gender': forms.Select(attrs={'class': 'span3'}, choices=choices(['Male', 'Female'], sort=True)),
             'birth_date': forms.DateInput(attrs={'readonly': 'readonly'}, format='%Y-%m-%d'),
             'country': forms.Select(
                 attrs={'class': 'span3'}, choices=tuple([(obj.id, obj.name) for obj in Country.objects.all()])

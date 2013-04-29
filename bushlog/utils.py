@@ -19,10 +19,12 @@ from PIL.ExifTags import GPSTAGS, TAGS
 EXIF_INCLUDE_KEYS = ['Make', 'DateTimeOriginal', 'Model', 'Orientation']
 
 
-def choices(item_list):
+def choices(item_list, sort=False):
     """
     Convert a list to a choices tuple
     """
+    if sort:
+        item_list.sort()
     return tuple((i, i) for i in item_list)
 
 

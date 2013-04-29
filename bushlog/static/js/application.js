@@ -268,6 +268,32 @@ initSearchForm = function () {
     });
 }
 
+initSupportForm = function () {
+
+    // add a validation method for valid passwords
+    $.validator.addMethod("validpassword", function(value, element) {
+        return this.optional(element) || /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\d]).*$/.test(value);
+    });
+
+    // initialise form validation
+    $('.form-signup').validate({
+        messages: {
+            "signup-username": {
+                remote: "is already in use."
+            },
+            "signup-email": {
+                remote: "is already registered."
+            },
+            "signup-password": {
+                validpassword: "must contain upper & lower case letters and a number."
+            },
+            "signup-confirm_password": {
+                equalTo: "doesn't match password field."
+            }
+        }
+    });
+}
+
 isBrowser = function (user_agent) {
     if (navigator.userAgent.search(user_agent) != -1) {
         return true;
