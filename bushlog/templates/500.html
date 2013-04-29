@@ -1,6 +1,57 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-{% extends "base.html" %}
+        <title>500</title>
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css"/>
+        <style type="text/css">
+            body {
+                padding-top: 80px;
+                padding-bottom: 60px;
+            }
+            @media (max-width: 767px) {
+                body {
+                    padding-bottom: 0px;
+                }
+              }
+        </style>
+        <link rel="stylesheet" href="/static/css/bootstrap.responsive.min.css" type="text/css"/>
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="/"><img src="/static/img/layout/logo-drk.png" width="106" height="30" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <h1>500 <small>Internal Server Error</small></h1>
+        </div>
 
-{% block content %}
-    <h1>500 <small>Internal Server Error</small></h1>
-{% endblock %}
+        <div class="navbar navbar-fixed-bottom">
+            <div class="navbar-inner">
+                <div class="container">
+                    <div class="pull-left">
+                        <a class="social social-facebook pull-left" href="http://www.facebook.com/bushlog" target="blank" alt="Follow us on Facebook"></a>
+                        <a class="social social-twitter pull-left" href="http://twitter.com/bushlogapp" target="blank" alt="Follow us on Twitter"></a>
+                    </div>
+                    <ul class="nav nav-pills pull-right">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about/">About</a></li>
+                        <!--<li><a href="{% url 'press' %}">Press</a></li>-->
+                        <li><a href="/legal/">Legal</a></li>
+                        <!--<li><a href="#">Developers</a></li>
+                        <li><a href="{% url 'researchers' %}">Researchers</a></li>
+                        <li><a href="#">Advertising</a></li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
