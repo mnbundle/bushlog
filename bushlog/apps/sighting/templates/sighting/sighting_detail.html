@@ -8,7 +8,7 @@
 
 {% block title %}{{ object.species.common_name }} Sighting in {{ object.reserve.name }}{% endblock %}
 {% block decription %}
-    Sighting of a {{ object.species.common_name }} ({{ object.species.scientific_name }}) in {{ object.reserve.name }} - Spotted by {{ object.user.username }} {{ object.date_added.date|fuzzy_date }}
+    Sighting of a {{ object.species.common_name }} ({{ object.species.scientific_name }}) in {{ object.reserve.name }} - Spotted by {{ object.user.username }}
 {% endblock %}
 
 {% block extra_css %}

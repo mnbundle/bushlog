@@ -21,8 +21,13 @@
             <style type="text/css">
                 body {
                     padding-top: 80px;
-                    padding-bottom: 0px;
+                    padding-bottom: 60px;
                 }
+                @media (max-width: 767px) {
+                    body {
+                        padding-bottom: 0px;
+                    }
+                  }
             </style>
             <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.responsive.min.css" type="text/css"/>
             <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.uploadkit.css" type="text/css"/>
@@ -172,13 +177,11 @@
             {% endif %}
 
             {% block content %}{% endblock %}
+        </div>
 
-            <p>&nbsp;</p>
-
-            <hr/>
-
-            <div class="row-fluid">
-                <div class="span12">
+        <div class="navbar navbar-fixed-bottom">
+            <div class="navbar-inner">
+                <div class="container">
                     <div class="pull-left">
                         <a class="social social-facebook pull-left" href="http://www.facebook.com/bushlog" target="blank" alt="Follow us on Facebook"></a>
                         <a class="social social-twitter pull-left" href="http://twitter.com/bushlogapp" target="blank" alt="Follow us on Twitter"></a>
