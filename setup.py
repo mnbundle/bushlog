@@ -30,6 +30,7 @@ setup(
         'django-bootstrap-toolkit==2.8.0',
         'django-compressor==1.3',
         'django-filter==0.6a1',
+        'django-grappelli==2.4.4',
         'django-social-auth==0.7.22',
         'djangorestframework==2.2.4',
         'futures==2.1.3',
