@@ -1,9 +1,7 @@
 from django import forms
-from django.core.mail import send_mail
+from django.core.mail import mail_admins
 
 from bushlog import widgets
-from bushlog.apps.profile.models import User
-from bushlog.utils import choices
 
 
 class SupportForm(forms.Form):
@@ -21,8 +19,9 @@ class SupportForm(forms.Form):
         """
         Sends a notification to support of the issue.
         """
-        from_email = "%s <%s>" % (self.cleaned_data.get('full_name', ''), self.cleaned_data.get('email', ''))
-        to_email = "Bushlog Support <support@bushlog.com>"
+        return mail_admins(
+            "Sighting Added", "%s (%s) has reported an issue.\n\r %s" % (
+                self.cleaned_data.get('full_name'), self.cleaned_data.get('email'), self.cleaned_data.get('description')
+            )
+        )
 
-        # send the mail
-        return send_mail("Issue Report", self.cleaned_data.get('description'), from_email, [to_email])
