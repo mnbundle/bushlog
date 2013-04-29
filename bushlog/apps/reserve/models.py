@@ -86,3 +86,4 @@ class Reserve(models.Model):
 
     def get_absolute_url(self):
         return reverse_lazy('reserve:index', args=[self.slug])
+

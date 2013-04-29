@@ -18,6 +18,11 @@ urlpatterns = patterns('',
     url(r'^researchers/$', generic.TemplateView.as_view(template_name="researchers.html"), name='researchers')
 )
 
+# grappelli url patterns
+urlpatterns += patterns('',
+    (r'^grappelli/', include('grappelli.urls')),
+)
+
 # admin url patterns
 urlpatterns += patterns('',
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
