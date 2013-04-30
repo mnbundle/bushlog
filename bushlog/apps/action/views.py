@@ -5,13 +5,15 @@ from django.shortcuts import get_object_or_404
 from django.views import generic
 
 from bushlog.apps.action.models import Comment, Like
+from bushlog.apps.reserve.models import Reserve
 from bushlog.apps.sighting.models import Sighting
 from bushlog.decorators import json_response
 from bushlog.utils import fuzzydate, image_resize
 
 
 MODELMAP = {
-    'sighting': Sighting,
+    'reserve': Reserve,
+    'sighting': Sighting
 }
 
 

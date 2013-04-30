@@ -20,9 +20,12 @@
             });
             latestSightingScroll();
         });
+
+        initLikeButton();
     </script>
 {% endblock %}
 
+{% load action %}
 {% load sighting %}
 
 {% block content %}
@@ -61,6 +64,19 @@
                 <small>{{ object.country.all|join:" | " }}</small><br/>
                 <small>{{ object.website|urlize }}</small>
             </h4>
+
+            <h6>
+                <i class="icon-camera"></i>
+                <small>{{ object.sightings.count }} Sightings</small> &nbsp;
+                <i class="icon-user"></i>
+                <small><span class="checkin-count">0</span> Checkins</small> &nbsp;
+                <i class="icon-star"></i>
+                <small><span class="like-count">0</span> Likes</small> &nbsp;
+            </h6>
+
+            <div class="spacer"></div>
+
+            {% like_button %}
 
             <hr/>
 
@@ -103,6 +119,19 @@
                     <small>{{ object.website|urlize }}</small>
                 </h4>
             </div>
+
+            <h6>
+                <i class="icon-camera"></i>
+                <small>{{ object.sightings.count }} Sightings</small> &nbsp;
+                <i class="icon-check"></i>
+                <small><span class="checkin-count">0</span> Checkins</small> &nbsp;
+                <i class="icon-star"></i>
+                <small><span class="like-count">0</span> Likes</small> &nbsp;
+            </h6>
+
+            <div class="spacer"></div>
+
+            {% like_button %}
 
             <hr/>
 
