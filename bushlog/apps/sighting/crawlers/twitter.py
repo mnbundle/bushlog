@@ -27,11 +27,13 @@ def crawler(api, reserve, query, since_id=0):
             'date': twitter_date(status.created_at),
             'text': clean_twitter_text(status.text),
             'location': {
-                'latitude': '%.2f' % (status.geo['coordinates'][0]),
-                'longitude': '%.2f' % (status.geo['coordinates'][1])
+                'latitude': '%.6f' % (status.geo['coordinates'][0]),
+                'longitude': '%.6f' % (status.geo['coordinates'][1])
             },
             'user': {
-                'username': status.user.screen_name
+                'username': status.user.screen_name.lower(),
+                'avatar': status.user.profile_image_url,
+                'biography': status.user.description
             },
             'species': query if query != 'hyaena' else "spotted hyaena",
             'reserve': reserve.name,

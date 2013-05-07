@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 import twitter
 
-from bushlog.apps.location.models import Coordinate, Country
+from bushlog.apps.location.models import Coordinate
 from bushlog.apps.reserve.models import Reserve
 from bushlog.apps.sighting.crawlers.twitter import crawler as twitter_crawler
 from bushlog.apps.sighting.models import Sighting, SightingImage
@@ -79,9 +79,24 @@ class Command(BaseCommand):
                 )
 
                 if coordinate_created:
-                    user = User.objects.get(username=result['bot'])
+
+                    #create the user
+                    user, user_created = User.objects.get_or_create(
+                        username=result['user']['username']
+                    )
+                    user.profile.biography = result['user']['biography']
+
+                    # create the users avatar
+                    avatar_url = result['user']['avatar']
+                    avatar = image_from_url(avatar_url)
+                    user.profile.avatar.save("%s.%s" % (random_string(), avatar_url[:-3]), avatar, save=True)
+
+                    user.profile.save()
+
+                    # lookup the species and reserve
                     species = Species.objects.filter(common_name__icontains=result['species'])[0]
                     reserve = Reserve.objects.filter(name__icontains=result['reserve'])[0]
+
                     date_of_sighting = result['date']
 
                     sighting, sighting_created = Sighting.objects.get_or_create(
@@ -93,7 +108,7 @@ class Command(BaseCommand):
                     )
 
                     if sighting_created:
-                        #sighting.description = "@%s %s" % (result['user']['username'], result['text'])
+                        sighting.description = result['text']
                         sighting.is_active = False
                         sighting.save()
 
@@ -103,7 +118,9 @@ class Command(BaseCommand):
                             sightingimage = SightingImage(
                                 sighting=sighting
                             )
-                            sightingimage.image.save("%s.%s" % (random_string(), sightingimage_url[:-3]), image, save=True)
+                            sightingimage.image.save(
+                                "%s.%s" % (random_string(), sightingimage_url[:-3]), image, save=True
+                            )
                             sightingimage.save()
 
                         count += 1
