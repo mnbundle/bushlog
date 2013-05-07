@@ -92,15 +92,15 @@
                                 {% if object.male_info.mass or object.female_info.mass %}
                                     <p>
                                         <strong>Mass:</strong>
-                                        {% if object.male_info.mass %}{{ object.male_info.mass|intcomma }}kg (M){% endif %}
-                                        {% if object.female_info.mass %}{{ object.female_info.mass|intcomma }}kg (F){% endif %}
+                                        {% if object.male_info.mass %}{% if object.male_info.mass >= 1000 %}{{ object.male_info.mass|intcomma }}{% else %}{{ object.male_info.mass }}{% endif %}kg (M){% endif %}
+                                        {% if object.female_info.mass %}{% if object.female_info.mass >= 1000 %}{{ object.female_info.mass|intcomma }}{% else %}{{ object.female_info.mass }}{% endif %}kg (F){% endif %}
                                     </p>
                                 {% endif %}
                                 {% if object.male_info.horn_length or object.female_info.horn_length %}
                                     <p>
                                         <strong>Horn Length:</strong>
-                                        {% if object.male_info.horn_length %}{{ object.male_info.horn_length }}mm (M){% endif %}
-                                        {% if object.female_info.horn_length %}{{ object.female_info.horn_length }}mm (F){% endif %}
+                                        {% if object.male_info.horn_length %}{{ object.male_info.horn_length|humanize_measurement:"m" }} (M){% endif %}
+                                        {% if object.female_info.horn_length %}{{ object.female_info.horn_length|humanize_measurement:"m" }} (F){% endif %}
                                     </p>
                                 {% endif %}
                             </small>
@@ -179,15 +179,15 @@
                     {% if object.male_info.mass or object.female_info.mass %}
                         <p>
                             <strong>Mass:</strong>
-                            {% if object.male_info.mass %}{{ object.male_info.mass|intcomma }}kg (M){% endif %}
-                            {% if object.female_info.mass %}{{ object.female_info.mass|intcomma }}kg (F){% endif %}
+                            {% if object.male_info.mass %}{% if object.male_info.mass >= 1000 %}{{ object.male_info.mass|intcomma }}{% else %}{{ object.male_info.mass }}{% endif %}kg (M){% endif %}
+                            {% if object.female_info.mass %}{% if object.female_info.mass >= 1000 %}{{ object.female_info.mass|intcomma }}{% else %}{{ object.female_info.mass }}{% endif %}kg (F){% endif %}
                         </p>
                     {% endif %}
                     {% if object.male_info.horn_length or object.female_info.horn_length %}
                         <p>
                             <strong>Horn Length:</strong>
-                            {% if object.male_info.horn_length %}{{ object.male_info.horn_length }}mm (M){% endif %}
-                            {% if object.female_info.horn_length %}{{ object.female_info.horn_length }}mm (F){% endif %}
+                            {% if object.male_info.horn_length %}{{ object.male_info.horn_length|humanize_measurement:"m" }} (M){% endif %}
+                            {% if object.female_info.horn_length %}{{ object.female_info.horn_length|humanize_measurement:"m" }} (F){% endif %}
                         </p>
                     {% endif %}
                 </small>
