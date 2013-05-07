@@ -1,6 +1,7 @@
 
 <form class="form-vertical form-signin" method="post" action="{% url 'profile:signin' %}">
     {% csrf_token %}
+
     {{ form.username_email }}
     {{ form.password }}
     <label class="checkbox">
