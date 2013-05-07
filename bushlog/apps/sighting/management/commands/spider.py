@@ -27,8 +27,9 @@ class Command(BaseCommand):
         query_list = args
         if not query_list:
             query_list = [
-                'buffalo', 'elephant', 'jackal', 'zebra', 'caracal', 'baboon', 'cheetah', 'giraffe', 'hippo', 'badger',
-                'leopard', 'lion', 'roan', 'sable', 'serval', 'hyaena', 'wild dog', 'kudu', 'impala', 'warthog', 'nyala'
+                'caracal', 'serval', 'wild dog', 'cheetah', 'leopard', 'lion', 'badger', 'hyaena', 'roan', 'sable',
+                'jackal', 'elephant', 'giraffe', 'hippo', 'buffalo', 'nyala', 'zebra', 'baboon', 'kudu', 'warthog',
+                'impala'
             ]
 
         # initiate the twitter api wrapper
