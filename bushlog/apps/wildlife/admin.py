@@ -1,6 +1,11 @@
 from django.contrib import admin
 
+from bushlog.apps.reserve.models import Reserve
 from bushlog.apps.wildlife.models import Species, SpeciesInfo
+
+
+class ReserveInline(admin.TabularInline):
+    model = Reserve.species.through
 
 
 class SpeciesAdmin(admin.ModelAdmin):
@@ -11,6 +16,7 @@ class SpeciesAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         'slug': ['common_name']
     }
+    inlines = [ReserveInline]
 
 
 admin.site.register(Species, SpeciesAdmin)
