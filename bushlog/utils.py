@@ -1,12 +1,13 @@
 from cStringIO import StringIO
 from datetime import datetime, date
 import hashlib
+import json
 import os
 import random
 import re
 import string
 from time import mktime, strptime
-from urllib2 import urlopen
+import urllib2
 
 from django.core.files.base import ContentFile
 from django.utils.translation import ungettext, ugettext
@@ -43,6 +44,10 @@ def twitter_date(date_string):
 
 def clean_twitter_text(text):
     return re.sub("(#[A-Za-z0-9_]+)|([A-Za-z0-9_]+\:[A-Za-z0-9_]+)|(@)|\.|(http[A-Za-z0-9_\.\:\/]+)", "", text).strip()
+
+
+def clean_flickr_json(response):
+    return json.loads(response.replace('jsonFlickrApi(', '')[:-1])
 
 
 def fuzzydate(timestamp, to=None):
@@ -166,7 +171,10 @@ def image_resize(image, width=None, height=None):
 
 
 def image_from_url(url):
-    return ContentFile(urlopen(url).read())
+    try:
+        return ContentFile(urllib2.urlopen(url).read())
+    except urllib2.URLError:
+        return None
 
 
 def get_exif_data(image_path, exif_include_keys=EXIF_INCLUDE_KEYS):

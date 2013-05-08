@@ -67,7 +67,7 @@
 
             {% if object.description %}
                 <blockquote>
-                    <p>{{ object.description }}</p>
+                    <p>{{ object.description|striptags }}</p>
                     <small>{{ object.user.username }}</small>
                 </blockquote>
             {% endif %}
@@ -103,7 +103,7 @@
                     <h6>
                         <a href="{% url 'profile:index' object.user.profile.slug %}">{{ object.user.username }}</a><br/>
                         <i class="icon-time"></i>
-                        <small>Added {{ object.date_of_sighting.date|fuzzy_date }}</small><br/>
+                        <small>Spotted {{ object.date_of_sighting.date|fuzzy_date }}</small><br/>
                         <i class="icon-star"></i>
                         <small><span class="like-count">0</span> Likes</small> &nbsp;
                         <i class="icon-comment"></i>
@@ -140,7 +140,7 @@
 
             {% if object.description %}
                 <blockquote>
-                    <p>{{ object.description }}</p>
+                    <p>{{ object.description|striptags }}</p>
                     <small>{{ object.user.username }}</small>
                 </blockquote>
             {% endif %}
@@ -180,7 +180,7 @@
                     <h6>
                         <a href="{% url 'profile:index' object.user.profile.slug %}">{{ object.user.username }}</a><br/>
                         <i class="icon-time"></i>
-                        <small>Added {{ object.date_of_sighting.date|fuzzy_date }}</small><br/>
+                        <small>Spotted {{ object.date_of_sighting.date|fuzzy_date }}</small><br/>
                         <i class="icon-star"></i>
                         <small><span class="like-count">0</span> Likes</small> &nbsp;
                         <i class="icon-comment"></i>

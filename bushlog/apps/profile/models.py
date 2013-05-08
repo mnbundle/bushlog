@@ -6,8 +6,12 @@ from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.template import Context
 from django.template.loader import get_template
+
+from rest_framework.authtoken.models import Token
 
 from bushlog.apps.location.models import Country
 from bushlog.utils import choices, random_string
@@ -98,8 +102,17 @@ class Notification(models.Model):
             return False
 
 
+# add a profile property to the user model
 User.profile = property(
     lambda user: UserProfile.objects.get_or_create(user=user, slug=user.username)[0]
 )
 
-User.get_absolute_url = lambda user: UserProfile.objects.get(user=user)[0].get_absolute_url()
+# modify the users absolute url method
+User.get_absolute_url = lambda user: UserProfile.objects.get(user=user).get_absolute_url()
+
+
+# create an auth token for all newly created users post save
+@receiver(post_save, sender=User)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)

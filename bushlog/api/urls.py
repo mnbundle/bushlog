@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, url, include
+from django.conf.urls import patterns, url
 
 from rest_framework.urlpatterns import format_suffix_patterns
 
@@ -32,6 +32,11 @@ urlpatterns += patterns('bushlog.api.views',
     url(r'^sightings/(?P<pk>\d+)/$', 'sighting_detail', name='sighting_detail'),
     url(r'^sightingimages/$', 'sightingimage_list', name='sightingimage_list'),
     url(r'^sightingimages/(?P<pk>\d+)/$', 'sightingimage_detail', name='sightingimage_detail')
+)
+
+# auth related patterns
+urlpatterns += patterns('rest_framework.authtoken.views',
+    url(r'^auth/token/', 'obtain_auth_token')
 )
 
 # format suffixes

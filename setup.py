@@ -34,6 +34,7 @@ setup(
         'django-social-auth==0.7.22',
         'djangorestframework==2.2.4',
         'futures==2.1.3',
+        'flickrapi==1.4.2',
         'gunicorn==0.17.2',
         'httplib2==0.8',
         'oauth2==1.5.211',
