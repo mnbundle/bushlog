@@ -119,8 +119,10 @@ class Command(BaseCommand):
 
                     # create the users avatar
                     avatar_url = result['user']['avatar']
-                    avatar = image_from_url(avatar_url)
-                    user.profile.avatar.save("%s.%s" % (random_string(), avatar_url[:-3]), avatar, save=True)
+                    if avatar_url:
+                        avatar = image_from_url(avatar_url)
+                        if avatar:
+                            user.profile.avatar.save("%s.%s" % (random_string(), avatar_url[:-3]), avatar, save=True)
 
                     user.profile.save()
 
