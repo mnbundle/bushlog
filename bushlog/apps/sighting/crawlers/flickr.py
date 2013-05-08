@@ -42,8 +42,8 @@ def crawler(api, reserve, query, min_taken_date=None):
             'date': result['info']['dates']['taken'],
             'text': description,
             'location': {
-                'latitude': '%.2f' % (result['info']['location']['latitude']),
-                'longitude': '%.2f' % (result['info']['location']['longitude'])
+                'latitude': '%.6f' % (result['info']['location']['latitude']),
+                'longitude': '%.6f' % (result['info']['location']['longitude'])
             },
             'user': {
                 'username': result['info']['owner']['username'].replace(' ', '').lower(),
