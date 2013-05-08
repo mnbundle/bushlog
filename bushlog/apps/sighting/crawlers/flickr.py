@@ -4,18 +4,28 @@ from bushlog.utils import clean_flickr_json
 def crawler(api, reserve, query, min_taken_date=None):
 
     # query the twitter api
-    results = clean_flickr_json(
-        api.photos_search(
-            bbox=reserve.bounding_box, tags=query, licence='1,2,3,4,5,6,7', per_page=500, min_taken_date=min_taken_date
+    try:
+        results = clean_flickr_json(
+            api.photos_search(
+                bbox=reserve.bounding_box,
+                tags=query,
+                licence='1,2,3,4,5,6,7',
+                per_page=200,
+                min_taken_date=min_taken_date
+            )
         )
-    )
+    except:
+        return []
 
     # parse the results into a usable dict
     parsed_results = []
     for result in results['photos']['photo']:
-        result.update({
-            'info': clean_flickr_json(api.photos_getInfo(photo_id=result['id']))['photo'],
-        })
+        try:
+            result.update({
+                'info': clean_flickr_json(api.photos_getInfo(photo_id=result['id']))['photo'],
+            })
+        except:
+            return []
 
         # form the description
         title = result['info']['title']['_content']
