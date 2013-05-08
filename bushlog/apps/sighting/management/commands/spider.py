@@ -18,7 +18,7 @@ from bushlog.apps.sighting.crawlers.flickr import crawler as flickr_crawler
 from bushlog.apps.sighting.crawlers.twitter import crawler as twitter_crawler
 from bushlog.apps.sighting.models import Sighting, SightingImage
 from bushlog.apps.wildlife.models import Species
-from bushlog.utils import image_from_url, random_string
+from bushlog.utils import historical_date, image_from_url, random_string
 
 
 class Command(BaseCommand):
@@ -98,7 +98,7 @@ class Command(BaseCommand):
 
                     # set the last spidered id to cache
                     try:
-                        cache.set(cache_key, str(datetime.now()))
+                        cache.set(cache_key, str(historical_date(days=7)))
                     except IndexError:
                         pass
 
