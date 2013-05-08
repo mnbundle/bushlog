@@ -11,7 +11,8 @@ def crawler(api, reserve, query, min_taken_date=None):
                 tags=query,
                 licence='1,2,3,4,5,6,7',
                 per_page=200,
-                min_taken_date=min_taken_date
+                min_taken_date=min_taken_date,
+                sort='date-posted-desc'
             )
         )
     except:
