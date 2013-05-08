@@ -54,6 +54,10 @@ class Command(BaseCommand):
 
         # initiate the flickr api wrapper
         flickr_api = flickrapi.FlickrAPI(settings.FLICKR_API_KEY, settings.FLICKR_API_SECRET, format='json')
+        token, frob = flickr_api.get_token_part_one(perms='read')
+        if not token:
+            print "Flickr: Tokenized auth failed."
+        flickr_api.get_token_part_two((token, frob))
 
         # iterate through all reserves and query the api for results
         for reserve in Reserve.objects.all().order_by('?'):
