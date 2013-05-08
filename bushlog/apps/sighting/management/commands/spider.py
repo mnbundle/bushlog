@@ -1,3 +1,4 @@
+from datetime import datetime
 import time
 import hashlib
 
@@ -21,7 +22,7 @@ from bushlog.utils import image_from_url, random_string
 
 
 class Command(BaseCommand):
-    args = 'crawler querylist startdate'
+    args = 'crawler querylist'
     help = "Run the sighting's social media spider."
 
     def handle(self, *args, **options):
@@ -35,11 +36,6 @@ class Command(BaseCommand):
             query_list = args[1].split(',')
         except IndexError:
             query_list = None
-
-        try:
-            startdate = args[2].split(',')
-        except IndexError:
-            startdate = None
 
         # get the query string
         if not query_list:
@@ -71,7 +67,7 @@ class Command(BaseCommand):
                 if not crawler or crawler == 'twitter':
 
                     # retrieve the last id spidered from cache
-                    cache_key = hashlib.md5('%s:%s' % (reserve.name, query)).hexdigest()
+                    cache_key = hashlib.md5('%s:%s:twitter' % (reserve.name, query)).hexdigest()
                     since_id = cache.get(cache_key, 0)
 
                     # get the result from the twitter crawler
@@ -89,8 +85,18 @@ class Command(BaseCommand):
 
                 if not crawler or crawler == 'flickr':
 
+                    # retrieve the last id spidered from cache
+                    cache_key = hashlib.md5('%s:%s:flickr' % (reserve.name, query)).hexdigest()
+                    startdate = cache.get(cache_key, 0)
+
                     # get the result from the flickr crawler
                     flickr_results = flickr_crawler(flickr_api, reserve, query, min_taken_date=startdate)
+
+                    # set the last spidered id to cache
+                    try:
+                        cache.set(cache_key, str(datetime.now()))
+                    except IndexError:
+                        pass
 
                     print "Found %s Results for '%s' on Flickr" % (len(flickr_results), query)
 
@@ -104,61 +110,62 @@ class Command(BaseCommand):
             count = 0
             report_message = ["The following sightings were found while spidering. Please moderate them: ", ""]
             for result in reserve_results:
-                coordinate, coordinate_created = Coordinate.objects.get_or_create(
-                    latitude=result['location']['latitude'],
-                    longitude=result['location']['longitude']
-                )
-
-                if coordinate_created:
-
-                    #create the user
-                    user, user_created = User.objects.get_or_create(
-                        username=result['user']['username']
-                    )
-                    user.profile.biography = result['user']['biography']
-
-                    # create the users avatar
-                    avatar_url = result['user']['avatar']
-                    if avatar_url:
-                        avatar = image_from_url(avatar_url)
-                        if avatar:
-                            user.profile.avatar.save("%s.%s" % (random_string(), avatar_url[:-3]), avatar, save=True)
-
-                    user.profile.save()
-
-                    # lookup the species and reserve
-                    species = Species.objects.filter(common_name__icontains=result['species'])[0]
-                    reserve = Reserve.objects.filter(name__icontains=result['reserve'])[0]
-
-                    date_of_sighting = result['date']
-
-                    sighting, sighting_created = Sighting.objects.get_or_create(
-                        user=user,
-                        location=coordinate,
-                        reserve=reserve,
-                        species=species,
-                        date_of_sighting=date_of_sighting
+                if result['image']:
+                    coordinate, coordinate_created = Coordinate.objects.get_or_create(
+                        latitude=result['location']['latitude'],
+                        longitude=result['location']['longitude']
                     )
 
-                    if sighting_created:
-                        sighting.description = result['text']
-                        sighting.is_active = False
-                        sighting.save()
+                    if coordinate_created:
 
-                        sightingimage_url = result['image']
-                        if sightingimage_url:
-                            image = image_from_url(sightingimage_url)
-                            if image:
-                                sightingimage = SightingImage(
-                                    sighting=sighting
-                                )
-                                sightingimage.image.save(
-                                    "%s.%s" % (random_string(), sightingimage_url[:-3]), image, save=True
-                                )
-                                sightingimage.save()
+                        #create the user
+                        user, user_created = User.objects.get_or_create(
+                            username=result['user']['username']
+                        )
+                        user.profile.biography = result['user']['biography']
 
-                        count += 1
-                        report_message.append("%s%s" % (settings.HOST, sighting.get_absolute_url()))
+                        # create the users avatar
+                        avatar_url = result['user']['avatar']
+                        if avatar_url:
+                            avatar = image_from_url(avatar_url)
+                            if avatar:
+                                user.profile.avatar.save("%s.%s" % (random_string(), avatar_url[:-3]), avatar, save=True)
+
+                        user.profile.save()
+
+                        # lookup the species and reserve
+                        species = Species.objects.filter(common_name__icontains=result['species'])[0]
+                        reserve = Reserve.objects.filter(name__icontains=result['reserve'])[0]
+
+                        date_of_sighting = result['date']
+
+                        sighting, sighting_created = Sighting.objects.get_or_create(
+                            user=user,
+                            location=coordinate,
+                            reserve=reserve,
+                            species=species,
+                            date_of_sighting=date_of_sighting
+                        )
+
+                        if sighting_created:
+                            sighting.description = result['text']
+                            sighting.is_active = False
+                            sighting.save()
+
+                            sightingimage_url = result['image']
+                            if sightingimage_url:
+                                image = image_from_url(sightingimage_url)
+                                if image:
+                                    sightingimage = SightingImage(
+                                        sighting=sighting
+                                    )
+                                    sightingimage.image.save(
+                                        "%s.%s" % (random_string(), sightingimage_url[:-3]), image, save=True
+                                    )
+                                    sightingimage.save()
+
+                            count += 1
+                            report_message.append("%s%s" % (settings.HOST, sighting.get_absolute_url()))
 
             print "=" * 20
             print "%s Sightings Saved" % (count)
