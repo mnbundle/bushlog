@@ -1,7 +1,7 @@
 from bushlog.utils import clean_flickr_json
 
 
-def crawler(api, reserve, query, min_taken_date=None):
+def crawler(api, reserve, query, min_upload_date=None):
 
     # query the twitter api
     try:
@@ -11,8 +11,9 @@ def crawler(api, reserve, query, min_taken_date=None):
                 tags=query,
                 licence='1,2,3,4,5,6,7',
                 per_page=200,
-                min_taken_date=min_taken_date,
-                sort='date-posted-desc'
+                min_upload_date=min_upload_date,
+                sort='date-posted-desc',
+                extras='description,date_taken,owner_name,icon_server,geo,url_c'
             )
         )
     except:
@@ -29,32 +30,30 @@ def crawler(api, reserve, query, min_taken_date=None):
             return []
 
         # form the description
-        title = result['info']['title']['_content']
-        description = result['info']['description']['_content']
+        title = result['title']
+        description = result['description']
         if description and title:
-            description = "%s: %s" % (title, description)
+            description = "%s. %s" % (title, description)
         elif title and not description:
             description = title
 
         parsed_result = {
             'bot': 'flickrbot',
             'id': result['id'],
-            'date': result['info']['dates']['taken'],
+            'date': result['datetaken'],
             'text': description,
             'location': {
-                'latitude': '%.6f' % (result['info']['location']['latitude']),
-                'longitude': '%.6f' % (result['info']['location']['longitude'])
+                'latitude': '%.6f' % (result['latitude']),
+                'longitude': '%.6f' % (result['longitude'])
             },
             'user': {
-                'username': result['info']['owner']['username'].replace(' ', '').lower(),
-                'avatar': "http://farm{iconfarm}.staticflickr.com/{iconserver}/buddyicons/{nsid}.jpg".format(
-                    **result['info']['owner']
-                ),
+                'username': result['ownername'][:30].replace(' ', '').lower(),
+                'avatar': "http://farm{iconfarm}.staticflickr.com/{iconserver}/buddyicons/{owner}.jpg".format(**result),
                 'biography': ''
             },
             'species': query if query != 'hyaena' else "spotted hyaena",
             'reserve': reserve.name,
-            'image': "http://farm{farm}.staticflickr.com/{server}/{id}_{secret}.jpg".format(**result)
+            'image': result['url_c']
         }
 
         # ensure that the result do infact occur in the give reserve

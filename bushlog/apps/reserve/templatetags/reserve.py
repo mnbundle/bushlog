@@ -1,4 +1,5 @@
 from django import template
+from django.contrib.humanize.templatetags.humanize import intcomma
 
 from bushlog.apps.reserve.models import Reserve
 
@@ -15,7 +16,7 @@ def featured_reserve_maps(context, limit=3):
 
 @register.simple_tag
 def reserve_count():
-    return Reserve.objects.all().count()
+    return intcomma(Reserve.objects.all().count())
 
 
 @register.simple_tag

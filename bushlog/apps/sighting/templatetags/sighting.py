@@ -2,6 +2,7 @@ import datetime
 import json
 
 from django import template
+from django.contrib.humanize.templatetags.humanize import intcomma
 
 from bushlog.apps.reserve.models import Reserve
 from bushlog.apps.sighting.models import Sighting
@@ -146,4 +147,4 @@ def fuzzy_date(timestamp, to=None):
 
 @register.simple_tag
 def sighting_count():
-    return Sighting.objects.active().count()
+    return intcomma(Sighting.objects.active().count())

@@ -1,4 +1,5 @@
 from django import template
+from django.contrib.humanize.templatetags.humanize import intcomma
 
 from bushlog.apps.profile.models import User
 
@@ -15,14 +16,14 @@ def del_session(context, key):
 
 @register.simple_tag
 def user_count():
-    return User.objects.filter(is_active=True).count()
+    return intcomma(User.objects.filter(is_active=True).count())
 
 
 @register.simple_tag
 def user_sighting_count(user):
-    return user.sightings.all().count()
+    return intcomma(user.sightings.active().count())
 
 
 @register.simple_tag
 def user_comment_count(user):
-    return user.comments.all().count()
+    return intcomma(user.comments.all().count())

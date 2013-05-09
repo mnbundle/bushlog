@@ -91,14 +91,14 @@ class Command(BaseCommand):
 
                     # retrieve the last id spidered from cache
                     cache_key = hashlib.md5('%s:%s:flickr' % (reserve.name, query)).hexdigest()
-                    startdate = cache.get(cache_key, 0)
+                    min_upload_date = cache.get(cache_key, 0)
 
                     # get the result from the flickr crawler
-                    flickr_results = flickr_crawler(flickr_api, reserve, query, min_taken_date=startdate)
+                    flickr_results = flickr_crawler(flickr_api, reserve, query, min_upload_date=min_upload_date)
 
                     # set the last spidered id to cache
                     try:
-                        cache.set(cache_key, str(historical_date(days=7)))
+                        cache.set(cache_key, str(historical_date(months=1)))
                     except IndexError:
                         pass
 
@@ -178,6 +178,6 @@ class Command(BaseCommand):
             if count:
                 mail_admins("Spider Report: %s" % (reserve.name), "\n\r".join(report_message), fail_silently=True)
 
-            # give twitter a bit of a break
+            # give the web services a bit of a break
             time.sleep(10)
 

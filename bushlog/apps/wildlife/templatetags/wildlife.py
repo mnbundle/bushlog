@@ -13,4 +13,4 @@ def humanize_measurement(measurement, unit):
 
 @register.simple_tag
 def species_count():
-    return Species.objects.all().count()
+    return intcomma(Species.objects.all().count())
