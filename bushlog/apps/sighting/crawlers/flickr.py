@@ -25,7 +25,7 @@ def crawler(api, reserve, query, min_upload_date=None):
 
         # form the description
         title = result['title']
-        description = result['description']
+        description = result['description']['_content']
         if description and title:
             description = "%s. %s" % (title, description)
         elif title and not description:
