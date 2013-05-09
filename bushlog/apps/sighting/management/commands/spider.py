@@ -124,7 +124,7 @@ class Command(BaseCommand):
 
                         #create the user
                         user, user_created = User.objects.get_or_create(
-                            username=result['user']['username']
+                            username=result['user']['username'][:30]
                         )
                         user.profile.biography = result['user']['biography']
 
