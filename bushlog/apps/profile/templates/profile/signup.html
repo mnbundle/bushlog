@@ -1,13 +1,17 @@
+
 <form class="form-horizontal form-signup" method="post" action="{% url 'profile:signup' %}">
     {% csrf_token %}
     <div class="uk-info align-center">
         <h2>Sign up with your favorite authentication provider or fill in the form below.</h2>
         <a href="{% url 'socialauth_begin' 'facebook' %}" class="btn btn-info">
             <i class="icon-facebook icon-white"></i>&nbsp; Facebook
-        </a>
+        </a>&nbsp;
         <a href="{% url 'socialauth_begin' 'google-oauth2' %}" class="btn btn-info">
             <i class="icon-google icon-white"></i>&nbsp; Google
         </a>
+    </div>
+    <div class="align-center">
+        <small><em>We will <strong>never</strong> post anything without your permission.</em></small>
     </div>
     <hr/>
     <div class="control-group">
