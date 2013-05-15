@@ -10,15 +10,15 @@ sitemaps = {
     'profiles': GenericSitemap({
         'queryset': UserProfile.objects.filter(user__is_active=True),
         'date_field': 'last_login'
-    }, priority=0.6),
+    }, priority=0.8),
     'reserves': GenericSitemap({
         'queryset': Reserve.objects.all()
     }, priority=0.6),
     'sightings': GenericSitemap({
         'queryset': Sighting.objects.active().public(),
         'date_field': 'date_added'
-    }, priority=0.8),
-    'reserves': GenericSitemap({
+    }, priority=0.4),
+    'species': GenericSitemap({
         'queryset': Species.objects.all()
     }, priority=0.6),
 }

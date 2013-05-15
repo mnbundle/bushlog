@@ -7,6 +7,7 @@ from django.core.cache import cache
 from django.core.mail import mail_admins
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 import flickrapi
 
@@ -124,7 +125,7 @@ class Command(BaseCommand):
 
                         #create the user
                         user, user_created = User.objects.get_or_create(
-                            username=result['user']['username'][:30]
+                            username=slugify(result['user']['username'][:30])
                         )
                         user.profile.biography = result['user']['biography']
 

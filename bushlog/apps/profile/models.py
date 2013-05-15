@@ -10,6 +10,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.template import Context
 from django.template.loader import get_template
+from django.utils.text import slugify
 
 from rest_framework.authtoken.models import Token
 
@@ -104,7 +105,7 @@ class Notification(models.Model):
 
 # add a profile property to the user model
 User.profile = property(
-    lambda user: UserProfile.objects.get_or_create(user=user, slug=user.username)[0]
+    lambda user: UserProfile.objects.get_or_create(user=user, slug=slugify(user.username))[0]
 )
 
 # modify the users absolute url method
