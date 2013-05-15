@@ -105,7 +105,7 @@ class Notification(models.Model):
 
 # add a profile property to the user model
 User.profile = property(
-    lambda user: UserProfile.objects.get_or_create(user=user, slug=slugify(user.username))[0]
+    lambda user: UserProfile.objects.get_or_create(user=user, slug=slugify(unicode(user.username)))[0]
 )
 
 # modify the users absolute url method
