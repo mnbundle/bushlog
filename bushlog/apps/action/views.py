@@ -7,13 +7,15 @@ from django.views import generic
 from bushlog.apps.action.models import Comment, Like
 from bushlog.apps.reserve.models import Reserve
 from bushlog.apps.sighting.models import Sighting
+from bushlog.apps.wildlife.models import Species
 from bushlog.decorators import json_response
 from bushlog.utils import fuzzydate, image_resize
 
 
 MODELMAP = {
     'reserve': Reserve,
-    'sighting': Sighting
+    'sighting': Sighting,
+    'species': Species
 }
 
 

@@ -22,7 +22,7 @@ class Like(models.Model):
 
 class Comment(models.Model):
     user = models.ForeignKey(User, related_name="comments")
-    content_type = models.ForeignKey(ContentType)
+    content_type = models.ForeignKey(ContentType, related_name="comments")
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 

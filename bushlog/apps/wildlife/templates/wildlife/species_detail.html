@@ -20,9 +20,12 @@
             });
             latestSightingScroll();
         });
+
+        initLikeButton();
     </script>
 {% endblock %}
 
+{% load action %}
 {% load humanize %}
 {% load sighting %}
 {% load wildlife %}
@@ -36,7 +39,6 @@
             <div class="page-header">
                 <h2>
                     {{ object.common_name }}
-                    <small><em>{{ object.scientific_name }}</em></small>
 
                     {% if request.user.is_authenticated %}
                         <a class="btn btn-success btn-header pull-right" href="#id_new_sighting" data-toggle="modal">
@@ -56,12 +58,28 @@
         </div>
 
         <div class="span8 visible-phone">
-            <h4>{{ object.common_name }}<br/><small><em>{{ object.scientific_name }}</em></small></h4>
+            <div class="media">
+                <a class="pull-left" href="{% url 'wildlife:index' object.slug %}">
+                    <img class="media-object" src="{% resize_image object.inverted_default_image 60 60 %}" width="60" height="60" />
+                </a>
+                <div class="media-body">
+                    <h6>
+                        {{ object.common_name }}<br/>
+                        <small><em>{{ object.scientific_name }}</em></small><br/>
+                        <i class="icon-camera"></i>
+                        <small>{{ object.sightings.count }} Sightings</small> &nbsp;
+                        <i class="icon-star"></i>
+                        <small><span class="like-count">0</span> Likes</small> &nbsp;
+                    </h6>
+                </div>
+            </div>
 
             <p>
                 <small>{{ object.general_info|default:"" }}</small>
                 <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.common_name }}", target="blank">Wikipedia</a></small></h6>
             </p>
+
+            <hr/>
 
             <div class="accordion" id="id_accordion-species_info">
                 <div class="accordion-group">
@@ -156,6 +174,35 @@
         </div>
 
         <div class="span3 pull-right hidden-phone">
+            <div class="media">
+                <a class="pull-left" href="{% url 'wildlife:index' object.slug %}">
+                    <img class="media-object" src="{% resize_image object.inverted_default_image 60 60 %}" width="60" height="60" />
+                </a>
+                <div class="media-body">
+                    <h6>
+                        {{ object.common_name }}<br/>
+                        <small><em>{{ object.scientific_name }}</em></small><br/>
+                        <i class="icon-camera"></i>
+                        <small>{{ object.sightings.count }} Sightings</small> &nbsp;
+                        <i class="icon-star"></i>
+                        <small><span class="like-count">0</span> Likes</small> &nbsp;
+                    </h6>
+                </div>
+            </div>
+
+            <div class="spacer"></div>
+
+            {% like_button %}
+
+            <hr/>
+
+            <div>
+                <small>{{ object.general_info|default:"" }}</small>
+                <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.common_name }}", target="blank">Wikipedia</a></small></h6>
+            </div>
+
+            <div class="spacer"></div>
+
             <div>
                 <div class="page-header">
                     <h4>Species Info</h4>
@@ -191,11 +238,6 @@
                         </p>
                     {% endif %}
                 </small>
-            </div>
-            <hr/>
-            <div>
-                <small>{{ object.general_info|default:"" }}</small>
-                <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.common_name }}", target="blank">Wikipedia</a></small></h6>
             </div>
             {% if object.similiar_species.all %}
                 <p>&nbsp;</p>
