@@ -53,9 +53,8 @@
                 </h2>
             </div>
 
-            {% if object.public %}
-                <div class="latest-sightings" data-split="2" data-limit="20" data-offset="0" data-species="{{ object.id }}"></div>
-            {% else %}
+            <div class="latest-sightings" data-split="2" data-limit="20" data-offset="0" data-species="{{ object.id }}"></div>
+            {% if not object.public %}
                 <div class="hero-unit hero-unit-small">
                     <h3>
                         {{ object.common_name }} is a Protected Species<br/>
@@ -184,9 +183,8 @@
 
             <hr/>
 
-            {% if object.public %}
-                <div class="latest-sightings" data-split="1" data-limit="10" data-offset="0" data-species="{{ object.id }}"></div>
-            {% else %}
+            <div class="latest-sightings" data-split="1" data-limit="10" data-offset="0" data-species="{{ object.id }}"></div>
+            {% if not object.public %}
                 <div class="hero-unit hero-unit-small">
                     <h3>
                         {{ object.common_name }} is a Protected Species<br/>
