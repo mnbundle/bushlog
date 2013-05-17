@@ -45,7 +45,7 @@ def crawler(api, reserve, query, min_upload_date=None):
                 'avatar': "http://farm{iconfarm}.staticflickr.com/{iconserver}/buddyicons/{owner}.jpg".format(**result),
                 'biography': ''
             },
-            'species': query if query != 'hyaena' else "spotted hyaena",
+            'species': query,
             'reserve': reserve.name,
             'image': result.get(
                 'url_c', "http://farm{farm}.staticflickr.com/{server}/{id}_{secret}.jpg".format(**result)

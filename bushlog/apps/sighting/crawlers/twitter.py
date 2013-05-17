@@ -35,7 +35,7 @@ def crawler(api, reserve, query, since_id=0):
                 'avatar': status.user.profile_image_url,
                 'biography': status.user.description
             },
-            'species': query if query != 'hyaena' else "spotted hyaena",
+            'species': query,
             'reserve': reserve.name,
             'image': status.media[0].get('media_url') if status.media else None
         }
