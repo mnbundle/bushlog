@@ -117,9 +117,17 @@
             {% if object.public %}
                 <div class="spacer"></div>
                 {% like_button %}
-                {% include 'sighting/sighting_share.html' %}
-                {% if request.user.is_superuser and not object.is_active %}
-                    <a href="{% url 'sighting:activate' object.pk %}" class="btn btn-warning">Activate</a>
+                {% include 'action/share.html' %}
+                {% if request.user.is_superuser %}
+                    {% if object.is_active %}
+                        <a href="{% url 'sighting:deactivate' object.pk %}" class="btn btn-warning">
+                            Deactivate
+                        </a>
+                    {% else %}
+                        <a href="{% url 'sighting:activate' object.pk %}" class="btn btn-warning">
+                            Activate
+                        </a>
+                    {% endif %}
                 {% endif %}
             {% endif %}
 
@@ -192,11 +200,17 @@
             {% if object.public %}
                 <div class="spacer"></div>
                 {% like_button %}
-                {% include 'sighting/sighting_share.html' %}
-                {% if request.user.is_superuser and not object.is_active %}
-                    <a href="{% url 'sighting:activate' object.pk %}" class="btn btn-warning">
-                        Activate
-                    </a>
+                {% include 'action/share.html' %}
+                {% if request.user.is_superuser %}
+                    {% if object.is_active %}
+                        <a href="{% url 'sighting:deactivate' object.pk %}" class="btn btn-warning">
+                            Deactivate
+                        </a>
+                    {% else %}
+                        <a href="{% url 'sighting:activate' object.pk %}" class="btn btn-warning">
+                            Activate
+                        </a>
+                    {% endif %}
                 {% endif %}
             {% endif %}
 

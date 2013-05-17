@@ -135,7 +135,20 @@ class ActivateRedirectView(generic.RedirectView):
         obj.is_active = True
         obj.save()
 
-        messages.add_message(self.request, messages.SUCCESS, "Your sighting has been activated.")
+        messages.add_message(self.request, messages.SUCCESS, "The sighting has been activated.")
+
+        return obj.get_absolute_url()
+
+
+class DeactivateRedirectView(generic.RedirectView):
+    permanent = False
+
+    def get_redirect_url(self, *args, **kwargs):
+        obj = get_object_or_404(Sighting, pk=kwargs.get('pk'))
+        obj.is_active = False
+        obj.save()
+
+        messages.add_message(self.request, messages.SUCCESS, "The sighting has been deactivated.")
 
         return obj.get_absolute_url()
 
@@ -186,4 +199,5 @@ create = SightingCreateView.as_view()
 create_image = SightingImageCreateView.as_view()
 forms = FormsView.as_view()
 activate = ActivateRedirectView.as_view()
+deactivate = DeactivateRedirectView.as_view()
 latest = LatestView.as_view()

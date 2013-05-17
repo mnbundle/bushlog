@@ -74,10 +74,8 @@
                 <div class="media-body">
                     <h6>
                         <a href="{% url 'profile:index' object.user.profile.slug %}">{{ object.user.username|capfirst }}'s Bushlog</a><br/>
-                        {% if object.country %}
-                            <i class="icon-flag"></i>
-                            <small>{{ object.country }}</small><br/>
-                        {% endif %}
+                        <i class="icon-flag"></i>
+                        <small>{{ object.country|default:"Unknown" }}</small><br/>
                         <i class="icon-camera"></i>
                         <small>{% user_sighting_count object.user %} Sightings</small>&nbsp;
                         <i class="icon-comment"></i>
@@ -85,6 +83,10 @@
                     </h6>
                 </div>
             </div>
+
+            <div class="spacer"></div>
+
+            {% include 'action/share.html' %}
 
             <div>
                 <small>{{ object.biography|default:"" }}</small>
@@ -118,10 +120,8 @@
                 <div class="media-body">
                     <h6>
                         <a href="{% url 'profile:index' object.user.profile.slug %}">{{ object.user.username }}</a><br/>
-                        {% if object.country %}
-                            <i class="icon-flag"></i>
-                            <small>{{ object.country }}</small><br/>
-                        {% endif %}
+                        <i class="icon-flag"></i>
+                        <small>{{ object.country|default:"Unknown" }}</small><br/>
                         <i class="icon-camera"></i>
                         <small>{% user_sighting_count object.user %} Sightings</small>&nbsp;
                         <i class="icon-comment"></i>
@@ -129,6 +129,11 @@
                     </h6>
                 </div>
             </div>
+
+            <div class="spacer"></div>
+
+            {% include 'action/share.html' %}
+
             {% if object.biography %}
                 <hr/>
                 <div>

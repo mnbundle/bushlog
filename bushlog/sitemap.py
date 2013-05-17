@@ -8,8 +8,7 @@ from bushlog.apps.wildlife.models import Species
 
 sitemaps = {
     'profiles': GenericSitemap({
-        'queryset': UserProfile.objects.filter(user__is_active=True),
-        'date_field': 'last_login'
+        'queryset': UserProfile.objects.filter(user__is_active=True)
     }, priority=0.8),
     'reserves': GenericSitemap({
         'queryset': Reserve.objects.all()

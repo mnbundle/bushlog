@@ -74,12 +74,17 @@
                 </div>
             </div>
 
+            <div class="spacer"></div>
+
+            {% like_button %}
+            {% include 'action/share.html' %}
+
+            <hr/>
+
             <p>
                 <small>{{ object.general_info|default:"" }}</small>
                 <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.common_name }}", target="blank">Wikipedia</a></small></h6>
             </p>
-
-            <hr/>
 
             <div class="accordion" id="id_accordion-species_info">
                 <div class="accordion-group">
@@ -193,6 +198,7 @@
             <div class="spacer"></div>
 
             {% like_button %}
+            {% include 'action/share.html' %}
 
             <hr/>
 
