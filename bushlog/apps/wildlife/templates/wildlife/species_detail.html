@@ -60,7 +60,7 @@
         <div class="span8 visible-phone">
             <div class="media">
                 <a class="pull-left" href="{% url 'wildlife:index' object.slug %}">
-                    <img class="media-object img-rounded lighter" src="{% resize_image object.default_image 60 60 %}" width="60" height="60" alt="{{ object.common_name }} ({{ object.scientific_name }})"/>
+                    <img class="media-object img-rounded lightest" src="{% resize_image object.default_image 60 60 %}" width="60" height="60" alt="{{ object.common_name }} ({{ object.scientific_name }})"/>
                 </a>
                 <div class="media-body">
                     <h6>
@@ -181,7 +181,7 @@
         <div class="span3 pull-right hidden-phone">
             <div class="media">
                 <a class="pull-left" href="{% url 'wildlife:index' object.slug %}">
-                    <img class="media-object img-rounded lighter" src="{% resize_image object.default_image 60 60 %}" width="60" height="60" alt="{{ object.common_name }} ({{ object.scientific_name }})"/>
+                    <img class="media-object img-rounded lightest" src="{% resize_image object.default_image 60 60 %}" width="60" height="60" alt="{{ object.common_name }} ({{ object.scientific_name }})"/>
                 </a>
                 <div class="media-body">
                     <h6>
