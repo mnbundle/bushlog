@@ -62,7 +62,7 @@ class Command(BaseCommand):
             if query_list:
                 relevant_query_list = [q for q in query_list if reserve.species.filter(common_name__icontains=q)]
             else:
-                relevant_query_list = [obj.common_name for obj in Reserve.species.public().order_by('?')][:15]
+                relevant_query_list = [obj.common_name for obj in Reserve.species.all().public().order_by('?')][:15]
 
             reserve_results = []
             for query in relevant_query_list:
