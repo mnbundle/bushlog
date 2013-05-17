@@ -4,7 +4,7 @@ from django.db.models import query
 
 class SpeciesQuerySet(query.QuerySet):
     def public(self):
-        return self.filter(species__public=True)
+        return self.filter(public=True)
 
 
 class SpeciesManager(models.Manager):

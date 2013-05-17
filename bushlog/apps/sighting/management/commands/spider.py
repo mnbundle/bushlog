@@ -62,8 +62,8 @@ class Command(BaseCommand):
             if query_list:
                 relevant_query_list = [q for q in query_list if reserve.species.filter(common_name__icontains=q)]
             else:
+                import pdb;pdb.set_trace()
                 relevant_query_list = [obj.common_name for obj in reserve.species.public().order_by('?')][:15]
-                print relevant_query_list
 
             reserve_results = []
             for query in relevant_query_list:
