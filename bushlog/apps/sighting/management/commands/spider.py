@@ -38,13 +38,6 @@ class Command(BaseCommand):
         except IndexError:
             query_list = None
 
-        # get the query string
-        if not query_list:
-            query_list = [
-                'caracal', 'serval', 'wild dog', 'cheetah', 'leopard', 'lion', 'badger', 'hyaena', 'roan', 'sable',
-                'elephant', 'giraffe', 'hippo', 'buffalo', 'nyala', 'zebra', 'baboon', 'sitatunga', 'puku', 'lechwe'
-            ]
-
         # initiate the twitter api wrapper
         twitter_api = twitter.Api(
             consumer_key=settings.TWITTER_CONSUMER_KEY,
@@ -65,7 +58,12 @@ class Command(BaseCommand):
             print ""
             print "Searching: %s..." % reserve.name
 
-            relevant_query_list = [q for q in query_list if reserve.species.filter(common_name__icontains=q)]
+            # get the query string
+            if query_list:
+                relevant_query_list = [q for q in query_list if reserve.species.filter(common_name__icontains=q)]
+            else:
+                relevant_query_list = [obj.common_name for obj in Reserve.species.public().order_by('?')][:15]
+
             reserve_results = []
             for query in relevant_query_list:
 
