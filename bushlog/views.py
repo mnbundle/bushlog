@@ -47,7 +47,6 @@ class CSRFFailureTemplateView(generic.View):
     Return a custom 403 error page and notify admins of the failure.
     """
     def post(self, request, *args, **kwargs):
-        print str(request.POST)
         mail_admins(
             "CSRF Error", "A CSRF Error was thrown. The following data was sent: %s" % (str(request.POST)),
             fail_silently=True
