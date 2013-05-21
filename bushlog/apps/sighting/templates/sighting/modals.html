@@ -1,15 +1,17 @@
 
 {% load sighting %}
 
-<!-- Image modal -->
-<div id="id_sighting_lightbox" class="lightbox hide fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class='lightbox-header'>
-        <button type="button" class="close" data-dismiss="lightbox" aria-hidden="true">&times;</button>
+{% if object.cover_image %}
+    <!-- Image modal -->
+    <div id="id_sighting_lightbox" class="lightbox hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class='lightbox-header'>
+            <button type="button" class="close" data-dismiss="lightbox" aria-hidden="true">&times;</button>
+        </div>
+        <div class='lightbox-content'>
+            <img src="{% resize_image object.cover_image 800 600 %}" />
+        </div>
     </div>
-    <div class='lightbox-content'>
-        <img src="{{ object.cover_image.url }}" />
-    </div>
-</div>
+{% endif %}
 
 <!-- New Sighting Modal -->
 <div id="id_new_sighting" class="modal hide fade">
