@@ -178,6 +178,7 @@
             {% endif %}
 
             {% block content %}{% endblock %}
+            <form method="POST">{% csrf_token %}</form>
         </div>
 
         <div class="navbar navbar-fixed-bottom navbar-footer">

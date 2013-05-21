@@ -21,7 +21,7 @@ initSignUpForm = function () {
 
         // add a validation method for valid passwords
         $.validator.addMethod("validpassword", function(value, element) {
-            return this.optional(element) || /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[\d]).*$/.test(value);
+            return this.optional(element) || /^.*(?=.{6,})(?=.*[a-z])(?=.*[\d]).*$/.test(value);
         });
 
         // initialise form validation
@@ -34,7 +34,7 @@ initSignUpForm = function () {
                     remote: "is already registered."
                 },
                 "signup-password": {
-                    validpassword: "must contain upper & lower case letters and a number."
+                    validpassword: "must be 6 characters long and contain at least one number."
                 },
                 "signup-confirm_password": {
                     equalTo: "doesn't match password field."

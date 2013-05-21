@@ -26,7 +26,7 @@ class SignUpModelForm(forms.ModelForm):
         })
     )
     confirm_password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'span3 required', 'equalTo': '#id_signup-password', 'minlength': 8})
+        widget=forms.PasswordInput(attrs={'class': 'span3 required', 'equalTo': '#id_signup-password', 'minlength': 6})
     )
 
     class Meta:
@@ -43,7 +43,7 @@ class SignUpModelForm(forms.ModelForm):
             'email': widgets.EmailInput(
                 attrs={'class': 'span3 required email ', 'remote': reverse_lazy('profile:validate', args=['unique'])}
             ),
-            'password': forms.PasswordInput(attrs={'class': 'span3 required validpassword', 'minlength': 8}),
+            'password': forms.PasswordInput(attrs={'class': 'span3 required validpassword', 'minlength': 6}),
         }
 
     def clean(self):

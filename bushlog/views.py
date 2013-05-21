@@ -1,7 +1,9 @@
 from django.contrib import messages
-from django.contrib.auth.models import User
+from django.core.mail import mail_admins
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 from django.views import generic
 
 from bushlog.forms import SupportForm
@@ -40,4 +42,18 @@ class SupportFormView(generic.FormView):
         return HttpResponseRedirect(self.error_url)
 
 
+class CSRFFailureTemplateView(generic.View):
+    """
+    Return a custom 403 error page and notify admins of the failure.
+    """
+    def post(self, request, *args, **kwargs):
+        print str(request.POST)
+        mail_admins(
+            "CSRF Error", "A CSRF Error was thrown. The following data was sent: %s" % (str(request.POST)),
+            fail_silently=True
+        )
+        return render_to_response('403.html', {}, RequestContext(request))
+
+
 support = SupportFormView.as_view()
+csrf_failure = CSRFFailureTemplateView.as_view()
