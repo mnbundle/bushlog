@@ -8,7 +8,7 @@ def crawler(api, reserve, query, min_upload_date=None):
         results = clean_flickr_json(
             api.photos_search(
                 bbox=reserve.bounding_box,
-                tags=query,
+                text=query,
                 licence='1,2,3,4,5,6,7',
                 per_page=500,
                 min_upload_date=min_upload_date,
