@@ -58,8 +58,8 @@
                 <div class="hero-unit hero-unit-small">
                     <h3>
                         {{ object.common_name }} is a Protected Species<br/>
-                        <small>Due to the risk that poachers may use this data, these sightings
-                        are not publically available.</small>
+                        <small>Due to the risk that poachers may use this data, these sightings are not publicly
+                        available.</small>
                     </h3>
                 </div>
             {% endif %}
@@ -185,12 +185,12 @@
 
             <div class="latest-sightings" data-split="1" data-limit="10" data-offset="0" data-species="{{ object.id }}"></div>
             {% if not object.public %}
-                <div class="hero-unit hero-unit-small">
-                    <h3>
+                <div>
+                    <h5>
                         {{ object.common_name }} is a Protected Species<br/>
-                        <small>Due to the risk that poachers may use this data, these sightings
-                        are not publically available.</small>
-                    </h3>
+                        <small>Due to the risk that poachers may use this data, these sightings are not publicly
+                        available.</small>
+                    </h5>
                 </div>
             {% endif %}
 
