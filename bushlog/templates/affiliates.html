@@ -1,0 +1,65 @@
+
+{% extends "base.html" %}
+
+{% block title %}Bushlog - Affiliate Network{% endblock %}
+{% block decription %}
+    Listing of all Bushlog's Affliliates. Wildlife &amp; Conservation related websites &amp; organisations.
+{% endblock %}
+
+{% load action %}
+{% load profile %}
+{% load reserve %}
+{% load sighting %}
+{% load wildlife %}
+
+{% block content %}
+
+    {% featured_reserve_maps limit=3 %}
+
+    <ul class="nav nav-tabs">
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'press' %}">Press</a></li>
+        <li class="active hidden-phone"><a href="{% url 'affiliates' %}">Affiliates</a></li>
+        <li><a href="{% url 'support' %}">Support</a></li>
+        <li><a href="{% url 'legal' %}">Legal</a></li>
+        <!--<li><a href="#">Developers</a></li>
+        <li><a href="{% url 'researchers' %}">Researchers</a></li>
+        <li><a href="#">Advertising</a></li>-->
+    </ul>
+
+    <div class="row-fluid">
+        <div>
+            <div class="hidden-phone">
+                <div class="page-header">
+                    <h1>Bushlog's Affiliates</h1>
+                </div>
+            </div>
+
+            <div class="visible-phone">
+                <div class="page-header">
+                    <h3>Bushlog's Affiliates</h3>
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <div class="media">
+                <a class="pull-left" href="#2" target="blank">
+                    <img class="media-object img-rounded" src="{{ STATIC_URL }}img/affiliates/wildlife-campus.png" width="80" height="80" />
+                </a>
+                <div class="media-body">
+                    <small>WildlifeCampus is an international online Virtual Campus offering a wide variety of
+                    Wildlife, Wildlife-related, Natural Science and Ecotourism Courses covering the spectacular
+                    diversity of life found on our planet and specifically on African savannas. By completing
+                    these courses, you too	can receive a variety of industry recognised, endorsed and
+                    accredited qualifications or simply enjoy a deeper understanding of the African wild and
+                    oceans.<br/>
+                    <a class="pull-right" href="http://www.wildlifecampus.co.za" target="blank">www.wildlifecampus.co.za</a></small>
+                </div>
+            </div>
+
+            <hr/>
+
+        </div>
+    </div>
+{% endblock %}
