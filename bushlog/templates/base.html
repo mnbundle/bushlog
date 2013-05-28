@@ -127,13 +127,18 @@
                                 <li><a href="{% url 'index' %}"><i class="icon-lock"></i> Sign In</a></li>
                                 <li class="divider"></li>
                                 <li>
+                                    <a href="{% url 'socialauth_begin' 'facebook' %}">
+                                        <i class="icon-facebook"></i> Sign Up With Facebook
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="{% url 'socialauth_begin' 'google-oauth2' %}">
                                         <i class="icon-google"></i> Sign Up With Google
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{% url 'socialauth_begin' 'facebook' %}">
-                                        <i class="icon-facebook"></i> Sign Up With Facebook
+                                    <a href="{% url 'socialauth_begin' 'flickr' %}">
+                                        <i class="icon-flickr"></i> Sign Up With Flickr
                                     </a>
                                 </li>
                             </ul>
@@ -157,6 +162,11 @@
                                 <li>
                                     <a href="{% url 'socialauth_begin' 'facebook' %}">
                                         <i class="icon-facebook"></i> Sign In With Facebook
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'socialauth_begin' 'flickr' %}">
+                                        <i class="icon-flickr"></i> Sign In With Flickr
                                     </a>
                                 </li>
                             </ul>

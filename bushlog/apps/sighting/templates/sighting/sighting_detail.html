@@ -217,13 +217,19 @@
             <hr/>
 
             {% if object.cover_image %}
-                <div class="span12">
+                {% if request.user.is_authenticated %}
                     <div class="span12">
                         <a href="#id_sighting_lightbox" data-toggle="lightbox">
                             <img class="img-rounded" src="{% resize_image object.cover_image 270 200 %}" width="270" height="200" />
                         </a>
                     </div>
-                </div>
+                {% else %}
+                    <div class="span12">
+                        <a href="#id_signup_modal" data-toggle="modal">
+                            <img class="img-rounded" src="{% resize_image object.cover_image 270 200 %}" width="270" height="200" />
+                        </a>
+                    </div>
+                {% endif %}
                 <p>&nbsp;</p>
             {% endif %}
 
