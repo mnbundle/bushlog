@@ -1,7 +1,7 @@
 initLikeButton = function () {
     var csrftoken = $.cookie('csrftoken');
 
-    var btn = $('.like');
+    var btn = $('.like:visible');
     var count_ele = $('.like-count');
     var icon_ele = $('.like-icon');
     var text_ele = $('.like-text');

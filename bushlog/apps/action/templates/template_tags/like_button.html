@@ -5,13 +5,15 @@
         <span class="like-text">Like{% if liked %}d{% endif %}</span>
     </button>
 {% else %}
-    <a class="btn btn-success hidden-phone" href="#id_signup_modal" data-toggle="modal">
-        <i class="icon-star-empty icon-white"></i>&nbsp;Like
+    <a class="btn btn-success hidden-phone like" href="#id_signup_modal" data-toggle="modal" data-oid="{{ object.id }}" data-type="{{ obj_type }}" data-count="{{ like_count }}">
+        <i class="icon-star-empty icon-white like-icon"></i>&nbsp;
+        <span class="like-text">Like</span>
     </a>
 
     <div class="btn-group">
-        <a class="btn btn-success visible-phone" href="{% url 'profile:forms' 'signup' %}">
-            <i class="icon-star-empty icon-white"></i>&nbsp;Like
+        <a class="btn btn-success visible-phone like" href="{% url 'profile:forms' 'signup' %}" data-oid="{{ object.id }}" data-type="{{ obj_type }}" data-count="{{ like_count }}">
+            <i class="icon-star-empty icon-white like-icon"></i>&nbsp;
+            <span class="like-text">Like</span>
         </a>
     </div>
 {% endif %}
