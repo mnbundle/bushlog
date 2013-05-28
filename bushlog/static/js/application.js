@@ -393,6 +393,15 @@ showPasswordReset = function () {
     }
 }
 
+showActivate = function () {
+    if ($(document).width() <= 767) {
+        window.location = '/profile/forms/activate/';
+    }
+    else {
+        $("#id_activate_modal").modal('show');
+    }
+}
+
 $(document).ready(function() {
 
     // initiate all carousel components

@@ -150,13 +150,36 @@ class ForgotPasswordForm(forms.Form):
     )
 
 
-class ResetPasswordForm(forms.Form):
+class ActivateForm(forms.Form):
+    email = forms.EmailField(
+        widget=widgets.EmailInput(
+            attrs={'class': 'span3 required email', 'remote': reverse_lazy('profile:validate', args=['unique'])}
+        ),
+        required=True
+    )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'span3 required validpassword', 'minlength': 8})
+        widget=forms.PasswordInput(attrs={'class': 'span3 required validpassword', 'minlength': 6})
     )
     confirm_password = forms.CharField(
         widget=forms.PasswordInput(
-            attrs={'class': 'span3 required', 'equalTo': '#id_reset_password-password', 'minlength': 8}
+            attrs={'class': 'span3 required', 'equalTo': '#id_activate-password', 'minlength': 6}
+        )
+    )
+
+    def clean(self):
+        cleaned_data = super(ActivateForm, self).clean()
+        if cleaned_data['password'] != cleaned_data['confirm_password']:
+            raise forms.ValidationError("Passwords don't match.")
+        return cleaned_data
+
+
+class ResetPasswordForm(forms.Form):
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'span3 required validpassword', 'minlength': 6})
+    )
+    confirm_password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={'class': 'span3 required', 'equalTo': '#id_reset_password-password', 'minlength': 6}
         )
     )
 

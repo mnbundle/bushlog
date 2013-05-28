@@ -286,6 +286,13 @@
             {% del_session 'show_password_reset' %}
         {% endif %}
 
+        {% if request.session.show_activate %}
+            <script type="text/javascript">
+                showActivate();
+            </script>
+            {% del_session 'show_activate' %}
+        {% endif %}
+
         {% if debug %}{% else %}
             <script type="text/javascript">  (function() {
                 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;

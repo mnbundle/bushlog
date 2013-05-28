@@ -119,13 +119,49 @@ initResetPasswordForm = function () {
             $('.form-resetpassword').submit();
         });
 
+        // add a validation method for valid passwords
+        $.validator.addMethod("validpassword", function(value, element) {
+            return this.optional(element) || /^.*(?=.{6,})(?=.*[a-z])(?=.*[\d]).*$/.test(value);
+        });
+
         // initialise form validation
         $('.form-resetpassword').validate({
             messages: {
                 "reset_password-password": {
-                    validpassword: "must contain upper & lower case letters and a number."
+                    validpassword: "must be 6 characters long and contain at least one number."
                 },
                 "reset_password-confirm_password": {
+                    equalTo: "doesn't match password field."
+                }
+            }
+        });
+    });
+}
+
+initActivationForm = function () {
+    $.get('/profile/activate/', function(data) {
+
+        // loads the form into the form container and sets the submit action
+        $('.activate-container').html(data);
+        $('.btn-activate-submit').click(function(){
+            $('.form-activate').submit();
+        });
+
+        // add a validation method for valid passwords
+        $.validator.addMethod("validpassword", function(value, element) {
+            return this.optional(element) || /^.*(?=.{6,})(?=.*[a-z])(?=.*[\d]).*$/.test(value);
+        });
+
+        // initialise form validation
+        $('.form-activate').validate({
+            messages: {
+                "activate-email": {
+                    remote: "is already registered."
+                },
+                "activate-password": {
+                    validpassword: "must be 6 characters long and contain at least one number."
+                },
+                "activate-confirm_password": {
                     equalTo: "doesn't match password field."
                 }
             }
@@ -160,6 +196,7 @@ $(document).ready(function() {
     initSignUpForm();
     initForgotPasswordForm();
     initResetPasswordForm();
+    initActivationForm();
     initResendActivationForm();
 
     // initialise the modals with required options
@@ -168,6 +205,10 @@ $(document).ready(function() {
         show: false
     });
     $('#id_resetpassword_modal').modal({
+        keyboard: false,
+        show: false
+    });
+    $('#id_activate_modal').modal({
         keyboard: false,
         show: false
     });

@@ -124,3 +124,24 @@
         <a class="btn btn-success btn-resetpassword-submit">Resend</a>
     </div>
 </div>
+
+<!-- Activation modal -->
+<div id="id_activate_modal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Activate Your Account</h3>
+    </div>
+    <div class="modal-body">
+        <p>&nbsp;</p>
+        <div class="activate-container">
+            <div class="align-center loader">
+                <img src="{{ STATIC_URL }}img/icons/loader.gif"/> &nbsp; Loading...
+                <p>&nbsp;</p>
+            </div>
+       </div>
+    </div>
+    <div class="modal-footer">
+        <a class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
+        <a class="btn btn-success btn-activate-submit">Activate</a>
+    </div>
+</div>

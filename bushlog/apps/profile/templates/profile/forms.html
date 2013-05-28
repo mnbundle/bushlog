@@ -84,6 +84,26 @@
         </div>
     {% endif %}
 
+    <!-- Activate modal -->
+    {% if type == 'activate' %}
+        <div class="modal-header">
+            <h3>Activate Your Account</h3>
+        </div>
+        <div>
+            <p>&nbsp;</p>
+            <div class="activate-container">
+                <div class="align-center loader">
+                    <img src="{{ STATIC_URL }}img/icons/loader.gif"/> &nbsp; Loading...
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-back">Close</a>
+            <a class="btn btn-success btn-activate-submit">Activate</a>
+        </div>
+    {% endif %}
+
     <!-- Resend activation modal -->
     {% if type == 'resendactivation' %}
         <div class="modal-header">

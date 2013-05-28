@@ -8,7 +8,8 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpRespons
 from django.shortcuts import get_object_or_404
 from django.views import generic
 
-from bushlog.apps.profile.forms import AvatarModelForm, ForgotPasswordForm, SignInForm, SignUpModelForm, UpdateModelForm, ResendActivationForm, ResetPasswordForm
+from bushlog.apps.profile.forms import ActivateForm, AvatarModelForm, ForgotPasswordForm, SignInForm, \
+    SignUpModelForm, UpdateModelForm, ResendActivationForm, ResetPasswordForm
 from bushlog.apps.profile.models import UserProfile
 from bushlog.decorators import json_response
 
@@ -348,6 +349,57 @@ class ResetPasswordRedirectView(generic.RedirectView):
         return reverse_lazy('index')
 
 
+class ActivateFormView(generic.FormView):
+    template_name = "profile/activate.html"
+    form_class = ActivateForm
+    success_url = reverse_lazy('index')
+    error_url = reverse_lazy('index')
+    error_msg = "Activation failed."
+    form_prefix = "activate"
+
+    def render_to_response(self, context, **response_kwargs):
+        """
+        Ensure only ajax requests are allowed to render this view.
+        """
+        if self.request.is_ajax():
+            return super(ActivateFormView, self).render_to_response(context, **response_kwargs)
+        return HttpResponseBadRequest()
+
+    def get_form_kwargs(self):
+        kwargs = super(generic.FormView, self).get_form_kwargs()
+        if self.form_prefix:
+            kwargs.update({'prefix': self.form_prefix})
+        return kwargs
+
+    def form_valid(self, form):
+        """
+        Set a success message if the form is valid.
+        """
+        user = self.request.user
+
+        if user and user.is_active:
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+            user.set_password(password)
+            user.email = email
+            user.save()
+
+            messages.add_message(
+                self.request, messages.SUCCESS,
+                "Your account has been activated successfully."
+            )
+            return HttpResponseRedirect(self.success_url)
+
+        return self.form_invalid(form)
+
+    def form_invalid(self, form):
+        """
+        Set an error message if the form is invalid.
+        """
+        messages.add_message(self.request, messages.ERROR, self.error_msg)
+        return HttpResponseRedirect(self.error_url)
+
+
 class ResendActivationFormView(generic.FormView):
     template_name = "profile/resend_activation.html"
     form_class = ResendActivationForm
@@ -400,6 +452,23 @@ class ActivateRedirectView(generic.RedirectView):
     def get_redirect_url(self):
         token = self.request.GET.get('token')
         uid = self.request.GET.get('uid')
+        manual_activate = self.request.GET.get('activate')
+
+        # redirect if the activate flag is set
+        if manual_activate:
+
+            # ensure both the user id and token is valid
+            user = get_object_or_404(User, id=uid)
+            if (token != user.profile.token) or not user.is_active:
+                raise Http404
+
+            # authenticate and log the user in automatically
+            user.backend = 'django.contrib.auth.backends.ModelBackend'
+            login(self.request, user)
+
+            self.request.session['show_activate'] = True
+
+            return reverse_lazy('index')
 
         # ensure both the user id and token is valid
         user = get_object_or_404(User, id=uid)
@@ -497,9 +566,10 @@ update = UpdateFormView.as_view()
 avatar = AvatarFormView.as_view()
 forgot_password = ForgotPasswordFormView.as_view()
 reset_password = ResetPasswordFormView.as_view()
+activate = ActivateFormView.as_view()
 reset_password_redirect = ResetPasswordRedirectView.as_view()
 resend_activation = ResendActivationFormView.as_view()
-activate = ActivateRedirectView.as_view()
+activation = ActivateRedirectView.as_view()
 signout = SignOutRedirectView.as_view()
 validate = ValidateView.as_view()
 forms = FormsView.as_view()
