@@ -97,7 +97,7 @@ class Command(BaseCommand):
 
                     # set the last spidered id to cache
                     try:
-                        cache.set(cache_key, str(historical_date(months=1)))
+                        cache.set(cache_key, str(historical_date(months=6)))
                     except IndexError:
                         pass
 
