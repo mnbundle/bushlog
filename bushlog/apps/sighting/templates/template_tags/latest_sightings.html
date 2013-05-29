@@ -8,7 +8,7 @@
         {% endif %}
                 <div class="{% if split == 3 %}span4{% elif split == 2 %}span6{% else %}span12{% endif %}">
                     {% if forloop.counter > split or offset %}<hr/>{% endif %}
-                    <div class="media">
+                    <div class="media hidden-phone">
                         {% if object.cover_image %}
                             <a class="pull-left" href="{{ object.get_absolute_url }}">
                                 <img class="media-object img-rounded" src="{% resize_image object.cover_image 50 50 %}" width="50" height="50" alt="{{ object.species.common_name }} sighting in {{ object.reserve.name }}"/>
@@ -18,7 +18,7 @@
                                 <img class="media-object img-rounded lightest" src="{% resize_image object.species.default_image 50 50 %}" width="50" height="50" alt="{{ object.species.common_name }} sighting in {{ object.reserve.name }}" />
                             </a>
                         {% endif %}
-                        <div class="media-body">
+                        <div class="media-body hidden-phone">
                             <h6>
                                 <a href="{% url 'profile:index' object.user.profile.slug %}">{{ object.user.username }}</a>
                                 <small> added a sighting of </small>
@@ -33,6 +33,19 @@
                                     </a>
                                 </small>
                             </h6>
+                        </div>
+                    </div>
+                    <div class="media mobile-list visible-phone" onclick="window.location='{{ object.get_absolute_url }}'">
+                        {% if object.cover_image %}
+                            <img class="media-object img-rounded pull-left" src="{% resize_image object.cover_image 50 50 %}" width="50" height="50" alt="{{ object.species.common_name }} sighting in {{ object.reserve.name }}"/>
+                        {% else %}
+                            <img class="media-object img-rounded pull-left lightest" src="{% resize_image object.species.default_image 50 50 %}" width="50" height="50" alt="{{ object.species.common_name }} sighting in {{ object.reserve.name }}" />
+                        {% endif %}
+                        <div class="media-body mobile-list-item">
+                            <small>
+                                <strong>{{ object.user.username }}</strong> added a sighting of
+                                <strong>{{ object.species.common_name }}</strong> in <strong>{{ object.reserve.name }}</strong>
+                            </small>
                         </div>
                     </div>
                 </div>

@@ -3,6 +3,7 @@ initSignInForm = function () {
 
         // loads the form into the form container and sets the submit action
         $('.signin-container').append(data);
+        $('.loader').hide();
         $('.btn-signin-submit').click(function(){
             $('.form-signin').submit();
         });
