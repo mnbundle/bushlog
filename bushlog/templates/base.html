@@ -166,17 +166,6 @@
                                 <li><a href="{% url 'profile:signout' %}"><i class="icon-remove-sign"></i>&nbsp; Sign Out</a></li>
                             </ul>
                         </div>
-
-                        <div class="pull-right">&nbsp;</div>
-
-                        <div class="search-form pull-right">
-                            <div class="input-append">
-                                <input id="id_search" class="span3" type="search" placeholder="Search..." autocomplete="off">
-                                <button id="id_search-btn" class="btn" type="button">
-                                    <i class="icon-search"></i>
-                                </button>
-                            </div>
-                        </div>
                     {% else %}
                         <div class="btn-group pull-right">
                             <a class="btn btn-success" href="{% url 'profile:forms' 'signup' %}">
