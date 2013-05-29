@@ -324,8 +324,6 @@ latestSightingScroll = function () {
     var loader = $('<div class="align-center loader"><img src="/static/img/icons/loader.gif"/></div>');
     loader.appendTo(container);
 
-    setTimeout(function(){}, 1000);
-
     var split = parseInt(container.data('split'));
     var limit = parseInt(container.data('limit'));
     var offset = parseInt(container.data('offset'));
