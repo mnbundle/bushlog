@@ -321,7 +321,7 @@ latestSightingScroll = function () {
     $(window).unbind('scroll');
     var container = $('.latest-sightings:visible');
 
-    var loader = $('<div class="align-center loader"><p>&nbsp;</p><img src="/static/img/icons/loader.gif"/><p>&nbsp;</p></div>');
+    var loader = $('<div class="align-center loader"><img src="/static/img/icons/loader.gif"/></div>');
     loader.appendTo(container);
 
     var split = parseInt(container.data('split'));

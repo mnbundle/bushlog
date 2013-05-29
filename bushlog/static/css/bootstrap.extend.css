@@ -63,6 +63,6 @@ a:hover {color:#5BB75B}
 .container-comment {font-size:12px}
 .close-comment {margin-top:-3px}
 .comment-input-append {margin-left:0px!important}
-.loader {padding:40px 0px}
+.loader {padding:20px 0px}
 .img-profile {cursor:pointer}
 .mobile-list-item {background:url('/static/img/layout/list-detail.png') no-repeat right;padding-right:25px}
