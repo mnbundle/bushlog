@@ -22,11 +22,20 @@
             <style type="text/css">
                 body {
                     padding-top: 80px;
-                    padding-bottom: 60px;
+                    padding-bottom: 40px;
                 }
                 @media (max-width: 767px) {
                     body {
-                        padding-bottom: 0px;
+                        padding-top: 80px!important;
+                        padding-bottom: 40px!important;
+                    }
+                }
+                @media (max-width: 979px) {
+                    .navbar-fixed-top,
+                    .navbar-fixed-bottom {
+                        position: fixed;
+                        margin-left: 0px;
+                        margin-right: 0px;
                     }
                 }
             </style>
@@ -52,52 +61,25 @@
         <script src="{{ STATIC_URL }}js/modernizr.min.js"></script>
     </head>
     <body>
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
+        <div class="navbar navbar-fixed-top" style="position:fixed">
+            <div class="navbar-inner hidden-phone">
                 <div class="container">
                     <a class="brand" href="{% url 'index' %}"><img src="{{ STATIC_URL }}img/layout/logo-drk.png" width="106" height="30" /></a>
                     {% if request.user.is_authenticated %}
-                        <div class="btn-group pull-right visible-phone">
-                            <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-search"></i>
-                                <span class="caret"></span>
-                            </a>
-                            <ul id="id_dropdown-menu-search-phone" class="dropdown-menu">
-                                <li>
-                                    <div class="input-append">
-                                        <input id="id_search-phone" type="text" placeholder="Search..." autocomplete="off">
-                                        <button id="id_search-btn-phone" class="btn" type="button">
-                                            <i class="icon-search"></i>
-                                        </button>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="pull-right visible-phone">&nbsp;</div>
-
                         <div class="btn-group pull-right">
                             <a class="btn" href="{% url 'profile:index' request.user.username %}">
                                 <i class="icon-user"></i>
-                                <span class="hidden-phone">{{ user.username }}</span>
-                                <span class="visible-phone">{{ user.username|truncatechars:8 }}</span>
+                                <span>{{ user.username }}</span>
                             </a>
                             <a class="btn dropdown-toggle" data-toggle="dropdown">
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="hidden-phone">
+                                <li>
                                     <a href="#id_update_modal" data-toggle="modal"><i class="icon-pencil"></i>&nbsp; Update Profile</a>
                                 </li>
-                                <li class="hidden-phone">
+                                <li>
                                     <a href="#id_avatar_modal" data-toggle="modal"><i class="icon-camera"></i>&nbsp; Update Avatar</a>
-                                </li>
-                                <!--<li class="hidden-phone"><a href="#privacy"><i class="icon-lock"></i>&nbsp; Privacy Settings</a></li>-->
-                                <li class="visible-phone">
-                                    <a href="{% url 'profile:forms' 'update' %}" data-toggle="modal"><i class="icon-pencil"></i>&nbsp; Update Profile</a>
-                                </li>
-                                <li class="visible-phone">
-                                    <a href="{% url 'profile:forms' 'avatar' %}" data-toggle="modal"><i class="icon-camera"></i>&nbsp; Update Avatar</a>
                                 </li>
                                 <!--<li class="hidden-phone"><a href="#privacy"><i class="icon-lock"></i>&nbsp; Privacy Settings</a></li>-->
                                 <li class="divider"></li>
@@ -107,7 +89,7 @@
 
                         <div class="pull-right">&nbsp;</div>
 
-                        <div class="search-form pull-right hidden-phone">
+                        <div class="search-form pull-right>
                             <div class="input-append">
                                 <input id="id_search" class="span3" type="search" placeholder="Search..." autocomplete="off">
                                 <button id="id_search-btn" class="btn" type="button">
@@ -116,7 +98,7 @@
                             </div>
                         </div>
                     {% else %}
-                        <div class="btn-group pull-right hidden-phone">
+                        <div class="btn-group pull-right">
                             <a class="btn btn-success" href="#id_signup_modal" data-toggle="modal">
                                 <i class="icon-user icon-white"></i> Sign Up
                             </a>
@@ -138,8 +120,65 @@
                                 </li>
                             </ul>
                         </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="navbar-inner visible-phone" style="padding:2px 30px;">
+                <div class="container">
+                    <a class="brand" href="{% url 'index' %}"><img src="{{ STATIC_URL }}img/layout/logo-drk.png" width="106" height="30" /></a>
+                    {% if request.user.is_authenticated %}
+                        <div class="btn-group pull-right">
+                            <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-search"></i>
+                                <span class="caret"></span>
+                            </a>
+                            <ul id="id_dropdown-menu-search-phone" class="dropdown-menu">
+                                <li>
+                                    <div class="input-append">
+                                        <input id="id_search-phone" type="text" placeholder="Search..." autocomplete="off">
+                                        <button id="id_search-btn-phone" class="btn" type="button">
+                                            <i class="icon-search"></i>
+                                        </button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
 
-                        <div class="btn-group pull-right visible-phone">
+                        <div class="pull-right">&nbsp;</div>
+
+                        <div class="btn-group pull-right">
+                            <a class="btn" href="{% url 'profile:index' request.user.username %}">
+                                <i class="icon-user"></i>
+                                <span>{{ user.username|truncatechars:8 }}</span>
+                            </a>
+                            <a class="btn dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{% url 'profile:forms' 'update' %}"><i class="icon-pencil"></i>&nbsp; Update Profile</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'profile:forms' 'avatar' %}"><i class="icon-camera"></i>&nbsp; Update Avatar</a>
+                                </li>
+                                <!--<li class="hidden-phone"><a href="#privacy"><i class="icon-lock"></i>&nbsp; Privacy Settings</a></li>-->
+                                <li class="divider"></li>
+                                <li><a href="{% url 'profile:signout' %}"><i class="icon-remove-sign"></i>&nbsp; Sign Out</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="pull-right">&nbsp;</div>
+
+                        <div class="search-form pull-right">
+                            <div class="input-append">
+                                <input id="id_search" class="span3" type="search" placeholder="Search..." autocomplete="off">
+                                <button id="id_search-btn" class="btn" type="button">
+                                    <i class="icon-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="btn-group pull-right">
                             <a class="btn btn-success" href="{% url 'profile:forms' 'signup' %}">
                                 <i class="icon-user icon-white"></i> Sign Up
                             </a>
@@ -182,8 +221,8 @@
             <form method="POST">{% csrf_token %}</form>
         </div>
 
-        <div class="navbar navbar-fixed-bottom navbar-footer">
-            <div class="navbar-inner">
+        <div class="navbar navbar-fixed-bottom navbar-footer" style="position:fixed">
+            <div class="navbar-inner hidden-phone">
                 <div class="container">
                     <div class="pull-left">
                         <a class="social social-facebook pull-left" href="http://www.facebook.com/bushlog" target="blank" alt="Follow us on Facebook"></a>
@@ -192,13 +231,25 @@
                     <ul class="nav nav-pills pull-right">
                         <li><a href="{% url 'index' %}">Home</a></li>
                         <li><a href="{% url 'about' %}">About</a></li>
-                        <li class="hidden-phone"><a href="{% url 'press' %}">Press</a></li>
-                        <li class="hidden-phone"><a href="{% url 'affiliates' %}">Affiliates</a></li>
-                        <li class="hidden-phone"><a href="{% url 'support' %}">Support</a></li>
-                        <li class="hidden-phone"><a href="{% url 'legal' %}">Legal</a></li>
+                        <li><a href="{% url 'press' %}">Press</a></li>
+                        <li><a href="{% url 'affiliates' %}">Affiliates</a></li>
+                        <li><a href="{% url 'support' %}">Support</a></li>
+                        <li><a href="{% url 'legal' %}">Legal</a></li>
                         <!--<li><a href="#">Developers</a></li>
                         <li><a href="{% url 'researchers' %}">Researchers</a></li>
                         <li><a href="#">Advertising</a></li>-->
+                    </ul>
+                </div>
+            </div>
+            <div class="navbar-inner visible-phone" style="padding:2px 30px;">
+                <div class="container">
+                    <div class="pull-left">
+                        <a class="social social-facebook pull-left" href="http://www.facebook.com/bushlog" target="blank" alt="Follow us on Facebook"></a>
+                        <a class="social social-twitter pull-left" href="http://twitter.com/bushlogapp" target="blank" alt="Follow us on Twitter"></a>
+                    </div>
+                    <ul class="nav nav-pills pull-right">
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
                     </ul>
                 </div>
             </div>
