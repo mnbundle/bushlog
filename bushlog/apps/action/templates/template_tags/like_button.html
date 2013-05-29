@@ -1,17 +1,17 @@
 
 {% if request.user.is_authenticated %}
-    <button class="btn btn-success {% if liked %}disabled{% endif %} like" data-oid="{{ object.id }}" data-type="{{ obj_type }}" data-count="{{ like_count }}">
+    <button class="btn btn-success {% if liked %}disabled{% endif %} like" data-oid="{{ object.id }}" data-type="{{ obj_type }}" data-count="{{ like_count }}" data-auth="true">
         <i class="icon-star{% if not liked %}-empty{% endif %} icon-white like-icon"></i>&nbsp;
         <span class="like-text">Like{% if liked %}d{% endif %}</span>
     </button>
 {% else %}
-    <a class="btn btn-success hidden-phone like" href="#id_signup_modal" data-toggle="modal" data-oid="{{ object.id }}" data-type="{{ obj_type }}" data-count="{{ like_count }}">
+    <a class="btn btn-success hidden-phone like" href="#id_signup_modal" data-toggle="modal" data-oid="{{ object.id }}" data-type="{{ obj_type }}" data-count="{{ like_count }}" data-auth="false">
         <i class="icon-star-empty icon-white like-icon"></i>&nbsp;
         <span class="like-text">Like</span>
     </a>
 
     <div class="btn-group">
-        <a class="btn btn-success visible-phone like" href="{% url 'profile:forms' 'signup' %}" data-oid="{{ object.id }}" data-type="{{ obj_type }}" data-count="{{ like_count }}">
+        <a class="btn btn-success visible-phone like" href="{% url 'profile:forms' 'signup' %}" data-oid="{{ object.id }}" data-type="{{ obj_type }}" data-count="{{ like_count }}" data-auth="false">
             <i class="icon-star-empty icon-white like-icon"></i>&nbsp;
             <span class="like-text">Like</span>
         </a>
