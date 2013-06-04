@@ -26,6 +26,7 @@
 {% endblock %}
 
 {% load action %}
+{% load humanize %}
 {% load sighting %}
 
 {% block content %}
@@ -67,7 +68,7 @@
 
             <h6>
                 <i class="icon-camera"></i>
-                <small>{{ object.sightings.active.count }} Sightings</small> &nbsp;
+                <small>{{ object.sightings.active.count|intcomma }} Sightings</small> &nbsp;
                 <i class="icon-user"></i>
                 <small><span class="checkin-count">0</span> Checkins</small> &nbsp;
                 <i class="icon-star"></i>
@@ -123,7 +124,7 @@
 
             <h6>
                 <i class="icon-camera"></i>
-                <small>{{ object.sightings.active.count }} Sightings</small> &nbsp;
+                <small>{{ object.sightings.active.count|intcomma }} Sightings</small> &nbsp;
                 <i class="icon-check"></i>
                 <small><span class="checkin-count">0</span> Checkins</small> &nbsp;
                 <i class="icon-star"></i>
