@@ -172,7 +172,7 @@
                                 <small>
                                     <div>
                                         <i class="icon-leaf">&nbsp;</i> &nbsp;
-                                        <a href="{{ reserve.get_absolute_url }}">{{ reserve.name }}</a>
+                                        <a href="{% url 'sighting:combo' reserve.slug object.slug %}">{{ reserve.name }}</a>
                                     </div>
                                 </small>
                             {% endfor %}
@@ -288,7 +288,7 @@
                     <small>
                         <div>
                             <i class="icon-leaf">&nbsp;</i> &nbsp;
-                            <a href="{{ reserve.get_absolute_url }}">{{ reserve.name }}</a>
+                            <a href="{% url 'sighting:combo' reserve.slug object.slug %}">{{ reserve.name }}</a>
                         </div>
                     </small>
                 {% endfor %}

@@ -33,6 +33,24 @@ class IndexDetailView(generic.DetailView):
         )
 
 
+class ComboListView(generic.ListView):
+    model = Sighting
+    template_name = 'sighting/sighting_combo.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ComboListView, self).get_context_data(**kwargs)
+
+        reserve = get_object_or_404(Reserve, slug=self.kwargs.get('reserve_slug'))
+        species = get_object_or_404(Species, slug=self.kwargs.get('species_slug'))
+
+        if reserve and species:
+            context['reserve'] = reserve
+            context['species'] = species
+            return context
+
+        raise Http404
+
+
 class SearchListView(generic.ListView):
     model = Sighting
     template_name = 'sighting/sighting_search.html'
@@ -195,6 +213,7 @@ class LatestView(generic.TemplateView):
 
 index = IndexDetailView.as_view()
 search = SearchListView.as_view()
+combo = ComboListView.as_view()
 create = SightingCreateView.as_view()
 create_image = SightingImageCreateView.as_view()
 forms = FormsView.as_view()

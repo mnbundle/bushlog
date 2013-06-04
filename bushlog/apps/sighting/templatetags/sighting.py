@@ -29,9 +29,14 @@ def resize_image(image, width=None, height=None):
 @register.inclusion_tag("template_tags/sighting_map.html", takes_context=True)
 def sighting_map(context, limit=3, protected=1, *args, **kwargs):
     try:
-        keyword = kwargs.keys()[0]
+        if len(kwargs.keys()) > 1:
+            keyword = "combo"
+        else:
+            keyword = kwargs.keys()[0]
     except IndexError:
         keyword = None
+
+    print keyword
 
     coordinates = kwargs.get('coordinates')
     bounds = []

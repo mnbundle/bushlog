@@ -1,0 +1,58 @@
+
+{% extends "base.html" %}
+
+{% block title %}Sightings of {{ species.common_name }} in the {{ reserve.name }}{% endblock %}
+{% block decription %}
+    Wildlife Sightings of {{ species.common_name }} in the {{ reserve.name }}, {{ reserve.country.all|join:", " }}
+{% endblock %}
+
+{% load humanize %}
+{% load sighting %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+
+        // initiate continous scrolling
+        $(document).ready(function () {
+            $(window).scroll( function() {
+                if($(window).scrollTop() == $(document).height() - $(window).height()) {
+                    latestSightingScroll();
+                }
+            });
+            latestSightingScroll();
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+
+    {% sighting_map limit=10 reserve=reserve species=species %}
+
+    <div class="row-fluid">
+        <div class="span12 hidden-phone">
+            <div class="page-header">
+                <h2>
+                    {{ species.common_name }} <small>{{ reserve.name }}</small>
+                    <a class="btn btn-success btn-header pull-right" href="#id_new_sighting" data-toggle="modal">
+                        <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
+                    </a>
+                </h2>
+            </div>
+
+            <div class="latest-sightings" data-split="3" data-limit="24" data-offset="0" data-reserve="{{ reserve.id }}" data-species="{{ species.id }}"></div>
+
+        </div>
+
+        <div class="span12 visible-phone">
+            <div class="page-header">
+                <h4>
+                    {{ species.common_name }}<br/>
+                    <small>{{ reserve.name }}</small>
+                </h4>
+            </div>
+
+            <div class="latest-sightings" data-split="1" data-limit="10" data-offset="0" data-reserve="{{ reserve.id }}" data-species="{{ species.id }}"></div>
+
+        </div>
+    </div>
+{% endblock %}

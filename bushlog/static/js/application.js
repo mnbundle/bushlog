@@ -3,11 +3,6 @@ initRegion = function () {
     var markers = ele.data('map') ? ele.data('map') : [];
     var bounds = ele.data('bounds') ? ele.data('bounds') : {};
 
-    // set the size of the map for mobile
-    if ($(document).width() <= 767) {
-        ele.css('height', 200);
-    }
-
     // setup for a single marker
     var autofit = 'autofit';
     var center = [];

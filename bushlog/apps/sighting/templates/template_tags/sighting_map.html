@@ -26,6 +26,8 @@
                         Sighting of {{ object.species.common_name }} in {{ object.reserve.name }}
                     {% elif keyword == 'coordinates' %}
                         Sightings Near You
+                    {% elif keyword == 'combo' %}
+                        {{ species.common_name }} Sightings in {{ reserve.name }}
                     {% endif %}
                     <div class="pull-right">
                         <a href="#" class="hint" rel="tooltip" title="Expand&nbsp;Map" data-placement="left">

@@ -7,13 +7,14 @@
 .rounded-corners-bottom {border-radius:0px 0px 4px 4px}
 .rounded-corners-top {border-radius:4px 4px 0px 0px}
 .map {height:250px}
+@media (max-width: 979px) {
+    .map {height:150px}
+}
 .hero-unit-tiny {padding:15px;margin-right:15px;min-width:95px;}
 .hero-unit-small {padding:40px}
 .hero-unit-index {min-height:360px!important}
 @media (max-width: 979px) {
-    .hero-unit-index {
-        min-height:0px!important
-    }
+    .hero-unit-index {min-height:0px!important}
 }
 .icon-facebook {background-position:0 -167px}
 .icon-twitter {background-position:-24px -167px}
@@ -21,6 +22,7 @@
 .icon-stumbleupon {background-position:-72px -167px}
 .icon-linkedin {background-position:-96px -167px}
 .icon-flickr {background-position:-120px -167px}
+.icon-species {background-position:-144px -167px}
 label.checkbox {color:#777}
 .pull-top {margin-top:-5px}
 a {color:#333}
@@ -47,7 +49,10 @@ a:hover {color:#5BB75B}
 .align-left {text-align:left}
 .align-center {text-align:center}
 .align-right {text-align:right}
-.sighting-map {height:400px!important}
+.sighting-map {height:400px}
+@media (max-width: 979px) {
+    .sighting-map {height:200px!important}
+}
 .dropdown-menu a:hover {background:#5bb75b!important}
 .dropdown-menu .active a {background:#5bb75b!important}
 .dropdown-info a:hover {background:#49AFCD!important}
