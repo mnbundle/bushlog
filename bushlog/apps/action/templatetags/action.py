@@ -1,4 +1,5 @@
 from django import template
+from django.contrib.humanize.templatetags.humanize import intcomma
 
 from bushlog.apps.action.models import Comment, Like
 
@@ -21,7 +22,7 @@ def like_button(context):
 
 @register.simple_tag
 def like_count():
-    return Like.objects.all().count()
+    return intcomma(Like.objects.count())
 
 
 @register.inclusion_tag("template_tags/comments.html", takes_context=True)
@@ -38,4 +39,4 @@ def comments(context):
 
 @register.simple_tag
 def comment_count():
-    return Comment.objects.all().count()
+    return intcomma(Comment.objects.count())
