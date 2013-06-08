@@ -65,26 +65,27 @@
             <div class="navbar-inner hidden-phone">
                 <div class="container">
                     <a class="brand" href="{% url 'index' %}"><img src="{{ STATIC_URL }}img/layout/logo-drk.png" width="106" height="30" /></a>
+
+                    <div class="btn-group pull-right">
+                        <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-th-list"></i>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#"><i class="icon-leaf"></i>&nbsp; Reserves</a>
+                            </li>
+                            <li>
+                                <a href="#" data-toggle="modal"><i class="icon-species"></i>&nbsp; Species</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pull-right">&nbsp;</div>
+
                     {% if request.user.is_authenticated %}
                         <div class="btn-group pull-right">
-                            <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-th-list"></i>
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#"><i class="icon-leaf"></i>&nbsp; Reserves</a>
-                                </li>
-                                <li>
-                                    <a href="#" data-toggle="modal"><i class="icon-species"></i>&nbsp; Species</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="pull-right">&nbsp;</div>
-
-                        <div class="btn-group pull-right">
-                            <a class="btn" href="{% url 'profile:index' request.user.username %}">
+                            <a class="btn" href="{{ user.get_absolute_url }}">
                                 <i class="icon-user"></i>
                                 <span>{{ user.username }}</span>
                             </a>
@@ -143,24 +144,25 @@
             <div class="navbar-inner visible-phone" style="padding:2px 30px;">
                 <div class="container">
                     <a class="brand" href="{% url 'index' %}"><img src="{{ STATIC_URL }}img/layout/logo-drk.png" width="106" height="30" /></a>
+
+                    <div class="btn-group pull-right">
+                        <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-th-list"></i>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#"><i class="icon-leaf"></i>&nbsp; Reserves</a>
+                            </li>
+                            <li>
+                                <a href="#" data-toggle="modal"><i class="icon-species"></i>&nbsp; Species</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pull-right">&nbsp;</div>
+
                     {% if request.user.is_authenticated %}
-                        <div class="btn-group pull-right">
-                            <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-th-list"></i>
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#"><i class="icon-leaf"></i>&nbsp; Reserves</a>
-                                </li>
-                                <li>
-                                    <a href="#" data-toggle="modal"><i class="icon-species"></i>&nbsp; Species</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="pull-right">&nbsp;</div>
-
                         <div class="btn-group pull-right">
                             <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
                                 <i class="icon-search"></i>
@@ -187,7 +189,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="{% url 'profile:index' request.user.username %}"><i class="icon-user"></i>&nbsp; View Profile</a>
+                                    <a href="{{ user.get_absolute_url }}"><i class="icon-user"></i>&nbsp; View Profile</a>
                                 </li>
                                 <li>
                                     <a href="{% url 'profile:forms' 'update' %}"><i class="icon-pencil"></i>&nbsp; Update Profile</a>

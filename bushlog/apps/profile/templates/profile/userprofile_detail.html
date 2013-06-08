@@ -74,7 +74,7 @@
                 {% endif %}
                 <div class="media-body">
                     <h6>
-                        <a href="{% url 'profile:index' object.user.profile.slug %}">{{ object.user.username|capfirst }}'s Bushlog</a><br/>
+                        <a href="{{ object.user.get_absolute_url }}">{{ object.user.username|capfirst }}'s Bushlog</a><br/>
                         <i class="icon-flag"></i>
                         <small>{{ object.country|default:"Unknown" }}</small><br/>
                         <i class="icon-camera"></i>
@@ -122,7 +122,7 @@
                 {% endif %}
                 <div class="media-body">
                     <h6>
-                        <a href="{% url 'profile:index' object.user.profile.slug %}">{{ object.user.username }}</a><br/>
+                        <a href="{{ object.user.get_absolute_url }}">{{ object.user.username }}</a><br/>
                         <i class="icon-flag"></i>
                         <small>{{ object.country|default:"Unknown" }}</small><br/>
                         <i class="icon-camera"></i>
