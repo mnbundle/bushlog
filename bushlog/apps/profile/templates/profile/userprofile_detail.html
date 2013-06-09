@@ -102,14 +102,14 @@
         </div>
 
         <div class="span3 pull-right hidden-phone">
-            <div class="media">
+            <div class="media" itemscope itemtype="http://data-vocabulary.org/Person">
                 {% if object.user.profile.avatar %}
                     {% if request.user == object.user %}
                         <a href="#id_avatar_modal" data-toggle="modal" class="hint pull-left" rel="tooltip" title="Update&nbsp;Avatar" data-placement="top">
                             <img class="media-object img-rounded" src="{% resize_image object.user.profile.avatar 60 60 %}" width="60" height="60" />
                         </a>
                     {% else %}
-                        <img class="media-object img-rounded pull-left" src="{% resize_image object.user.profile.avatar 60 60 %}" width="60" height="60" />
+                        <img class="media-object img-rounded pull-left" src="{% resize_image object.user.profile.avatar 60 60 %}" width="60" height="60" itemprop="photo" />
                     {% endif %}
                 {% else %}
                     {% if request.user == object.user %}
@@ -122,7 +122,7 @@
                 {% endif %}
                 <div class="media-body">
                     <h6>
-                        <a href="{{ object.user.get_absolute_url }}">{{ object.user.username }}</a><br/>
+                        <a href="{{ object.user.get_absolute_url }}"><span itemprop="name">{{ object.user.username }}</span></a><br/>
                         <i class="icon-flag"></i>
                         <small>{{ object.country|default:"Unknown" }}</small><br/>
                         <i class="icon-camera"></i>
