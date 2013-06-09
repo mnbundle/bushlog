@@ -174,10 +174,10 @@
         </div>
 
         <div class="span3 pull-right hidden-phone">
-            <div class="media" itemscope itemtype="http://data-vocabulary.org/Person">
+            <div class="media">
                 {% if object.user.profile.avatar %}
                     <a class="pull-left" href="{{ object.user.get_absolute_url }}">
-                        <img class="media-object img-rounded" src="{% resize_image object.user.profile.avatar 60 60 %}" width="60" height="60" itemprop="photo" />
+                        <img class="media-object img-rounded" src="{% resize_image object.user.profile.avatar 60 60 %}" width="60" height="60" />
                     </a>
                 {% else %}
                     <a class="pull-left" href="{{ object.user.get_absolute_url }}">
@@ -186,7 +186,7 @@
                 {% endif %}
                 <div class="media-body">
                     <h6>
-                        <a href="{{ object.user.get_absolute_url }}"><span itemprop="name">{{ object.user.username }}</span></a><br/>
+                        <a href="{{ object.user.get_absolute_url }}">{{ object.user.username }}</a><br/>
                         <i class="icon-time"></i>
                         <small>Spotted {{ object.date_of_sighting.date|fuzzy_date }}</small><br/>
                         <i class="icon-star"></i>
