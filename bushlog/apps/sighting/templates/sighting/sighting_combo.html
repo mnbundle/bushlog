@@ -11,6 +11,14 @@
 
 {% block extra_js %}
     <script type="text/javascript">
+        setSpecies = function() {
+            $('#id_sighting_create-species').val('{{ species.id }}');
+            $('#id_sighting_create-species_search').val('{{ species.common_name }}').attr('readonly', true).addClass('cancel');
+        }
+        setReserve = function() {
+            $('#id_sighting_create-reserve').val('{{ reserve.id }}');
+            $('#id_sighting_create-reserve_search').val('{{ reserve.name }}').attr('readonly', true).addClass('cancel');
+        }
 
         // initiate continous scrolling
         $(document).ready(function () {
