@@ -67,8 +67,9 @@ urlpatterns += patterns('',
 )
 
 # sso related url patterns
-urlpatterns += patterns('',
-    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
+urlpatterns += patterns('django.contrib.sitemaps.views',
+    (r'^sitemap\.xml$', 'index', {'sitemaps': sitemaps}),
+    (r'^sitemap-(?P<section>.+)\.xml$', 'sitemap', {'sitemaps': sitemaps}),
 )
 
 # serves static file in development
