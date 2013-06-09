@@ -3,7 +3,7 @@
 
 {% block title %}Sightings of {{ species.common_name }} in the {{ reserve.name }}{% endblock %}
 {% block decription %}
-    Wildlife Sightings of {{ species.common_name }} in the {{ reserve.name }}, {{ reserve.country.all|join:", " }}
+    Wildlife Sightings of {{ species.common_name }} ({{ species.scientific_name }}) in the {{ reserve.name }}, {{ reserve.country.all|join:", " }}
 {% endblock %}
 
 {% load humanize %}
@@ -29,7 +29,7 @@
     {% sighting_map limit=10 reserve=reserve species=species %}
 
     <div class="row-fluid">
-        <div class="span12 hidden-phone">
+        <div class="span8 hidden-phone">
             <div class="page-header">
                 <h2>
                     {{ species.common_name }} <small>{{ reserve.name }}</small>
@@ -39,20 +39,39 @@
                 </h2>
             </div>
 
-            <div class="latest-sightings" data-split="3" data-limit="24" data-offset="0" data-reserve="{{ reserve.id }}" data-species="{{ species.id }}"></div>
+            <div class="latest-sightings" data-split="2" data-limit="20" data-offset="0" data-reserve="{{ reserve.id }}" data-species="{{ species.id }}"></div>
 
         </div>
 
         <div class="span12 visible-phone">
             <div class="page-header">
                 <h4>
-                    {{ species.common_name }}<br/>
-                    <small>{{ reserve.name }}</small>
+                    <a href="{{ species.get_absolute_url }}">{{ species.common_name }}</a><br/>
+                    <small><em><a href="{{ reserve.get_absolute_url }}">{{ reserve.name }}</a></em></small>
                 </h4>
             </div>
 
             <div class="latest-sightings" data-split="1" data-limit="10" data-offset="0" data-reserve="{{ reserve.id }}" data-species="{{ species.id }}"></div>
 
+        </div>
+
+        <div class="span3 pull-right hidden-phone">
+            <div>
+                <h4>
+                    <a href="{{ reserve.get_absolute_url }}">{{ reserve.name }}</a>
+                </h4>
+                <small>{{ reserve.description|default:"" }}</small>
+                <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ reserve.name }}", target="blank">Wikipedia</a></small></h6>
+            </div>
+            <hr/>
+            <div>
+                <h4>
+                    <img src="{% resize_image species.inverted_default_image 50 50 %}" width="50" height="50" />
+                    <a href="{{ species.get_absolute_url }}">{{ species.common_name }}</a>
+                </h4>
+                <small>{{ species.general_info|default:"" }}</small>
+                <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ species.common_name }}", target="blank">Wikipedia</a></small></h6>
+            </div>
         </div>
     </div>
 {% endblock %}
