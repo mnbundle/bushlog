@@ -42,27 +42,30 @@ formatDate = function (date) {
 
 setCurrentLocation = function () {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function () {
+        navigator.geolocation.getCurrentPosition(function (position) {
             var latitude = position.coords.latitude.toFixed(6);
             var longitude = position.coords.longitude.toFixed(6);
 
-            $('#id_sighting_create-latitude').val(latitude);
-            $('#id_sighting_create-longitude').val(longitude);
-
             $.get('/reserve/search-point/', {latitude: latitude, longitude: longitude}, function(data) {
-                $('#id_sighting_create-reserve').val(data.id);
-                $('#id_sighting_create-reserve_search').val(data.name).attr('readonly', true).addClass('cancel');
+                if (data) {
+                    $('#id_sighting_create-latitude').val(latitude);
+                    $('#id_sighting_create-longitude').val(longitude);
 
-                $(".info-detect-location").text("GPS Coordinates detected. Click next to continue.");
-                $(".btn-detect-location").hide();
-                $(".help-detect-location").hide();
+                    $('#id_sighting_create-reserve').val(data.id);
+                    $('#id_sighting_create-reserve_search').val(data.name).attr('readonly', true).addClass('cancel');
+
+                    $(".info-detect-location").hide().text("GPS Coordinates detected. Click next to continue.").fadeIn('slow');
+                    $(".btn-detect-location").hide();
+                    $(".help-detect-location").hide();
+                }
+                else {
+                    $(".info-detect-location").hide().text("GPS Coordinates detected outside any supported reserves. Click next to continue.").fadeIn('slow');
+                }
             });
         });
     }
     else {
-        $(".info-detect-location").text("GPS Coordinates not detected. Click next to continue.");
-        $(".btn-detect-location").hide();
-        $(".help-detect-location").show();
+        $(".info-detect-location").hide().text("GPS Coordinates not detected. Click next to continue.").fadeIn('slow');
     }
 }
 
@@ -163,6 +166,10 @@ initAutoCompleteInput = function (input_selector, ele_selector, api_uri) {
 
     input.click(function () {
         $(this).removeAttr('readonly').removeClass('cancel').val('');
+        if (input_selector == '#id_sighting_create-reserve_search') {
+            $('#id_sighting_create-latitude').val('');
+            $('#id_sighting_create-longitude').val('');
+        }
     });
 
     input.typeahead({
