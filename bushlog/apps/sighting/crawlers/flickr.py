@@ -9,11 +9,11 @@ def crawler(api, reserve, query, min_upload_date=None):
             api.photos_search(
                 bbox=reserve.bounding_box,
                 text=query,
-                licence='1,2,3,4,5,6,7',
                 per_page=500,
                 min_upload_date=min_upload_date,
-                sort='date-posted-desc',
-                extras='description,date_taken,owner_name,icon_server,geo,url_c,url_m'
+                sort='date-taken-desc',
+                accuracy=1,
+                extras='description,date_taken,owner_name,icon_server,geo,url_c'
             )
         )
     except:
