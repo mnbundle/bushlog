@@ -67,7 +67,7 @@
 
             {% if object.description %}
                 <blockquote>
-                    <p>{{ object.description|striptags }}</p>
+                    <p>{{ object.description|striptags|truncatechars:500 }}</p>
                     <small>{{ object.user.username }}</small>
                 </blockquote>
             {% endif %}
@@ -148,7 +148,7 @@
 
             {% if object.description %}
                 <blockquote>
-                    <p>{{ object.description|striptags }}</p>
+                    <p>{{ object.description|striptags|truncatechars:150 }}</p>
                     <small>{{ object.user.username }}</small>
                 </blockquote>
             {% endif %}
