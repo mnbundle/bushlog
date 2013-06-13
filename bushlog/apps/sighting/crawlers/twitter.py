@@ -9,8 +9,8 @@ def crawler(api, reserve, query, since_id=0):
     # query the twitter api
     results = api.GetSearch(
         term=query,
-        geocode=(coordinates['latitude'], coordinates['longitude'], '100mi'),
-        per_page=100,
+        geocode=(coordinates['latitude'], coordinates['longitude'], '250mi'),
+        count=100,
         include_entities=True,
         since_id=since_id
     )

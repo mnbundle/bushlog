@@ -54,7 +54,7 @@ class Command(BaseCommand):
         flickr_api.get_token_part_two((token, frob))
 
         # iterate through all reserves and query the api for results
-        for reserve in Reserve.objects.all().order_by('?'):
+        for reserve in Reserve.objects.all().filter(name__icontains="Kruger").order_by('?'):
             print ""
             print "Searching: %s..." % reserve.name
 

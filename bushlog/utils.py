@@ -38,7 +38,7 @@ def historical_date(*args, **kwargs):
 
 
 def twitter_date(date_string):
-    date_obj = datetime.fromtimestamp(mktime(strptime(date_string, '%a, %d %b %Y %H:%M:%S +0000')))
+    date_obj = datetime.fromtimestamp(mktime(strptime(date_string, '%a %b %d %H:%M:%S +0000 %Y')))
     return date_obj + relativedelta(hours=2)
 
 
