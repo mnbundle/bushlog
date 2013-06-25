@@ -125,7 +125,10 @@ class Command(BaseCommand):
                         user, user_created = User.objects.get_or_create(
                             username=slugify(result['user']['username'][:30])
                         )
-                        if not user_created and user.is_active:
+                        if not user_created and not user.is_active:
+                            pass
+
+                        else:
                             user.profile.biography = result['user']['biography']
 
                             # create the users avatar
