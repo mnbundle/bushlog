@@ -45,7 +45,7 @@ var UploadKit = function(input) {
 	var $uploadButton = this.$uploadButton = $('<a id="uk-upload-button-' + id + '" class="btn btn-primary" href="#"/>').html('<i class="icon-upload icon-white"/>Upload').appendTo($element).hide();
 	var runtimes = 'html5,flash,gears,silverlight,html4';
 
-	if (isBrowser('Android 2')) {
+	if (isBrowser('Android')) {
 		runtimes = 'flash,gears,html4,html5';
 	}
 
