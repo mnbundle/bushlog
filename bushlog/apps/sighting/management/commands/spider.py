@@ -61,7 +61,7 @@ class Command(BaseCommand):
         )
 
         # iterate through all reserves and query the api for results
-        for reserve in Reserve.objects.filter(name__icontains="Hlu"):#.all().order_by('?'):
+        for reserve in Reserve.objects.all().order_by('?'):
             print
             print "Searching: %s..." % reserve.name
 
