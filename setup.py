@@ -35,7 +35,6 @@ setup(
         'djangorestframework==2.2.4',
         'flickrapi==1.4.2',
         'futures==2.1.3',
-        'git-remote-helpers==0.1.0',
         'gunicorn==0.17.2',
         'httplib2==0.8',
         'oauth2==1.5.211',
