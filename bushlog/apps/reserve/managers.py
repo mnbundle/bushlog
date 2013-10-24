@@ -18,4 +18,4 @@ class ReserveManager(models.Manager):
         return ReserveQuerySet(self.model)
 
     def grouped_by_country(self):
-        return self.get_query_set().public()
+        return self.get_query_set().grouped_by_country()
