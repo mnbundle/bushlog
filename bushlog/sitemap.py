@@ -10,7 +10,7 @@ from bushlog.apps.wildlife.models import Species
 class StaticViewSitemap(sitemaps.Sitemap):
 
     def items(self):
-        return ['index', 'about', 'affiliates', 'legal', 'press', 'support']
+        return ['index', 'about', 'affiliates', 'legal', 'press', 'support', 'reserve:list']
 
     def location(self, item):
         return reverse_lazy(item)
@@ -20,7 +20,8 @@ class StaticViewSitemap(sitemaps.Sitemap):
             'index': 1.0,
             'about': 0.8,
             'press': 0.8,
-            'support': 0.7
+            'support': 0.7,
+            'reserve:list': 0.8
         }
         return priority_map.get(item, 0.6)
 
@@ -28,7 +29,7 @@ class StaticViewSitemap(sitemaps.Sitemap):
         changefreq_map = {
             'index': 'daily'
         }
-        return changefreq_map.get(item, 'weekly')
+        return changefreq_map.get(item, 'monthly')
 
 
 class SightingComboViewSitemap(sitemaps.Sitemap):
