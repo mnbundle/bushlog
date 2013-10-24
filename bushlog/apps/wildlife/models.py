@@ -27,6 +27,9 @@ class Species(models.Model):
     default_image = models.ImageField(upload_to="defaults/", max_length=250)
     inverted_default_image = models.ImageField(upload_to="defaults/inverted/", max_length=250)
 
+    higher_classification = models.CharField(
+        max_length=20, choices=choices(['bird', 'mammal', 'reptile'])
+    )
     classification = models.CharField(
         max_length=20, choices=choices(['carnivore', 'herbivore', 'insectivore', 'omnivore'])
     )
@@ -46,4 +49,4 @@ class Species(models.Model):
         return "%s (%s)" % (self.common_name, self.scientific_name)
 
     def get_absolute_url(self):
-        return reverse_lazy('wildlife:index', args=[self.slug])
+        return reverse_lazy('wildlife:detail', args=[self.slug])

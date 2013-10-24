@@ -331,7 +331,7 @@ latestSightingScroll = function () {
 
     var browser_offset = 0;
     if (isBrowser('iPhone')) {
-        browser_offset = 60;
+        browser_offset = 0;
     }
 
     search_data = {

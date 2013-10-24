@@ -100,7 +100,7 @@
                             {% for species in object.species.all %}
                                 <small><div>
                                     <img src="{% resize_image species.inverted_default_image 30 30 %}" class="img-rounded" width="30" height="30" /> &nbsp;
-                                    <a href="{% url 'sighting:combo' object.slug species.slug %}">{{ species.common_name }}</a>
+                                    <a href="{% url 'sighting:list' object.slug species.slug %}">{{ species.common_name }}</a>
                                 </div></small>
                             {% endfor %}
                         </div>
@@ -152,7 +152,7 @@
                 {% for species in object.species.all %}
                     <small><div>
                         <img src="{% resize_image species.inverted_default_image 30 30 %}" class="img-rounded" width="30" height="30" /> &nbsp;
-                        <a href="{% url 'sighting:combo' object.slug species.slug %}">{{ species.common_name }}</a>
+                        <a href="{% url 'sighting:list' object.slug species.slug %}">{{ species.common_name }}</a>
                     </div></small>
                 {% endfor %}
             </div>

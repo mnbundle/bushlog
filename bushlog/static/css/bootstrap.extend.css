@@ -13,6 +13,7 @@
 .hero-unit-tiny {padding:15px;margin-right:15px;min-width:95px;}
 .hero-unit-small {padding:40px}
 .hero-unit-index {min-height:360px!important}
+.hero-unit-reserve {min-height:330px!important}
 @media (max-width: 979px) {
     .hero-unit-index {min-height:0px!important}
 }

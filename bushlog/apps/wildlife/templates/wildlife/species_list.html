@@ -1,0 +1,17 @@
+
+{% extends "base.html" %}
+
+{% block title %}Wildlife in Southern Africa{% endblock %}
+{% block decription %}Wildlife in the Game / Nature Reserves in Southern Africa{% endblock %}
+
+{% load humanize %}
+{% load reserve %}
+
+{% block content %}
+
+    {% featured_reserve_maps limit=3 %}
+
+    <div class="row-fluid">
+        Wildlife
+    </div>
+{% endblock %}

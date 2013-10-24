@@ -68,7 +68,7 @@
 
         <div class="span8 visible-phone">
             <div class="media">
-                <a class="pull-left" href="{% url 'wildlife:index' object.slug %}">
+                <a class="pull-left" href="{{ object.get_absolute_url }}">
                     <img class="media-object img-rounded lightest" src="{% resize_image object.default_image 60 60 %}" width="60" height="60" alt="{{ object.common_name }} ({{ object.scientific_name }})"/>
                 </a>
                 <div class="media-body">
@@ -172,7 +172,7 @@
                                 <small>
                                     <div>
                                         <i class="icon-leaf">&nbsp;</i> &nbsp;
-                                        <a href="{% url 'sighting:combo' reserve.slug object.slug %}">{{ reserve.name }}</a>
+                                        <a href="{% url 'sighting:list' reserve.slug object.slug %}">{{ reserve.name }}</a>
                                     </div>
                                 </small>
                             {% endfor %}
@@ -198,7 +198,7 @@
 
         <div class="span3 pull-right hidden-phone">
             <div class="media">
-                <a class="pull-left" href="{% url 'wildlife:index' object.slug %}">
+                <a class="pull-left" href="{{ object.get_absolute_url }}">
                     <img class="media-object img-rounded lightest" src="{% resize_image object.default_image 60 60 %}" width="60" height="60" alt="{{ object.common_name }} ({{ object.scientific_name }})"/>
                 </a>
                 <div class="media-body">
@@ -288,7 +288,7 @@
                     <small>
                         <div>
                             <i class="icon-leaf">&nbsp;</i> &nbsp;
-                            <a href="{% url 'sighting:combo' reserve.slug object.slug %}">{{ reserve.name }}</a>
+                            <a href="{% url 'sighting:list' reserve.slug object.slug %}">{{ reserve.name }}</a>
                         </div>
                     </small>
                 {% endfor %}

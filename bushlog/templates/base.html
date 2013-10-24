@@ -66,20 +66,28 @@
                 <div class="container">
                     <a class="brand" href="{% url 'index' %}"><img src="{{ STATIC_URL }}img/layout/logo-drk.png" width="106" height="30" /></a>
 
-                    <!--<div class="btn-group pull-right">
+                    <div class="btn-group pull-right">
                         <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-th-list"></i>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="#"><i class="icon-leaf"></i>&nbsp; Reserves</a>
+                                <a href="#search_near_me" class="btn-search-proximity">
+                                    <i class="icon-search"></i>&nbsp; Search Near Me
+                                </a>
                             </li>
                             <li>
-                                <a href="#" data-toggle="modal"><i class="icon-species"></i>&nbsp; Species</a>
+                                <a href="{% url 'index' %}"><i class="icon-home"></i>&nbsp; Home</a>
                             </li>
+                            <li>
+                                <a href="{% url 'reserve:list' %}"><i class="icon-leaf"></i>&nbsp; Reserves</a>
+                            </li>
+                            <!--<li>
+                                <a href="{% url 'wildlife:list' %}" data-toggle="modal"><i class="icon-species"></i>&nbsp; Wildlife</a>
+                            </li>-->
                         </ul>
-                    </div>-->
+                    </div>
 
                     <div class="pull-right">&nbsp;</div>
 
@@ -99,21 +107,9 @@
                                 <li>
                                     <a href="#id_avatar_modal" data-toggle="modal"><i class="icon-camera"></i>&nbsp; Update Avatar</a>
                                 </li>
-                                <!--<li class="hidden-phone"><a href="#privacy"><i class="icon-lock"></i>&nbsp; Privacy Settings</a></li>-->
                                 <li class="divider"></li>
                                 <li><a href="{% url 'profile:signout' %}"><i class="icon-remove-sign"></i>&nbsp; Sign Out</a></li>
                             </ul>
-                        </div>
-
-                        <div class="pull-right">&nbsp;</div>
-
-                        <div class="search-form pull-right">
-                            <div class="input-append">
-                                <input id="id_search" class="span3" type="search" placeholder="Search..." autocomplete="off">
-                                <button id="id_search-btn" class="btn" type="button">
-                                    <i class="icon-search"></i>
-                                </button>
-                            </div>
                         </div>
                     {% else %}
                         <div class="btn-group pull-right">
@@ -128,60 +124,79 @@
                                 <li class="divider"></li>
                                 <li>
                                     <a href="{% url 'socialauth_begin' 'facebook' %}">
-                                        <i class="icon-facebook"></i> Sign Up With Facebook
+                                        <i class="icon-facebook"></i> Sign In With Facebook
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{% url 'socialauth_begin' 'google-oauth2' %}">
-                                        <i class="icon-google"></i> Sign Up With Google
+                                        <i class="icon-google"></i> Sign In With Google
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     {% endif %}
+
+                    <div class="pull-right">&nbsp;</div>
+
+                    <div class="search-form pull-right">
+                        <div class="input-append">
+                            <input id="id_search" class="span3" type="search" placeholder="Search..." autocomplete="off">
+                            <button id="id_search-btn" class="btn" type="button">
+                                <i class="icon-search"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="navbar-inner visible-phone" style="padding:2px 30px;">
                 <div class="container">
                     <a class="brand" href="{% url 'index' %}"><img src="{{ STATIC_URL }}img/layout/logo-drk.png" width="106" height="30" /></a>
 
-                    <!--<div class="btn-group pull-right">
+                    <div class="btn-group pull-right">
                         <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-th-list"></i>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="#"><i class="icon-leaf"></i>&nbsp; Reserves</a>
+                                <a href="#search_near_me" class="btn-search-proximity">
+                                    <i class="icon-lock"></i>&nbsp; Search Near Me
+                                </a>
                             </li>
                             <li>
-                                <a href="#" data-toggle="modal"><i class="icon-species"></i>&nbsp; Species</a>
+                                <a href="{% url 'index' %}"><i class="icon-home"></i>&nbsp; Home</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'reserve:list' %}"><i class="icon-leaf"></i>&nbsp; Reserves</a>
+                            </li>
+                            <!--<li>
+                                <a href="{% url 'wildlife:list' %}" data-toggle="modal"><i class="icon-species"></i>&nbsp; Wildlife</a>
+                            </li>-->
+                        </ul>
+                    </div>
+
+                    <div class="pull-right">&nbsp;</div>
+
+                    <div class="btn-group pull-right">
+                        <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-search"></i>
+                            <span class="caret"></span>
+                        </a>
+                        <ul id="id_dropdown-menu-search-phone" class="dropdown-menu">
+                            <li>
+                                <div class="input-append">
+                                    <input id="id_search-phone" type="text" placeholder="Search..." autocomplete="off">
+                                    <button id="id_search-btn-phone" class="btn" type="button">
+                                        <i class="icon-search"></i>
+                                    </button>
+                                </div>
                             </li>
                         </ul>
-                    </div>-->
+                    </div>
 
                     <div class="pull-right">&nbsp;</div>
 
                     {% if request.user.is_authenticated %}
-                        <div class="btn-group pull-right">
-                            <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-search"></i>
-                                <span class="caret"></span>
-                            </a>
-                            <ul id="id_dropdown-menu-search-phone" class="dropdown-menu">
-                                <li>
-                                    <div class="input-append">
-                                        <input id="id_search-phone" type="text" placeholder="Search..." autocomplete="off">
-                                        <button id="id_search-btn-phone" class="btn" type="button">
-                                            <i class="icon-search"></i>
-                                        </button>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="pull-right">&nbsp;</div>
-
                         <div class="btn-group pull-right">
                             <a class="btn dropdown-toggle" data-toggle="dropdown">
                                 <i class="icon-user"></i>
@@ -197,21 +212,18 @@
                                 <li>
                                     <a href="{% url 'profile:forms' 'avatar' %}"><i class="icon-camera"></i>&nbsp; Update Avatar</a>
                                 </li>
-                                <!--<li class="hidden-phone"><a href="#privacy"><i class="icon-lock"></i>&nbsp; Privacy Settings</a></li>-->
                                 <li class="divider"></li>
                                 <li><a href="{% url 'profile:signout' %}"><i class="icon-remove-sign"></i>&nbsp; Sign Out</a></li>
                             </ul>
                         </div>
                     {% else %}
                         <div class="btn-group pull-right">
-                            <a class="btn btn-success" href="{% url 'profile:forms' 'signup' %}">
-                                <i class="icon-user icon-white"></i> Sign Up
-                            </a>
                             <a class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-user icon-white"></i>
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{% url 'index' %}"><i class="icon-lock"></i> Sign In</a></li>
+                                <li><a href="{% url 'profile:forms' 'signup' %}"><i class="icon-user"></i> Sign Up</a></li>
                                 <li class="divider"></li>
                                 <li>
                                     <a href="{% url 'socialauth_begin' 'google-oauth2' %}">

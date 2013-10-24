@@ -42,7 +42,7 @@ class SightingComboViewSitemap(sitemaps.Sitemap):
         return items
 
     def location(self, item):
-        return reverse_lazy('sighting:combo', args=item.split('|'))
+        return reverse_lazy('sighting:list', args=item.split('|'))
 
 
 sitemaps = {

@@ -7,7 +7,7 @@ class SightingsQuerySet(query.QuerySet):
         return self.filter(species__public=True)
 
     def active(self):
-        return self.filter(is_active=True)
+        return self.filter(is_active=True, user__is_active=True)
 
 
 class SightingManager(models.Manager):

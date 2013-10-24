@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.db import models
 
 from bushlog.apps.location.models import Country, Polygon
+from bushlog.apps.reserve.managers import ReserveManager
 from bushlog.apps.wildlife.models import Species
 from bushlog.utils import generate_key, historical_date, point_in_polygon
 
@@ -16,6 +17,8 @@ class Reserve(models.Model):
     slug = models.SlugField()
     description = models.CharField(max_length=250)
     website = models.URLField()
+
+    objects = ReserveManager()
 
     class Meta:
         ordering = ['name']
@@ -85,5 +88,4 @@ class Reserve(models.Model):
         return point_in_polygon(latitude, longitude, self.border.points)
 
     def get_absolute_url(self):
-        return reverse_lazy('reserve:index', args=[self.slug])
-
+        return reverse_lazy('reserve:detail', args=[self.slug])

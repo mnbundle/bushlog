@@ -30,7 +30,7 @@ def resize_image(image, width=None, height=None):
 def sighting_map(context, limit=3, protected=1, *args, **kwargs):
     try:
         if len(kwargs.keys()) > 1:
-            keyword = "combo"
+            keyword = "list"
         else:
             keyword = kwargs.keys()[0]
     except IndexError:

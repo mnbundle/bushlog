@@ -80,7 +80,7 @@ class Sighting(models.Model):
         return ((float(latitude) - point_latitude) ** 2 + (float(longitude) - point_longitude) ** 2) <= radius ** 2
 
     def get_absolute_url(self):
-        return reverse_lazy('sighting:index', args=[self.reserve.slug, self.species.slug, str(self.id)])
+        return reverse_lazy('sighting:detail', args=[self.reserve.slug, self.species.slug, str(self.id)])
 
 
 class SightingImage(models.Model):

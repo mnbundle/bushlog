@@ -15,30 +15,12 @@ from bushlog.apps.sighting.templatetags.sighting import latest_sightings
 from bushlog.apps.wildlife.models import Species
 
 
-class IndexDetailView(generic.DetailView):
+class ListView(generic.ListView):
     model = Sighting
-
-    def render_to_response(self, context, **response_kwargs):
-        """
-        Ensure only public sightings are served unless the user is the owner of this sighting.
-        """
-        if (self.object.user == self.request.user) or self.object.public:
-            return super(IndexDetailView, self).render_to_response(context, **response_kwargs)
-        raise Http404
-
-    def get_queryset(self):
-        return self.model.objects.filter(
-            reserve__slug=self.kwargs.get('reserve_slug'),
-            species__slug=self.kwargs.get('species_slug')
-        )
-
-
-class ComboListView(generic.ListView):
-    model = Sighting
-    template_name = 'sighting/sighting_combo.html'
+    template_name = 'sighting/sighting_list.html'
 
     def get_context_data(self, *args, **kwargs):
-        context = super(ComboListView, self).get_context_data(**kwargs)
+        context = super(ListView, self).get_context_data(**kwargs)
 
         reserve = get_object_or_404(Reserve, slug=self.kwargs.get('reserve_slug'))
         species = get_object_or_404(Species, slug=self.kwargs.get('species_slug'))
@@ -49,6 +31,24 @@ class ComboListView(generic.ListView):
             return context
 
         raise Http404
+
+
+class DetailView(generic.DetailView):
+    model = Sighting
+
+    def render_to_response(self, context, **response_kwargs):
+        """
+        Ensure only public sightings are served unless the user is the owner of this sighting.
+        """
+        if (self.object.user == self.request.user) or self.object.public:
+            return super(DetailView, self).render_to_response(context, **response_kwargs)
+        raise Http404
+
+    def get_queryset(self):
+        return self.model.objects.filter(
+            reserve__slug=self.kwargs.get('reserve_slug'),
+            species__slug=self.kwargs.get('species_slug')
+        )
 
 
 class SearchListView(generic.ListView):
@@ -211,9 +211,9 @@ class LatestView(generic.TemplateView):
         raise Http404
 
 
-index = IndexDetailView.as_view()
+list = ListView.as_view()
+detail = DetailView.as_view()
 search = SearchListView.as_view()
-combo = ComboListView.as_view()
 create = SightingCreateView.as_view()
 create_image = SightingImageCreateView.as_view()
 forms = FormsView.as_view()

@@ -25,6 +25,11 @@ def like_count():
     return intcomma(Like.objects.count())
 
 
+@register.simple_tag
+def like_count_by_obj(obj):
+    return intcomma(Like.by_object(obj).count())
+
+
 @register.inclusion_tag("template_tags/comments.html", takes_context=True)
 def comments(context):
     obj = context['object']
@@ -40,3 +45,8 @@ def comments(context):
 @register.simple_tag
 def comment_count():
     return intcomma(Comment.objects.count())
+
+
+@register.simple_tag
+def comment_count_by_obj(obj):
+    return intcomma(Comment.by_object(obj).count())

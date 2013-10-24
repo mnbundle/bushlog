@@ -4,7 +4,11 @@ from bushlog.apps.reserve.models import Reserve
 from bushlog.decorators import json_response
 
 
-class IndexDetailView(generic.DetailView):
+class ListView(generic.ListView):
+    model = Reserve
+
+
+class DetailView(generic.DetailView):
     model = Reserve
 
 
@@ -27,5 +31,6 @@ class SearchPointView(generic.View):
         return None
 
 
-index = IndexDetailView.as_view()
-search_point = SearchPointView.as_view()
+list = ListView.as_view()
+detail = DetailView.as_view()
+searchpoint = SearchPointView.as_view()
