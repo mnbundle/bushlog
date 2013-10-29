@@ -52,7 +52,7 @@ initRegion = function () {
         }
     }
 
-    if(!ele.hasClass('map-init')) {
+    if (!ele.hasClass('map-init')) {
         ele.gmap3({
             map: {
                 options: {
@@ -64,7 +64,6 @@ initRegion = function () {
                     scrollwheel: scrollwheel,
                     streetViewControl: false,
                     mapTypeControlOptions: mapTypeControlOptions,
-                    //mapTypeId: google.maps.MapTypeId.TERRAIN,
                     zoomControlOptions: zoomControlOptions
                 }
             },

@@ -20,11 +20,8 @@
                         {% endif %}
                         <div class="media-body hidden-phone">
                             <h6>
-                                <a href="{{ object.user.get_absolute_url }}">{{ object.user.username }}</a>
-                                <small> added a sighting of </small>
-                                <a href="{{ object.species.get_absolute_url }}">{{ object.species.common_name }}</a>
-                                <small> in </small>
-                                <a href="{{ object.reserve.get_absolute_url }}">{{ object.reserve.name }}</a>
+                                {{ object.user.username }} <small> added a sighting of </small>
+                                {{ object.species.common_name }} <small> in </small> {{ object.reserve.name }}
                                 <small>
                                     {{ object.date_of_sighting.date|fuzzy_date }}
                                      -
