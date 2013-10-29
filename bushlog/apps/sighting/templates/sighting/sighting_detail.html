@@ -177,11 +177,11 @@
             <div class="media">
                 {% if object.user.profile.avatar %}
                     <a class="pull-left" href="{{ object.user.get_absolute_url }}">
-                        <img class="media-object img-rounded" src="{% resize_image object.user.profile.avatar 60 60 %}" width="60" height="60" />
+                        <img class="media-object img-rounded" src="{% resize_image object.user.profile.avatar 60 60 %}" width="60" height="60" alt="{{ object.species.common_name }} Sighting in the {{ object.reserve.name }}" />
                     </a>
                 {% else %}
                     <a class="pull-left" href="{{ object.user.get_absolute_url }}">
-                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.user.profile.gender|default:"male"|lower }}_60_60.png" width="60" height="60" />
+                        <img class="media-object img-rounded" src="{{ STATIC_URL }}img/layout/profile-{{ object.user.profile.gender|default:"male"|lower }}_60_60.png" width="60" height="60" alt="{{ object.species.common_name }} Sighting in the {{ object.reserve.name }}" />
                     </a>
                 {% endif %}
                 <div class="media-body">
@@ -220,11 +220,11 @@
                 <div class="span12">
                     {% if request.user.is_authenticated %}
                         <a href="#id_sighting_lightbox" data-toggle="lightbox">
-                            <img class="img-rounded" src="{% resize_image object.cover_image 270 200 %}" width="270" height="200" />
+                            <img class="img-rounded" src="{% resize_image object.cover_image 270 200 %}" width="270" height="200" alt="{{ object.species.common_name }} Sighting in the {{ object.reserve.name }}" />
                         </a>
                     {% else %}
                         <a href="#id_signup_modal" data-toggle="modal">
-                            <img class="img-rounded" src="{% resize_image object.cover_image 270 200 %}" width="270" height="200" />
+                            <img class="img-rounded" src="{% resize_image object.cover_image 270 200 %}" width="270" height="200" alt="{{ object.species.common_name }} Sighting in the {{ object.reserve.name }}" />
                         </a>
                     {% endif %}
                 </div>
@@ -233,11 +233,11 @@
 
             <div>
                 <h4>
-                    <img src="{% resize_image object.species.inverted_default_image 50 50 %}" width="50" height="50" />
+                    <img src="{% resize_image object.species.inverted_default_image 50 50 %}" width="50" height="50" alt="{{ object.species.common_name }}" />
                     <a href="{{ object.species.get_absolute_url }}">{{ object.species.common_name }}</a>
                 </h4>
                 <small>{{ object.species.general_info|default:"" }}</small>
-                <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.species.common_name }}", target="blank">Wikipedia</a></small></h6>
+                <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.species.common_name }}" target="blank">Wikipedia</a></small></h6>
             </div>
 
             <hr/>
@@ -247,7 +247,7 @@
                     <a href="{{ object.reserve.get_absolute_url }}">{{ object.reserve.name }}</a>
                 </h4>
                 <small>{{ object.reserve.description|default:"" }}</small>
-                <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.reserve.name }}", target="blank">Wikipedia</a></small></h6>
+                <h6><small>Source: <a href="http://en.wikipedia.org/wiki/{{ object.reserve.name }}" target="blank">Wikipedia</a></small></h6>
             </div>
         </div>
     </div>
