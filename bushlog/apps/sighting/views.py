@@ -177,11 +177,15 @@ class LatestView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super(LatestView, self).get_context_data(**kwargs)
 
-        # retrieve the query string
+        # retrieve and split the query string
         get_data = self.request.GET
-        kwargs['split'] = int(get_data.get('split', 1))
-        kwargs['offset'] = int(get_data.get('offset', 0))
-        kwargs['limit'] = int(get_data.get('limit', 3))
+
+        try:
+            kwargs['split'] = int(get_data.get('split', 1))
+            kwargs['offset'] = int(get_data.get('offset', 0))
+            kwargs['limit'] = int(get_data.get('limit', 3))
+        except ValueError:
+            raise Http404
 
         if 'reserve' in get_data.keys():
             kwargs['reserve'] = get_data.get('reserve')
