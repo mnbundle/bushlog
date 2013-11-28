@@ -1,4 +1,5 @@
 import hashlib
+from optparse import make_option
 import time
 
 from django.conf import settings
@@ -25,20 +26,15 @@ from bushlog.utils import historical_date, image_from_url, random_string
 
 
 class Command(BaseCommand):
-    args = 'crawler querylist'
-    help = "Run the sighting's social media spider."
+    args = ''
+    help = "Run the sighting's social media spider"
+    option_list = BaseCommand.option_list + (
+        make_option('--reserve', dest='reserve', default=None, help='Set the reserve to spider - defaults to all'),
+        make_option('--crawler', dest='crawler', default=None, help='Set the crawler [twitter|instagram|flickr]'),
+        make_option('--query-list', dest='query_list', default=None, help='Set the queries you want to perform')
+    )
 
     def handle(self, *args, **options):
-
-        try:
-            crawler = args[0]
-        except IndexError:
-            crawler = None
-
-        try:
-            query_list = args[1].split(',')
-        except IndexError:
-            query_list = None
 
         # initiate the twitter api wrapper
         twitter_api = twitter.Api(
@@ -61,20 +57,27 @@ class Command(BaseCommand):
         )
 
         # iterate through all reserves and query the api for results
-        for reserve in Reserve.objects.all().order_by('?'):
+        if options.get('reserve'):
+            reserve_list = Reserve.objects.filter(name__icontains=options.get('reserve'))
+        else:
+            reserve_list = Reserve.objects.all().order_by('?')
+
+        for reserve in reserve_list:
             print
             print "Searching: %s..." % reserve.name
 
             # get the query string
-            if query_list:
-                relevant_query_list = [q for q in query_list if reserve.species.filter(common_name__icontains=q)]
+            if options.get('query_list'):
+                relevant_query_list = [
+                    q for q in options.get('query_list') if reserve.species.filter(common_name__icontains=q)
+                ]
             else:
                 relevant_query_list = [obj.common_name for obj in reserve.species.public().order_by('?')][:15]
 
             reserve_results = []
             for query in relevant_query_list:
 
-                if not crawler or crawler == 'twitter':
+                if not options.get('crawler') or options.get('crawler') == 'twitter':
 
                     # retrieve the last id spidered from cache
                     cache_key = hashlib.md5('%s:%s:twitter' % (reserve.name, query)).hexdigest()
@@ -93,7 +96,7 @@ class Command(BaseCommand):
 
                     reserve_results += twitter_results
 
-                if not crawler or crawler == 'flickr':
+                if not options.get('crawler') or options.get('crawler') == 'flickr':
 
                     # retrieve the last id spidered from cache
                     cache_key = hashlib.md5('%s:%s:flickr' % (reserve.name, query)).hexdigest()
@@ -112,7 +115,7 @@ class Command(BaseCommand):
 
                     reserve_results += flickr_results
 
-                if not crawler or crawler == 'instagram':
+                if not options.get('crawler') or options.get('crawler') == 'instagram':
 
                     # retrieve the last id spidered from cache
                     cache_key = hashlib.md5('%s:%s:instagram' % (reserve.name, query)).hexdigest()
