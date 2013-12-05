@@ -149,6 +149,9 @@ class ActivateRedirectView(generic.RedirectView):
     permanent = False
 
     def get_redirect_url(self, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            raise Http404
+
         obj = get_object_or_404(Sighting, pk=kwargs.get('pk'))
         obj.is_active = True
         obj.save()
@@ -162,6 +165,9 @@ class DeactivateRedirectView(generic.RedirectView):
     permanent = False
 
     def get_redirect_url(self, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            raise Http404
+
         obj = get_object_or_404(Sighting, pk=kwargs.get('pk'))
         obj.is_active = False
         obj.save()
