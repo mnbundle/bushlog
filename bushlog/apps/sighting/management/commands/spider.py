@@ -85,7 +85,7 @@ class Command(BaseCommand):
             for query in relevant_query_list:
 
                 # remove common words from the query
-                query = " ".join(q for q in query if q not in settings.IGNOREABLE_WORDS)
+                query = " ".join(q for q in query.split() if q not in settings.IGNOREABLE_WORDS)
 
                 if not options.get('crawler') or options.get('crawler') == 'twitter':
 
