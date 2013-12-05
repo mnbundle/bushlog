@@ -188,8 +188,8 @@ class Command(BaseCommand):
                         user.profile.save()
 
                         # lookup the species and reserve
-                        species = Species.objects.filter(common_name__icontains=result['species'])[0]
                         reserve = Reserve.objects.filter(name__icontains=result['reserve'])[0]
+                        species = Species.objects.filter(common_name__icontains=result['species'], reserves=reserve)[0]
 
                         date_of_sighting = result['date']
 
