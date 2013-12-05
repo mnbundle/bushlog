@@ -47,7 +47,8 @@ setup(
         'simplejson==3.3.0',
         'six==1.3.0',
         'versiontools==1.9.1',
-        'wsgiref==0.1.2'
+        'wsgiref==0.1.2',
+        'beautifulsoup4==4.3.2'
     ],
     scripts=[
         'bushlog/bushlog.sh'
