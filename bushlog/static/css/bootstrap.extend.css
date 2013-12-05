@@ -7,6 +7,7 @@
 .rounded-corners-bottom {border-radius:0px 0px 4px 4px}
 .rounded-corners-top {border-radius:4px 4px 0px 0px}
 .map {height:250px}
+.map img {width:auto;display:inline}
 @media (max-width: 979px) {
     .map {height:150px}
 }
@@ -73,3 +74,6 @@ a:hover {color:#5BB75B}
 .loader {padding:20px 0px}
 .img-profile {cursor:pointer}
 .mobile-list-item {background:url('/static/img/layout/list-detail.png') no-repeat right;padding-right:25px}
+.map img {
+    max-width: none;
+}
