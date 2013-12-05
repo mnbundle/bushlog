@@ -84,6 +84,9 @@ class Command(BaseCommand):
             reserve_results = []
             for query in relevant_query_list:
 
+                # remove common words from the query
+                query = " ".join(q for q in query if q not in settings.IGNOREABLE_WORDS)
+
                 if not options.get('crawler') or options.get('crawler') == 'twitter':
 
                     # retrieve the last id spidered from cache
