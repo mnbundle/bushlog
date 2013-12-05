@@ -42,6 +42,11 @@ def twitter_date(date_string):
     return date_obj + relativedelta(hours=2)
 
 
+def scraper_date(date_string):
+    date_obj = datetime.fromtimestamp(mktime(strptime(date_string, '%d/%m/%Y %H:%M')))
+    return date_obj
+
+
 def clean_twitter_text(text):
     return re.sub("(#[A-Za-z0-9_]+)|([A-Za-z0-9_]+\:[A-Za-z0-9_]+)|(@)|\.|(http[A-Za-z0-9_\.\:\/]+)", "", text).strip()
 

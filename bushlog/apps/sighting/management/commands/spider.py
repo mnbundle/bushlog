@@ -19,7 +19,9 @@ from bushlog.apps.location.models import Coordinate
 from bushlog.apps.reserve.models import Reserve
 from bushlog.apps.sighting.crawlers.flickr import crawler as flickr_crawler
 from bushlog.apps.sighting.crawlers.instagram import crawler as instagram_crawler
+from bushlog.apps.sighting.crawlers.scraper import crawler as scraper_crawler
 from bushlog.apps.sighting.crawlers.twitter import crawler as twitter_crawler
+from bushlog.apps.sighting.scrapers import latestsightings
 from bushlog.apps.sighting.models import Sighting, SightingImage
 from bushlog.apps.wildlife.models import Species
 from bushlog.utils import historical_date, image_from_url, random_string
@@ -54,6 +56,11 @@ class Command(BaseCommand):
         # initiate the instagram api wrapper
         instagram_api = InstagramAPI(
             client_id=settings.INSTAGRAM_CLIENT_ID, client_secret=settings.INSTAGRAM_CLIENT_SECRET
+        )
+
+        # initiate the scaper api wrapper
+        scraper_api = latestsightings.LatestSightingScraper(
+            url=settings.LATESTSIGHTING_URL, img_hostname=settings.LATESTSIGHTING_IMG_HOST
         )
 
         # iterate through all reserves and query the api for results
@@ -121,7 +128,7 @@ class Command(BaseCommand):
                     cache_key = hashlib.md5('%s:%s:instagram' % (reserve.name, query)).hexdigest()
                     since_id = cache.get(cache_key, 0)
 
-                    # get the result from the flickr crawler
+                    # get the result from the instagram crawler
                     instagram_results = instagram_crawler(instagram_api, reserve, query, since_id=since_id)
 
                     # set the last spidered id to cache
@@ -133,6 +140,15 @@ class Command(BaseCommand):
                     print "Found %s Results for '%s' on Instagram" % (len(instagram_results), query)
 
                     reserve_results += instagram_results
+
+                if not options.get('crawler') or options.get('crawler') == 'scraper':
+
+                    # get the result from the scraper
+                    scraper_results = scraper_crawler(scraper_api, reserve, query)
+
+                    print "Found %s Results for '%s' on LatestSightings" % (len(scraper_results), query)
+
+                    reserve_results += scraper_results
 
             print "-" * 20
             print "Found %s Results in %s" % (len(reserve_results), reserve.name)
