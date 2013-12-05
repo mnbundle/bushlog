@@ -25,7 +25,7 @@ class Command(BaseCommand):
             img for img in glob.glob('%s*/*/*.jpg' % media_path) if self.img_identifier(img) not in valid_img_ids
         ]
 
-        print "Deleteing %s zombie images..." % (len(invalid_img_paths))
+        print "Deleting %s zombie images..." % (len(invalid_img_paths))
 
         for img_path in invalid_img_paths:
             os.remove(img_path)
