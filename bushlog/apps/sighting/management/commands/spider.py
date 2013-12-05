@@ -76,7 +76,7 @@ class Command(BaseCommand):
             # get the query string
             if options.get('query_list'):
                 relevant_query_list = [
-                    q for q in options.get('query_list') if reserve.species.filter(common_name__icontains=q)
+                    q for q in options.get('query_list').split(',') if reserve.species.filter(common_name__icontains=q)
                 ]
             else:
                 relevant_query_list = [obj.common_name for obj in reserve.species.public().order_by('?')][:15]
