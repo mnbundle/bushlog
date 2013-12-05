@@ -27,7 +27,7 @@ class LatestSightingScraper(BaseScraper):
                             'longitude': float(paragraph.img.get('onclick').split('item.lng=')[1].split(';')[0])
                         }
 
-            if query in sighting_data['description']:
+            if query.lower() in sighting_data['description'].lower():
                 sightings.append(sighting_data)
 
         return sightings
