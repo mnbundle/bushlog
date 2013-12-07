@@ -10,10 +10,11 @@ class SpeciesInfo(models.Model):
     length = models.DecimalField(max_digits=7, decimal_places=1, blank=True, null=True)
     mass = models.DecimalField(max_digits=7, decimal_places=1, blank=True, null=True)
     horn_length = models.DecimalField(max_digits=7, decimal_places=1, blank=True, null=True)
+    wing_span = models.DecimalField(max_digits=7, decimal_places=1, blank=True, null=True)
 
     def __unicode__(self):
-        return "%s(mass), %s(height), %s(length), %s(horn length)" % (
-            self.mass, self.height, self.length, self.horn_length
+        return "%s(mass), %s(height), %s(length), %s(horn length), %s(wing span)" % (
+            self.mass, self.height, self.length, self.horn_length, self.wing_span
         )
 
 

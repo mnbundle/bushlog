@@ -36,8 +36,6 @@ def sighting_map(context, limit=3, protected=1, *args, **kwargs):
     except IndexError:
         keyword = None
 
-    print keyword
-
     coordinates = kwargs.get('coordinates')
     bounds = []
 
@@ -93,6 +91,7 @@ def sighting_map(context, limit=3, protected=1, *args, **kwargs):
     context.update({
         'object': context.get('object'),
         'mapdata': json.dumps(mapdata),
+        'heatmapdata': json.dumps([obj.heatmapdata for obj in object_list]),
         'bounds': json.dumps(bounds),
         'keyword': keyword,
         'coordinates': coordinates,
@@ -116,7 +115,6 @@ def latest_sightings(context, split=1, limit=3, offset=0, protected=1, exclude_p
 
     if kwargs:
         if coordinates:
-            print "HERE"
             object_list = [
                 obj for obj in Sighting.objects.public().active().filter(date_of_sighting__gte=historical_date(weeks=1))
                 if obj.in_proximity(coordinates['latitude'], coordinates['longitude'], 0.3)

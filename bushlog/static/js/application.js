@@ -396,6 +396,23 @@ showActivate = function () {
     }
 }
 
+initHeatmap = function () {
+    var ele = $('.item.active .predictions-map');
+    if (!ele.empty()) {
+        var map = ele.gmap3("get");
+        var heatmapData = ele.data('heatmap') ? ele.data('heatmap') : [];
+        var heatmapDataParsed = [];
+        $.each(heatmapData, function(i, v) {
+            heatmapDataParsed.push(new google.maps.LatLng(v.lat, v.lng));
+        });
+
+        var heatmap = new google.maps.visualization.HeatmapLayer({
+            data: heatmapDataParsed
+        });
+        heatmap.setMap(map);
+    }
+}
+
 $(document).ready(function() {
 
     // initiate all carousel components
@@ -430,6 +447,9 @@ $(document).ready(function() {
         event.preventDefault();
         history.back(1);
     });
+
+    // initiate the heatmap
+    initHeatmap();
 });
 
 $(window).resize(function() {

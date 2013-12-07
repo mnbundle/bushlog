@@ -60,6 +60,16 @@ class Sighting(models.Model):
         }
 
     @property
+    def heatmapdata(self):
+        """
+        Return required heatmap data for use in Google maps.
+        """
+        return {
+            'lat': str(self.location.latitude),
+            'lng': str(self.location.longitude),
+        }
+
+    @property
     def cover_image(self):
         """
         Returns the first image as a cover image.

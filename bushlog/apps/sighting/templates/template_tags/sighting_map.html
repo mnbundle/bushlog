@@ -3,7 +3,7 @@
 <div id="map-carousel" class="carousel slide">
     <div class="carousel-inner">
         <div class="active item">
-            <div class="map well rounded-corners-top rounded-corners-bottom" data-map='{{ mapdata }}' data-bounds='{{ bounds }}'></div>
+            <div class="map well rounded-corners-top rounded-corners-bottom" data-map='{{ mapdata }}' data-heatmap='{{ heatmapdata }}'data-bounds='{{ bounds }}'></div>
             {% if request.user.is_authenticated %}
                 <a class="btn btn-success btn-map span12 pull-right visible-phone" href="{% url 'sighting:forms' 'create' %}">
                     <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
