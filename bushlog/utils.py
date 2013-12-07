@@ -200,10 +200,15 @@ def get_exif_data(image_path, exif_include_keys=EXIF_INCLUDE_KEYS):
         decoded_key = TAGS.get(key, key)
         if decoded_key in exif_include_keys:
             if decoded_key == "DateTimeOriginal":
-                value = datetime.strptime(value, "%Y:%m:%d %H:%M:%S")
+                try:
+                    value = datetime.strptime(value, "%Y:%m:%d %H:%M:%S")
+                except ValueError:
+                    value = datetime.now()
             exif_data[decoded_key] = value
 
     return exif_data
+
+    [{TAGS.get(key, key): value}for key, value in raw_exif_data.items()]
 
 
 def convert_to_degress(value):
