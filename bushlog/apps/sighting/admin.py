@@ -20,7 +20,7 @@ class SightingImageTabularInline(admin.TabularInline):
 
 
 class SightingAdmin(admin.ModelAdmin):
-    list_display = ['is_active', 'species', 'reserve', 'user', 'with_young', 'with_kill', 'date_of_sighting']
+    list_display = ['cover_image_tag', 'is_active', 'species', 'reserve', 'user', 'with_young', 'with_kill', 'date_of_sighting']
     list_display_links = ['species', 'reserve', 'user']
     search_fields = ['id', 'species__common_name', 'reserve__name', 'user__username', 'date_of_sighting']
     list_filter = ['is_active', 'with_young', 'with_kill']

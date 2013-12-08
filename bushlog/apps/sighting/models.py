@@ -10,7 +10,7 @@ from bushlog.apps.location.models import Coordinate
 from bushlog.apps.reserve.models import Reserve
 from bushlog.apps.sighting.managers import SightingManager
 from bushlog.apps.wildlife.models import Species
-from bushlog.utils import choices, get_exif_data, get_gps_data, random_string
+from bushlog.utils import choices, get_exif_data, get_gps_data, image_resize, random_string
 
 
 def uploadpath(instance, filename):
@@ -78,6 +78,16 @@ class Sighting(models.Model):
             return self.images.all()[0].image
         except IndexError:
             return None
+
+    def cover_image_tag(self):
+        cover_image = self.cover_image
+        if cover_image:
+            resized_cover_img = image_resize(cover_image, width=50, height=50)
+            if resized_cover_img:
+                return '<img src="%s"/>' % resized_cover_img
+        return '<img src="%s"/>' % image_resize(self.species.inverted_default_image, width=50, height=50)
+
+    cover_image_tag.allow_tags = True
 
     @property
     def public(self):
