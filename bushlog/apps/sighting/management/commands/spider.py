@@ -117,7 +117,7 @@ class Command(BaseCommand):
 
                     # set the last spidered historical date to cache
                     try:
-                        cache.set(cache_key, str(historical_date(months=6)))
+                        cache.set(cache_key, str(historical_date(months=3)))
                     except IndexError:
                         pass
 
