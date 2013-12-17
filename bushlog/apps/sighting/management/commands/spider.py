@@ -110,10 +110,10 @@ class Command(BaseCommand):
 
                     # retrieve the last id spidered from cache
                     cache_key = hashlib.md5('%s:%s:flickr' % (reserve.name, query)).hexdigest()
-                    min_upload_date = cache.get(cache_key, 0)
+                    min_taken_date = cache.get(cache_key, 0)
 
                     # get the result from the flickr crawler
-                    flickr_results = flickr_crawler(flickr_api, reserve, query, min_upload_date=min_upload_date)
+                    flickr_results = flickr_crawler(flickr_api, reserve, query, min_taken_date=min_taken_date)
 
                     # set the last spidered historical date to cache
                     try:

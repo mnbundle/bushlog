@@ -1,7 +1,7 @@
 from bushlog.utils import clean_flickr_json
 
 
-def crawler(api, reserve, query, min_upload_date=None):
+def crawler(api, reserve, query, min_taken_date=None):
 
     # query the twitter api
     try:
@@ -10,7 +10,7 @@ def crawler(api, reserve, query, min_upload_date=None):
                 bbox=reserve.bounding_box,
                 text=query,
                 per_page=500,
-                min_upload_date=min_upload_date,
+                min_taken_date=min_taken_date,
                 sort='date-taken-desc',
                 accuracy=1,
                 extras='description,date_taken,owner_name,icon_server,geo,url_c'
@@ -57,4 +57,3 @@ def crawler(api, reserve, query, min_upload_date=None):
             parsed_results.append(parsed_result)
 
     return parsed_results
-
