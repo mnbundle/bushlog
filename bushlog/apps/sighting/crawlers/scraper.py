@@ -12,7 +12,7 @@ def crawler(api, reserve, query, since_id=0):
         parsed_result = {
             'bot': 'scraper',
             'date': scraper_date(result['date']),
-            'text': result['description'],
+            'text': None,
             'location': {
                 'latitude': '%.6f' % (result['coordinates']['latitude']),
                 'longitude': '%.6f' % (result['coordinates']['longitude']),
@@ -28,7 +28,7 @@ def crawler(api, reserve, query, since_id=0):
         }
 
         # ensure that the result do infact occur in the give reserve
-        if reserve.sighting_in_reserve(parsed_result['location']):
+        if reserve.sighting_in_reserve(parsed_result['location']) and parsed_result['image']:
             parsed_results.append(parsed_result)
 
     return parsed_results
