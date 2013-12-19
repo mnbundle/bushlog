@@ -432,7 +432,7 @@ class ResendActivationFormView(generic.FormView):
             user.profile.add_notification('activate_profile')
             messages.add_message(
                 self.request, messages.SUCCESS,
-                "An email has been sent to you with a link to activate your profile."
+                "An email has been sent to you with a link to activate your profile. Please check your Spam folder."
             )
             return HttpResponseRedirect(self.success_url)
 
