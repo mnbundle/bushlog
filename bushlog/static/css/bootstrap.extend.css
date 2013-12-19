@@ -78,3 +78,4 @@ a:hover {color:#5BB75B}
 .img-profile {cursor:pointer}
 .mobile-list-item {background:url('/static/img/layout/list-detail.png') no-repeat right;padding-right:25px}
 .weather-summary {margin-top:-40px!important}
+.weather-temperature {margin-top:2px!important}
