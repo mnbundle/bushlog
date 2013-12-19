@@ -1,5 +1,5 @@
 {% if weather_data.icon %}
-    <div class="media">
+    <div class="media hidden-phone">
         <img src="/static/img/icons/weather/{{ weather_data.icon }}.png" class="media-object img-rounded pull-left" width="60" height="60" alt="{{ weather_data.summary }}" />
         <div class="media-body">
             <h3 class="weather-temperature">
@@ -7,6 +7,18 @@
             </h3>
             <br/>
             <h5 class="weather-summary"><small>{{ weather_data.summary }}</small></h5>
+        </div>
+    </div>
+
+    <div class="media visible-phone pull-top">
+        <br/>
+        <img src="/static/img/icons/weather/{{ weather_data.icon }}.png" class="media-object img-rounded pull-left" width="30" height="30" alt="{{ weather_data.summary }}" />
+        <div class="media-body">
+            <h5 class="weather-temperature">
+                {{ weather_data.temperature }}ºC
+            </h5>
+            <br/>
+            <h6 class="weather-summary"><small>{{ weather_data.summary }}</small></h6>
         </div>
     </div>
 {% endif %}

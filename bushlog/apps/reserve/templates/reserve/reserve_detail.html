@@ -57,14 +57,9 @@
 
         </div>
 
-        <div class="span8 visible-phone">
+        <div class="span12 visible-phone">
             <h4>
                 {{ object.name }}
-            </h4>
-
-            <h4>
-                <small>{{ object.country.all|join:" | " }}</small><br/>
-                <small>{{ object.website|urlize }}</small>
             </h4>
 
             <h6>
@@ -82,6 +77,8 @@
             {% include 'action/share.html' %}
 
             <hr/>
+
+            {% reserve_weather %}
 
             <p>
                 <small>{{ object.description|default:"" }}</small>
