@@ -336,7 +336,7 @@ def get_weather_data(latitude, longitude):
     current_weather = cache.get(cache_key)
 
     if not current_weather:
-        connection = httplib2.Http()
+        connection = httplib2.Http(disable_ssl_certificate_validation=True)
         response, content = connection.request("%s/%s,%s" % (settings.FORCAST_URL, latitude, longitude), "GET")
         current_weather = json.loads(content)['currently']
         cache.set(cache_key, current_weather, 60 * 60)
