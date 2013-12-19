@@ -108,12 +108,14 @@ class UpdateModelForm(forms.ModelForm):
         if self.instance:
             self.instance.slug = self.cleaned_data.get('username')
             self.instance.save()
-            
+
             self.instance.user.username = self.cleaned_data.get('username')
             self.instance.user.first_name = self.cleaned_data.get('first_name')
             self.instance.user.last_name = self.cleaned_data.get('last_name')
             self.instance.user.email = self.cleaned_data.get('email')
             self.instance.user.save()
+
+            print self.instance.slug, self.instance.user.username
 
 
 class AvatarModelForm(forms.ModelForm):

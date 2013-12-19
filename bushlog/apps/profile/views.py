@@ -174,7 +174,7 @@ class UpdateFormView(generic.FormView):
                 self.request, messages.SUCCESS,
                 "Your profile has been updated successfully."
             )
-            return HttpResponseRedirect(reverse_lazy('profile:index', args=[self.request.user.profile.slug]))
+            return HttpResponseRedirect(reverse_lazy('profile:index', args=[form.instance.slug]))
 
         return self.form_invalid(form)
 
