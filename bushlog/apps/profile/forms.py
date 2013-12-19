@@ -112,6 +112,7 @@ class UpdateModelForm(forms.ModelForm):
             self.instance.user.last_name = self.cleaned_data.get('last_name')
             self.instance.user.email = self.cleaned_data.get('email')
             self.instance.user.save()
+            self.instance.save()
 
 
 class AvatarModelForm(forms.ModelForm):
