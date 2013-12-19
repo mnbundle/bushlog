@@ -30,6 +30,7 @@
 .hint {padding-left:12px;display:inline-block}
 label.checkbox {color:#777}
 .pull-top {margin-top:-5px}
+.pull-bottom {margin-bottom:-30px}
 a {color:#333}
 a.btn {outline-width:0!important}
 a:hover {color:#5BB75B}
@@ -76,3 +77,4 @@ a:hover {color:#5BB75B}
 .loader {padding:20px 0px}
 .img-profile {cursor:pointer}
 .mobile-list-item {background:url('/static/img/layout/list-detail.png') no-repeat right;padding-right:25px}
+.weather-summary {margin-top:-40px!important}

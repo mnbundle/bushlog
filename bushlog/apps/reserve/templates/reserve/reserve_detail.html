@@ -27,6 +27,7 @@
 
 {% load action %}
 {% load humanize %}
+{% load reserve %}
 {% load sighting %}
 
 {% block content %}
@@ -135,6 +136,10 @@
 
             {% like_button %}
             {% include 'action/share.html' %}
+
+            <hr/>
+
+            {% reserve_weather %}
 
             <hr/>
 

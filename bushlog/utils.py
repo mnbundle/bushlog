@@ -9,6 +9,8 @@ import string
 from time import mktime, strptime
 import urllib2
 
+from django.conf import settings
+from django.core.cache import cache
 from django.core.files.base import ContentFile
 from django.utils.translation import ungettext, ugettext
 
@@ -16,6 +18,8 @@ from dateutil.relativedelta import relativedelta
 
 import Image as pil
 from PIL.ExifTags import GPSTAGS, TAGS
+
+import httplib2
 
 EXIF_INCLUDE_KEYS = ['Make', 'DateTimeOriginal', 'Model', 'Orientation']
 
@@ -298,3 +302,47 @@ def point_in_polygon(latitude, longitude, polygon):
 
 def random_string():
     return "".join(random.choice(string.hexdigits + string.digits) for r in [i for i in range(16)])
+
+
+def fahrenheit_to_celsius(fahrenheit):
+    """
+    Convert fahrenheit tempreture to celsius.
+    """
+    return int(round((fahrenheit - 32.0) * (5.0 / 9.0)))
+
+
+def default_weather_icon(icon):
+    """
+    Validate and return the appropriate icon.
+    """
+    icon_set = [
+        'clear-day', 'clear-night', 'rain', 'snow', 'sleet', 'wind', 'fog', 'cloudy', 'partly-cloudy-day',
+        'partly-cloudy-night'
+    ]
+    if icon == 'sleet':
+        return 'snow'
+
+    if icon not in icon_set:
+        return None
+
+    return icon
+
+
+def get_weather_data(latitude, longitude):
+    """
+    Get the current wether from cache or the API.
+    """
+    cache_key = hashlib.md5("%s|%s|%s" % (latitude, longitude, "weather")).hexdigest()
+    current_weather = cache.get(cache_key)
+
+    if not current_weather:
+        connection = httplib2.Http()
+        response, content = connection.request("%s/%s,%s" % (settings.FORCAST_URL, latitude, longitude), "GET")
+        current_weather = json.loads(content)['currently']
+        cache.set(cache_key, current_weather, 60 * 60)
+
+    return {
+        'temperature': fahrenheit_to_celsius(current_weather['temperature']),
+        'icon': default_weather_icon(current_weather['icon']),
+        'summary': current_weather['summary']
+    }
