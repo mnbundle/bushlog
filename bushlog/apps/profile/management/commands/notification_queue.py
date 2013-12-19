@@ -17,7 +17,7 @@ class Command(BaseCommand):
             for user in obj.user.all():
                 if obj.type == 'activate_profile':
                     activation_link = "%s%s?uid=%s&token=%s" % (
-                        settings.HOST, reverse_lazy('profile:activate'), user.id, user.profile.token
+                        settings.HOST, reverse_lazy('profile:activation'), user.id, user.profile.token
                     )
                     if obj.send(to=[user.email], activation_link=activation_link):
                         obj.user.remove(user)
