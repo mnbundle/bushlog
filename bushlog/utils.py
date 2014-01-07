@@ -308,7 +308,9 @@ def fahrenheit_to_celsius(fahrenheit):
     """
     Convert fahrenheit tempreture to celsius.
     """
-    return int(round((fahrenheit - 32.0) * (5.0 / 9.0)))
+    if fahrenheit:
+        return int(round((fahrenheit - 32.0) * (5.0 / 9.0)))
+    return None
 
 
 def default_weather_icon(icon):
@@ -338,11 +340,11 @@ def get_weather_data(latitude, longitude):
     if not current_weather:
         connection = httplib2.Http(disable_ssl_certificate_validation=True)
         response, content = connection.request("%s/%s,%s" % (settings.FORCAST_URL, latitude, longitude), "GET")
-        current_weather = json.loads(content)['currently']
+        current_weather = json.loads(content).get('currently', {})
         cache.set(cache_key, current_weather, 60 * 60)
 
     return {
-        'temperature': fahrenheit_to_celsius(current_weather['temperature']),
-        'icon': default_weather_icon(current_weather['icon']),
-        'summary': current_weather['summary']
+        'temperature': fahrenheit_to_celsius(current_weather.get('temperature')),
+        'icon': default_weather_icon(current_weather.get('icon')),
+        'summary': current_weather.get('summary')
     }
