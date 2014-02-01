@@ -58,11 +58,6 @@ class Command(BaseCommand):
             client_id=settings.INSTAGRAM_CLIENT_ID, client_secret=settings.INSTAGRAM_CLIENT_SECRET
         )
 
-        # initiate the scaper api wrapper
-        scraper_api = latestsightings.LatestSightingScraper(
-            url=settings.LATESTSIGHTING_URL, img_hostname=settings.LATESTSIGHTING_IMG_HOST
-        )
-
         # iterate through all reserves and query the api for results
         if options.get('reserve'):
             reserve_list = Reserve.objects.filter(name__icontains=options.get('reserve'))
@@ -143,15 +138,6 @@ class Command(BaseCommand):
                     print "Found %s Results for '%s' on Instagram" % (len(instagram_results), query)
 
                     reserve_results += instagram_results
-
-                if not options.get('crawler') or options.get('crawler') == 'scraper':
-
-                    # get the result from the scraper
-                    scraper_results = scraper_crawler(scraper_api, reserve, query)
-
-                    print "Found %s Results for '%s' on LatestSightings" % (len(scraper_results), query)
-
-                    reserve_results += scraper_results
 
             print "-" * 20
             print "Found %s Results in %s" % (len(reserve_results), reserve.name)
