@@ -51,11 +51,14 @@ class SightingSerializer(serializers.HyperlinkedModelSerializer):
     reserve = serializers.HyperlinkedRelatedField(view_name='api:reserve_detail')
     species = serializers.HyperlinkedRelatedField(view_name='api:species_detail')
     images = serializers.HyperlinkedRelatedField(view_name='api:sightingimage_detail', many=True)
+    mapdata = serializers.CharField(source='mapdata', read_only=True)
     resource_url = serializers.HyperlinkedIdentityField(view_name='api:sighting_detail')
 
     class Meta:
         model = Sighting
-        fields = ['id', 'user', 'reserve', 'species', 'images', 'date_of_sighting', 'description', 'resource_url']
+        fields = [
+            'id', 'user', 'reserve', 'species', 'images', 'date_of_sighting', 'description', 'mapdata', 'resource_url'
+        ]
 
 
 class SpeciesInfoSerializer(serializers.HyperlinkedModelSerializer):

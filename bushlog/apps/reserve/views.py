@@ -12,6 +12,11 @@ class DetailView(generic.DetailView):
     model = Reserve
 
 
+class DashboardDetailView(generic.DetailView):
+    model = Reserve
+    template_name = 'reserve/reserve_detail_dashboard.html'
+
+
 class SearchPointView(generic.View):
 
     @json_response
@@ -33,4 +38,5 @@ class SearchPointView(generic.View):
 
 list = ListView.as_view()
 detail = DetailView.as_view()
+dashboard = DashboardDetailView.as_view()
 searchpoint = SearchPointView.as_view()

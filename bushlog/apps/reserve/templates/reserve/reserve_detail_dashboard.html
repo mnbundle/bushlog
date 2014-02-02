@@ -1,0 +1,121 @@
+{% load action %}
+{% load humanize %}
+{% load reserve %}
+{% load sighting %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+    {% load compress %}
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta name="google-site-verification" content="PXebyJKI5lfK2KFfrT4HO3blZ4IGz8X9fN3oa09phTA"/>
+        <meta name="msvalidate.01" content="B5AB52B9BB0A2E4096BBDD05FFDDCE69" />
+
+        <title>{{ object.name }} Wildlife Sightings</title>
+        <meta name="description" content="Wildlife Sightings in {{ object.name }}, {{ object.country.all|join:" | " }}"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+        <meta name="author" content="Bushlog"/>
+
+        {% compress css %}
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" type="text/css"/>
+            <style type="text/css">
+                html {
+                    height:100%!important;
+                }
+                body {
+                    padding-top: 55px;
+                    padding-bottom: 40px;
+                    height:100%!important;
+                }
+                @media (max-width: 767px) {
+                    body {
+                        padding-top: 55px!important;
+                        padding-bottom: 40px!important;
+                    }
+                }
+                @media (max-width: 979px) {
+                    .navbar-fixed-top,
+                    .navbar-fixed-bottom {
+                        position: fixed;
+                        margin-left: 0px;
+                        margin-right: 0px;
+                    }
+                }
+            </style>
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.responsive.min.css" type="text/css"/>
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.extend.css" type="text/css"/>
+        {% endcompress %}
+
+        <link href="{{ STATIC_URL }}/img/icons/apple-touch-icon.png" rel="apple-touch-icon" />
+
+        {% block extra_css %}{% endblock %}
+
+        {% if debug %}{% else %}
+            <script type="text/javascript">
+                var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', 'UA-40108660-1']);
+                _gaq.push(['_trackPageview']);
+            </script>
+        {% endif %}
+
+        <script src="{{ STATIC_URL }}js/modernizr.min.js"></script>
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top" style="position:fixed">
+            <div class="navbar-inner hidden-phone">
+                <div class="dashboard-container">
+                    <a class="brand dashboard-brand dark" href="{% url 'index' %}">{{ object.name }}</a>
+                    <div class="pull-right dark">
+                        <h3 class="current-time">
+                            {% now 'H:i:s' %}
+                        </h3>
+                        <br/>
+                        <h5 class="current-date"><small>{% now 'd F Y' %}</small></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% sighting_map limit=20 reserve=object dashboard=1 %}
+
+        <div class="navbar navbar-fixed-bottom navbar-footer" style="position:fixed">
+            <div class="navbar-inner">
+                <div class="dashboard-container">
+                    <div class="align-center">
+                        <h5>
+                            <small class="dark">Visit</small>
+                            www.bushlog.com
+                            <small class="dark">for more information and to log your sightings.</small>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en&amp;libraries=visualization"></script>
+        {% compress js %}
+            <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.min.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/gmap3.min.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/dashboard.js"></script>
+        {% endcompress %}
+        <!--[if lt IE 9]>
+            <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        {% if debug %}{% else %}
+            <script type="text/javascript">  (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+            </script>
+        {% endif %}
+    </body>
+</html>

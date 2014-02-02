@@ -3,15 +3,17 @@ Markdown==2.3
 PIL==1.1.7
 South==0.7.6
 argparse==1.2.1
+beautifulsoup4==4.3.2
 django-appconf==0.6
 django-bootstrap-toolkit==2.8.0
 django-compressor==1.3
 django-filter==0.6a1
-django-suit==0.2.5
 django-social-auth==0.7.22
+django-suit==0.2.5
 djangorestframework==2.2.4
 flickrapi==1.4.2
 futures==2.1.3
+git-remote-helpers==0.1.0
 gunicorn==0.17.2
 httplib2==0.8
 oauth2==1.5.211
@@ -25,4 +27,3 @@ simplejson==3.3.0
 six==1.3.0
 versiontools==1.9.1
 wsgiref==0.1.2
-beautifulsoup4==4.3.2

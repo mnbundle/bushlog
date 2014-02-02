@@ -21,7 +21,9 @@ def reserve_weather(context):
     centre_point = context['object'].bounds['centre_point']
     weather_data = get_weather_data(centre_point['latitude'], centre_point['longitude'])
 
-    return {'weather_data': weather_data}
+    return {
+        'weather_data': weather_data
+    }
 
 
 @register.simple_tag

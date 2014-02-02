@@ -132,6 +132,7 @@ initCarousel = function () {
 
 toggleMapSize = function (map, ele) {
     var hint_ele = ele.parent().parent();
+    console.log(hint_ele);
     hint_ele.tooltip('destroy');
 
     var markers = map.data('map');

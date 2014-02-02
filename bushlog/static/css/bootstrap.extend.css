@@ -9,7 +9,8 @@
 .map img {
     max-width: none;
 }
-.map {height:250px}
+.full-screen {min-height:98%!important;height:98%!important}
+.map {height:250px;}
 @media (max-width: 979px) {
     .map {height:150px}
 }
@@ -27,7 +28,8 @@
 .icon-linkedin {background-position:-96px -167px}
 .icon-flickr {background-position:-120px -167px}
 .icon-species {background-position:-144px -167px}
-.hint {padding-left:12px;display:inline-block}
+.icon-dashboard {background-position:-168px -167px}
+.hint {padding-left:10px;display:inline-block}
 label.checkbox {color:#777}
 .pull-top {margin-top:-5px}
 .pull-bottom {margin-bottom:-30px}
@@ -37,10 +39,11 @@ a:hover {color:#5BB75B}
 .date input {width:229px!important;}
 .time input {width:229px!important;}
 .help-inline {font-size:80%}
-.light {opacity: 0.7}
-.lighter {opacity: 0.4}
-.lightest {opacity: 0.1}
-.invert {filter: invert(100%);-webkit-filter:invert(100%);-moz-filter:invert(100%);-o-filter:invert(100%);-ms-filter:invert(100%)}
+.dark {opacity:1;color:#000000!important}
+.light {opacity:0.7}
+.lighter {opacity:0.4}
+.lightest {opacity:0.1}
+.invert {filter:invert(100%);-webkit-filter:invert(100%);-moz-filter:invert(100%);-o-filter:invert(100%);-ms-filter:invert(100%)}
 .spacer {height:10px}
 .media-body h6 {margin-top:0px}
 .media .pull-left {float:left}
@@ -53,7 +56,7 @@ a:hover {color:#5BB75B}
 .btn-header {margin-top:10px}
 .btn-map {margin-top:-10px}
 .align-left {text-align:left}
-.align-center {text-align:center}
+.align-center {text-align:center;margin:auto}
 .align-right {text-align:right}
 .sighting-map {height:400px}
 @media (max-width: 979px) {
@@ -77,5 +80,10 @@ a:hover {color:#5BB75B}
 .loader {padding:20px 0px}
 .img-profile {cursor:pointer}
 .mobile-list-item {background:url('/static/img/layout/list-detail.png') no-repeat right;padding-right:25px}
-.weather-summary {margin-top:-40px!important}
-.weather-temperature {margin-top:2px!important}
+.weather-icon,.current-icon {padding:5px;}
+.weather-summary,.current-date {margin-top:-40px!important}
+.weather-temperature,.current-time {margin-top:2px!important}
+.navbar .dashboard-brand {font-size:30px!important;margin-top:10px;}
+.divider-vertical {height:64px!important;margin-left:20px!important;margin-right:20px!important}
+.dashboard-container {padding-right:15px;padding-left:15px}
+.dashboard-brand {margin:10px;}

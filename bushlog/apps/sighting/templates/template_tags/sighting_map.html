@@ -1,41 +1,50 @@
 {% load sighting %}
 
-<div id="map-carousel" class="carousel slide">
-    <div class="carousel-inner">
-        <div class="active item">
-            <div class="map well rounded-corners-top rounded-corners-bottom" data-map='{{ mapdata }}' data-heatmap='{{ heatmapdata }}'data-bounds='{{ bounds }}'></div>
-            {% if request.user.is_authenticated %}
-                <a class="btn btn-success btn-map span12 pull-right visible-phone" href="{% url 'sighting:forms' 'create' %}">
-                    <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
-                </a>
-            {% else %}
-                <a class="btn btn-success btn-map span12 pull-right visible-phone" href="{% url 'profile:forms' 'signup' %}">
-                    <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
-                </a>
-            {% endif %}
+<div id="map-carousel" class="carousel slide{% if dashboard %} full-screen{% endif %}">
+    <div class="carousel-inner{% if dashboard %} full-screen{% endif %}">
+        <div class="active item{% if dashboard %} full-screen{% endif %}">
+            <div class="map well rounded-corners-top rounded-corners-bottom{% if dashboard %} full-screen{% endif %}" data-map='{{ mapdata }}' data-heatmap='{{ heatmapdata }}' data-bounds='{{ bounds }}' data-reserve='{{ reserve.id }}'></div>
+            {% if not dashboard %}
+                {% if request.user.is_authenticated %}
+                    <a class="btn btn-success btn-map span12 pull-right visible-phone" href="{% url 'sighting:forms' 'create' %}">
+                        <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
+                    </a>
+                {% else %}
+                    <a class="btn btn-success btn-map span12 pull-right visible-phone" href="{% url 'profile:forms' 'signup' %}">
+                        <i class="icon-plus icon-white"></i> &nbsp;Add New Sighting
+                    </a>
+                {% endif %}
 
-            <div class="carousel-caption rounded-corners-bottom hidden-phone">
-                <h5><i class="icon-map-marker icon-white"></i>&nbsp;
-                    {% if keyword == 'user' %}
-                        {{ object.user.username|capfirst }}'s Latest Sightings
-                    {% elif keyword == 'reserve' %}
-                        {% if mapdata != '[]' %}Latest Sightings{% else %}No Recent Sightings{% endif %} in the {{ object.name }}
-                    {% elif keyword == 'species' %}
-                        {% if mapdata != '[]' %}Latest Sightings{% else %}No Recent Sightings{% endif %} of {{ object.common_name }}
-                    {% elif keyword == 'pk' %}
-                        Sighting of {{ object.species.common_name }} in {{ object.reserve.name }}
-                    {% elif keyword == 'coordinates' %}
-                        Sightings Near You
-                    {% elif keyword == 'list' %}
-                        {{ species.common_name }} Sightings in {{ reserve.name }}
-                    {% endif %}
-                    <div class="pull-right">
-                        <a href="#" class="hint" rel="tooltip" title="Expand&nbsp;Map" data-placement="left">
-                            <i class="icon-chevron-down icon-white icon-expand-map"></i>
-                        </a>
-                    </div>
-                </h5>
-            </div>
+                <div class="carousel-caption rounded-corners-bottom hidden-phone">
+                    <h5><i class="icon-map-marker icon-white"></i>&nbsp;
+                        {% if keyword == 'user' %}
+                            {{ object.user.username|capfirst }}'s Latest Sightings
+                        {% elif keyword == 'reserve' %}
+                            {% if mapdata != '[]' %}Latest Sightings{% else %}No Recent Sightings{% endif %} in the {{ object.name }}
+                        {% elif keyword == 'species' %}
+                            {% if mapdata != '[]' %}Latest Sightings{% else %}No Recent Sightings{% endif %} of {{ object.common_name }}
+                        {% elif keyword == 'pk' %}
+                            Sighting of {{ object.species.common_name }} in {{ object.reserve.name }}
+                        {% elif keyword == 'coordinates' %}
+                            Sightings Near You
+                        {% elif keyword == 'list' %}
+                            {{ species.common_name }} Sightings in {{ reserve.name }}
+                        {% endif %}
+                        <div class="pull-right">
+                            <a href="#" class="hint" rel="tooltip" title="Expand&nbsp;Map" data-placement="left">
+                                <i class="icon-chevron-down icon-white icon-expand-map"></i>
+                            </a>
+                        </div>
+                        {% if reserve %}
+                            <div class="pull-right">
+                                <a href="{% url 'reserve:dashboard' reserve.slug %}" class="hint" rel="tooltip" title="Live&nbsp;Dashboard" data-placement="left">
+                                    <i class="icon-dashboard icon-white"></i>
+                                </a>
+                            </div>
+                        {% endif %}
+                    </h5>
+                </div>
+            {% endif %}
         </div>
     </div>
 </div>
