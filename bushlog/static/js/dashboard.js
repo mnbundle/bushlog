@@ -53,7 +53,7 @@ pollSightings = function (sighting_ids) {
     var all_ids = [];
 
     // retrieve latest sightings
-    $.get("/api/sightings/", {reserve: reserve}, function (data) {
+    $.get("/api/sightings/", {reserve: reserve, page_size: 10}, function (data) {
         $.each(data.results, function (index, obj) {
             if ($.inArray(obj.id, sighting_ids) == -1) {
                 sighting_ids.push(obj.id);
