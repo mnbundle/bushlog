@@ -50,6 +50,7 @@ initDashboardMap = function () {
 pollSightings = function (sighting_ids) {
     var ele = $('.map');
     var reserve = ele.data('reserve') ? ele.data('reserve') : 0;
+    var all_ids = [];
 
     // retrieve latest sightings
     $.get("/api/sightings/", {reserve: reserve}, function (data) {
@@ -57,9 +58,20 @@ pollSightings = function (sighting_ids) {
             if ($.inArray(obj.id, sighting_ids) == -1) {
                 sighting_ids.push(obj.id);
                 obj.mapdata.options.animation = google.maps.Animation.DROP
+                obj.mapdata.id = obj.id
                 ele.gmap3({
                     marker: {
                         values: [obj.mapdata]
+                    }
+                });
+            }
+            all_ids.push(obj.id);
+        });
+        $.each(sighting_ids, function (index, id) {
+            if ($.inArray(id, all_ids) == -1) {
+                ele.gmap3({
+                    clear: {
+                        id: id
                     }
                 });
             }
