@@ -75,7 +75,7 @@ initRegion = function () {
                     }
                 },
                 cluster:{
-                    radius: 40,
+                    radius: 35,
                     clickable: true,
                     events: {
                         click: function(cluster, events, context){
@@ -85,19 +85,7 @@ initRegion = function () {
                         },
                     },
                     0: {
-                        content: '<div class="cluster cluster-1">CLUSTER_COUNT</div></a>',
-                        width: 30,
-                        height: 30
-                    },
-                    20: {
-                        content: '<div class="cluster cluster-2">CLUSTER_COUNT</div>',
-                        width: 35,
-                        height: 35
-                    },
-                    50: {
-                        content: '<div class="cluster cluster-3">CLUSTER_COUNT</div>',
-                        width: 40,
-                        height: 40
+                        content: '<div class="cluster cluster-1">CLUSTER_COUNT</div></a>'
                     }
                 }
             },
@@ -132,7 +120,6 @@ initCarousel = function () {
 
 toggleMapSize = function (map, ele) {
     var hint_ele = ele.parent().parent();
-    console.log(hint_ele);
     hint_ele.tooltip('destroy');
 
     var markers = map.data('map');
@@ -450,7 +437,7 @@ $(document).ready(function() {
     });
 
     // initiate the heatmap
-    initHeatmap();
+    //initHeatmap();
 });
 
 $(window).resize(function() {
