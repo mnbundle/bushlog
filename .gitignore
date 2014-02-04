@@ -9,7 +9,9 @@
 bin/
 include/
 lib/
-bushlog/settings
+bushlog/settings/dev.py
+bushlog/settings/production.py
+bushlog/settings/staging.py
 bushlog/static/admin
 bushlog/media/avatars
 bushlog/media/sightings
