@@ -13,6 +13,9 @@ Contributing
 
 Contributions will be greatly appreciated. To contribute, fork the project and submit pull requests.
 
+Setup Development Environment::
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     $ git clone git@github.com:<your_github_username>/bushlog.git
     $ cd bushlog
     $ virtualenv .
