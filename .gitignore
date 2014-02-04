@@ -9,7 +9,6 @@
 bin/
 include/
 lib/
-bushlog/settings
 bushlog/static/admin
 bushlog/media/avatars
 bushlog/media/sightings
