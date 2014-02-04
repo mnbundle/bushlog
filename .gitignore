@@ -9,8 +9,9 @@
 bin/
 include/
 lib/
+bushlog/settings
 bushlog/static/admin
 bushlog/media/avatars
 bushlog/media/sightings
 bushlog/static/cache
-backup.tar.bz2
+*.tar.bz2
